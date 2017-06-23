@@ -1,0 +1,16 @@
+entreprise_homepage:
+    path:     /
+    defaults: { _controller: EntrepriseBundle:Default:index }
+gagnants:
+    path:     /gagnants
+    defaults: { _controller: EntrepriseBundle:Default:gagnants }
+statistique:
+    path:     /statistique
+    defaults: { _controller: EntrepriseBundle:Default:statistique }
+pub:
+    path:     /pub
+    defaults: { _controller: EntrepriseBundle:Default:pub }
+enregistrerprofilEnt:
+    path:  /enregistrerprofilEnt
+    defaults: { _controller:EntrepriseBundle:Default:enregistrerprofil }
+

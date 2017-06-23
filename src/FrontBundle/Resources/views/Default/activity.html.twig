@@ -1,0 +1,7 @@
+{% extends 'FrontBundle::layout.html.twig' %}
+ {% block body %}
+{%for activity in activites%}
+<h1>{{activity.getNom()}}</h1>
+<p>cette activer {{activity.getNom()}} a pour but de vous faire gagner {{activity.getNbrPoint()}} repartie sur 3 niveau pour les top 3</p>
+{% endfor %}
+ {% endblock %}

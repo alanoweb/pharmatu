@@ -1,0 +1,20 @@
+homepage:
+    path:  /
+    defaults: { _controller:FrontBundle:Default:index }
+apropos:
+    path:  /apropos
+    defaults: { _controller:FrontBundle:Default:apropos }
+contact:
+    path:  /contact
+    defaults: { _controller:FrontBundle:Default:contact }
+boutique:
+    path:  /boutique
+    defaults: { _controller:FrontBundle:Default:boutique }
+activity:
+    path:  /activity/{id}
+    defaults: { _controller:FrontBundle:Default:activityCat }
+    requirements:
+        id : \d+
+monprofil:
+    path:  /monprofil
+    defaults: { _controller:FrontBundle:Default:monprofil }

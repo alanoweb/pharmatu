@@ -1,0 +1,10 @@
+{% extends 'FrontBundle::layout.html.twig' %}
+ {% block body %}
+{%for produit in produits%}
+<h3>{{produit.getLibele()}}</h3>
+<h5>{{produit.getNbrCoin()}}</h5>
+<h5>{{produit.getDescription()}}</h5>
+<h5>{{produit.getPrix()}}</h5>
+<h5>{{produit.getPrix()}}</h5>
+{% endfor %}
+ {% endblock %}

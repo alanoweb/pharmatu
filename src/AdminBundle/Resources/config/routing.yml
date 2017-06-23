@@ -1,0 +1,8 @@
+admin_homepage:
+    path:     /
+    defaults: { _controller: AdminBundle:Default:index }
+profils:
+    path:     /profils
+    defaults: { _controller: AdminBundle:Default:profils }
+    
+

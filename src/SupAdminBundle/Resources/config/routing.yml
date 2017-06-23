@@ -1,0 +1,8 @@
+sup_admin_homepage:
+    path:     /
+    defaults: { _controller: SupAdminBundle:Default:index }
+categories:
+    path:     /categories
+    defaults: { _controller: SupAdminBundle:Default:categories }
+
+

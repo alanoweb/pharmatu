@@ -1,0 +1,4 @@
+services:
+#    sup_admin.example:
+#        class: SupAdminBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
