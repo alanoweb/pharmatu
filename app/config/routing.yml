@@ -1,0 +1,26 @@
+entreprise:
+    resource: "@EntrepriseBundle/Resources/config/routing.yml"
+    prefix:   /entreprise
+
+admin:
+    resource: "@AdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+sup_admin:
+    resource: "@SupAdminBundle/Resources/config/routing.yml"
+    prefix:   /supadmin
+
+front:
+    resource: "@FrontBundle/Resources/config/routing.yml"
+    prefix:   /
+
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /user
+
+fos_user: 
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+    
+new_user:
+    pattern: /new
+    defaults: { _controller: UserBundle:user:new}
