@@ -924,15 +924,44 @@
             <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
             <p id="profile-name" class="profile-name-card"></p>
             <form action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
-                <span id="loginerror"></span>
+                <span id="loginerror" style="color:red"></span>
                 <span id="reauth-email" class="reauth-email"></span>
                 <div class="input-group" style="margin-bottom:10px">
   <span class="input-group-addon" ><i class="glyphicon glyphicon-user"></i></span>   
-                <input type="text" id="username" name="_username" value="" required="required" autofocus class="form-control " placeholder="{{ 'security.login.username'|trans }}" style="margin-bottom:0px"/>
+                <input onfocusout="usernamereq();" type="text" id="username" name="_username" value="" required="required" autofocus class="form-control " placeholder="{{ 'security.login.username'|trans }}" style="margin-bottom:0px"/>
 </div>
 <div class="input-group" style="margin-bottom:10px">
   <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
-              <input type="password" class="form-control " id="password" name="_password" required="required" placeholder="{{ 'security.login.password'|trans }}" style="margin-bottom:0px"/>
+              <input onfocusout="pswreq();" type="password" class="form-control " id="password" name="_password" required="required" placeholder="{{ 'security.login.password'|trans }}" style="margin-bottom:0px"/>
+</div>  
+              <div id="remember" class="checkbox">
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
+                                        <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                </div>
+                <button id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block btn-signin" type="submit" style="width:49%;display:inline-block">{{ 'security.login.submit'|trans }}</button>
+                <a href="javascript:void(0);" data-toggle="modal" data-target="#register-modal" data-dismiss="modal"><button id="_register" name="_register" class="btn btn-lg btn-primary btn-block btn-signin" type="button" style="width:49%;display:inline;float:right;background-color:#AFAFAF;">{#{ 'security.login.register'|trans }#}Inscription</button></a>
+            </form><!-- /form -->
+            <a href="#" class="forgot-password">
+                Mot de passe oublier?
+            </a>
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+    
+      <div class="container modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="card card-container">
+            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+            <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+            <p id="profile-name" class="profile-name-card"></p>
+            <form action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
+                <span id="loginerror" style="color:red"></span>
+                <span id="reauth-email" class="reauth-email"></span>
+                <div class="input-group" style="margin-bottom:10px">
+  <span class="input-group-addon" ><i class="glyphicon glyphicon-user"></i></span>   
+                <input onfocusout="usernamereq();" type="text" id="username" name="_username" value="" required="required" autofocus class="form-control " placeholder="{{ 'security.login.username'|trans }}" style="margin-bottom:0px"/>
+</div>
+<div class="input-group" style="margin-bottom:10px">
+  <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
+              <input onfocusout="pswreq();" type="password" class="form-control " id="password" name="_password" required="required" placeholder="{{ 'security.login.password'|trans }}" style="margin-bottom:0px"/>
 </div>  
               <div id="remember" class="checkbox">
                     <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
@@ -941,8 +970,8 @@
                 <button id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block btn-signin" type="submit" style="width:49%;display:inline-block">{{ 'security.login.submit'|trans }}</button>
                 <button id="_register" name="_register" class="btn btn-lg btn-primary btn-block btn-signin" type="button" style="width:49%;display:inline;float:right;background-color:#AFAFAF;">{#{ 'security.login.register'|trans }#}Inscription</button>
             </form><!-- /form -->
-            <a href="#" class="forgot-password">
-                Mot de passe oublier?
+            <a href="javascript:void(0);" data-toggle="modal" data-target="#login-modal" class="forgot-password" data-dismiss="modal">
+                Vous avez un compte? se connecter!
             </a>
         </div><!-- /card-container -->
     </div><!-- /container -->
@@ -986,13 +1015,29 @@
     $(document).ready(function(){
         $('#_submit').click(function(e){
             e.preventDefault();
+            if (usernamereq() === false && pswreq() === false){
+                $('#loginerror').html("entrez vos coordonnées");
+            }
+            else if (usernamereq() === false){
+                $('#loginerror').html("nom d'utilisateur ou e-mail obligatoire");
+            }
+            else if (pswreq() === false){
+                $('#loginerror').html("mot de passe obligatoire");
+            }
+            else{
+                $('#loginerror').html("");
+                $('#username').parent().css("border","none");
+                $('#password').parent().css("border","none");
             $.ajax({
                 type        : $('form').attr( 'method' ),
                 url         : '{{ path("fos_user_security_check") }}',
                 data        : $('form').serialize(),
                 dataType    : "json",
                 success     : function(data, status, object) {
-                    if(!data.success) $('#loginerror').html(data.message);
+                    if(!data.success) {$('#loginerror').html("nom utilisateur ou mot de passe invalide");
+                        $('#username').parent().css("border","solid 1px red");
+                $('#password').parent().css("border","solid 1px red");
+            }
                     else location.reload();
                 },
                 error: function(data, status, object){
@@ -1000,8 +1045,36 @@
                     
                 }
             });
+            }
         });
     });
+</script>
+<script>
+  function usernamereq(){
+      if ($('#username').val() === "" || $('#username').val() === null){
+          $('#username').parent().css("border","solid 1px red");
+          return false;
+      }
+      else{
+          $('#username').parent().css("border","solid 1px green");
+          return true;
+      }
+  }
+  function pswreq(){
+      if ($('#password').val() === "" || $('#password').val() === null){
+          $('#password').parent().css("border","solid 1px red");
+          return false;
+      }
+      else{
+          $('#password').parent().css("border","solid 1px green");
+          return true;
+      }
+  }
+  $( '#login-modal' ).on('hidden.bs.modal', function(){
+       $('#loginerror').html("");
+                $('#username').parent().css("border","none");
+                $('#password').parent().css("border","none");
+   })
 </script>
         {% block javascript %}
         {% endblock javascript %}
