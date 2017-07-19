@@ -1,788 +1,1128 @@
-{#---------------------------------------------------------------ayoub-------------------------------------------------------------#}
-<!DOCTYPE html>   
-<!--[if IE 7 ]>    <html dir="ltr" lang="en-US" class="no-js ie7 oldie"> <![endif]-->
-<!--[if IE 8 ]>    <html dir="ltr" lang="en-US" class="no-js ie8 oldie"> <![endif]-->
-<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!-->
-<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml" lang="en-US" class="no-js">
-    <!--<![endif]-->        
-        
-        
-<!-- BEGIN head -->
-<head>
-        <!-- meta -->
-        <meta charset="UTF-8" />
-	<!-- Mobile Specific Metas -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <!-- title -->
-        <title> LemonChili | A premium Restaurant WordPress Theme </title>
-        <!-- stylesheets -->
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,900' rel='stylesheet' type='text/css'>
-        <!-- Pingbacks -->
-        <link rel="pingback" href="{{ asset('js/xmlrpc.php') }}" />
-        <!-- Favicon -->
-        <link rel="shortcut icon" href="{{ asset('images/11/fav.png') }}" />
-                           
-                        <script type="text/javascript">
-                <!-- Google Analytics -->
-                  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-39587313-1']);
-  _gaq.push(['_trackPageview']);
+<!DOCTYPE html>
+<html lang="en">
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+    <!-- Mirrored from gameforest.yakuzi.eu/games-single.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 19 Feb 2017 10:13:32 GMT -->
+    <head>
+        {% trans_default_domain 'FOSUserBundle' %}
+        <!-- META -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-                </script>
-                                
-        <!-- Calls Wordpress head functions -->
-        <link rel="alternate" type="application/rss+xml" title="LemonChili &raquo; Feed" href="feed/index.html" />
-<link rel="alternate" type="application/rss+xml" title="LemonChili &raquo; Comments Feed" href="comments/feed/index.html" />
-<link rel="alternate" type="application/rss+xml" title="LemonChili &raquo; Home Comments Feed" href="home/feed/index.html" />
-		<script type="text/javascript">
-			window._wpemojiSettings = {"baseUrl":"http:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/www.themes.red-sun-design.com\/lemonchili\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.2.10"}};
-			!function(a,b,c){function d(a){var c=b.createElement("canvas"),d=c.getContext&&c.getContext("2d");return d&&d.fillText?(d.textBaseline="top",d.font="600 32px Arial","flag"===a?(d.fillText(String.fromCharCode(55356,56812,55356,56807),0,0),c.toDataURL().length>3e3):(d.fillText(String.fromCharCode(55357,56835),0,0),0!==d.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
-		</script>
-		<style type="text/css">
-img.wp-smiley,
-img.emoji {
-	display: inline !important;
-	border: none !important;
-	box-shadow: none !important;
-	height: 1em !important;
-	width: 1em !important;
-	margin: 0 .07em !important;
-	vertical-align: -0.1em !important;
-	background: none !important;
-	padding: 0 !important;
-}
-</style>
-<link rel='stylesheet' id='ruda-css'  href='http://fonts.googleapis.com/css?family=Ruda%3A900&amp;ver=screen' type='text/css' media='all' />
-<link rel='stylesheet' id='styleswitch-css'  href='{{ asset('styles/styleswitch.min0ea5.css?ver=4.2.10')}}' type='text/css' media='all' />
-<link rel='stylesheet' id='style-css'  href='{{ asset('styles/style0ea5.css?ver=4.2.10')}}' type='text/css' media='all' />
-<link rel='stylesheet' id='masonry-css'  href='{{ asset('styles/masonry8449.css?ver=screen')}}' type='text/css' media='all' />
-<link rel='stylesheet' id='iconfont-css'  href='{{ asset('styles/font-awesome.min8449.css?ver=screen')}}' type='text/css' media='all' />
-<link rel='stylesheet' id='prettyPhoto-css'  href='{{ asset('styles/prettyPhoto8449.css?ver=screen')}}' type='text/css' media='all' />
-<link rel='stylesheet' id='shortcodes-css'  href='{{ asset('styles/shortcodes8449.css?ver=screen')}}' type='text/css' media='all' />
-<link rel='stylesheet' id='light-css'  href='{{ asset('styles/light8449.css')}}' type='text/css' media='all' />
-<!--[if IE]>
-<link rel='stylesheet' id='oldie-css'  href='http://www.themes.red-sun-design.com/lemonchili/wp-content/themes/lemonchili/css/ie8-and-down.css?ver=screen' type='text/css' media='all' />
-<![endif]-->
-<link rel='stylesheet' id='nivoSlider-css'  href='{{ asset('styles/nivoSlider0ea5.css?ver=4.2.10')}}' type='text/css' media='all' />
-<link rel='stylesheet' id='layout-css'  href='{{ asset('styles/layout-responsive8449.css?ver=screen')}}' type='text/css' media='all' />
-<link rel='stylesheet' id='background-manager-pub-css'  href='{{ asset('styles/pub80e7.css?ver=1.2.5.2')}}' type='text/css' media='all' />
-<script type="text/javascript">/* <![CDATA[ */window.background_manager_ajax={"url":"http:\/\/www.themes.red-sun-design.com\/lemonchili\/wp-admin\/admin-ajax.php","action":"background-manager"};/* ]]> */</script>
-<script type='text/javascript' src='{{ asset('js/jquery/jquery4a80.js?ver=1.11.2')}}'></script>
-<script type='text/javascript' src='{{ asset('js/jquery/jquery-migrate.min1576.js?ver=1.2.1')}}'></script>
-<script type='text/javascript' src='{{ asset('js/backstretch68b3.js?ver=1')}}'></script>
-<script type='text/javascript' src='{{ asset('js/scripts68b3.js?ver=1')}}'></script>
-<script type='text/javascript' src='{{ asset('js/imagesloaded.pkgd.min68b3.js?ver=1')}}'></script>
-<script type='text/javascript' src='{{ asset('js/superfish68b3.js?ver=1')}}'></script>
-<script type='text/javascript' src='{{ asset('js/modernizr-transitions68b3.js?ver=1')}}'></script>
-<script type='text/javascript' src='{{ asset('js/prettyPhoto68b3.js?ver=1')}}'></script>
-<script type='text/javascript' src='{{ asset('js/fitVids68b3.js?ver=1')}}'></script>
-<script type='text/javascript' src='{{ asset('js/nivoSlider68b3.js?ver=1')}}'></script>
-<script type='text/javascript'>
-/* <![CDATA[ */
-var myatu_bgm = {"current_background":{"id":1687,"url":"http:\/\/www.themes.red-sun-design.com\/lemonchili\/wp-content\/uploads\/2013\/11\/lemonchilibackground1.jpg","alt":"","desc":"","caption":"lemonchilibackground","link":"","thumb":"http:\/\/www.themes.red-sun-design.com\/lemonchili\/wp-content\/uploads\/2013\/11\/lemonchilibackground1-150x150.jpg","bg_link":"","transition":"crossfade","transition_speed":0},"change_freq":"0","active_gallery":"1686","is_fullsize":"true","is_preview":"false","initial_ease_in":"false","info_tab_thumb":"true","bg_click_new_window":"false","bg_track_clicks":"false","bg_track_clicks_category":"Background Manager","display_on_mobile":"true","fs_center":"true"};
-/* ]]> */
-</script>
-<script type='text/javascript' src='{{ asset('js/functions80e7.js?ver=1.2.5.2')}}'></script>
-<script type='text/javascript' src='{{ asset('js/flux80e7.js?ver=1.2.5.2')}}'></script>
-<script type='text/javascript' src='{{ asset('js/pub80e7.js?ver=1.2.5.2')}}'></script>
-<link rel="EditURI" type="application/rsd+xml" title="RSD" href="{{ asset('js/xmlrpc0db0.php?rsd')}}" />
-<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="{{ asset('js/wlwmanifest.xml')}}" /> 
-<meta name="generator" content="WordPress 4.2.10" />
-<link rel='canonical' href='index.html' />
-<link rel='shortlink' href='index.html' />
-<style type="text/css" media="screen">body.myatu_bgm_body { background-image: none !important;background-color: transparent !important; } </style>
+        <title>Gameforest - Responsive Gaming HTML Theme</title>
 
-        <style type="text/css">
+        <!-- FAVICON -->
+        <link rel="shortcut icon" href="{{asset('img/favicon.ico')}}">
 
-                /* RETINA IMAGES */
-                
-						@media 
-						(-webkit-min-device-pixel-ratio: 2), 
-						(min-resolution: 192dpi) { 
-                
-                
-                        
-                                .logo-retina{
-                                        display: block;
-                                        }
-                                        
-                                .logo-regular {
-                                        display: none;
-                                        }                
+        <!-- CORE CSS -->
+        <link href="{{asset('plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{asset('plugins/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700' rel='stylesheet' type='text/css'> 
 
-                                        
-                
-                }
+        <!-- PLUGINS -->
+        <link href="{{asset('plugins/animate/animate.min.css')}}" rel="stylesheet">
+        <link href="{{asset('plugins/owl-carousel/owl.carousel.css')}}" rel="stylesheet">
+        <link href="{{asset('plugins/ekko-lightbox/ekko-lightbox.min.css')}}" rel="stylesheet">
 
-        </style>
-        
-        
-        <style type="text/css">
-                
-                #top-bar {
-                        font-size: 11px;
-                        }
-                        
-                 
-                #top-bar i {
-                        font-size: 14px;
-                        }
-  
-                
-                #topinfo,
-                #topinfo a,
-                #topinfo a:link,
-                #topinfo a:visited {
-                        color: #909294;
-                        }
-                        
-                        html {
-                        background: #fafafa;
-                }
-                        #bg-image {
-                        background-repeat: no-repeat;
-                        background-attachment:fixed;
-                        background-position: center top;
-                        -webkit-background-size: cover;
-                        -moz-background-size: cover;
-                        -o-background-size: cover;
-                        background-size: cover;          
-                        filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.myBackground.jpg', sizingMethod='scale');
-                        -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='myBackground.jpg', sizingMethod='scale')";
-                        max-width: 100%;
-                        max-height: 100%;
-                        }                
-                #left #social,
-        #logo,
-        #search-left,
-        #topnavi,
-        #navi-icon,
-        #content,
-        #slide-bg
-        {        
-                box-shadow: 0 1px 2px rgba(30, 70, 70, 0.23);
-                }
-                #logo{
-                -moz-border-radius: 4px 4px 0 0;
-                border-radius: 4px 4px 0 0;
-                -webkit-border-radius: 4px 4px 0 0;
-                }
-                
-        #social {
-                -moz-border-radius: 0 0 4px 4px;
-                border-radius: 0 0 4px 4px;
-                -webkit-border-radius: 0 0 4px 4px;
-                }
-                
-        #content,
-        #slide-bg {  
-                -moz-border-radius: 4px;
-                -webkit-border-radius: 4px;
-                border-radius: 4px;
-                }
-                    
-                
-                @media only screen and (min-width: 768px) and (max-width: 9999px) {
-                
-                        }
-                        .centerwrap {
-                        width: 140px;
-                }
-                #copyright
-                 {
-                 color: #eeeeee;
-                 }
-                a, 
-        a:active,
-        a:visited,
-        h1 a:hover, h1 a:active,
-        h2 a:hover, h2 a:active,
-        h3 a:hover, h3 a:active,
-        h4 a:hover, h4 a:active,
-        h5 a:hover, h5 a:active,
-        h6 a:hover, h6 a:active,
-        #footer-widget-area a:hover,
-        #footer-widget-area a:active,
-        
-        #topinfo a:hover,
-        #topinfo a:active,
-        
-        .sf-menu ul li a:hover,
-        
-        #topnavi .sbOptions a:hover,
-        #topnavi .sbOptions a:focus,
-        #topnavi .sbOptions a.sbFocus,
-        
-        .tags a:hover,
-        .comment-nr a:hover,
-        ul.single-postinfo li a:hover,
-        
-        li.author a:hover
-                {
-                color: #00BECC;
-                }
-        
-        
-        .button1,
-        .buttonS,
-        .highlight1,
-        .highlight2,
-        ul.tabs li a,
-        .pagination_main a:hover,
-        .pagination_main .current,
-        ul.login li a:hover,
-        span.page-numbers,
-        a.page-numbers:hover,
-        li.comment .reply,
-        #submit,
-        .login-submit input,
-        .moretext,
-        .gallery-resize-icon
-                {
-                background-color: #00BECC;
-                }
-                   
-        a:hover.nivo-nextNav,
-        a:hover.nivo-prevNav,
-        .nivo-caption p
-                {
-                background-color: #00BECC;
-                }         
-        
-        .nivo-caption p
-                {
-                box-shadow: 10px 0 0 #00BECC, -11px 0 0 #00BECC;
-                }  
-        
-        .sticky {
-                border-bottom: 6px solid #00BECC;
-                border-top: 6px solid #00BECC;
-                }
-        
-                a:hover {
-                color: #B07D5B;
-                }
-        
-        .button1:hover,
-        .buttonS:hover,
-        .moretext:hover,
-        li.comment .reply:hover,
-        #submit:hover {
-                background-color: #B07D5B;
-                }
-                h1, h2, h3, h4, h5, h6,
-        .sf-menu a,
-        .sf-menu li li a,
-        #navi-icon, 
-        .dropcap,
-        ul.login li a,
-        .nivo-caption,
-        .button1,
-        .buttonS,
-        span.reply,
-        h3#reply-title,
-        li.comment cite,
-        .moretext,
-        .events1col .event-date
-                 {
-                 font-family: "Open Sans" , "Helvetica Neue", Arial, "sans-serif";
-                 }
-                .sf-menu a,
-        #navi-icon, 
-        .events1col .event-date,
-        h6.menu-title,
-        h6.menu-title2,
-        h3.widgettitle,
-        .date-h,
-        .moretext,
-        #search-button,
-        .reply,
-        #submit,
-        h3#reply-title,
-        li.comment cite,
-        h1.title,
-        h1.pagetitle,
-        h1.team-title,
-        #content h3.widgettitle,
-        ul.login li a,
-        .nivo-caption,
-        h1.menu-cat,
-        h1.event-title,
-        h1.event-title-w,
-        h1.gg-gallery-title,
-        h4.eventsmonth, 
-        h6
-                {
-                text-transform: uppercase;
-                }         
-                h1, h2, h3, h4, h5, h6,
-        #navi-icon, 
-        .dropcap,
-        ul.login li a,
-        .nivo-caption,
-        .nivo-caption p,
-        .sf-menu a,
-        .sf-menu li li a,
-        
-        .button1,
-        .buttonS,
-        span.reply,
-        .moretext,
-        h3#reply-title,
-        
-        .events1col .event-date,
-        h6.menu-title,
-        h6.menu-title2,
-        h1.gg-gallery-title,
-        h3.widgettitle,
-        .date-h,
-        h1.title,
-        h1.pagetitle,
-        #content h3.widgettitle,
-        h1.menu-cat,
-        h1.event-title,
-        h1.event-title-w {
-                font-weight: 800;
-                }
-                #content h3.widgettitle,
-        h1.menu-cat,
-        h1.pagetitle,
-        .nivo-caption p 
-                 {
-                 letter-spacing: -1px;
-                 }         
-        .nivo-caption p {
-  box-decoration-break: clone;
-}
+        <!-- THEME CSS -->
+        <link href="{{asset('css/theme.min.css')}}" rel="stylesheet">
+        <link href="{{asset('css/custom.css')}}" rel="stylesheet">
 
-#logo img { height: auto; }
+        <!-- My CSS -->
+        <link href="{{asset('css/loginmodal.css')}}" rel="stylesheet">
+    </head>
 
-.img {overflow: hidden;}
-
-.sfHover a.sf-with-ul,
-li.sfHover a.sf-with-ul {
-     color: #fff !important;
-        }   
-
-
-
-
-        </style>
-        
-        <style type="text/css">
-        
-        /** CUSTOM STYLES RESPONSIVE (THEME OPTIONS PANEL) **/
-
-        
-        </style>
-        
-                
-
-</head><!-- END head -->
-
-
-<!-- BEGIN body -->
-<body class="home page page-id-97 page-template page-template-template-home page-template-template-home-php myatu_bgm_body">
-
-<!-- BEGIN styleswitcher -->        
-<div class="styleswitcher">
-        
-	<div id="ss_open" class="ui-widget-content ui-corner-all">		
-                
-                <h4>DEMO STYLES</h4> 
-                        
-		<h5>skin</h5>               
-                       <select name="skins" id="skins" tabindex="1">
-                                <option id="light" class="styleswitch" value="light">light</option>
-                                <option id="dark" class="styleswitch" value="dark">dark</option>                                
-                        </select>
-
-
-                <div class="clear"> </div>
-                        
-                <div class="ss_section">
-         		<h5 class="topmargin">font</h5> 	        
-                        <select name="fonts" id="fonts" tabindex="2">
-                        	     <option id="Open+Sans" class="fontstyle open" value="Open Sans">Open Sans</option>
-                        	     <option id="Open+Sans+Condensed" class="fontstyle open condensed" value="Open Sans Condensed">Open Sans Condensed</option>
-                                <option id="Montserrat" class="fontstyle montserrat" value="Montserrat">Montserrat</option>
-                                <option id="Bree+Serif" class="fontstyle bree" value="Bree Serif">Bree Serif</option>
-                                <option id="Patua+One" class="fontstyle patua" value="Patua One">Patua One</option>
-                                <option id="Croissant+One" class="fontstyle croissant" value="Croissant One">Croissant One</option>
-                                <option id="Cherry+Swash" class="fontstyle cherry" value="Cherry Swash">Cherry Swash</option>
-                                <option id="Ruda" class="fontstyle ruda" value="Ruda">Ruda</option>
-                                <option id="Dosis" class="fontstyle dosis" value="Dosis">Dosis</option>
-                                <option id="Ubuntu+Mono" class="fontstyle ubuntu" value="Ubuntu Mono">Ubuntu Mono</option>
-                                <option id="Anonymous+Pro" class="fontstyle anonymous" value="Anonymous Pro">Anonymous Pro</option>
-                                <option id="Love+Ya+Like+A+Sister" class="fontstyle love" value="Love Ya Like A Sister">Love Ya Like A Sister</option>
-                                <option id="Patrick+Hand" class="fontstyle patrick" value="Patrick Hand">Patrick Hand</option>
-                                <option id="Rancho" class="fontstyle rancho" value="Rancho">Rancho</option>
-                        </select>
-                </div>
-                
-     
-                <div class="clear"> </div>
-                        
-                <div class="ss_section">        	
-                        <h5 class="topmargin">color</h5>
-                        <ul id="color">
-                                <li><a class="color hex_fdb813" href="#"></a></li>
-                                <li><a class="color hex_F1592A" href="#"></a></li>
-                                <li><a class="color hex_ff4229" href="#"></a></li>
-                                <li><a class="color hex_fb2e2e ss_last" href="#"></a></li>
-                                
-                                
-                                <li><a class="color hex_EF65A3" href="#"></a></li>
-                                <li><a class="color hex_fc416a" href="#"></a></li>
-                                <li><a class="color hex_ff4354" href="#"></a></li> 
-                                <li><a class="color hex_ff1190  ss_last" href="#"></a></li> 
-
-                                <li><a class="color hex_14b8f5" href="#"></a></li>
-                                <li><a class="color hex_00BECC" href="#"></a></li>                                
-                                <li><a class="color hex_18cece" href="#"></a></li>
-                                <li><a class="color hex_16A085 ss_last" href="#"></a></li>
-
-                                <li><a class="color hex_BC5727" href="#"></a></li>
-                                <li><a class="color hex_9e5f35" href="#"></a></li>                               
-                                <li><a class="color hex_927155" href="#"></a></li>
-                                <li><a class="color hex_9a8764 ss_last" href="#"></a></li>
-
-                        </ul>                
-                </div>
-
-		<div>
-		<a href="#" id="styleswitcher_btn" class="ui-state-default ui-corner-all"><i class="fa fa-arrows-h"></i></a>
-		</div>		
-
-	</div><!-- ss_open-->
-        
-</div><!-- styleswitcher -->
-<!-- END styleswitcher -->
-
-<div id="top-bar">
-
-         
-        <div id="topinfo">     
-                <ul>
-                                                        <li><i class="fa fa-phone"></i>056.3334555 </li>
-                        
-                        
-                        <li><i class="fa fa-map-marker"></i>
-                                <a class="location" href="http://goo.gl/maps/m3vB7" target="_blank"> 317 Pacifc C HWY, Huntington Beach, CA 92648 </a> 
-                        </li>
-                        
-                </ul>                        
-        </div>
-        
-</div>
-
-<div id="bg-image">
-    <div id="wrapper">
-        <div id="left">
-            <div id="logo" class="logo-regular">
-                <a href="{{path('homepage')}}" > <img class="logoimage" alt="LemonChili" src="{{asset('images/lclogo.png')}}"    width="140"  height="104" /> </a>
-            </div> <!-- #logo-->
-            <div id="topnavi">
-                <div class="menu-mymenu-container">
-                    <ul id="menu-mymenu" class="sf-menu sf-vertical regular-menu">
-					
-                        <li id="menu-item-99" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-97 current_page_item menu-item-99">
-                            <a href="{{path('homepage')}}">Accueil</a>
-                        </li>
-						{% if app.user %}
-                              <li id="menu-item-149" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-149"><a href="{{path('monprofil')}}">Mon profil</a>              
-                        </li>
-                        {% elseif not app.user %}						
-                        <li id="menu-item-149" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-149"><a href="{{path('fos_user_security_login')}}">Connection</a>
-                        </li>
-						{% endif %}
-						<li id="menu-item-277" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-277" >
-                            <a>Activités</a>
-                            <ul id="menu-mymenu" class="sf-menu sf-vertical sub-menu">       
-                               {{ render(controller("FrontBundle:Default:menu")) }}
-			                </ul>
-                        </li>
-                        <li id="menu-item-277" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-277">
-                            <a href="{{path('boutique')}}">Boutique</a>
-                        </li>
-                             {% if is_granted('ROLE_SUPER_ADMIN')%}     
-							 
-                             <li><a href="{{path('catégories')}}">Catégories</a></li>                                    
-                             {% endif %} 
-						   {% if is_granted('ROLE_ADMIN')%}
-						     <li><a href="{{path('profils')}}">Profils</a></li>  
-						{% endif %}
-						{% if is_granted('ROLE_ENTREPRISE')%}
-                            <li><a href="{{path('gagnants')}}">Gagnants</a></li>                  
-                            <li><a href="{{path('statistique')}}">Statistique</a></li>                  
-                            <li><a href="{{path('pub')}}">Pub</a></li>
-						{% endif %}
-                        <li id="menu-item-514" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-514">
-                            <a href="{{path('apropos')}}">Apropos</a>
-                        </li>
-                        <li id="menu-item-200" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-200">
-                            <a href="{{path('contact')}}">Contact</a>
-                        </li>
-                        {% if app.user %}
-<li id="menu-item-149" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-149"><a href="{{path('fos_user_security_logout')}}">Déconnection</a></li>
-                        {% endif %}
-						                    </ul>
-                </div>
-                       
-                            <div id="navi-icon"><i class="fa fa-bars"></i>Navigation</div>
-            </div><!-- #topnavi -->
-            <div class="clear"></div>
-            <div id="search-left"><!-- searchform-->
-                <div>
-                    <form id="searchform" method="get" action="http://www.themes.red-sun-design.com/lemonchili/">
-                        <div>
-                            <input type="text" name="s" id="searchinput" value="Search here ..." onblur="if (this.value == '') {this.value = 'Search here ...';}" onfocus="if (this.value == 'Search here ...') {this.value = '';}"/>
-                            <input type="submit" class="button1" id="search-button" value="Go" />
-                        </div>
-                    </form>
-                </div>
-                <div class="clear">
-                </div><!-- .clear-->
-            </div>
-            <div id="social">
-                <ul id="socialicons">
-                    <li class="fb"> <a href="https://www.facebook.com/gerda.gimpl" target="_blank"  > <i class="fa fa-facebook"></i> </a> </li>                        
-                    <li class="twitter"> <a href="https://twitter.com/wahoooos" target="_blank"  > <i class="fa fa-twitter"></i> </a> </li>                        
-                    <li class="yelp"> <a href="http://www.yelp.com/biz/sushi-studio-long-beach" target="_blank"  > <i class="fa fa-yelp"></i> </a> </li>                        
-                    <li class="foursquare"> <a href="https://de.foursquare.com/v/sushi-studio/4af5e4aff964a5206cfe21e3" target="_blank"  > <i class="fa fa-foursquare"></i> </a> </li>                        
-                </ul>
-            </div><!-- .social-->
-        </div> <!-- .left-->
-        <div id="contentwrap">	
-{% block slide%}
-		
-            <div id="slide-bg"> 
-                <div id="slideshow">
-                    <div class="loading-spinner">
-                        <i class="fa fa-spinner fa-spin"></i>
+    <body class="fixed-header">
+        <header>
+            <div class="container" >
+                <span class="bar hide"></span>
+                <a href="index-2.html" class="logo"><img src="{{asset('img/logo.png')}}" alt=""></a>
+                <nav>
+                    <div class="nav-control">
+                        <ul>	
+                            <li >
+                                <a href="{{path('homepage')}}" >Accueil</a>
+                                <!--<ul class="dropdown-menu default">
+                                        <li><a href="home-magazine.html">Home - Magazine</a></li>
+                                        <li><a href="home-magazine-2.html">Home - Magazine 2</a></li>
+                                        <li><a href="home-magazine-3.html">Home - Magazine 3</a></li>
+                                        <li><a href="index-2.html">Home - Games</a></li>
+                                        <li><a href="home-videos.html">Home - Videos</a></li>
+                                </ul>-->
+                            </li>
+                            {% if not app.user %}						
+                                <li > 
+                                    <a href="javascript:void(0);" data-toggle="modal" data-target="#login-modal">Se connecter</a>
+                                </li>
+                            {% endif %}
+                            <li class="dropdown mega-dropdown">
+                                <a >Activités</a>
+                                <ul id="menu-mymenu" class="dropdown-menu mega-dropdown-menu category">       
+                                    {{ render(controller("FrontBundle:Default:menu")) }}
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="{{path('boutique')}}">Boutique</a>
+                            </li>
+                            <li>
+                                <a href="{{path('apropos')}}">Apropos</a>
+                            </li>
+                            <li>
+                                <a href="{{path('contact')}}">Contact</a>
+                            </li>
+                            {#<li class="dropdown mega-dropdown">
+                                    <a href="games.html">Games</a>
+                                    <ul class="dropdown-menu mega-dropdown-menu category">
+                                            <li class="col-md-3">
+                                                    <a href="games-single.html">
+                                                            <img src="{{asset('img/game/menu-1.jpg')}}" alt="">
+                                                            <div class="caption">
+                                                                    <span class="label label-warning">PC</span>
+                                                                    <h3>Assassin's Creed Syndicate</h3>
+                                                                    <p>Lorem ipsum dolor sit amet, adipise elit.</p>
+                                                            </div>
+                                                    </a>
+                                            </li>
+                                            <li class="col-md-3">
+                                                    <a href="games-single.html">
+                                                            <img src="{{asset('img/game/menu-2.jpg')}}" alt="">
+                                                            <div class="caption">
+                                                                    <span class="label label-primary">PS4</span>
+                                                                    <h3>Last of Us Remastered</h3>
+                                                                    <p>Lorem ipsum dolor sit amet, adipise elit.</p>
+                                                            </div>
+                                                    </a>
+                                            </li>
+                                            <li class="col-md-3">
+                                                    <a href="games-single.html">
+                                                            <img src="{{asset('img/game/menu-3.jpg')}}" alt="">
+                                                            <div class="caption">
+                                                                    <span class="label label-success">Xbox</span>
+                                                                    <h3>Max Payne 3</h3>
+                                                                    <p>Lorem ipsum dolor sit amet, adipise elit.</p>
+                                                            </div>
+                                                    </a>
+                                            </li>
+                                            <li class="col-md-3">
+                                                    <a href="games-single.html">
+                                                            <img src="{{asset('img/game/menu-4.jpg')}}" alt="">
+                                                            <div class="caption">
+                                                                    <span class="label label-danger">Steam</span>
+                                                                    <h3>Hitman Absolution</h3>
+                                                                    <p>Lorem ipsum dolor sit amet, adipise elit.</p>
+                                                            </div>
+                                                    </a>
+                                            </li>
+                                    </ul>
+                            </li>
+                            <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle">Blog</a>
+                                    <ul class="dropdown-menu default">
+                                            <li class="dropdown-submenu">
+                                                    <a href="blog-large.html"><i class="fa fa-align-justify"></i> Blog Large</a>
+                                                    <ul class="dropdown-menu">
+                                                            <li><a href="blog-large.html">Archive</a></li>
+                                                            <li><a href="blog-large-sidebar.html">Sidebar</a></li>
+                                                            <li><a href="blog-large-post.html">Single Post</a></li>
+                                                    </ul>
+                                            </li>
+                                            <li class="dropdown-submenu">
+                                                    <a href="blog-medium.html"><i class="fa fa-list-ul"></i> Blog Medium</a>
+                                                    <ul class="dropdown-menu">
+                                                            <li><a href="blog-medium.html">Archive</a></li>
+                                                            <li><a href="blog-medium-sidebar.html">Sidebar</a></li>
+                                                            <li><a href="blog-medium-post.html">Single Post</a></li>
+                                                    </ul>
+                                            </li>
+                                            <li class="dropdown-submenu">
+                                                    <a href="blog-post.html"><i class="fa fa-file-o"></i> Single Post</a>
+                                                    <ul class="dropdown-menu">
+                                                            <li><a href="blog-post.html">Blog Image Post</a></li>
+                                                            <li><a href="blog-post-slideshow.html">Blog Slideshow Post</a></li>
+                                                            <li><a href="blog-post-video.html">Blog Video Post</a></li>
+                                                            <li><a href="blog-post-music.html">Blog Music Post</a></li>
+                                                            <li><a href="blog-post-disqus.html">Blog Disqus Post</a></li>
+                                                    </ul>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li><a href="blog-masonry.html"><i class="fa fa-th-large"></i>Blog Masonry</a></li>
+                                            <li><a href="blog-thumbnail.html"><i class="fa fa-clone"></i>Blog Thumbnail</a></li>
+                                            <li><a href="blog-timeline.html"><i class="fa fa-clock-o"></i>Blog Timeline</a></li>
+                                    </ul>
+                            </li>
+                            <li class="dropdown mega-dropdown mega-dropdown-sm">
+                                    <a href="#">Pages</a>
+                                    <ul class="dropdown-menu mega-dropdown-menu row">
+                                            <li class="col-md-6">
+                                                    <ul>
+                                                            <li class="dropdown-header">Default Examples</li>
+                                                            <li><a href="games.html">Games</a></li>
+                                                            <li><a href="games-single.html">Game Post</a></li>
+                                                            <li><a href="reviews.html">Reviews</a></li>
+                                                            <li><a href="reviews-single.html">Review Post</a></li>
+                                                            <li><a href="videos.html">Videos</a></li>
+                                                            <li><a href="videos-single.html">Videos Post</a></li>
+                                                            <li><a href="contact.html">Contact</a></li>
+                                                    </ul>
+                                            </li>
+                                            <li class="col-md-6">
+                                                    <ul>
+                                                            <li class="dropdown-header">Initial Examples</li>
+                                                            <li><a href="login.html">Login</a></li>
+                                                            <li><a href="register.html">Register</a></li>
+                                                            <li><a href="profile.html">Profile Page</a></li>
+                                                            <li><a href="forum.html">Forums</a></li>
+                                                            <li><a href="fullwidth.html">Full Width</a></li>
+                                                            <li><a href="blank-page.html">Blank Page</a></li>
+                                                            <li><a href="404.html">404 Error</a></li>
+                                                    </ul>
+                                            </li>
+                                    </ul>
+                            </li>
+                            <li class="dropdown mega-dropdown">
+                                    <a href="#">Elements</a>
+                                    <ul class="dropdown-menu mega-dropdown-menu row" style="background-image: url(img/content/menu.png);">
+                                            <li class="col-md-3">
+                                                    <ul>
+                                                            <li class="dropdown-header">Typography</li>
+                                                            <li><a href="elements-typography.html"><i class="fa fa-text-height"></i> General Typography</a></li>
+                                                            <li><a href="elements-blockquote.html"><i class="fa fa-quote-left"></i> Blockquote</a></li>
+                                                            <li><a href="elements-helpers.html"><i class="fa fa-square-o"></i> Helper Classes</a></li>
+                                                            <li><a href="elements-testimonials.html"><i class="fa fa-bullhorn"></i> Testimonials</a></li>
+                                                            <li><a href="elements-grids.html"><i class="fa fa-th-large"></i> Grid Layouts</a></li>
+                                                            <li><a href="elements-alerts.html"><i class="fa fa-bell-o"></i> Alert & Messages</a></li>
+                                                            <li><a href="elements-labels.html"><i class="fa fa-bookmark-o"></i> Labels & Badges</a></li>
+                                                            <li><a href="elements-media.html"><i class="fa fa-image"></i> Audio, Videos & Images</a></li>
+                                                            <li><a href="elements-pagers.html"><i class="fa fa-ellipsis-h"></i> Pagination & Pagers</a></li>
+                                                    </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                    <ul>
+                                                            <li class="dropdown-header">Button & Icons</li>
+                                                            <li><a href="elements-buttons.html"><i class="fa fa-flash"></i> General Buttons</a></li>
+                                                            <li><a href="elements-social-buttons.html"><i class="fa fa-thumbs-o-up"></i> Social Buttons</a></li>
+                                                            <li><a href="elements-glyphicons.html"><i class="fa fa-chevron-circle-right"></i> Glyphicons</a></li>
+                                                            <li><a href="elements-fontawesome.html"><i class="fa fa-chevron-circle-right"></i> FontAwesome</a></li>
+                                                            <li><a href="elements-ionicons.html"><i class="fa fa-chevron-circle-right"></i> IonIcons</a></li>
+                                                            <li class="dropdown-header">Components</li>
+                                                            <li><a href="elements-media-objects.html"><i class="fa fa-align-justify"></i> Media Objects</a></li>
+                                                            <li><a href="elements-page-headers.html"><i class="fa fa-align-justify"></i> Page headers</a></li>
+                                                            <li><a href="elements-wells.html"><i class="fa fa-align-justify"></i> Wells</a></li>
+                                                    </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                    <ul>
+                                                            <li class="dropdown-header">Default Elements</li>
+                                                            <li><a href="elements-widgets.html"><i class="fa fa-th"></i> Widgets</a></li>
+                                                            <li><a href="elements-sections.html"><i class="fa fa-th"></i> Sections</a></li>
+                                                            <li><a href="elements-thumbnails.html"><i class="fa fa-file-o"></i> Thumbnails</a></li> 
+                                                            <li><a href="elements-cards.html"><i class="fa fa-sticky-note-o"></i> Cards</a></li>   
+                                                            <li><a href="elements-tabs.html"><i class="fa fa-external-link"></i> Accordion & Tabs</a></li>
+                                                            <li><a href="elements-timeline.html"><i class="fa fa-th-large"></i> Timeline</a></li>
+                                                            <li><a href="elements-tables.html"><i class="fa fa-th"></i> Tables</a></li>
+                                                            <li><a href="elements-progress.html"><i class="fa fa-arrows-h"></i> Progress Bars</a></li>
+                                                            <li><a href="elements-panels.html"><i class="fa fa-th"></i> Panels</a></li>
+                                                    </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                    <ul>
+                                                            <li class="dropdown-header">Forms & Info</li>
+                                                            <li><a href="elements-forms.html"><i class="fa fa-align-justify"></i> Form Elements</a></li>
+                                                            <li><a href="elements-form-layouts.html"><i class="fa fa-align-justify"></i> Form Layouts</a></li>		
+                                                            <li><a href="elements-modals.html"><i class="fa fa-external-link"></i> Modals</a></li>			 	
+                                                            <li><a href="elements-carousel.html"><i class="fa fa-arrows"></i> Carousel Examples</a></li>		
+                                                            <li><a href="elements-charts.html"><i class="fa fa-bar-chart-o"></i> Charts & Countdowns</a></li>		
+                                                            <li><a href="elements-google-maps.html"><i class="fa fa-map-marker"></i> Google Maps</a></li>		                                             
+                                                    </ul>
+                                            </li>
+                                    </ul>
+                            </li>
+                            <li><a href="videos.html">Videos</a></li>
+                            <li><a href="gallery.html">Gallery</a></li>
+                            <li><a href="contact.html">Contact</a></li>#}
+                        </ul>
                     </div>
-                    <div id="slider" class="nivoSlider">
-                        <img src='{{ asset('images/03/slide1x.jpg')}}' alt='' title='Welcome to LemonChili' />
-                        <img src='{{ asset('images/03/slide2.jpg')}}' alt='' title='We serve fresh, seasonal food' />
-                        <img src='{{ asset('images/03/yigaS2.jpg')}}' alt='' title='you will &lt;i class=&quot;fa fa-heart&quot;&gt;&lt;/i&gt; our Ethiopian Espresso' />
-                        <a href='events/event-3/index.html'>
-                            <img src='{{ asset('images/03/surfS.jpg')}}' alt='' title='Join the Lemon Chili Surf Event on August 2nd' />
-                        </a>
-                        <img src='{{ asset('images/06/sliderSoup.jpg')}}' alt='' title='Lunch specials start at just 7.90' />
-                    </div><!-- .slider-->                                
-                </div><!-- #slideshow-->
-            </div><!-- #slide-bg-->
-			{% endblock slide%}
-            <div id="content">
-                {% block  body  %}
-                    <div class="m-container js-masonry widget-area centered"> 
-                        <div id="gg_hours_widget-2" class="widget gg_Hours_widget box col6 boxbg">
-                            <h3 class="widgettitle text-center">
-                                <i class="fa fa-clock-o "></i>Hours
-                            </h3>				
-                            <div class="text-center">
-                                <h6 class="hours-title">Monday - Friday</h6>                                        
-                                <p>7AM - 11AM (Breakfast) <br> 11AM - 10PM (Lunch/Dinner)</p>
-                                <h6 class="hours-title">Saturday / Sunday</h6>		                     
-                                <p>8AM - 1PM (Brunch) <br> 1PM - 9PM (Lunch/Dinner)</p>
+                </nav>
+                <div class="nav-right">
+                    {% if app.user %}
+                        <div class="nav-profile">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{asset('img/user/avatar.jpg')}}" alt="">
+                                <span>
+                                    {% if app.user.admin != null %}
+                                        {% if app.user.admin.pseudo != null and app.user.admin.pseudo != ""%}
+                                            {{app.user.admin.pseudo}}
+                                        {%else%}
+                                            {{app.user.admin.nom}} {{app.user.admin.prenom}}
+                                        {%endif%}
+                                    {%elseif app.user.entreprise != null%}
+                                        {{app.user.entreprise.nom}}
+                                    {%elseif app.user.utilisateur%}
+                                        {% if app.user.utilisateur.pseudo != null and app.user.utilisateur.pseudo != ""%}
+                                            {{app.user.utilisateur.pseudo}}
+                                        {%else%}
+                                            {{app.user.utilisateur.nom}} {{app.user.utilisateur.prenom}}
+                                        {%endif%}
+										{%else%}
+										{{app.user.username}}
+                                    {%endif%}
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                {% if is_granted('ROLE_SUPER_ADMIN')%}     
+                                    <li><a href="{{path('categories')}}"><i class="fa fa-area-chart"></i>Catégories</a></li>                                    
+                                    {% endif %} 
+                                    {% if is_granted('ROLE_ADMIN')%}
+                                    <li><a href="{{path('profils')}}"><i class="fa fa-group"></i>Profils</a></li>  
+                                    {% endif %}
+                                    {% if is_granted('ROLE_ENTREPRISE')%}
+                                    <li><a href="{{path('gagnants')}}"><i class="fa fa-trophy"></i>Gagnants</a></li>                  
+                                    <li><a href="{{path('statistique')}}"><i class="fa fa-bar-chart"></i>Statistique</a></li>                  
+                                    <li><a href="{{path('pub')}}"><i class="fa fa-eye"></i>Pub</a></li>
+                                    {% endif %}
+                                    {% if is_granted('ROLE_SUPER_ADMIN') == false%}
+                                    <li><a href="{{path('monprofil')}}"><i class="fa fa-user"></i> Mon profil</a></li>
+                                    {%endif%}
+                                    {% if is_granted('ROLE_SUPER_ADMIN') == false and is_granted('ROLE_ADMIN') == false and is_granted('ROLE_ENTREPRISE') == false%}
+                                    <li><a href="#"><i class="fa fa-heart"></i> Likes <span class="label label-info">32</span></a></li>
+                                    <li><a href="#"><i class="fa fa-gamepad"></i> Games</a></li>
+                                    <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
+                                    {%endif%}
+                                <li class="divider"></li>
+                                <li><a href="{{path('fos_user_security_logout')}}"><i class="fa fa-power-off"></i>Déconnection</a></li>
+                            </ul>
+                        </div>
+                        <div class="nav-dropdown dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <span class="label label-danger">3</span></a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-header"><i class="fa fa-bell"></i> You have 5 new games</li>
+                                <li><a href="#">Alien Isolation</a></li>
+                                <li><a href="#">Witcher 3 <span class="label label-success">XBOX</span></a></li>
+                                <li><a href="#">Last of Us</a></li>
+                                <li><a href="#">Uncharted 4 <span class="label label-primary">PS4</span></a></li>
+                                <li><a href="#">GTA 5 <span class="label label-warning">PC</span></a></li>
+                                <li class="dropdown-footer"><a href="#">View all games</a></li>
+                            </ul>
+                        </div>
+                    {%else%}
+                        <div class="nav-profile ">
+                            <a href="javascript:void(0);" data-toggle="modal" data-target="#login-modal" class="dropdown-toggle" ><img src="{{asset('img/user/avatar.jpg')}}" alt=""> <span>Anonyme</span></a>  
+                        </div>
+                    {%endif%}
+                    <a href="#" data-toggle="modal-search"><i class="fa fa-search"></i></a>
+                </div>
+            </div>
+        </header>
+        <!-- /header -->
+
+        <div class="modal-search">
+            <div class="container">
+                <input type="text" class="form-control" placeholder="Type to search...">
+                <i class="fa fa-times close"></i>
+            </div>
+        </div><!-- /.modal-search -->
+
+        <!-- wrapper -->
+        <div id="wrapper">
+            {% block Dashboard %}
+            {% block slide %}
+                 <div id="full-carousel" class="ken-burns carousel slide full-carousel carousel-fade" data-ride="carousel" style="height:400px;">
+                    <ol class="carousel-indicators">
+                        <li data-target="#full-carousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#full-carousel" data-slide-to="1"></li>
+                        <li data-target="#full-carousel" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner" style="height:400px; ">
+                        <div class="item active inactiveUntilOnLoad" style="height:400px; ">
+                            <img src="{{asset('img/slideshow/1.jpg')}}" alt="">
+                            <div class="container" style="height:400px; position:fixed;">
+                                <div class="carousel-caption" style="height:400px; ">
+                                    <h1 data-animation="animated animate1 bounceInDown" style="margin:auto !important; height:auto; ">The Witcher 3: Wild Hunt</h1>
+                                    <p data-animation="animated animate7 fadeInUp">The world is in chaos. The air is thick with tension and the smoke of burnt villages.</p>
+                                    <a href="#signin" data-toggle="modal" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn">Became a member now</a>
+                                </div>		
                             </div>
                         </div>
-                        <div id="gg-images-widget-2" class="widget gg_images_widget box col6 boxbg">
-                            <h3 class="widgettitle text-center"><i class="fa fa-camera-retro "></i>Latest Images</h3>
-                            <div class="post-97 page type-page status-publish hentry" id="images-widget-97">
-                                <div class="gallery-widget">
-                                    <ul>
-                                        <li class='prettyimage-wrap'>
-                                            <a class='pretty_image' title='' data-rel='prettyPhoto[pp_gallery]' href='{{ asset('images/02/20120922-shutterstock_94716478.jpg')}}'>
-                                                <span class='image-rollover'><i class='gallery-resize-icon fa fa-expand'>
-                                                    </i>
-                                                </span>
-                                                <img src='{{ asset('images/02/20120922-shutterstock_94716478-260x260.jpg')}}' alt='' />
-                                            </a>
-                                        </li>
-                                        <li class='prettyimage-wrap'>
-                                            <a class='pretty_image' title='' data-rel='prettyPhoto[pp_gallery]' href='wp-content/uploads/2013/02/coffeeV.jpg'>
-                                                <span class='image-rollover'>
-                                                    <i class='gallery-resize-icon fa fa-expand'></i>
-                                                </span>
-                                                <img src='{{ asset('images/02/coffeeV-260x260.jpg')}}' alt='' />
-                                            </a>
-                                        </li>
-                                        <li class='prettyimage-wrap'>
-                                            <a class='pretty_image' title='' data-rel='prettyPhoto[pp_gallery]' href='wp-content/uploads/2013/03/coffeeartV.jpg'>
-                                                <span class='image-rollover'>
-                                                    <i class='gallery-resize-icon fa fa-expand'></i>
-                                                </span>
-                                                <img src='{{ asset('images/03/coffeeartV-260x260.jpg')}}' alt='' />
-                                            </a>
-                                        </li>
-                                        <li class='prettyimage-wrap'>
-                                            <a class='pretty_image' title='' data-rel='prettyPhoto[pp_gallery]' href='wp-content/uploads/2013/03/cheesek.jpg'>
-                                                <span class='image-rollover'>
-                                                    <i class='gallery-resize-icon fa fa-expand'></i>
-                                                </span><img src='{{ asset('images/03/cheesek-260x260.jpg')}}' alt='' />
-                                            </a>
-                                        </li>  
-                                    </ul>
-                                </div><!-- .gallery-widget --> 
-                            </div><!-- .post-? --> 
+
+                        <div class="item" style="height:400px; ">
+                            <img src="{{asset('img/slideshow/2.jpg')}}" alt="">
+                            <div class="container" style="height:400px; position:fixed;">
+                                <div class="carousel-caption" style="height:400px; " >
+                                    <h1 data-animation="animated animate1 fadeInDown" style="margin:auto !important;">The Last of Us: Remastered</h1>
+                                    <p data-animation="animated animate7 fadeIn">Survive an apocalypse on Earth in The Last of Us, a PlayStation 4-exclusive title by Naughty Dog.</p>
+                                    <a href="#signin" data-toggle="modal" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn" >Became a member now</a>
+                                </div>
+                            </div>
                         </div>
-                        <div id="gg-featureddish-widget-2" class="widget gg_featureddish_widget box col6 boxbg">
-                            <h3 class="widgettitle text-center">
-                                <i class="fa fa-cutlery "></i>
-                                Lunch Special
-                            </h3>             
-                            <div class="text-center">
-                                <ul class="featureddish">
-                                    <li>
-                                        <h6 class="menu-title">Sauteed Veggies and Quinoa Salad</h6>   
-                                        <div class="menu-description">
-                                            <p>quinoa topped with grilled red bell peppers, aubergines, zucchini and fresh basil</p>
+
+                        <div class="item" style="height:400px; ">
+                            <img src="{{asset('img/slideshow/3.jpg')}}" alt="">
+                            <div class="container" style="height:400px; position:fixed;">
+                                <div class="carousel-caption"  style="height:400px; ">
+                                    <h1 data-animation="animated animate1 fadeIn" style="margin:auto !important">Star Wars: Battlefront 3</h1>
+                                    <p data-animation="animated animate7 fadeIn">Galactic forces clash in this reboot of Star Wars Battlefront, the blockbuster shooter.</p>
+                                    <a href="#signin" data-toggle="modal" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn">Became a member now</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a class="left carousel-control" href="#full-carousel" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        </a>
+                        <a class="right carousel-control" href="#full-carousel" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </div>
+            {% endblock slide%}
+
+            <section class="bg-grey-50 padding-top-30">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="ax">
+                            <div class="col-md-3" >
+
+                                <div class="widget widget-game" style="background-image: url(img/game/game-widget.jpg);">
+                                    <div class="overlay">
+                                        <div class="title">The Withcer 3: Wild Hunt</div>
+
+                                        <div class="bold text-uppercase">Platforms</div>
+                                        <span class="label label-primary">PS4</span>
+                                        <span class="label label-warning">PC</span>
+                                        <span class="label label-success">Xbox</span>
+
+                                        <div class="bold text-uppercase margin-top-40">Developer</div>
+                                        <span class="font-size-13">CD Projekt Red Studio</span>
+
+                                        <div class="bold text-uppercase margin-top-35">Release Date:</div>
+                                        <span class="font-size-13">June 18, 2015</span>
+
+                                        <div class="description">
+                                            The Witcher 3: Wild Hunt is a story-driven, next-generation open world role-playing game, set in a visually stunning fantasy universe, full of meaningful choices and impactful consequences.
+                                            <a href="#" class="btn btn-block btn-primary margin-top-40">Follow now <i class="fa fa-heart-o margin-left-10"></i></a>
                                         </div>
-                                        <div class="clear"></div>
-                                        <div class="price-wrap">
-                                            <div class="price"> 9 </div>
-                                            <div class="cents"> 00 </div>
+                                    </div>
+                                </div>
+
+                                <div class="widget widget-list">
+                                    <div class="tab-select border-bottom-1 border-grey-300">
+                                        <ul class="nav nav-tabs">
+                                            <li class="active"><a href="#tabs1" data-toggle="tab">Posts</a></li>
+                                            <li><a href="#tabs2" data-toggle="tab">Forums</a></li>
+                                            <li><a href="#" data-toggle="tab">Images</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-content">
+                                        <ul class="tab-pane fade in active" id="tabs1">
+                                            <li>
+                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/1.jpg')}}" alt=""></a>
+                                                <div class="widget-list-meta">
+                                                    <h4 class="widget-list-title"><a href="#">Overwatch Closed Beta</a></h4>
+                                                    <p><i class="fa fa-clock-o"></i> September 15, 2015</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/2.jpg')}}" alt=""></a>
+                                                <div class="widget-list-meta">
+                                                    <h4 class="widget-list-title"><a href="#">Blood and Gore</a></h4>
+                                                    <p><i class="fa fa-clock-o"></i> September 13, 2015</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/3.jpg')}}" alt=""></a>
+                                                <div class="widget-list-meta">
+                                                    <h4 class="widget-list-title"><a href="#">Warner Bros. Interactive</a></h4>
+                                                    <p><i class="fa fa-clock-o"></i> September 12, 2015</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/4.jpg')}}" alt=""></a>
+                                                <div class="widget-list-meta">
+                                                    <h4 class="widget-list-title"><a href="#">Sharks Don't Sleep</a></h4>
+                                                    <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/5.jpg')}}" alt=""></a>
+                                                <div class="widget-list-meta">
+                                                    <h4 class="widget-list-title"><a href="#">GTA 5 Reaches 5 Million</a></h4>
+                                                    <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <ul class="tab-pane fade" id="tabs2">
+                                            <li>
+                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/1.jpg')}}" alt=""></a>
+                                                <div class="widget-list-meta">
+                                                    <h4 class="widget-list-title"><a href="#">Overwatch Closed Beta</a></h4>
+                                                    <p><i class="fa fa-clock-o"></i> September 15, 2015</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/2.jpg')}}" alt=""></a>
+                                                <div class="widget-list-meta">
+                                                    <h4 class="widget-list-title"><a href="#">Blood and Gore</a></h4>
+                                                    <p><i class="fa fa-clock-o"></i> September 13, 2015</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/3.jpg')}}" alt=""></a>
+                                                <div class="widget-list-meta">
+                                                    <h4 class="widget-list-title"><a href="#">Warner Bros. Interactive</a></h4>
+                                                    <p><i class="fa fa-clock-o"></i> September 12, 2015</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/4.jpg')}}" alt=""></a>
+                                                <div class="widget-list-meta">
+                                                    <h4 class="widget-list-title"><a href="#">Sharks Don't Sleep</a></h4>
+                                                    <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/5.jpg')}}" alt=""></a>
+                                                <div class="widget-list-meta">
+                                                    <h4 class="widget-list-title"><a href="#">GTA 5 Reaches 5 Million</a></h4>
+                                                    <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="widget widget-card">
+                                    <div class="title">Related Videos</div>
+                                    <div class="card">
+                                        <div class="card-img">
+                                            <a href="videos-single.html"><img src="{{asset('../i1.ytimg.com/vi/tuPEam_Jt4I/mqdefault.jpg')}}" alt=""></a>
+                                            <div class="time">04:51</div>
                                         </div>
-                                        <div class="menu-thumb prettyimage-wrap">
-                                            <a class="pretty_image" data-rel="prettyPhoto" href="{{ asset('images/04/veggiesalad2.jpg')}}">
-                                                <span class='image-rollover'><i class='gallery-resize-icon fa fa-expand'></i></span>
-                                                <img width="380" height="380" src="{{ asset('images/04/veggiesalad2-380x380.jpg')}}" class="attachment-square3 wp-post-image" alt=" " />
-                                            </a>
+                                        <div class="caption">
+                                            <h3 class="card-title"><a href="videos-single.html">The Witcher 3: Wild Hunt - Official Gameplay</a></h3>
+                                            <ul>
+                                                <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                                <li><i class="fa fa-eye"></i> 1500 views</li>
+                                            </ul>
                                         </div>
-                                    </li>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-img">
+                                            <a href="videos-single.html"><img src="{{asset('../i1.ytimg.com/vi/_UFT49qWopg/mqdefault.jpg')}}" alt=""></a>
+                                            <div class="time">02:04</div>
+                                        </div>
+                                        <div class="caption">
+                                            <h3 class="card-title"><a href="videos-single.html">The Witcher 3: Wild Hunt - The Beginning</a></h3>
+                                            <ul>
+                                                <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                                <li><i class="fa fa-eye"></i> 1500 views</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-img">
+                                            <a href="videos-single.html"><img src="{{asset('../i1.ytimg.com/vi/xx8kQ4s5hCY/mqdefault.jpg')}}" alt=""></a>
+                                            <div class="time">06:33</div>
+                                        </div>
+                                        <div class="caption">
+                                            <h3 class="card-title"><a href="videos-single.html">The Witcher 3: Wild Hunt</a></h3>
+                                            <ul>
+                                                <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                                <li><i class="fa fa-eye"></i> 1500 views</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-img">
+                                            <a href="videos-single.html"><img src="{{asset('../i1.ytimg.com/vi/c0i88t0Kacs/mqdefault.jpg')}}" alt=""></a>
+                                            <div class="time">11:06</div>
+                                        </div>
+                                        <div class="caption">
+                                            <h3 class="card-title"><a href="videos-single.html">aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</a></h3>
+                                            <ul>
+                                                <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                                <li><i class="fa fa-eye"></i> 1500 views</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <a href="#" class="btn btn-inverse btn-block">More Videos</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ay">
+                            <div class="col-md-6" >
+                                {% block  body  %}
+                                    <div class="panel panel-default panel-post">
+                                        <div class="panel-body">
+                                            <div class="post">
+                                                <div class="post-header post-author">
+                                                    <a href="#" class="author" data-toggle="tooltip" title="YAKUZI"><img src="{{asset('img/user/avatar.jpg')}}" alt=""></a>
+                                                    <div class="post-title">
+                                                        <h3><a href="#">The Witcher 3: Wild Hunt Gameplay</a></h3>
+                                                        <ul class="post-meta">
+                                                            <li><a href="#"><i class="fa fa-user"></i> YAKUZI</a></li>
+                                                            <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                                            <li><a href="#"><i class="fa fa-comments"></i> 0 <span class="hidden-xs">Comments</span></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                                <div class="embed-responsive embed-responsive-16by9 post-thumbnail">
+                                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/vSteQ_wlB94?rel=0&amp;showinfo=0" allowfullscreen></iframe>
+                                                </div>
+
+                                                Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
+                                            </div>
+                                        </div>
+                                        <div class="panel-footer">
+                                            <ul class="post-action">
+                                                <li><a href="#"><i class="fa fa-heart"></i> like (5)</a></li>
+                                                <li><a href="#"><i class="fa fa-comments"></i> Comments</a></li>
+                                                <li><a href="#"><i class="fa fa-reply"></i> share</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-default panel-post">
+                                        <div class="panel-body">
+                                            <div class="post">
+                                                <div class="post-header post-author">
+                                                    <a href="#" class="author" data-toggle="tooltip" title="YAKUZI"><img src="{{asset('img/user/avatar.jpg')}}" alt=""></a>
+                                                    <div class="post-title">
+                                                        <h3><a href="#">The Witcher Adventure Game Review</a></h3>
+                                                        <ul class="post-meta">
+                                                            <li><a href="#"><i class="fa fa-user"></i> YAKUZI</a></li>
+                                                            <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                                            <li><a href="#"><i class="fa fa-comments"></i> 0 <span class="hidden-xs">Comments</span></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div id="post-carousel" class="carousel slide post-thumbnail" data-ride="carousel">
+                                                    <ol class="carousel-indicators">
+                                                        <li data-target="#post-carousel" data-slide-to="0" class="active"></li>
+                                                        <li data-target="#post-carousel" data-slide-to="1"></li>
+                                                    </ol>
+                                                    <div class="carousel-inner">
+                                                        <div class="item active">
+                                                            <img src="{{asset('img/blog/lg/1.jpg')}}" alt="">
+                                                            <div class="post-caption">Example of post thumbnail caption</div>
+                                                        </div>
+                                                        <div class="item">
+                                                            <img src="{{asset('img/blog/lg/2.jpg')}}" alt="">
+                                                            <div class="post-caption">Example of post thumbnail caption</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
+                                            </div>
+                                        </div>
+                                        <div class="panel-footer">
+                                            <ul class="post-action">
+                                                <li><a href="#"><i class="fa fa-heart"></i> like (5)</a></li>
+                                                <li><a href="#"><i class="fa fa-comments"></i> Comments</a></li>
+                                                <li><a href="#"><i class="fa fa-reply"></i> share</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-default panel-post">
+                                        <div class="panel-body">
+                                            <div class="post">
+                                                <div class="post-header post-author">
+                                                    <a href="#" class="author" data-toggle="tooltip" title="YAKUZI"><img src="{{asset('img/user/avatar.jpg')}}" alt=""></a>
+                                                    <div class="post-title">
+                                                        <h3><a href="#">The Witcher 3 is Game of the Year</a></h3>
+                                                        <ul class="post-meta">
+                                                            <li><a href="#"><i class="fa fa-user"></i> YAKUZI</a></li>
+                                                            <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                                            <li><a href="#"><i class="fa fa-comments"></i> 0 <span class="hidden-xs">Comments</span></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="post-thumbnail">
+                                                    <a href="blog-post.html"><img src="{{asset('img/blog/lg/3.jpg')}}" alt=""></a>
+                                                    <div class="post-caption">Example of post thumbnail caption</div>
+                                                </div>
+                                                Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
+                                            </div>
+                                        </div>
+                                        <div class="panel-footer">
+                                            <ul class="post-action">
+                                                <li><a href="#"><i class="fa fa-heart"></i> like (5)</a></li>
+                                                <li><a href="#"><i class="fa fa-comments"></i> Comments</a></li>
+                                                <li><a href="#"><i class="fa fa-reply"></i> share</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-default panel-post">
+                                        <div class="panel-body">
+                                            <div class="post">
+                                                <div class="post-header post-author">
+                                                    <a href="#" class="author" data-toggle="tooltip" title="YAKUZI"><img src="{{asset('img/user/avatar.jpg')}}" alt=""></a>
+                                                    <div class="post-title">
+                                                        <h3><a href="#">The Witcher 3: Wild Hunt Is the Last Witcher Game</a></h3>
+                                                        <ul class="post-meta">
+                                                            <li><a href="#"><i class="fa fa-user"></i> YAKUZI</a></li>
+                                                            <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                                            <li><a href="#"><i class="fa fa-comments"></i> 0 <span class="hidden-xs">Comments</span></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
+                                            </div>
+                                        </div>
+                                        <div class="panel-footer">
+                                            <ul class="post-action">
+                                                <li><a href="#"><i class="fa fa-heart"></i> like (5)</a></li>
+                                                <li><a href="#"><i class="fa fa-comments"></i> Comments</a></li>
+                                                <li><a href="#"><i class="fa fa-reply"></i> share</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center"><a href="#" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right">Load Posts</a></div>
+                                {% endblock  body  %}
+                            </div>
+                        </div>
+                        <div class="az">
+                            <div class="col-md-3">
+                                <div class="widget widget-game" style="background-image: url(img/game/game-widget.jpg);">
+                                    <div class="overlay">
+                                        <div class="title">The Withcer 3: Wild Hunt</div>
+
+                                        <div class="bold text-uppercase">Platforms</div>
+                                        <span class="label label-primary">PS4</span>
+                                        <span class="label label-warning">PC</span>
+                                        <span class="label label-success">Xbox</span>
+
+                                        <div class="bold text-uppercase margin-top-40">Developer</div>
+                                        <span class="font-size-13">CD Projekt Red Studio</span>
+
+                                        <div class="bold text-uppercase margin-top-35">Release Date:</div>
+                                        <span class="font-size-13">June 18, 2015</span>
+
+                                        <div class="description">
+                                            The Witcher 3: Wild Hunt is a story-driven, next-generation open world role-playing game, set in a visually stunning fantasy universe, full of meaningful choices and impactful consequences.
+                                            <a href="#" class="btn btn-block btn-primary margin-top-40">Follow now <i class="fa fa-heart-o margin-left-10"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="widget widget-list">
+                                    <div class="tab-select border-bottom-1 border-grey-300">
+                                        <ul class="nav nav-tabs">
+                                            <li class="active"><a href="#tabs1" data-toggle="tab">Posts</a></li>
+                                            <li><a href="#tabs2" data-toggle="tab">Forums</a></li>
+                                            <li><a href="#" data-toggle="tab">Images</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-content">
+                                        <ul class="tab-pane fade in active" id="tabs1">
+                                            <li>
+                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/1.jpg')}}" alt=""></a>
+                                                <div class="widget-list-meta">
+                                                    <h4 class="widget-list-title"><a href="#">Overwatch Closed Beta</a></h4>
+                                                    <p><i class="fa fa-clock-o"></i> September 15, 2015</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/2.jpg')}}" alt=""></a>
+                                                <div class="widget-list-meta">
+                                                    <h4 class="widget-list-title"><a href="#">Blood and Gore</a></h4>
+                                                    <p><i class="fa fa-clock-o"></i> September 13, 2015</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/3.jpg')}}" alt=""></a>
+                                                <div class="widget-list-meta">
+                                                    <h4 class="widget-list-title"><a href="#">Warner Bros. Interactive</a></h4>
+                                                    <p><i class="fa fa-clock-o"></i> September 12, 2015</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/4.jpg')}}" alt=""></a>
+                                                <div class="widget-list-meta">
+                                                    <h4 class="widget-list-title"><a href="#">Sharks Don't Sleep</a></h4>
+                                                    <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/5.jpg')}}" alt=""></a>
+                                                <div class="widget-list-meta">
+                                                    <h4 class="widget-list-title"><a href="#">GTA 5 Reaches 5 Million</a></h4>
+                                                    <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <ul class="tab-pane fade" id="tabs2">
+                                            <li>
+                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/1.jpg')}}" alt=""></a>
+                                                <div class="widget-list-meta">
+                                                    <h4 class="widget-list-title"><a href="#">Overwatch Closed Beta</a></h4>
+                                                    <p><i class="fa fa-clock-o"></i> September 15, 2015</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/2.jpg')}}" alt=""></a>
+                                                <div class="widget-list-meta">
+                                                    <h4 class="widget-list-title"><a href="#">Blood and Gore</a></h4>
+                                                    <p><i class="fa fa-clock-o"></i> September 13, 2015</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/3.jpg')}}" alt=""></a>
+                                                <div class="widget-list-meta">
+                                                    <h4 class="widget-list-title"><a href="#">Warner Bros. Interactive</a></h4>
+                                                    <p><i class="fa fa-clock-o"></i> September 12, 2015</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/4.jpg')}}" alt=""></a>
+                                                <div class="widget-list-meta">
+                                                    <h4 class="widget-list-title"><a href="#">Sharks Don't Sleep</a></h4>
+                                                    <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/5.jpg')}}" alt=""></a>
+                                                <div class="widget-list-meta">
+                                                    <h4 class="widget-list-title"><a href="#">GTA 5 Reaches 5 Million</a></h4>
+                                                    <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="widget widget-card">
+                                    <div class="title">Related Videos</div>
+                                    <div class="card">
+                                        <div class="card-img">
+                                            <a href="videos-single.html"><img src="{{asset('../i1.ytimg.com/vi/tuPEam_Jt4I/mqdefault.jpg')}}" alt=""></a>
+                                            <div class="time">04:51</div>
+                                        </div>
+                                        <div class="caption">
+                                            <h3 class="card-title"><a href="videos-single.html">The Witcher 3: Wild Hunt - Official Gameplay</a></h3>
+                                            <ul>
+                                                <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                                <li><i class="fa fa-eye"></i> 1500 views</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-img">
+                                            <a href="videos-single.html"><img src="{{asset('../i1.ytimg.com/vi/_UFT49qWopg/mqdefault.jpg')}}" alt=""></a>
+                                            <div class="time">02:04</div>
+                                        </div>
+                                        <div class="caption">
+                                            <h3 class="card-title"><a href="videos-single.html">The Witcher 3: Wild Hunt - The Beginning</a></h3>
+                                            <ul>
+                                                <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                                <li><i class="fa fa-eye"></i> 1500 views</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-img">
+                                            <a href="videos-single.html"><img src="{{asset('../i1.ytimg.com/vi/xx8kQ4s5hCY/mqdefault.jpg')}}" alt=""></a>
+                                            <div class="time">06:33</div>
+                                        </div>
+                                        <div class="caption">
+                                            <h3 class="card-title"><a href="videos-single.html">The Witcher 3: Wild Hunt</a></h3>
+                                            <ul>
+                                                <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                                <li><i class="fa fa-eye"></i> 1500 views</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-img">
+                                            <a href="videos-single.html"><img src="{{asset('../i1.ytimg.com/vi/c0i88t0Kacs/mqdefault.jpg')}}" alt=""></a>
+                                            <div class="time">11:06</div>
+                                        </div>
+                                        <div class="caption">
+                                            <h3 class="card-title"><a href="videos-single.html">bbbbbbbbbbbbbbbbbbbbb</a></h3>
+                                            <ul>
+                                                <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                                <li><i class="fa fa-eye"></i> 1500 views</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <a href="#" class="btn btn-inverse btn-block">More Videos</a>
+                                </div>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- /#wrapper -->
+            {% endblock Dashboard %}
+        </div>
+        <!-- footer -->
+        <footer>
+            <div class="container" style="margin-right:250px;">
+                <div class="widget row">
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                        <h4 class="title">About GameForest</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra mattis arcu, a congue leo malesuada eu. Nam nec mauris ut odio tristique varius et eu metus. Quisque massa purus, aliquet quis blandit et, <br /> <br />mollis sed lorem. Sed vel tincidunt elit. Phasellus at varius odio, sit amet fermentum mauris.</p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <h4 class="title">Categories</h4>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">	
+                                <ul class="nav">
+                                    <li><a href="#">Playstation 4</a></li>
+                                    <li><a href="#">XBOX ONE</a></li>
+                                    <li><a href="#">PC</a></li>
+                                    <li><a href="#">PS3</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <ul class="nav">
+                                    <li><a href="#">Gaming</a></li>
+                                    <li><a href="#">Portfolio</a></li>
+                                    <li><a href="#">Videos</a></li>
+                                    <li><a href="#">Reviews</a></li>
                                 </ul>
                             </div>
                         </div>
-                        <div id="gg-events-widget-2" class="widget gg_events_widget box col6 boxbg">
-                            <h3 class="widgettitle text-center"><i class="fa fa-calendar "></i>Next Event</h3> 
-                            <ul> 
-                                <li class="eventwidget-item">
-                                    <h1 class="event-title-w text-center">LemonChili Summer BBQ</h1>
-                                    <div class="pretty-date text-center">
-                                        <div class="pretty-day">09</div>
-                                        <div class="pretty-date-right">
-                                            <div class="pretty-date-top">Jun 2018 </div>
-                                            <div class="pretty-date-bottom">
-                                                <div class="pretty-weekday">Saturday </div>
-                                            </div>
-                                        </div>
-                                    </div>  
-                                    <div class="event-time text-center"> - 6 p.m. - </div>  
-                                    <div class="clear"></div>
-                                    <div class="event-info text-center"> 
-                                        <p>Join us for a delicious summer BBQ and enjoy good food and even better company.</p>
-                                        <p>No need to pre-register, just stop on by and join the fun!</p>
-                                        <p> 
-                                            <a href="events/summer-bb/index.html" class="more-link">
-                                                <span class="moretext"> view details </span>
-                                            </a>
-                                        </p>
-                                    </div>
-                                    <div class="events-thumb prettyimage-wrap">
-                                        <a class="pretty_image" data-rel="prettyPhoto" href="{{ asset('images/02/lemonchili1.jpg')}}"> 
-                                            <span class='image-rollover'>
-                                                <i class='gallery-resize-icon fa fa-expand'></i>
-                                            </span> 
-                                            <img width="765" height="1000" src="{{ asset('images/02/lemonchili1.jpg')}}" class="attachment-full wp-post-image" alt="lemonchili" title="" />  
-                                        </a>    
-                                    </div> 
-                                </li>
-                            </ul>
-                        </div>
-                        <div id="gg-news-widget-2" class="widget gg_news_widget box col6 boxbg">
-                            <h3 class="widgettitle text-center"><i class="fa fa-pencil "></i>The Latest</h3>	
-                            <ul class="news-widget-list">
-                                <li class="news-widget-item post-1434 post type-post status-publish format-standard has-post-thumbnail hentry category-news tag-coffee" id="news-widget-1434">
-                                    <h1 class="title text-center">
-                                        <a href="try-our-new-favorite-ethiopian-yirgacheffee-coffee/index.html" rel="bookmark" title="Permanent Link to Try our new favorite: Ethiopian Yirgacheffee Coffee">
-                                            Try our new favorite: Ethiopian Yirgacheffee Coffee
-                                        </a>
-                                    </h1>
-                                    <div class="postinfo widget-post-info">  
-                                        <ul>  
-                                            <li class="post-date">
-                                                <i class="fa fa-calendar"></i>
-                                                Jun 04, 2013			                                
-                                            </li> <!-- .post-date-->
-                                            <li>
-                                                <ul class="tags">
-                                                    <li>                  
-                                                        <i class="fa fa-tag"></i>
-                                                        <a href="tag/coffee/index.html" rel="tag">coffee</a>
-                                                    </li>
-                                                </ul> <!-- .tags -->  
-                                            </li>   
-                                            <li class="comment-nr">
-                                                <i class="fa fa-comment"></i>
-                                                <a href="try-our-new-favorite-ethiopian-yirgacheffee-coffee/index.html#comments"> 3  </a> 
-                                            </li>
-                                            <div class="clear"></div>  
-                                        </ul>  
-                                    </div> <!-- .postinfo -->
-                                    <div>
-                                        <img width="470" height="220" src="{{ asset('images/04/barrista21-470x220.jpg')}}" class="attachment-post-thumbnail wp-post-image" alt="barrista2" />                                        
-                                        <div class="text-center">
-                                            <p>Have you tasted our Ethiopian Konga natural Yirgacheffe yet? We think it’s rather special. It’s even been compared to “a hoppy IPA”. 
-                                                <a href="try-our-new-favorite-ethiopian-yirgacheffee-coffee/index.html" class="more-link">
-                                                    <span class="moretext"> Read more </span>
-                                                </a>
-                                            </p>
-                                        </div><!-- .entry -->
-                                    </div> 
-                                </li><!-- .post-? -->	
-                            </ul>
-                        </div>
-                        <div id="text-2" class="widget widget_text box col6 boxbg">
-                            <h3 class="widgettitle text-center"><i class="fa fa-heart"></i>about</h3>			
-                            <div class="textwidget">
-                                LEMONCHILI is a premium WordPress theme with special features for restaurants, bars, cafes, clubs, events ...
-                                Get it <a href="http://themeforest.net/user/red_sun/portfolio?ref=red_sun">here</a>.
-                            </div>
-                        </div>               
-                    </div><!-- .widget-area -->
-                {% endblock  body  %}
-            </div><!-- #content--> 
-            <div id="copyright">
-                <div id="copyright-text" class="small">
-                    &copy;2016 LemonChili. All Rights Reserved.
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="title">Email Newsletters</h4>
+                        <p>Subscribe to our newsletter and get notification when new games are available.</p>
+                        <form method="post" class="btn-inline form-inverse">
+                            <input type="text" class="form-control" placeholder="Email..." />
+                            <button type="submit" class="btn btn-link"><i class="fa fa-envelope"></i></button>
+                        </form>
+                    </div>
                 </div>
-            </div><!-- #copyright -->
-        </div><!-- #contentwrap-->  
-    </div><!-- #wrapper -->
-</div><!-- #bg-image -->
-<script type="text/javascript">jQuery.backstretch("{{ asset('images/11/lemonchilibackground1.jpg')}}");</script>
+            </div>
 
+            <div class="footer-bottom" style="margin-right:250px;">
+                <div class="container">	
+                    <ul class="list-inline">
+                        <li><a href="#" class="btn btn-circle btn-social-icon" data-toggle="tooltip" title="Follow us on Twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#" class="btn btn-circle btn-social-icon" data-toggle="tooltip" title="Follow us on Facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#" class="btn btn-circle btn-social-icon" data-toggle="tooltip" title="Follow us on Google"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#" class="btn btn-circle btn-social-icon" data-toggle="tooltip" title="Follow us on Steam"><i class="fa fa-steam"></i></a></li>
+                    </ul>
+                    &copy; 2016 Gameforest. All rights reserved.
+                </div>
+            </div>
+        </footer>	
+        <!-- /.footer -->
 
-<!-- Background Manager Start -->
-<div id="myatu_bgm_img_group" class="myatu_bgm_fs" style="overflow: scroll;"><script type="text/javascript">
-    /*<![CDATA[*/
-        try{(function(a){myatu_bgm.addTopImage("",function(){if((typeof myatu_bgm!=="undefined")&&(myatu_bgm.initial_ease_in==="true")){a(this).fadeIn("slow")}else{a(this).show()}})}(jQuery))}catch(e){};
-    /*]]>*/
-    </script><noscript><img id="myatu_bgm_top" class="myatu_bgm_fs" src="{{ asset('images/11/lemonchilibackground1.jpg')}}" alt=""   /></noscript></div>
-<!-- Background Manager End -->
-<script src="{{ asset('js/jquery-ui-1.12.0/external/jquery/jquery.js') }}"></script>
-<script src="{{ asset('js/jquery-ui-1.12.0/jquery-ui.js') }}"></script>
-<script type='text/javascript' src='{{ asset('js/styleswitch0ea5.js?ver=4.2.10')}}'></script>
-<script type='text/javascript' src='{{ asset('js/jquery.selectbox0ea5.js?ver=4.2.10')}}'></script>
-<script type='text/javascript' src='{{ asset('js/retina6f3e.js?ver=1.3.0')}}'></script>
-<script type='text/javascript' src='{{ asset('js/masonry.min0226.js?ver=3.1.2')}}'></script>
-<script type='text/javascript' src='{{ asset('js/hoverIntent.minc245.js?ver=1.8.1')}}'></script>
-<script type='text/javascript' src='{{ asset('js/jquery/ui/core.mine899.js?ver=1.11.4')}}'></script>
-<script type='text/javascript' src='{{ asset('js/jquery/ui/widget.mine899.js?ver=1.11.4')}}'></script>
-<script type='text/javascript' src='{{ asset('js/jquery/ui/tabs.mine899.js?ver=1.11.4')}}'></script>
-<script type='text/javascript' src='{{ asset('js/comment-reply.min0ea5.js?ver=4.2.10')}}'></script>
-{% block javascript%}
-{% endblock javascript%}
-</body>
-<!-- Mirrored from www.themes.red-sun-design.com/lemonchili/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 23 Nov 2016 12:31:52 GMT -->
+        <!-- Modales -->
+       
 
+            <div class="container modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="card card-container">
+            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+            <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+            <p id="profile-name" class="profile-name-card"></p>
+            <form id="loginform" action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
+                <span id="loginerror" style="color:red"></span>
+                <span id="reauth-email" class="reauth-email"></span>
+                <div class="input-group" style="margin-bottom:10px">
+  <span class="input-group-addon" ><i class="glyphicon glyphicon-user"></i></span>   
+                <input onfocusout="usernamereq();" type="text" id="username" name="_username" value="" required="required" autofocus class="form-control " placeholder="{{ 'security.login.username'|trans }}" style="margin-bottom:0px"/>
+</div>
+<div class="input-group" style="margin-bottom:10px">
+  <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
+              <input onfocusout="pswreq();" type="password" class="form-control " id="password" name="_password" required="required" placeholder="{{ 'security.login.password'|trans }}" style="margin-bottom:0px"/>
+</div>  
+              <div id="remember" class="checkbox">
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
+                                        <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                </div>
+                <button id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block btn-signin" type="submit" style="width:49%;display:inline-block">{{ 'security.login.submit'|trans }}</button>
+                <a href="javascript:void(0);" data-toggle="modal" data-target="#register-modal" data-dismiss="modal"><button id="_register" name="_register" class="btn btn-lg btn-primary btn-block btn-signin" type="button" style="width:49%;display:inline;float:right;background-color:#AFAFAF;">{#{ 'security.login.register'|trans }#}Inscription</button></a>
+            </form><!-- /form -->
+            <a href="#" class="forgot-password">
+                Mot de passe oublier ?
+            </a>
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+    
+      <div class="container modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="card card-container">
+            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+            <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+            <p id="profile-name" class="profile-name-card"></p>
+            <form id="registerform"action="{{ path("fos_user_registration_register") }}" method="post" class="form-signin">
+                <span id="loginerror" style="color:red"></span>
+                <span id="reauth-email" class="reauth-email"></span>
+                <div class="input-group" style="margin-bottom:10px">
+  <span class="input-group-addon" ><i class="glyphicon glyphicon-envelope"></i></span>   
+                <input onfocusout="usernamereq();" type="email" id="fos_user_registration_form_email" name="fos_user_registration_form[email]" value="" required="required" autofocus class="form-control " placeholder="Email" style="margin-bottom:0px"/>
+</div>
+<div class="input-group" style="margin-bottom:10px">
+  <span class="input-group-addon" ><i class="glyphicon glyphicon-user"></i></span>
+              <input onfocusout="pswreq();" maxlength="255" pattern=".{2,}" type="text" class="form-control " id="fos_user_registration_form_username" name="fos_user_registration_form[username]" required="required" placeholder="Nom d'utilisateur" style="margin-bottom:0px"/>
+</div>  
+<div class="input-group" style="margin-bottom:10px">
+  <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
+              <input onfocusout="pswreq();" type="password" class="form-control " id="fos_user_registration_form_plainPassword_first" name="fos_user_registration_form[plainPassword][first]" required="required" placeholder="{{ 'security.login.password'|trans }}" style="margin-bottom:0px"/>
+</div>
+<div class="input-group" style="margin-bottom:10px">
+  <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
+              <input onfocusout="pswreq();" type="password" class="form-control " id="fos_user_registration_form_plainPassword_second" name="fos_user_registration_form[plainPassword][second]" required="required" placeholder="{{ 'security.login.password'|trans }}" style="margin-bottom:0px"/>
+</div>
+<input id="fos_user_registration_form__token" name="fos_user_registration_form[_token]" value="8esbxp3tYU5ta7hyup9Ug61UBlErOiLvDkazZwzwC6w" type="hidden">
+                <button id="register_submit" name="register_submit" class="btn btn-lg btn-primary btn-block btn-signin" type="submit" >Inscription</button>
+            </form><!-- /form -->
+            Vous avez une compte ?<a href="javascript:void(0);" data-toggle="modal" data-target="#login-modal" class="forgot-password" data-dismiss="modal">
+                se connecter !</a>
+    <div>
+        <input value="Enregistrer" type="submit">
+    </div>
+</form>
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+        
+
+        <!-- Javascript -->
+        <script src="{{asset('plugins/jquery/jquery-3.1.0.min.js')}}"></script>
+        <script src="{{asset('plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('plugins/ekko-lightbox/ekko-lightbox.min.js')}}"></script>
+        <script src="{{asset('js/core.min.js')}}"></script>
+        <script src="{{asset('plugins/owl-carousel/owl.carousel.min.js')}}"></script>
+        <script>
+            (function ($) {
+                "use strict";
+                var owl = $(".owl-carousel");
+
+                owl.owlCarousel({
+                    autoPlay: 3000,
+                    items: 1, //4 items above 1000px browser width
+                    itemsDesktop: [1000, 3], //3 items between 1000px and 0
+                    itemsTablet: [600, 1], //1 items between 600 and 0
+                    itemsMobile: false // itemsMobile disabled - inherit from itemsTablet option
+                });
+
+                $(document).delegate('*[data-toggle="lightbox"]', 'click', function (event) {
+                    event.preventDefault();
+                    $(this).ekkoLightbox();
+                });
+
+                $(window).scroll(function () {
+                    if ($(this).scrollTop() > 350) {
+                        $('body').addClass('fixed-tab');
+                    } else {
+                        $('body').removeClass('fixed-tab');
+                    }
+                });
+            })(jQuery);
+
+        </script>
+       <script>
+    $(document).ready(function(){
+        $('#_submit').click(function(e){
+            e.preventDefault();
+            if (usernamereq() === false && pswreq() === false){
+                $('#loginerror').html("entrez vos coordonnées");
+            }
+            else if (usernamereq() === false){
+                $('#loginerror').html("nom d'utilisateur ou e-mail obligatoire");
+            }
+            else if (pswreq() === false){
+                $('#loginerror').html("mot de passe obligatoire");
+            }
+            else{
+                $('#loginerror').html("");
+                $('#username').parent().css("border","none");
+                $('#password').parent().css("border","none");
+            $.ajax({
+                type        : $('#loginform').attr( 'method' ),
+                url         : '{{ path("fos_user_security_check") }}',
+                data        : $('#loginform').serialize(),
+                dataType    : "json",
+                success     : function(data, status, object) {
+                    if(!data.success) {$('#loginerror').html("nom utilisateur ou mot de passe invalide");
+                        $('#username').parent().css("border","solid 1px red");
+                $('#password').parent().css("border","solid 1px red");
+            }
+                    else location.reload();
+                },
+                error: function(data, status, object){
+                    console.log(data.message);
+                    
+                }
+            });
+            }
+        });
+        $('#register_submit').click(function(e){
+            e.preventDefault();
+           /* if (usernamereq() === false && pswreq() === false){
+                $('#loginerror').html("entrez vos coordonnées");
+            }
+            else if (usernamereq() === false){
+                $('#loginerror').html("nom d'utilisateur ou e-mail obligatoire");
+            }
+            else if (pswreq() === false){
+                $('#loginerror').html("mot de passe obligatoire");
+            }
+            else{
+                $('#loginerror').html("");
+                $('#username').parent().css("border","none");
+                $('#password').parent().css("border","none");*/
+            $.ajax({
+                type        : $('#registerform').attr( 'method' ),
+                url         : '{{ path("fos_user_registration_register") }}',
+                data        : $('#registerform').serialize(),
+                dataType    : "json",
+                success     : function(data, status, object) {
+                    if(!data.success) {/*$('#loginerror').html("nom utilisateur ou mot de passe invalide");
+                        $('#username').parent().css("border","solid 1px red");
+                $('#password').parent().css("border","solid 1px red");*/
+            alert('a');
+            }
+            else{alert('b');}
+                },
+                error: function(data, status, object){
+                    console.log(data.message);
+                    
+                }
+            });
+            
+        });
+    });
+</script>
+<script>
+  function usernamereq(){
+      if ($('#username').val() === "" || $('#username').val() === null){
+          $('#username').parent().css("border","solid 1px red");
+          return false;
+      }
+      else{
+          $('#username').parent().css("border","solid 1px green");
+          return true;
+      }
+  }
+  function pswreq(){
+      if ($('#password').val() === "" || $('#password').val() === null){
+          $('#password').parent().css("border","solid 1px red");
+          return false;
+      }
+      else{
+          $('#password').parent().css("border","solid 1px green");
+          return true;
+      }
+  }
+  $( '#login-modal' ).on('hidden.bs.modal', function(){
+       $('#loginerror').html("");
+                $('#username').parent().css("border","none");
+                $('#password').parent().css("border","none");
+   });
+</script>
+        {% block javascript %}
+        {% endblock javascript %}
+    </body>
+
+    <!-- Mirrored from gameforest.yakuzi.eu/games-single.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 19 Feb 2017 10:13:45 GMT -->
 </html>

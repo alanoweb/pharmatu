@@ -264,6 +264,8 @@
                                         {%else%}
                                             {{app.user.utilisateur.nom}} {{app.user.utilisateur.prenom}}
                                         {%endif%}
+										{%else%}
+										{{app.user.username}}
                                     {%endif%}
                                 </span>
                             </a>
@@ -325,40 +327,40 @@
         <div id="wrapper">
             {% block Dashboard %}
             {% block slide %}
-                <div id="full-carousel" class="ken-burns carousel slide full-carousel carousel-fade" data-ride="carousel" style="height:400px;">
+                 <div id="full-carousel" class="ken-burns carousel slide full-carousel carousel-fade" data-ride="carousel" style="height:400px;">
                     <ol class="carousel-indicators">
                         <li data-target="#full-carousel" data-slide-to="0" class="active"></li>
                         <li data-target="#full-carousel" data-slide-to="1"></li>
                         <li data-target="#full-carousel" data-slide-to="2"></li>
                     </ol>
                     <div class="carousel-inner" style="height:400px; ">
-                        <div class="item active inactiveUntilOnLoad" >
+                        <div class="item active inactiveUntilOnLoad" style="height:400px; ">
                             <img src="{{asset('img/slideshow/1.jpg')}}" alt="">
-                            <div class="container">
-                                <div class="carousel-caption">
-                                    <h1 data-animation="animated animate1 bounceInDown" style="margin-top:-300px !important;">The Witcher 3: Wild Hunt</h1>
+                            <div class="container" style="height:400px; position:fixed;">
+                                <div class="carousel-caption" style="height:400px; ">
+                                    <h1 data-animation="animated animate1 bounceInDown" style="margin:auto !important; height:auto; ">The Witcher 3: Wild Hunt</h1>
                                     <p data-animation="animated animate7 fadeInUp">The world is in chaos. The air is thick with tension and the smoke of burnt villages.</p>
                                     <a href="#signin" data-toggle="modal" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn">Became a member now</a>
                                 </div>		
                             </div>
                         </div>
 
-                        <div class="item">
+                        <div class="item" style="height:400px; ">
                             <img src="{{asset('img/slideshow/2.jpg')}}" alt="">
-                            <div class="container" >
-                                <div class="carousel-caption" >
-                                    <h1 data-animation="animated animate1 fadeInDown" style="margin-top:-300px !important;">The Last of Us: Remastered</h1>
+                            <div class="container" style="height:400px; position:fixed;">
+                                <div class="carousel-caption" style="height:400px; " >
+                                    <h1 data-animation="animated animate1 fadeInDown" style="margin:auto !important;">The Last of Us: Remastered</h1>
                                     <p data-animation="animated animate7 fadeIn">Survive an apocalypse on Earth in The Last of Us, a PlayStation 4-exclusive title by Naughty Dog.</p>
                                     <a href="#signin" data-toggle="modal" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn" >Became a member now</a>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="item">
+                        <div class="item" style="height:400px; ">
                             <img src="{{asset('img/slideshow/3.jpg')}}" alt="">
-                            <div class="container">
-                                <div class="carousel-caption">
-                                    <h1 data-animation="animated animate1 fadeIn" style="margin-top:-300px !important;">Star Wars: Battlefront 3</h1>
+                            <div class="container" style="height:400px; position:fixed;">
+                                <div class="carousel-caption"  style="height:400px; ">
+                                    <h1 data-animation="animated animate1 fadeIn" style="margin:auto !important">Star Wars: Battlefront 3</h1>
                                     <p data-animation="animated animate7 fadeIn">Galactic forces clash in this reboot of Star Wars Battlefront, the blockbuster shooter.</p>
                                     <a href="#signin" data-toggle="modal" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn">Became a member now</a>
                                 </div>
