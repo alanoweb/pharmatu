@@ -923,7 +923,7 @@
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
             <p id="profile-name" class="profile-name-card"></p>
-            <form action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
+            <form id="loginform" action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
                 <span id="loginerror" style="color:red"></span>
                 <span id="reauth-email" class="reauth-email"></span>
                 <div class="input-group" style="margin-bottom:10px">
@@ -942,37 +942,44 @@
                 <a href="javascript:void(0);" data-toggle="modal" data-target="#register-modal" data-dismiss="modal"><button id="_register" name="_register" class="btn btn-lg btn-primary btn-block btn-signin" type="button" style="width:49%;display:inline;float:right;background-color:#AFAFAF;">{#{ 'security.login.register'|trans }#}Inscription</button></a>
             </form><!-- /form -->
             <a href="#" class="forgot-password">
-                Mot de passe oublier?
+                Mot de passe oublier ?
             </a>
         </div><!-- /card-container -->
     </div><!-- /container -->
     
-      <div class="container modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> 
+      <div class="container modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="card card-container">
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
             <p id="profile-name" class="profile-name-card"></p>
-            <form action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
+            <form id="registerform"action="{{ path("fos_user_registration_register") }}" method="post" class="form-signin">
                 <span id="loginerror" style="color:red"></span>
                 <span id="reauth-email" class="reauth-email"></span>
                 <div class="input-group" style="margin-bottom:10px">
-  <span class="input-group-addon" ><i class="glyphicon glyphicon-user"></i></span>   
-                <input onfocusout="usernamereq();" type="text" id="username" name="_username" value="" required="required" autofocus class="form-control " placeholder="{{ 'security.login.username'|trans }}" style="margin-bottom:0px"/>
+  <span class="input-group-addon" ><i class="glyphicon glyphicon-envelope"></i></span>   
+                <input onfocusout="usernamereq();" type="email" id="fos_user_registration_form_email" name="fos_user_registration_form[email]" value="" required="required" autofocus class="form-control " placeholder="Email" style="margin-bottom:0px"/>
+</div>
+<div class="input-group" style="margin-bottom:10px">
+  <span class="input-group-addon" ><i class="glyphicon glyphicon-user"></i></span>
+              <input onfocusout="pswreq();" maxlength="255" pattern=".{2,}" type="text" class="form-control " id="fos_user_registration_form_username" name="fos_user_registration_form[username]" required="required" placeholder="Nom d'utilisateur" style="margin-bottom:0px"/>
+</div>  
+<div class="input-group" style="margin-bottom:10px">
+  <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
+              <input onfocusout="pswreq();" type="password" class="form-control " id="fos_user_registration_form_plainPassword_first" name="fos_user_registration_form[plainPassword][first]" required="required" placeholder="{{ 'security.login.password'|trans }}" style="margin-bottom:0px"/>
 </div>
 <div class="input-group" style="margin-bottom:10px">
   <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
-              <input onfocusout="pswreq();" type="password" class="form-control " id="password" name="_password" required="required" placeholder="{{ 'security.login.password'|trans }}" style="margin-bottom:0px"/>
-</div>  
-              <div id="remember" class="checkbox">
-                    <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
-                                        <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
-                </div>
-                <button id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block btn-signin" type="submit" style="width:49%;display:inline-block">{{ 'security.login.submit'|trans }}</button>
-                <button id="_register" name="_register" class="btn btn-lg btn-primary btn-block btn-signin" type="button" style="width:49%;display:inline;float:right;background-color:#AFAFAF;">{#{ 'security.login.register'|trans }#}Inscription</button>
+              <input onfocusout="pswreq();" type="password" class="form-control " id="fos_user_registration_form_plainPassword_second" name="fos_user_registration_form[plainPassword][second]" required="required" placeholder="{{ 'security.login.password'|trans }}" style="margin-bottom:0px"/>
+</div>
+<input id="fos_user_registration_form__token" name="fos_user_registration_form[_token]" value="8esbxp3tYU5ta7hyup9Ug61UBlErOiLvDkazZwzwC6w" type="hidden">
+                <button id="register_submit" name="register_submit" class="btn btn-lg btn-primary btn-block btn-signin" type="submit" >Inscription</button>
             </form><!-- /form -->
-            <a href="javascript:void(0);" data-toggle="modal" data-target="#login-modal" class="forgot-password" data-dismiss="modal">
-                Vous avez un compte? se connecter!
-            </a>
+            Vous avez une compte ?<a href="javascript:void(0);" data-toggle="modal" data-target="#login-modal" class="forgot-password" data-dismiss="modal">
+                se connecter !</a>
+    <div>
+        <input value="Enregistrer" type="submit">
+    </div>
+</form>
         </div><!-- /card-container -->
     </div><!-- /container -->
         
@@ -1029,9 +1036,9 @@
                 $('#username').parent().css("border","none");
                 $('#password').parent().css("border","none");
             $.ajax({
-                type        : $('form').attr( 'method' ),
+                type        : $('#loginform').attr( 'method' ),
                 url         : '{{ path("fos_user_security_check") }}',
-                data        : $('form').serialize(),
+                data        : $('#loginform').serialize(),
                 dataType    : "json",
                 success     : function(data, status, object) {
                     if(!data.success) {$('#loginerror').html("nom utilisateur ou mot de passe invalide");
@@ -1046,6 +1053,41 @@
                 }
             });
             }
+        });
+        $('#register_submit').click(function(e){
+            e.preventDefault();
+           /* if (usernamereq() === false && pswreq() === false){
+                $('#loginerror').html("entrez vos coordonnées");
+            }
+            else if (usernamereq() === false){
+                $('#loginerror').html("nom d'utilisateur ou e-mail obligatoire");
+            }
+            else if (pswreq() === false){
+                $('#loginerror').html("mot de passe obligatoire");
+            }
+            else{
+                $('#loginerror').html("");
+                $('#username').parent().css("border","none");
+                $('#password').parent().css("border","none");*/
+            $.ajax({
+                type        : $('#registerform').attr( 'method' ),
+                url         : '{{ path("fos_user_registration_register") }}',
+                data        : $('#registerform').serialize(),
+                dataType    : "json",
+                success     : function(data, status, object) {
+                    if(!data.success) {/*$('#loginerror').html("nom utilisateur ou mot de passe invalide");
+                        $('#username').parent().css("border","solid 1px red");
+                $('#password').parent().css("border","solid 1px red");*/
+            alert('a');
+            }
+            else{alert('b');}
+                },
+                error: function(data, status, object){
+                    console.log(data.message);
+                    
+                }
+            });
+            
         });
     });
 </script>
@@ -1074,7 +1116,7 @@
        $('#loginerror').html("");
                 $('#username').parent().css("border","none");
                 $('#password').parent().css("border","none");
-   })
+   });
 </script>
         {% block javascript %}
         {% endblock javascript %}
