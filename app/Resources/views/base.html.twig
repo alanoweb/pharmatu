@@ -32,6 +32,9 @@
 
         <!-- My CSS -->
         <link href="{{asset('css/loginmodal.css')}}" rel="stylesheet">
+        
+        {%block css %}
+    {%endblock%}
     </head>
 
     <body class="fixed-header">
@@ -376,7 +379,7 @@
                     </div>
                 </div>
             {% endblock slide%}
-
+{% block wrapper %}
             <section class="bg-grey-50 padding-top-30">
                 <div class="container-fluid">
                     <div class="row">
@@ -858,6 +861,7 @@
                     </div>
                 </div>
             </section>
+                                            {% endblock wrapper %}
             <!-- /#wrapper -->
             {% endblock Dashboard %}
         </div>
@@ -930,7 +934,7 @@
                 <span id="reauth-email" class="reauth-email"></span>
                 <div class="input-group" style="margin-bottom:10px">
   <span class="input-group-addon" ><i class="glyphicon glyphicon-user"></i></span>   
-                <input onfocusout="usernamereq();" type="text" id="username" name="_username" value="" required="required" autofocus class="form-control " placeholder="{{ 'security.login.username'|trans }}" style="margin-bottom:0px"/>
+                <input onfocusout="usernamereq();" type="text" id="username" name="_username" required="required" class="form-control " placeholder="{{ 'security.login.username'|trans }}" style="margin-bottom:0px"/>
 </div>
 <div class="input-group" style="margin-bottom:10px">
   <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
@@ -1022,6 +1026,7 @@
         </script>
        <script>
     $(document).ready(function(){
+        window.scrollTo(0, 0); 
         $('#_submit').click(function(e){
             e.preventDefault();
             if (usernamereq() === false && pswreq() === false){
@@ -1095,6 +1100,7 @@
 </script>
 <script>
   function usernamereq(){
+       $('#username').parent().css("border","none");
       if ($('#username').val() === "" || $('#username').val() === null){
           $('#username').parent().css("border","solid 1px red");
           return false;
