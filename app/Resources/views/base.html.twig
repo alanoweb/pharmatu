@@ -945,25 +945,13 @@
                                         <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
                 </div>
                 <button id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block btn-signin" type="submit" style="width:49%;display:inline-block">{{ 'security.login.submit'|trans }}</button>
-                <a href="javascript:void(0);" data-toggle="modal" data-target="#register-modal" data-dismiss="modal"><button id="_register" name="_register" class="btn btn-lg btn-primary btn-block btn-signin" type="button" style="width:49%;display:inline;float:right;background-color:#AFAFAF;">{#{ 'security.login.register'|trans }#}Inscription</button></a>
+                <a href="{{path('fos_user_registration_register')}}"><button id="_register" name="_register" class="btn btn-lg btn-primary btn-block btn-signin" type="button" style="width:49%;display:inline;float:right;background-color:#AFAFAF;">{#{ 'security.login.register'|trans }#}Inscription</button></a>
             </form><!-- /form -->
             <a href="#" class="forgot-password">
                 Mot de passe oublier ?
             </a>
         </div><!-- /card-container -->
     </div><!-- /container -->
-    
-      <div class="container modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="card card-container">
-            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
-            <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-            <p id="profile-name" class="profile-name-card"></p>
-             {{ render(controller('UserBundle:Registration:registerForm')) }}
-            Vous avez une compte ?<a href="javascript:void(0);" data-toggle="modal" data-target="#login-modal" class="forgot-password" data-dismiss="modal">
-                se connecter !</a>
-        </div><!-- /card-container -->
-    </div><!-- /container -->
-        
 
         <!-- Javascript -->
         <script src="{{asset('plugins/jquery/jquery-3.1.0.min.js')}}"></script>
@@ -1036,41 +1024,6 @@
             });
             }
         });
-        $('#register_submit').click(function(e){
-            e.preventDefault();
-           /* if (usernamereq() === false && pswreq() === false){
-                $('#loginerror').html("entrez vos coordonnées");
-            }
-            else if (usernamereq() === false){
-                $('#loginerror').html("nom d'utilisateur ou e-mail obligatoire");
-            }
-            else if (pswreq() === false){
-                $('#loginerror').html("mot de passe obligatoire");
-            }
-            else{
-                $('#loginerror').html("");
-                $('#username').parent().css("border","none");
-                $('#password').parent().css("border","none");*/
-            $.ajax({
-                type        : $('#registerform').attr( 'method' ),
-                url         : '{{ path("fos_user_registration_register") }}',
-                data        : $('#registerform').serialize(),
-                dataType    : "json",
-                success     : function(data, status, object) {
-                    if(!data.success) {/*$('#loginerror').html("nom utilisateur ou mot de passe invalide");
-                        $('#username').parent().css("border","solid 1px red");
-                $('#password').parent().css("border","solid 1px red");*/
-            alert('a');
-            }
-            else{alert('b');}
-                },
-                error: function(data, status, object){
-                    console.log(data.message);
-                    
-                }
-            });
-            
-        });
     });
 </script>
 <script>
@@ -1098,6 +1051,12 @@
        $('#loginerror').html("");
                 $('#username').parent().css("border","none");
                 $('#password').parent().css("border","none");
+   });  
+    $('#_register').click(function(e){
+       if (location.href.match('/register')) {
+           e.preventDefault();
+           $('#login-modal').modal('toggle');
+       }
    });
 </script>
         {% block javascript %}
