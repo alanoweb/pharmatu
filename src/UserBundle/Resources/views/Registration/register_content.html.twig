@@ -1,7 +1,8 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
     <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-<form id="registerform" action="{{ path("fos_user_registration_register") }}" method="post" class="form-signin">
+<form id="registerform" action="{{ path("fos_user_registration_register") }}" method="post" class="form-signin" style="    width: 43%;
+    margin-left: 29%;">
                 <span id="loginerror" style="color:red">{{ form_errors(form) }} </span>
                 <span id="reauth-email" class="reauth-email"></span>
                 <div class="input-group" style="margin-bottom:10px">
@@ -23,6 +24,6 @@
 <input id="fos_user_registration_form__token" name="fos_user_registration_form[_token]" value="8esbxp3tYU5ta7hyup9Ug61UBlErOiLvDkazZwzwC6w" type="hidden">
                 <button id="register_submit" name="register_submit" class="btn btn-lg btn-primary btn-block btn-signin" type="submit" >Inscription</button>
             </form><!-- /form -->
-            <p id="profile-name" class="profile-name-card"></p>
-            Vous avez un compte ?<a href="javascript:void(0);" data-toggle="modal" data-target="#login-modal" class="forgot-password" data-dismiss="modal">
-                se connecter !</a>
+            <p id="profile-name" class="profile-name-card" style="    margin-bottom: 20px;">Vous avez un compte ? <a href="javascript:void(0);" data-toggle="modal" data-target="#login-modal" class="forgot-password" data-dismiss="modal">
+                se connecter !</a></p>
+            

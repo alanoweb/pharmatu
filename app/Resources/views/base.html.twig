@@ -383,6 +383,7 @@
             <section class="bg-grey-50 padding-top-30">
                 <div class="container-fluid">
                     <div class="row">
+					{% block  body  %}
                         <div class="ax">
                             <div class="col-md-3" >
 
@@ -554,7 +555,7 @@
                         </div>
                         <div class="ay">
                             <div class="col-md-6" >
-                                {% block  body  %}
+                                
                                     <div class="panel panel-default panel-post">
                                         <div class="panel-body">
                                             <div class="post">
@@ -685,7 +686,7 @@
                                     </div>
 
                                     <div class="text-center"><a href="#" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right">Load Posts</a></div>
-                                {% endblock  body  %}
+                                
                             </div>
                         </div>
                         <div class="az">
@@ -858,6 +859,7 @@
                             <div>
                             </div>
                         </div>
+						{% endblock  body  %}
                     </div>
                 </div>
             </section>
