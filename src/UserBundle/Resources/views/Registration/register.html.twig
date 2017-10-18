@@ -1,5 +1,19 @@
 {% extends "UserBundle::layout.html.twig" %}
-
-{% block body %}
+{% block slide%}  
+    <section class="hero" style="background-image: url(Test1/web/img/cover/cover.jpg);">
+			<div class="hero-bg-primary" style="
+    background: rgba(39, 118, 220, 0);"></div>
+			<div class="container">
+				<div class="page-header">
+					<div class="page-title">Register</div>
+					<ol class="breadcrumb">
+						<li><a href="index-2.html">Home</a></li>
+						<li class="active">Contact</li>
+					</ol>	
+				</div>
+			</div>
+		</section>
+{% endblock slide%}
+{% block wrapper %}
 {% include "FOSUserBundle:Registration:register_content.html.twig" %}
 {% endblock  %}
