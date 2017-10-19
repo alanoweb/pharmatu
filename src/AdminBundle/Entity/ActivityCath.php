@@ -26,7 +26,12 @@ class ActivityCath
      *
      * @ORM\Column(name="Libelle", type="string", length=255)
      */
-    private $libelle;
+    private $libelle;/**
+     * @var string
+     *
+     * @ORM\Column(name="img", type="string", length=255)
+     */
+    private $img;
 
     /**
      * @var string
@@ -74,6 +79,27 @@ class ActivityCath
     public function getLibelle()
     {
         return $this->libelle;
+    }/**
+     * Set img
+     *
+     * @param string $img
+     * @return ActivityCath
+     */
+    public function setImg($img)
+    {
+        $this->img = $img;
+
+        return $this;
+    }
+
+    /**
+     * Get img
+     *
+     * @return string 
+     */
+    public function getImg()
+    {
+        return $this->img;
     }
 
     /**

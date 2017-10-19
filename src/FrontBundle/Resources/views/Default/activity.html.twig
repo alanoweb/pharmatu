@@ -1,24 +1,42 @@
 {% extends 'FrontBundle::layout.html.twig' %}
  {% block css %}
  <style>
-@media (min-width: 992px){
+@media (max-width:1200px) and (min-width: 992px){
 .panel .panel-default .panel-post .post .embed-responsive-item{
 margin-left:100px;
     height: 500px;
 	}
+	
+	.col-md-6 {
+    width: 90%;
+       margin-left:5%;
 }
-@media (max-width: 1560px) and (min-width:1200px){
-.panel .panel-default .panel-post  .post .embed-responsive-item{
+}
+@media (min-width:1200px){
+.panel .panel-default .panel-post .post .embed-responsive-item{
 margin-left:20px;
 	}
+	.col-md-6 {
+    width: 90%;
+        margin-left: 5%;
+}
+
+}
+@media (max-width:992px){
+.panel .panel-default .panel-post .post .embed-responsive-item{
+margin-left:20px;
+	}
+	.col-md-6 {
+    width: 90%;
+      margin-left: 5%;
+}
 
 }
 </style>
  {% endblock %}
  {% block Dashboard %}
-{%for activity in activites%}
 	<section class="bg-grey-50 padding-top-30">
-	<div class="col-md-3"></div>
+	<div class="col-md-4"></div>
 			<div class="container">
 			
 				<div class="row">
@@ -26,9 +44,9 @@ margin-left:20px;
 					 <div class="ay">
 					 		
                             <div class="col-md-6"  style="margin-top: -26px;">
-                                    <div class="panel panel-default panel-post">
-                                        <div class="panel-body">
-                                            <div class="post">
+                                    <div class="panel panel-default panel-post" style="width:100%">
+                                        <div class="panel-body" style="width:100%">
+                                            <div class="post" style="width:100%"> 
                                                 <div class="embed-responsive embed-responsive-16by9 post-thumbnail">
                                                     <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/vSteQ_wlB94?rel=0&amp;showinfo=0" allowfullscreen></iframe>
                                                 </div>
@@ -52,5 +70,5 @@ margin-left:20px;
                                         
                                     </div>
 		</section>
-{% endfor %}
+
  {% endblock %}

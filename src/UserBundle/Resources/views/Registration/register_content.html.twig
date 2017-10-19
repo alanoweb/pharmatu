@@ -1,4 +1,11 @@
 {% trans_default_domain 'FOSUserBundle' %}
+{% block css %}
+<style>
+.profile-img-card{
+
+margin-top:41px;}
+</style>
+{% endblock %}
 
     <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
 <form id="registerform" action="{{ path("fos_user_registration_register") }}" method="post" class="form-signin" style="    width: 43%;

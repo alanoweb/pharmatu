@@ -1,15 +1,13 @@
+
+{%for cathegorie in cathegories%}
 <li class="col-md-3">
-									<a href="games-single.html">
-										<img src="{{asset('img/game/menu-1.jpg')}}" alt="">
+									<a href="{{path('activity',{'id':cathegorie.getId()})}}">
+										<img src="{{asset(cathegorie.getImg())}}" alt="">
 										<div class="caption">
 											<span class="label label-warning">PC</span>
-											<h3>Assassin's Creed Syndicate</h3>
+											<h3>{{cathegorie.getLibelle()}}</h3>
 											<p>Lorem ipsum dolor sit amet, adipise elit.</p>
 										</div>
 									</a>
 								</li>
-{%for cathegorie in cathegories%}
-    <li>
-        <a href="{{path('activity',{'id':cathegorie.getId()})}}">{{cathegorie.getLibelle()}}</a>
-    </li>
 {% endfor %}
