@@ -34,7 +34,13 @@ class DefaultController extends Controller
     {
 		$em = $this->getDoctrine()->getManager();
         $activites = $em->getRepository('AdminBundle:Activity')->findby(array('categorie'=>$id));
-        return $this->render('FrontBundle:Default:activity.html.twig',array("activites"=>$activites));
+        return $this->render('FrontBundle:Default:catactivity.html.twig',array("activites"=>$activites));
+    }  
+	public function activityAction($id)
+    {
+		$em = $this->getDoctrine()->getManager();
+        $activity = $em->getRepository('AdminBundle:Activity')->find($id);
+        return $this->render('FrontBundle:Default:activity.html.twig',array("activity"=>$activity));
     }  
 	public function monprofilAction()
     {

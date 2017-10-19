@@ -26,6 +26,12 @@ class Activity
      * @ORM\Column(name="Nom", type="string", length=100, unique=true)
      */
     private $nom;
+	/**
+     * @var string
+     *
+     * @ORM\Column(name="img", type="string", length=100)
+     */
+    private $img;
 
     /**
      * @ORM\ManyToOne(targetEntity="AdminBundle\Entity\ActivityCath")
@@ -93,6 +99,29 @@ class Activity
     public function getNom()
     {
         return $this->nom;
+    }
+
+    /**
+     * Set img
+     *
+     * @param string $img
+     * @return Activity
+     */
+    public function setImg($img)
+    {
+        $this->img = $img;
+
+        return $this;
+    }
+
+    /**
+     * Get img
+     *
+     * @return string 
+     */
+    public function getImg()
+    {
+        return $this->img;
     }
 
     /**
