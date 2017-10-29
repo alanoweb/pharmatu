@@ -32,6 +32,12 @@ class Activity
      * @ORM\Column(name="img", type="string", length=100)
      */
     private $img;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descrp", type="string", length=255)
+     */
+    private $description;
 
     /**
      * @ORM\ManyToOne(targetEntity="AdminBundle\Entity\ActivityCath")
@@ -122,6 +128,28 @@ class Activity
     public function getImg()
     {
         return $this->img;
+    }
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Activity
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 
     /**
