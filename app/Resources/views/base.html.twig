@@ -32,9 +32,9 @@
 
         <!-- My CSS -->
         <link href="{{asset('css/loginmodal.css')}}" rel="stylesheet">
-        
+
         {%block css %}
-    {%endblock%}
+        {%endblock%}
     </head>
 
     <body class="fixed-header">
@@ -267,8 +267,8 @@
                                         {%else%}
                                             {{app.user.utilisateur.nom}} {{app.user.utilisateur.prenom}}
                                         {%endif%}
-										{%else%}
-										{{app.user.username}}
+                                    {%else%}
+                                        {{app.user.username}}
                                     {%endif%}
                                 </span>
                             </a>
@@ -329,542 +329,542 @@
         <!-- wrapper -->
         <div id="wrapper">
             {% block Dashboard %}
-            {% block slide %}
-                 <div id="full-carousel" class="ken-burns carousel slide full-carousel carousel-fade" data-ride="carousel" style="height:400px;">
-                    <ol class="carousel-indicators">
-                        <li data-target="#full-carousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#full-carousel" data-slide-to="1"></li>
-                        <li data-target="#full-carousel" data-slide-to="2"></li>
-                    </ol>
-                    <div class="carousel-inner" style="height:400px; ">
-                        <div class="item active inactiveUntilOnLoad" style="height:400px; ">
-                            <img src="{{asset('img/slideshow/1.jpg')}}" alt="">
-                            <div class="container" style="height:400px; position:fixed;">
-                                <div class="carousel-caption" style="height:400px; ">
-                                    <h1 data-animation="animated animate1 bounceInDown" style="margin:auto !important; height:auto; ">The Witcher 3: Wild Hunt</h1>
-                                    <p data-animation="animated animate7 fadeInUp">The world is in chaos. The air is thick with tension and the smoke of burnt villages.</p>
-                                    <a href="#signin" data-toggle="modal" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn">Became a member now</a>
-                                </div>		
-                            </div>
-                        </div>
-
-                        <div class="item" style="height:400px; ">
-                            <img src="{{asset('img/slideshow/2.jpg')}}" alt="">
-                            <div class="container" style="height:400px; position:fixed;">
-                                <div class="carousel-caption" style="height:400px; " >
-                                    <h1 data-animation="animated animate1 fadeInDown" style="margin:auto !important;">The Last of Us: Remastered</h1>
-                                    <p data-animation="animated animate7 fadeIn">Survive an apocalypse on Earth in The Last of Us, a PlayStation 4-exclusive title by Naughty Dog.</p>
-                                    <a href="#signin" data-toggle="modal" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn" >Became a member now</a>
+                {% block slide %}
+                    <div id="full-carousel" class="ken-burns carousel slide full-carousel carousel-fade" data-ride="carousel" style="height:400px;">
+                        <ol class="carousel-indicators">
+                            <li data-target="#full-carousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#full-carousel" data-slide-to="1"></li>
+                            <li data-target="#full-carousel" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner" style="height:400px; ">
+                            <div class="item active inactiveUntilOnLoad" style="height:400px; ">
+                                <img src="{{asset('img/slideshow/1.jpg')}}" alt="">
+                                <div class="container" style="height:400px; position:fixed;">
+                                    <div class="carousel-caption" style="height:400px; ">
+                                        <h1 data-animation="animated animate1 bounceInDown" style="margin:auto !important; height:auto; ">The Witcher 3: Wild Hunt</h1>
+                                        <p data-animation="animated animate7 fadeInUp">The world is in chaos. The air is thick with tension and the smoke of burnt villages.</p>
+                                        <a href="#signin" data-toggle="modal" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn">Became a member now</a>
+                                    </div>		
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="item" style="height:400px; ">
-                            <img src="{{asset('img/slideshow/3.jpg')}}" alt="">
-                            <div class="container" style="height:400px; position:fixed;">
-                                <div class="carousel-caption"  style="height:400px; ">
-                                    <h1 data-animation="animated animate1 fadeIn" style="margin:auto !important">Star Wars: Battlefront 3</h1>
-                                    <p data-animation="animated animate7 fadeIn">Galactic forces clash in this reboot of Star Wars Battlefront, the blockbuster shooter.</p>
-                                    <a href="#signin" data-toggle="modal" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn">Became a member now</a>
+                            <div class="item" style="height:400px; ">
+                                <img src="{{asset('img/slideshow/2.jpg')}}" alt="">
+                                <div class="container" style="height:400px; position:fixed;">
+                                    <div class="carousel-caption" style="height:400px; " >
+                                        <h1 data-animation="animated animate1 fadeInDown" style="margin:auto !important;">The Last of Us: Remastered</h1>
+                                        <p data-animation="animated animate7 fadeIn">Survive an apocalypse on Earth in The Last of Us, a PlayStation 4-exclusive title by Naughty Dog.</p>
+                                        <a href="#signin" data-toggle="modal" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn" >Became a member now</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <a class="left carousel-control" href="#full-carousel" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                        </a>
-                        <a class="right carousel-control" href="#full-carousel" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        </a>
+                            <div class="item" style="height:400px; ">
+                                <img src="{{asset('img/slideshow/3.jpg')}}" alt="">
+                                <div class="container" style="height:400px; position:fixed;">
+                                    <div class="carousel-caption"  style="height:400px; ">
+                                        <h1 data-animation="animated animate1 fadeIn" style="margin:auto !important">Star Wars: Battlefront 3</h1>
+                                        <p data-animation="animated animate7 fadeIn">Galactic forces clash in this reboot of Star Wars Battlefront, the blockbuster shooter.</p>
+                                        <a href="#signin" data-toggle="modal" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn">Became a member now</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a class="left carousel-control" href="#full-carousel" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            </a>
+                            <a class="right carousel-control" href="#full-carousel" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            </a>
+                        </div>
                     </div>
-                </div>
-            {% endblock slide%}
-{% block wrapper %}
-            <section class="bg-grey-50 padding-top-30">
-                <div class="container-fluid">
-                    <div class="row">
-					{% block  body  %}
-                        <div class="ax">
-                            <div class="col-md-3" >
+                {% endblock slide%}
+                {% block wrapper %}
+                    <section class="bg-grey-50 padding-top-30">
+                        <div class="container-fluid">
+                            <div class="row">
+                                {% block  body  %}
+                                    <div class="ax">
+                                        <div class="col-md-3" >
 
-                                <div class="widget widget-game" style="background-image: url(img/game/game-widget.jpg);">
-                                    <div class="overlay">
-                                        <div class="title">The Withcer 3: Wild Hunt</div>
+                                            <div class="widget widget-game" style="background-image: url(img/game/game-widget.jpg);">
+                                                <div class="overlay">
+                                                    <div class="title">The Withcer 3: Wild Hunt</div>
 
-                                        <div class="bold text-uppercase">Platforms</div>
-                                        <span class="label label-primary">PS4</span>
-                                        <span class="label label-warning">PC</span>
-                                        <span class="label label-success">Xbox</span>
+                                                    <div class="bold text-uppercase">Platforms</div>
+                                                    <span class="label label-primary">PS4</span>
+                                                    <span class="label label-warning">PC</span>
+                                                    <span class="label label-success">Xbox</span>
 
-                                        <div class="bold text-uppercase margin-top-40">Developer</div>
-                                        <span class="font-size-13">CD Projekt Red Studio</span>
+                                                    <div class="bold text-uppercase margin-top-40">Developer</div>
+                                                    <span class="font-size-13">CD Projekt Red Studio</span>
 
-                                        <div class="bold text-uppercase margin-top-35">Release Date:</div>
-                                        <span class="font-size-13">June 18, 2015</span>
+                                                    <div class="bold text-uppercase margin-top-35">Release Date:</div>
+                                                    <span class="font-size-13">June 18, 2015</span>
 
-                                        <div class="description">
-                                            The Witcher 3: Wild Hunt is a story-driven, next-generation open world role-playing game, set in a visually stunning fantasy universe, full of meaningful choices and impactful consequences.
-                                            <a href="#" class="btn btn-block btn-primary margin-top-40">Follow now <i class="fa fa-heart-o margin-left-10"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
+                                                    <div class="description">
+                                                        The Witcher 3: Wild Hunt is a story-driven, next-generation open world role-playing game, set in a visually stunning fantasy universe, full of meaningful choices and impactful consequences.
+                                                        <a href="#" class="btn btn-block btn-primary margin-top-40">Follow now <i class="fa fa-heart-o margin-left-10"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                                <div class="widget widget-list">
-                                    <div class="tab-select border-bottom-1 border-grey-300">
-                                        <ul class="nav nav-tabs">
-                                            <li class="active"><a href="#tabs1" data-toggle="tab">Posts</a></li>
-                                            <li><a href="#tabs2" data-toggle="tab">Forums</a></li>
-                                            <li><a href="#" data-toggle="tab">Images</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="tab-content">
-                                        <ul class="tab-pane fade in active" id="tabs1">
-                                            <li>
-                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/1.jpg')}}" alt=""></a>
-                                                <div class="widget-list-meta">
-                                                    <h4 class="widget-list-title"><a href="#">Overwatch Closed Beta</a></h4>
-                                                    <p><i class="fa fa-clock-o"></i> September 15, 2015</p>
+                                            <div class="widget widget-list">
+                                                <div class="tab-select border-bottom-1 border-grey-300">
+                                                    <ul class="nav nav-tabs">
+                                                        <li class="active"><a href="#tabs1" data-toggle="tab">Posts</a></li>
+                                                        <li><a href="#tabs2" data-toggle="tab">Forums</a></li>
+                                                        <li><a href="#" data-toggle="tab">Images</a></li>
+                                                    </ul>
                                                 </div>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/2.jpg')}}" alt=""></a>
-                                                <div class="widget-list-meta">
-                                                    <h4 class="widget-list-title"><a href="#">Blood and Gore</a></h4>
-                                                    <p><i class="fa fa-clock-o"></i> September 13, 2015</p>
+                                                <div class="tab-content">
+                                                    <ul class="tab-pane fade in active" id="tabs1">
+                                                        <li>
+                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/1.jpg')}}" alt=""></a>
+                                                            <div class="widget-list-meta">
+                                                                <h4 class="widget-list-title"><a href="#">Overwatch Closed Beta</a></h4>
+                                                                <p><i class="fa fa-clock-o"></i> September 15, 2015</p>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/2.jpg')}}" alt=""></a>
+                                                            <div class="widget-list-meta">
+                                                                <h4 class="widget-list-title"><a href="#">Blood and Gore</a></h4>
+                                                                <p><i class="fa fa-clock-o"></i> September 13, 2015</p>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/3.jpg')}}" alt=""></a>
+                                                            <div class="widget-list-meta">
+                                                                <h4 class="widget-list-title"><a href="#">Warner Bros. Interactive</a></h4>
+                                                                <p><i class="fa fa-clock-o"></i> September 12, 2015</p>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/4.jpg')}}" alt=""></a>
+                                                            <div class="widget-list-meta">
+                                                                <h4 class="widget-list-title"><a href="#">Sharks Don't Sleep</a></h4>
+                                                                <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/5.jpg')}}" alt=""></a>
+                                                            <div class="widget-list-meta">
+                                                                <h4 class="widget-list-title"><a href="#">GTA 5 Reaches 5 Million</a></h4>
+                                                                <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                    <ul class="tab-pane fade" id="tabs2">
+                                                        <li>
+                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/1.jpg')}}" alt=""></a>
+                                                            <div class="widget-list-meta">
+                                                                <h4 class="widget-list-title"><a href="#">Overwatch Closed Beta</a></h4>
+                                                                <p><i class="fa fa-clock-o"></i> September 15, 2015</p>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/2.jpg')}}" alt=""></a>
+                                                            <div class="widget-list-meta">
+                                                                <h4 class="widget-list-title"><a href="#">Blood and Gore</a></h4>
+                                                                <p><i class="fa fa-clock-o"></i> September 13, 2015</p>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/3.jpg')}}" alt=""></a>
+                                                            <div class="widget-list-meta">
+                                                                <h4 class="widget-list-title"><a href="#">Warner Bros. Interactive</a></h4>
+                                                                <p><i class="fa fa-clock-o"></i> September 12, 2015</p>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/4.jpg')}}" alt=""></a>
+                                                            <div class="widget-list-meta">
+                                                                <h4 class="widget-list-title"><a href="#">Sharks Don't Sleep</a></h4>
+                                                                <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/5.jpg')}}" alt=""></a>
+                                                            <div class="widget-list-meta">
+                                                                <h4 class="widget-list-title"><a href="#">GTA 5 Reaches 5 Million</a></h4>
+                                                                <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
                                                 </div>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/3.jpg')}}" alt=""></a>
-                                                <div class="widget-list-meta">
-                                                    <h4 class="widget-list-title"><a href="#">Warner Bros. Interactive</a></h4>
-                                                    <p><i class="fa fa-clock-o"></i> September 12, 2015</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/4.jpg')}}" alt=""></a>
-                                                <div class="widget-list-meta">
-                                                    <h4 class="widget-list-title"><a href="#">Sharks Don't Sleep</a></h4>
-                                                    <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/5.jpg')}}" alt=""></a>
-                                                <div class="widget-list-meta">
-                                                    <h4 class="widget-list-title"><a href="#">GTA 5 Reaches 5 Million</a></h4>
-                                                    <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <ul class="tab-pane fade" id="tabs2">
-                                            <li>
-                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/1.jpg')}}" alt=""></a>
-                                                <div class="widget-list-meta">
-                                                    <h4 class="widget-list-title"><a href="#">Overwatch Closed Beta</a></h4>
-                                                    <p><i class="fa fa-clock-o"></i> September 15, 2015</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/2.jpg')}}" alt=""></a>
-                                                <div class="widget-list-meta">
-                                                    <h4 class="widget-list-title"><a href="#">Blood and Gore</a></h4>
-                                                    <p><i class="fa fa-clock-o"></i> September 13, 2015</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/3.jpg')}}" alt=""></a>
-                                                <div class="widget-list-meta">
-                                                    <h4 class="widget-list-title"><a href="#">Warner Bros. Interactive</a></h4>
-                                                    <p><i class="fa fa-clock-o"></i> September 12, 2015</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/4.jpg')}}" alt=""></a>
-                                                <div class="widget-list-meta">
-                                                    <h4 class="widget-list-title"><a href="#">Sharks Don't Sleep</a></h4>
-                                                    <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/5.jpg')}}" alt=""></a>
-                                                <div class="widget-list-meta">
-                                                    <h4 class="widget-list-title"><a href="#">GTA 5 Reaches 5 Million</a></h4>
-                                                    <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                            </div>
 
-                                <div class="widget widget-card">
-                                    <div class="title">Related Videos</div>
-                                    <div class="card">
-                                        <div class="card-img">
-                                            <a href="videos-single.html"><img src="{{asset('../i1.ytimg.com/vi/tuPEam_Jt4I/mqdefault.jpg')}}" alt=""></a>
-                                            <div class="time">04:51</div>
-                                        </div>
-                                        <div class="caption">
-                                            <h3 class="card-title"><a href="videos-single.html">The Witcher 3: Wild Hunt - Official Gameplay</a></h3>
-                                            <ul>
-                                                <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
-                                                <li><i class="fa fa-eye"></i> 1500 views</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-img">
-                                            <a href="videos-single.html"><img src="{{asset('../i1.ytimg.com/vi/_UFT49qWopg/mqdefault.jpg')}}" alt=""></a>
-                                            <div class="time">02:04</div>
-                                        </div>
-                                        <div class="caption">
-                                            <h3 class="card-title"><a href="videos-single.html">The Witcher 3: Wild Hunt - The Beginning</a></h3>
-                                            <ul>
-                                                <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
-                                                <li><i class="fa fa-eye"></i> 1500 views</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-img">
-                                            <a href="videos-single.html"><img src="{{asset('../i1.ytimg.com/vi/xx8kQ4s5hCY/mqdefault.jpg')}}" alt=""></a>
-                                            <div class="time">06:33</div>
-                                        </div>
-                                        <div class="caption">
-                                            <h3 class="card-title"><a href="videos-single.html">The Witcher 3: Wild Hunt</a></h3>
-                                            <ul>
-                                                <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
-                                                <li><i class="fa fa-eye"></i> 1500 views</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-img">
-                                            <a href="videos-single.html"><img src="{{asset('../i1.ytimg.com/vi/c0i88t0Kacs/mqdefault.jpg')}}" alt=""></a>
-                                            <div class="time">11:06</div>
-                                        </div>
-                                        <div class="caption">
-                                            <h3 class="card-title"><a href="videos-single.html">aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</a></h3>
-                                            <ul>
-                                                <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
-                                                <li><i class="fa fa-eye"></i> 1500 views</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="btn btn-inverse btn-block">More Videos</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ay">
-                            <div class="col-md-6" >
-                                
-                                    <div class="panel panel-default panel-post">
-                                        <div class="panel-body">
-                                            <div class="post">
-                                                <div class="post-header post-author">
-                                                    <a href="#" class="author" data-toggle="tooltip" title="YAKUZI"><img src="{{asset('img/user/avatar.jpg')}}" alt=""></a>
-                                                    <div class="post-title">
-                                                        <h3><a href="#">The Witcher 3: Wild Hunt Gameplay</a></h3>
-                                                        <ul class="post-meta">
-                                                            <li><a href="#"><i class="fa fa-user"></i> YAKUZI</a></li>
+                                            <div class="widget widget-card">
+                                                <div class="title">Related Videos</div>
+                                                <div class="card">
+                                                    <div class="card-img">
+                                                        <a href="videos-single.html"><img src="{{asset('../i1.ytimg.com/vi/tuPEam_Jt4I/mqdefault.jpg')}}" alt=""></a>
+                                                        <div class="time">04:51</div>
+                                                    </div>
+                                                    <div class="caption">
+                                                        <h3 class="card-title"><a href="videos-single.html">The Witcher 3: Wild Hunt - Official Gameplay</a></h3>
+                                                        <ul>
                                                             <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
-                                                            <li><a href="#"><i class="fa fa-comments"></i> 0 <span class="hidden-xs">Comments</span></a></li>
+                                                            <li><i class="fa fa-eye"></i> 1500 views</li>
                                                         </ul>
                                                     </div>
                                                 </div>
-
-                                                <div class="embed-responsive embed-responsive-16by9 post-thumbnail">
-                                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/vSteQ_wlB94?rel=0&amp;showinfo=0" allowfullscreen></iframe>
+                                                <div class="card">
+                                                    <div class="card-img">
+                                                        <a href="videos-single.html"><img src="{{asset('../i1.ytimg.com/vi/_UFT49qWopg/mqdefault.jpg')}}" alt=""></a>
+                                                        <div class="time">02:04</div>
+                                                    </div>
+                                                    <div class="caption">
+                                                        <h3 class="card-title"><a href="videos-single.html">The Witcher 3: Wild Hunt - The Beginning</a></h3>
+                                                        <ul>
+                                                            <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                                            <li><i class="fa fa-eye"></i> 1500 views</li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
-
-                                                Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
+                                                <div class="card">
+                                                    <div class="card-img">
+                                                        <a href="videos-single.html"><img src="{{asset('../i1.ytimg.com/vi/xx8kQ4s5hCY/mqdefault.jpg')}}" alt=""></a>
+                                                        <div class="time">06:33</div>
+                                                    </div>
+                                                    <div class="caption">
+                                                        <h3 class="card-title"><a href="videos-single.html">The Witcher 3: Wild Hunt</a></h3>
+                                                        <ul>
+                                                            <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                                            <li><i class="fa fa-eye"></i> 1500 views</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-img">
+                                                        <a href="videos-single.html"><img src="{{asset('../i1.ytimg.com/vi/c0i88t0Kacs/mqdefault.jpg')}}" alt=""></a>
+                                                        <div class="time">11:06</div>
+                                                    </div>
+                                                    <div class="caption">
+                                                        <h3 class="card-title"><a href="videos-single.html">aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</a></h3>
+                                                        <ul>
+                                                            <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                                            <li><i class="fa fa-eye"></i> 1500 views</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <a href="#" class="btn btn-inverse btn-block">More Videos</a>
                                             </div>
                                         </div>
-                                        <div class="panel-footer">
-                                            <ul class="post-action">
-                                                <li><a href="#"><i class="fa fa-heart"></i> like (5)</a></li>
-                                                <li><a href="#"><i class="fa fa-comments"></i> Comments</a></li>
-                                                <li><a href="#"><i class="fa fa-reply"></i> share</a></li>
-                                            </ul>
-                                        </div>
                                     </div>
+                                    <div class="ay">
+                                        <div class="col-md-6" >
 
-                                    <div class="panel panel-default panel-post">
-                                        <div class="panel-body">
-                                            <div class="post">
-                                                <div class="post-header post-author">
-                                                    <a href="#" class="author" data-toggle="tooltip" title="YAKUZI"><img src="{{asset('img/user/avatar.jpg')}}" alt=""></a>
-                                                    <div class="post-title">
-                                                        <h3><a href="#">The Witcher Adventure Game Review</a></h3>
-                                                        <ul class="post-meta">
-                                                            <li><a href="#"><i class="fa fa-user"></i> YAKUZI</a></li>
-                                                            <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
-                                                            <li><a href="#"><i class="fa fa-comments"></i> 0 <span class="hidden-xs">Comments</span></a></li>
-                                                        </ul>
+                                            <div class="panel panel-default panel-post">
+                                                <div class="panel-body">
+                                                    <div class="post">
+                                                        <div class="post-header post-author">
+                                                            <a href="#" class="author" data-toggle="tooltip" title="YAKUZI"><img src="{{asset('img/user/avatar.jpg')}}" alt=""></a>
+                                                            <div class="post-title">
+                                                                <h3><a href="#">The Witcher 3: Wild Hunt Gameplay</a></h3>
+                                                                <ul class="post-meta">
+                                                                    <li><a href="#"><i class="fa fa-user"></i> YAKUZI</a></li>
+                                                                    <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                                                    <li><a href="#"><i class="fa fa-comments"></i> 0 <span class="hidden-xs">Comments</span></a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="embed-responsive embed-responsive-16by9 post-thumbnail">
+                                                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/vSteQ_wlB94?rel=0&amp;showinfo=0" allowfullscreen></iframe>
+                                                        </div>
+
+                                                        Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
                                                     </div>
                                                 </div>
-                                                <div id="post-carousel" class="carousel slide post-thumbnail" data-ride="carousel">
-                                                    <ol class="carousel-indicators">
-                                                        <li data-target="#post-carousel" data-slide-to="0" class="active"></li>
-                                                        <li data-target="#post-carousel" data-slide-to="1"></li>
-                                                    </ol>
-                                                    <div class="carousel-inner">
-                                                        <div class="item active">
-                                                            <img src="{{asset('img/blog/lg/1.jpg')}}" alt="">
+                                                <div class="panel-footer">
+                                                    <ul class="post-action">
+                                                        <li><a href="#"><i class="fa fa-heart"></i> like (5)</a></li>
+                                                        <li><a href="#"><i class="fa fa-comments"></i> Comments</a></li>
+                                                        <li><a href="#"><i class="fa fa-reply"></i> share</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <div class="panel panel-default panel-post">
+                                                <div class="panel-body">
+                                                    <div class="post">
+                                                        <div class="post-header post-author">
+                                                            <a href="#" class="author" data-toggle="tooltip" title="YAKUZI"><img src="{{asset('img/user/avatar.jpg')}}" alt=""></a>
+                                                            <div class="post-title">
+                                                                <h3><a href="#">The Witcher Adventure Game Review</a></h3>
+                                                                <ul class="post-meta">
+                                                                    <li><a href="#"><i class="fa fa-user"></i> YAKUZI</a></li>
+                                                                    <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                                                    <li><a href="#"><i class="fa fa-comments"></i> 0 <span class="hidden-xs">Comments</span></a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div id="post-carousel" class="carousel slide post-thumbnail" data-ride="carousel">
+                                                            <ol class="carousel-indicators">
+                                                                <li data-target="#post-carousel" data-slide-to="0" class="active"></li>
+                                                                <li data-target="#post-carousel" data-slide-to="1"></li>
+                                                            </ol>
+                                                            <div class="carousel-inner">
+                                                                <div class="item active">
+                                                                    <img src="{{asset('img/blog/lg/1.jpg')}}" alt="">
+                                                                    <div class="post-caption">Example of post thumbnail caption</div>
+                                                                </div>
+                                                                <div class="item">
+                                                                    <img src="{{asset('img/blog/lg/2.jpg')}}" alt="">
+                                                                    <div class="post-caption">Example of post thumbnail caption</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
+                                                    </div>
+                                                </div>
+                                                <div class="panel-footer">
+                                                    <ul class="post-action">
+                                                        <li><a href="#"><i class="fa fa-heart"></i> like (5)</a></li>
+                                                        <li><a href="#"><i class="fa fa-comments"></i> Comments</a></li>
+                                                        <li><a href="#"><i class="fa fa-reply"></i> share</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <div class="panel panel-default panel-post">
+                                                <div class="panel-body">
+                                                    <div class="post">
+                                                        <div class="post-header post-author">
+                                                            <a href="#" class="author" data-toggle="tooltip" title="YAKUZI"><img src="{{asset('img/user/avatar.jpg')}}" alt=""></a>
+                                                            <div class="post-title">
+                                                                <h3><a href="#">The Witcher 3 is Game of the Year</a></h3>
+                                                                <ul class="post-meta">
+                                                                    <li><a href="#"><i class="fa fa-user"></i> YAKUZI</a></li>
+                                                                    <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                                                    <li><a href="#"><i class="fa fa-comments"></i> 0 <span class="hidden-xs">Comments</span></a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div class="post-thumbnail">
+                                                            <a href="blog-post.html"><img src="{{asset('img/blog/lg/3.jpg')}}" alt=""></a>
                                                             <div class="post-caption">Example of post thumbnail caption</div>
                                                         </div>
-                                                        <div class="item">
-                                                            <img src="{{asset('img/blog/lg/2.jpg')}}" alt="">
-                                                            <div class="post-caption">Example of post thumbnail caption</div>
+                                                        Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
+                                                    </div>
+                                                </div>
+                                                <div class="panel-footer">
+                                                    <ul class="post-action">
+                                                        <li><a href="#"><i class="fa fa-heart"></i> like (5)</a></li>
+                                                        <li><a href="#"><i class="fa fa-comments"></i> Comments</a></li>
+                                                        <li><a href="#"><i class="fa fa-reply"></i> share</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <div class="panel panel-default panel-post">
+                                                <div class="panel-body">
+                                                    <div class="post">
+                                                        <div class="post-header post-author">
+                                                            <a href="#" class="author" data-toggle="tooltip" title="YAKUZI"><img src="{{asset('img/user/avatar.jpg')}}" alt=""></a>
+                                                            <div class="post-title">
+                                                                <h3><a href="#">The Witcher 3: Wild Hunt Is the Last Witcher Game</a></h3>
+                                                                <ul class="post-meta">
+                                                                    <li><a href="#"><i class="fa fa-user"></i> YAKUZI</a></li>
+                                                                    <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                                                    <li><a href="#"><i class="fa fa-comments"></i> 0 <span class="hidden-xs">Comments</span></a></li>
+                                                                </ul>
+                                                            </div>
                                                         </div>
+                                                        Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
                                                     </div>
                                                 </div>
-                                                Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
+                                                <div class="panel-footer">
+                                                    <ul class="post-action">
+                                                        <li><a href="#"><i class="fa fa-heart"></i> like (5)</a></li>
+                                                        <li><a href="#"><i class="fa fa-comments"></i> Comments</a></li>
+                                                        <li><a href="#"><i class="fa fa-reply"></i> share</a></li>
+                                                    </ul>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="panel-footer">
-                                            <ul class="post-action">
-                                                <li><a href="#"><i class="fa fa-heart"></i> like (5)</a></li>
-                                                <li><a href="#"><i class="fa fa-comments"></i> Comments</a></li>
-                                                <li><a href="#"><i class="fa fa-reply"></i> share</a></li>
-                                            </ul>
+
+                                            <div class="text-center"><a href="#" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right">Load Posts</a></div>
+
                                         </div>
                                     </div>
+                                    <div class="az">
+                                        <div class="col-md-3">
+                                            <div class="widget widget-game" style="background-image: url(img/game/game-widget.jpg);">
+                                                <div class="overlay">
+                                                    <div class="title">The Withcer 3: Wild Hunt</div>
 
-                                    <div class="panel panel-default panel-post">
-                                        <div class="panel-body">
-                                            <div class="post">
-                                                <div class="post-header post-author">
-                                                    <a href="#" class="author" data-toggle="tooltip" title="YAKUZI"><img src="{{asset('img/user/avatar.jpg')}}" alt=""></a>
-                                                    <div class="post-title">
-                                                        <h3><a href="#">The Witcher 3 is Game of the Year</a></h3>
-                                                        <ul class="post-meta">
-                                                            <li><a href="#"><i class="fa fa-user"></i> YAKUZI</a></li>
+                                                    <div class="bold text-uppercase">Platforms</div>
+                                                    <span class="label label-primary">PS4</span>
+                                                    <span class="label label-warning">PC</span>
+                                                    <span class="label label-success">Xbox</span>
+
+                                                    <div class="bold text-uppercase margin-top-40">Developer</div>
+                                                    <span class="font-size-13">CD Projekt Red Studio</span>
+
+                                                    <div class="bold text-uppercase margin-top-35">Release Date:</div>
+                                                    <span class="font-size-13">June 18, 2015</span>
+
+                                                    <div class="description">
+                                                        The Witcher 3: Wild Hunt is a story-driven, next-generation open world role-playing game, set in a visually stunning fantasy universe, full of meaningful choices and impactful consequences.
+                                                        <a href="#" class="btn btn-block btn-primary margin-top-40">Follow now <i class="fa fa-heart-o margin-left-10"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="widget widget-list">
+                                                <div class="tab-select border-bottom-1 border-grey-300">
+                                                    <ul class="nav nav-tabs">
+                                                        <li class="active"><a href="#tabs1" data-toggle="tab">Posts</a></li>
+                                                        <li><a href="#tabs2" data-toggle="tab">Forums</a></li>
+                                                        <li><a href="#" data-toggle="tab">Images</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="tab-content">
+                                                    <ul class="tab-pane fade in active" id="tabs1">
+                                                        <li>
+                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/1.jpg')}}" alt=""></a>
+                                                            <div class="widget-list-meta">
+                                                                <h4 class="widget-list-title"><a href="#">Overwatch Closed Beta</a></h4>
+                                                                <p><i class="fa fa-clock-o"></i> September 15, 2015</p>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/2.jpg')}}" alt=""></a>
+                                                            <div class="widget-list-meta">
+                                                                <h4 class="widget-list-title"><a href="#">Blood and Gore</a></h4>
+                                                                <p><i class="fa fa-clock-o"></i> September 13, 2015</p>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/3.jpg')}}" alt=""></a>
+                                                            <div class="widget-list-meta">
+                                                                <h4 class="widget-list-title"><a href="#">Warner Bros. Interactive</a></h4>
+                                                                <p><i class="fa fa-clock-o"></i> September 12, 2015</p>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/4.jpg')}}" alt=""></a>
+                                                            <div class="widget-list-meta">
+                                                                <h4 class="widget-list-title"><a href="#">Sharks Don't Sleep</a></h4>
+                                                                <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/5.jpg')}}" alt=""></a>
+                                                            <div class="widget-list-meta">
+                                                                <h4 class="widget-list-title"><a href="#">GTA 5 Reaches 5 Million</a></h4>
+                                                                <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                    <ul class="tab-pane fade" id="tabs2">
+                                                        <li>
+                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/1.jpg')}}" alt=""></a>
+                                                            <div class="widget-list-meta">
+                                                                <h4 class="widget-list-title"><a href="#">Overwatch Closed Beta</a></h4>
+                                                                <p><i class="fa fa-clock-o"></i> September 15, 2015</p>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/2.jpg')}}" alt=""></a>
+                                                            <div class="widget-list-meta">
+                                                                <h4 class="widget-list-title"><a href="#">Blood and Gore</a></h4>
+                                                                <p><i class="fa fa-clock-o"></i> September 13, 2015</p>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/3.jpg')}}" alt=""></a>
+                                                            <div class="widget-list-meta">
+                                                                <h4 class="widget-list-title"><a href="#">Warner Bros. Interactive</a></h4>
+                                                                <p><i class="fa fa-clock-o"></i> September 12, 2015</p>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/4.jpg')}}" alt=""></a>
+                                                            <div class="widget-list-meta">
+                                                                <h4 class="widget-list-title"><a href="#">Sharks Don't Sleep</a></h4>
+                                                                <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/5.jpg')}}" alt=""></a>
+                                                            <div class="widget-list-meta">
+                                                                <h4 class="widget-list-title"><a href="#">GTA 5 Reaches 5 Million</a></h4>
+                                                                <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <div class="widget widget-card">
+                                                <div class="title">Related Videos</div>
+                                                <div class="card">
+                                                    <div class="card-img">
+                                                        <a href="videos-single.html"><img src="{{asset('../i1.ytimg.com/vi/tuPEam_Jt4I/mqdefault.jpg')}}" alt=""></a>
+                                                        <div class="time">04:51</div>
+                                                    </div>
+                                                    <div class="caption">
+                                                        <h3 class="card-title"><a href="videos-single.html">The Witcher 3: Wild Hunt - Official Gameplay</a></h3>
+                                                        <ul>
                                                             <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
-                                                            <li><a href="#"><i class="fa fa-comments"></i> 0 <span class="hidden-xs">Comments</span></a></li>
+                                                            <li><i class="fa fa-eye"></i> 1500 views</li>
                                                         </ul>
                                                     </div>
                                                 </div>
-                                                <div class="post-thumbnail">
-                                                    <a href="blog-post.html"><img src="{{asset('img/blog/lg/3.jpg')}}" alt=""></a>
-                                                    <div class="post-caption">Example of post thumbnail caption</div>
-                                                </div>
-                                                Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
-                                            </div>
-                                        </div>
-                                        <div class="panel-footer">
-                                            <ul class="post-action">
-                                                <li><a href="#"><i class="fa fa-heart"></i> like (5)</a></li>
-                                                <li><a href="#"><i class="fa fa-comments"></i> Comments</a></li>
-                                                <li><a href="#"><i class="fa fa-reply"></i> share</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <div class="panel panel-default panel-post">
-                                        <div class="panel-body">
-                                            <div class="post">
-                                                <div class="post-header post-author">
-                                                    <a href="#" class="author" data-toggle="tooltip" title="YAKUZI"><img src="{{asset('img/user/avatar.jpg')}}" alt=""></a>
-                                                    <div class="post-title">
-                                                        <h3><a href="#">The Witcher 3: Wild Hunt Is the Last Witcher Game</a></h3>
-                                                        <ul class="post-meta">
-                                                            <li><a href="#"><i class="fa fa-user"></i> YAKUZI</a></li>
+                                                <div class="card">
+                                                    <div class="card-img">
+                                                        <a href="videos-single.html"><img src="{{asset('../i1.ytimg.com/vi/_UFT49qWopg/mqdefault.jpg')}}" alt=""></a>
+                                                        <div class="time">02:04</div>
+                                                    </div>
+                                                    <div class="caption">
+                                                        <h3 class="card-title"><a href="videos-single.html">The Witcher 3: Wild Hunt - The Beginning</a></h3>
+                                                        <ul>
                                                             <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
-                                                            <li><a href="#"><i class="fa fa-comments"></i> 0 <span class="hidden-xs">Comments</span></a></li>
+                                                            <li><i class="fa fa-eye"></i> 1500 views</li>
                                                         </ul>
                                                     </div>
                                                 </div>
-                                                Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
+                                                <div class="card">
+                                                    <div class="card-img">
+                                                        <a href="videos-single.html"><img src="{{asset('../i1.ytimg.com/vi/xx8kQ4s5hCY/mqdefault.jpg')}}" alt=""></a>
+                                                        <div class="time">06:33</div>
+                                                    </div>
+                                                    <div class="caption">
+                                                        <h3 class="card-title"><a href="videos-single.html">The Witcher 3: Wild Hunt</a></h3>
+                                                        <ul>
+                                                            <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                                            <li><i class="fa fa-eye"></i> 1500 views</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-img">
+                                                        <a href="videos-single.html"><img src="{{asset('../i1.ytimg.com/vi/c0i88t0Kacs/mqdefault.jpg')}}" alt=""></a>
+                                                        <div class="time">11:06</div>
+                                                    </div>
+                                                    <div class="caption">
+                                                        <h3 class="card-title"><a href="videos-single.html">bbbbbbbbbbbbbbbbbbbbb</a></h3>
+                                                        <ul>
+                                                            <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                                            <li><i class="fa fa-eye"></i> 1500 views</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <a href="#" class="btn btn-inverse btn-block">More Videos</a>
                                             </div>
                                         </div>
-                                        <div class="panel-footer">
-                                            <ul class="post-action">
-                                                <li><a href="#"><i class="fa fa-heart"></i> like (5)</a></li>
-                                                <li><a href="#"><i class="fa fa-comments"></i> Comments</a></li>
-                                                <li><a href="#"><i class="fa fa-reply"></i> share</a></li>
-                                            </ul>
+                                        <div>
                                         </div>
                                     </div>
-
-                                    <div class="text-center"><a href="#" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right">Load Posts</a></div>
-                                
+                                {% endblock  body  %}
                             </div>
                         </div>
-                        <div class="az">
-                            <div class="col-md-3">
-                                <div class="widget widget-game" style="background-image: url(img/game/game-widget.jpg);">
-                                    <div class="overlay">
-                                        <div class="title">The Withcer 3: Wild Hunt</div>
-
-                                        <div class="bold text-uppercase">Platforms</div>
-                                        <span class="label label-primary">PS4</span>
-                                        <span class="label label-warning">PC</span>
-                                        <span class="label label-success">Xbox</span>
-
-                                        <div class="bold text-uppercase margin-top-40">Developer</div>
-                                        <span class="font-size-13">CD Projekt Red Studio</span>
-
-                                        <div class="bold text-uppercase margin-top-35">Release Date:</div>
-                                        <span class="font-size-13">June 18, 2015</span>
-
-                                        <div class="description">
-                                            The Witcher 3: Wild Hunt is a story-driven, next-generation open world role-playing game, set in a visually stunning fantasy universe, full of meaningful choices and impactful consequences.
-                                            <a href="#" class="btn btn-block btn-primary margin-top-40">Follow now <i class="fa fa-heart-o margin-left-10"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="widget widget-list">
-                                    <div class="tab-select border-bottom-1 border-grey-300">
-                                        <ul class="nav nav-tabs">
-                                            <li class="active"><a href="#tabs1" data-toggle="tab">Posts</a></li>
-                                            <li><a href="#tabs2" data-toggle="tab">Forums</a></li>
-                                            <li><a href="#" data-toggle="tab">Images</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="tab-content">
-                                        <ul class="tab-pane fade in active" id="tabs1">
-                                            <li>
-                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/1.jpg')}}" alt=""></a>
-                                                <div class="widget-list-meta">
-                                                    <h4 class="widget-list-title"><a href="#">Overwatch Closed Beta</a></h4>
-                                                    <p><i class="fa fa-clock-o"></i> September 15, 2015</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/2.jpg')}}" alt=""></a>
-                                                <div class="widget-list-meta">
-                                                    <h4 class="widget-list-title"><a href="#">Blood and Gore</a></h4>
-                                                    <p><i class="fa fa-clock-o"></i> September 13, 2015</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/3.jpg')}}" alt=""></a>
-                                                <div class="widget-list-meta">
-                                                    <h4 class="widget-list-title"><a href="#">Warner Bros. Interactive</a></h4>
-                                                    <p><i class="fa fa-clock-o"></i> September 12, 2015</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/4.jpg')}}" alt=""></a>
-                                                <div class="widget-list-meta">
-                                                    <h4 class="widget-list-title"><a href="#">Sharks Don't Sleep</a></h4>
-                                                    <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/5.jpg')}}" alt=""></a>
-                                                <div class="widget-list-meta">
-                                                    <h4 class="widget-list-title"><a href="#">GTA 5 Reaches 5 Million</a></h4>
-                                                    <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <ul class="tab-pane fade" id="tabs2">
-                                            <li>
-                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/1.jpg')}}" alt=""></a>
-                                                <div class="widget-list-meta">
-                                                    <h4 class="widget-list-title"><a href="#">Overwatch Closed Beta</a></h4>
-                                                    <p><i class="fa fa-clock-o"></i> September 15, 2015</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/2.jpg')}}" alt=""></a>
-                                                <div class="widget-list-meta">
-                                                    <h4 class="widget-list-title"><a href="#">Blood and Gore</a></h4>
-                                                    <p><i class="fa fa-clock-o"></i> September 13, 2015</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/3.jpg')}}" alt=""></a>
-                                                <div class="widget-list-meta">
-                                                    <h4 class="widget-list-title"><a href="#">Warner Bros. Interactive</a></h4>
-                                                    <p><i class="fa fa-clock-o"></i> September 12, 2015</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/4.jpg')}}" alt=""></a>
-                                                <div class="widget-list-meta">
-                                                    <h4 class="widget-list-title"><a href="#">Sharks Don't Sleep</a></h4>
-                                                    <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="thumb"><img src="{{asset('img/blog/xs/5.jpg')}}" alt=""></a>
-                                                <div class="widget-list-meta">
-                                                    <h4 class="widget-list-title"><a href="#">GTA 5 Reaches 5 Million</a></h4>
-                                                    <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="widget widget-card">
-                                    <div class="title">Related Videos</div>
-                                    <div class="card">
-                                        <div class="card-img">
-                                            <a href="videos-single.html"><img src="{{asset('../i1.ytimg.com/vi/tuPEam_Jt4I/mqdefault.jpg')}}" alt=""></a>
-                                            <div class="time">04:51</div>
-                                        </div>
-                                        <div class="caption">
-                                            <h3 class="card-title"><a href="videos-single.html">The Witcher 3: Wild Hunt - Official Gameplay</a></h3>
-                                            <ul>
-                                                <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
-                                                <li><i class="fa fa-eye"></i> 1500 views</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-img">
-                                            <a href="videos-single.html"><img src="{{asset('../i1.ytimg.com/vi/_UFT49qWopg/mqdefault.jpg')}}" alt=""></a>
-                                            <div class="time">02:04</div>
-                                        </div>
-                                        <div class="caption">
-                                            <h3 class="card-title"><a href="videos-single.html">The Witcher 3: Wild Hunt - The Beginning</a></h3>
-                                            <ul>
-                                                <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
-                                                <li><i class="fa fa-eye"></i> 1500 views</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-img">
-                                            <a href="videos-single.html"><img src="{{asset('../i1.ytimg.com/vi/xx8kQ4s5hCY/mqdefault.jpg')}}" alt=""></a>
-                                            <div class="time">06:33</div>
-                                        </div>
-                                        <div class="caption">
-                                            <h3 class="card-title"><a href="videos-single.html">The Witcher 3: Wild Hunt</a></h3>
-                                            <ul>
-                                                <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
-                                                <li><i class="fa fa-eye"></i> 1500 views</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-img">
-                                            <a href="videos-single.html"><img src="{{asset('../i1.ytimg.com/vi/c0i88t0Kacs/mqdefault.jpg')}}" alt=""></a>
-                                            <div class="time">11:06</div>
-                                        </div>
-                                        <div class="caption">
-                                            <h3 class="card-title"><a href="videos-single.html">bbbbbbbbbbbbbbbbbbbbb</a></h3>
-                                            <ul>
-                                                <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
-                                                <li><i class="fa fa-eye"></i> 1500 views</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="btn btn-inverse btn-block">More Videos</a>
-                                </div>
-                            </div>
-                            <div>
-                            </div>
-                        </div>
-						{% endblock  body  %}
-                    </div>
-                </div>
-            </section>
-                                            {% endblock wrapper %}
-            <!-- /#wrapper -->
+                    </section>
+                {% endblock wrapper %}
+                <!-- /#wrapper -->
             {% endblock Dashboard %}
         </div>
         <!-- footer -->
@@ -917,43 +917,50 @@
                         <li><a href="#" class="btn btn-circle btn-social-icon" data-toggle="tooltip" title="Follow us on Google"><i class="fa fa-google-plus"></i></a></li>
                         <li><a href="#" class="btn btn-circle btn-social-icon" data-toggle="tooltip" title="Follow us on Steam"><i class="fa fa-steam"></i></a></li>
                     </ul>
-                   <p style="margin-left:20%"> &copy; 2016 Gameforest. All rights reserved.</p>
+                    <p style="margin-left:20%"> &copy; 2016 Gameforest. All rights reserved.</p>
                 </div>
             </div>
         </footer>	
         <!-- /.footer -->
 
         <!-- Modales -->
-       
 
-            <div class="container modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="card card-container">
-            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
-            <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-            <p id="profile-name" class="profile-name-card"></p>
-            <form id="loginform" action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
-                <span id="loginerror" style="color:red"></span>
-                <span id="reauth-email" class="reauth-email"></span>
-                <div class="input-group" style="margin-bottom:10px;border:none">
-  <span class="input-group-addon" ><i class="glyphicon glyphicon-user"></i></span>   
-                <input onfocusout="usernamereq();" type="text" id="username" name="_username" required="required" class="form-control " placeholder="{{ 'security.login.username'|trans }}" style="margin-bottom:0px"/>
-</div>
-<div class="input-group" style="margin-bottom:10px">
-  <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
-              <input onfocusout="pswreq();" type="password" class="form-control " id="password" name="_password" required="required" placeholder="{{ 'security.login.password'|trans }}" style="margin-bottom:0px"/>
-</div>  
-              <div id="remember" class="checkbox">
-                    <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
-                                        <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
-                </div>
-                <button id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block btn-signin" type="submit" style="width:49%;display:inline-block">{{ 'security.login.submit'|trans }}</button>
-                <a href="{{path('fos_user_registration_register')}}"><button id="_register" name="_register" class="btn btn-lg btn-primary btn-block btn-signin" type="button" style="width:49%;display:inline;float:right;background-color:#AFAFAF;">{#{ 'security.login.register'|trans }#}Inscription</button></a>
-            </form><!-- /form -->
-            <a href="#" class="forgot-password">
-                Mot de passe oublier ?
-            </a>
-        </div><!-- /card-container -->
-    </div><!-- /container -->
+
+        <div class="container modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="card card-container">
+                <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+                <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+                <p id="profile-name" class="profile-name-card"></p>
+                <form id="loginform" action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
+                    <span id="loginerror" style="color:red"></span>
+                    <span id="reauth-email" class="reauth-email"></span>
+                    <div class="input-group" style="margin-bottom:10px;border:none">
+                        <span class="input-group-addon" ><i class="glyphicon glyphicon-user"></i></span>   
+                        <input onfocusout="usernamereq();" type="text" id="username" name="_username" required="required" class="form-control " placeholder="{{ 'security.login.username'|trans }}" style="margin-bottom:0px"/>
+                    </div>
+                    <div class="input-group" style="margin-bottom:10px">
+                        <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
+                        <input onfocusout="pswreq();" type="password" class="form-control " id="password" name="_password" required="required" placeholder="{{ 'security.login.password'|trans }}" style="margin-bottom:0px"/>
+                    </div>  
+                    <div id="remember" class="checkbox">
+                        <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
+                        <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                    </div>
+                    <button id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block btn-signin" type="submit" style="width:49%;display:inline-block">{{ 'security.login.submit'|trans }}</button>
+                    <a href="{{path('fos_user_registration_register')}}"><button id="_register" name="_register" class="btn btn-lg btn-primary btn-block btn-signin" type="button" style="width:49%;display:inline;float:right;background-color:#AFAFAF;">{#{ 'security.login.register'|trans }#}Inscription</button></a>
+                </form><!-- /form -->
+                <a href="{{ path('fos_user_resetting_request') }}" class="forgot-password">
+                <!--a id="forgotpwd" href="javascript:void(0);" data-toggle="modal" data-target="#change-pwd"-->
+                    Mot de passe oublier ?
+                </a>
+            </div><!-- /card-container -->
+        </div><!-- /container -->
+
+       {# <div class="container modal fade" id="change-pwd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="card card-container">
+{% include "UserBundle:Resetting:request_content.html.twig" %}
+            </div><!-- /card-container -->
+        </div><!-- /container -->#}
 
         <!-- Javascript -->
         <script src="{{asset('plugins/jquery/jquery-3.1.0.min.js')}}"></script>
@@ -989,78 +996,78 @@
             })(jQuery);
 
         </script>
-       <script>
-    $(document).ready(function(){
-        window.scrollTo(0, 0); 
-        $('#_submit').click(function(e){
-            e.preventDefault();
-            if (usernamereq() === false && pswreq() === false){
-                $('#loginerror').html("entrez vos coordonnées");
+        <script>
+            $(document).ready(function () {
+                window.scrollTo(0, 0);
+                $('#_submit').click(function (e) {
+                    e.preventDefault();
+                    if (usernamereq() === false && pswreq() === false) {
+                        $('#loginerror').html("entrez vos coordonnées");
+                    } else if (usernamereq() === false) {
+                        $('#loginerror').html("nom d'utilisateur ou e-mail obligatoire");
+                    } else if (pswreq() === false) {
+                        $('#loginerror').html("mot de passe obligatoire");
+                    } else {
+                        $('#loginerror').html("");
+                        $('#username').parent().css("border", "none");
+                        $('#password').parent().css("border", "none");
+                        $.ajax({
+                            type: $('#loginform').attr('method'),
+                            url: '{{ path("fos_user_security_check") }}',
+                            data: $('#loginform').serialize(),
+                            dataType: "json",
+                            success: function (data, status, object) {
+                                if (!data.success) {
+                                    $('#loginerror').html("nom utilisateur ou mot de passe invalide");
+                                    $('#username').parent().css("border", "solid 1px red");
+                                    $('#password').parent().css("border", "solid 1px red");
+                                } else
+                                    location.reload();
+                            },
+                            error: function (data, status, object) {
+                                console.log(data.message);
+
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
+        <script>
+            function usernamereq() {
+                if ($('#username').val() === "" || $('#username').val() === null) {
+                    $('#username').parent().css("border", "solid 1px red");
+                    return false;
+                } else {
+                    $('#username').parent().css("border", "solid 1px green");
+                    return true;
+                }
             }
-            else if (usernamereq() === false){
-                $('#loginerror').html("nom d'utilisateur ou e-mail obligatoire");
+            function pswreq() {
+                if ($('#password').val() === "" || $('#password').val() === null) {
+                    $('#password').parent().css("border", "solid 1px red");
+                    return false;
+                } else {
+                    $('#password').parent().css("border", "solid 1px green");
+                    return true;
+                }
             }
-            else if (pswreq() === false){
-                $('#loginerror').html("mot de passe obligatoire");
-            }
-            else{
+            $('#login-modal').on('hidden.bs.modal', function () {
                 $('#loginerror').html("");
-                $('#username').parent().css("border","none");
-                $('#password').parent().css("border","none");
-            $.ajax({
-                type        : $('#loginform').attr( 'method' ),
-                url         : '{{ path("fos_user_security_check") }}',
-                data        : $('#loginform').serialize(),
-                dataType    : "json",
-                success     : function(data, status, object) {
-                    if(!data.success) {$('#loginerror').html("nom utilisateur ou mot de passe invalide");
-                        $('#username').parent().css("border","solid 1px red");
-                $('#password').parent().css("border","solid 1px red");
-            }
-                    else location.reload();
-                },
-                error: function(data, status, object){
-                    console.log(data.message);
-                    
+                $('#username').parent().css("border", "none");
+                $('#password').parent().css("border", "none");
+            });
+            $('#_register').click(function (e) {
+                if (location.href.match('/register')) {
+                    e.preventDefault();
+                    $('#login-modal').modal('toggle');
                 }
             });
-            }
-        });
-    });
-</script>
-<script>
-  function usernamereq(){
-      if ($('#username').val() === "" || $('#username').val() === null){
-          $('#username').parent().css("border","solid 1px red");
-          return false;
-      }
-      else{
-          $('#username').parent().css("border","solid 1px green");
-          return true;
-      }
-  }
-  function pswreq(){
-      if ($('#password').val() === "" || $('#password').val() === null){
-          $('#password').parent().css("border","solid 1px red");
-          return false;
-      }
-      else{
-          $('#password').parent().css("border","solid 1px green");
-          return true;
-      }
-  }
-  $( '#login-modal' ).on('hidden.bs.modal', function(){
-       $('#loginerror').html("");
-                $('#username').parent().css("border","none");
-                $('#password').parent().css("border","none");
-   });  
-    $('#_register').click(function(e){
-       if (location.href.match('/register')) {
-           e.preventDefault();
-           $('#login-modal').modal('toggle');
-       }
-   });
-</script>
+            $('#forgotpwd').click(function (e) {
+                $('#login-modal').modal('toggle');
+            });
+            
+        </script>
         {% block javascript %}
         {% endblock javascript %}
     </body>
