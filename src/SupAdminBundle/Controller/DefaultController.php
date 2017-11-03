@@ -12,6 +12,8 @@ class DefaultController extends Controller
     }
 	public function categoriesAction()
     {
-        return $this->render('SupAdminBundle:Default:categories.html.twig');
+            $em = $this->getDoctrine()->getManager();
+            $cathegories = $em->getRepository('AdminBundle:ActivityCath')->findall();
+        return $this->render('SupAdminBundle:Default:categories.html.twig',array("cathegories"=>$cathegories));
     }
 }

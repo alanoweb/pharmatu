@@ -29,6 +29,7 @@
         <!-- THEME CSS -->
         <link href="{{asset('css/theme.min.css')}}" rel="stylesheet">
         <link href="{{asset('css/custom.css')}}" rel="stylesheet">
+        <link href="{{asset('css/css3buttons.css')}}" rel="stylesheet">
 
         <!-- My CSS -->
         <link href="{{asset('css/loginmodal.css')}}" rel="stylesheet">
@@ -936,20 +937,20 @@
                     <span id="reauth-email" class="reauth-email"></span>
                     <div class="input-group" style="margin-bottom:10px;border:none">
                         <span class="input-group-addon" ><i class="glyphicon glyphicon-user"></i></span>   
-                        <input onfocusout="usernamereq();" type="text" id="username" name="_username" required="required" class="form-control " placeholder="{{ 'security.login.username'|trans }}" style="margin-bottom:0px"/>
+                        <input onfocusout="usernamereq();" type="text" id="loginusername" name="_username" required="required" class="form-control " placeholder="{{ 'security.login.username'|trans }}" style="margin-bottom:0px"/>
                     </div>
                     <div class="input-group" style="margin-bottom:10px">
                         <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
-                        <input onfocusout="pswreq();" type="password" class="form-control " id="password" name="_password" required="required" placeholder="{{ 'security.login.password'|trans }}" style="margin-bottom:0px"/>
+                        <input onfocusout="pswreq();" type="password" class="form-control " id="loginpassword" name="_password" required="required" placeholder="{{ 'security.login.password'|trans }}" style="margin-bottom:0px"/>
                     </div>  
                     <div id="remember" class="checkbox">
-                        <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
-                        <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                        <input type="checkbox" id="loginremember_me" name="_remember_me" value="on"/>
+                        <label for="loginremember_me">{{ 'security.login.remember_me'|trans }}</label>
                     </div>
-                    <button id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block btn-signin" type="submit" style="width:49%;display:inline-block">{{ 'security.login.submit'|trans }}</button>
+                    <button id="login_submit" name="_submit" class="btn btn-lg btn-primary btn-block btn-signin" type="submit" style="width:49%;display:inline-block">{{ 'security.login.submit'|trans }}</button>
                     <a href="{{path('fos_user_registration_register')}}"><button id="_register" name="_register" class="btn btn-lg btn-primary btn-block btn-signin" type="button" style="width:49%;display:inline;float:right;background-color:#AFAFAF;">{#{ 'security.login.register'|trans }#}Inscription</button></a>
                 </form><!-- /form -->
-                <a href="{{ path('fos_user_resetting_request') }}" class="forgot-password">
+                <a id="forgotpwd" href="{{ path('fos_user_resetting_request') }}" class="forgot-password">
                 <!--a id="forgotpwd" href="javascript:void(0);" data-toggle="modal" data-target="#change-pwd"-->
                     Mot de passe oublier ?
                 </a>
@@ -999,7 +1000,7 @@
         <script>
             $(document).ready(function () {
                 window.scrollTo(0, 0);
-                $('#_submit').click(function (e) {
+                $('#login_submit').click(function (e) {
                     e.preventDefault();
                     if (usernamereq() === false && pswreq() === false) {
                         $('#loginerror').html("entrez vos coordonnées");
@@ -1009,8 +1010,8 @@
                         $('#loginerror').html("mot de passe obligatoire");
                     } else {
                         $('#loginerror').html("");
-                        $('#username').parent().css("border", "none");
-                        $('#password').parent().css("border", "none");
+                        $('#loginusername').parent().css("border", "none");
+                        $('#loginpassword').parent().css("border", "none");
                         $.ajax({
                             type: $('#loginform').attr('method'),
                             url: '{{ path("fos_user_security_check") }}',
@@ -1019,9 +1020,12 @@
                             success: function (data, status, object) {
                                 if (!data.success) {
                                     $('#loginerror').html("nom utilisateur ou mot de passe invalide");
-                                    $('#username').parent().css("border", "solid 1px red");
-                                    $('#password').parent().css("border", "solid 1px red");
+                                    $('#loginusername').parent().css("border", "solid 1px red");
+                                    $('#loginpassword').parent().css("border", "solid 1px red");
                                 } else
+                                    if ((location.href.match('/register'))||(location.href.match('/resetting/request')))
+                                        window.location.href = "{{path('homepage')}}";
+                                else
                                     location.reload();
                             },
                             error: function (data, status, object) {
@@ -1035,27 +1039,27 @@
         </script>
         <script>
             function usernamereq() {
-                if ($('#username').val() === "" || $('#username').val() === null) {
-                    $('#username').parent().css("border", "solid 1px red");
+                if ($('#loginusername').val() === "" || $('#loginusername').val() === null) {
+                    $('#loginusername').parent().css("border", "solid 1px red");
                     return false;
                 } else {
-                    $('#username').parent().css("border", "solid 1px green");
+                    $('#loginusername').parent().css("border", "solid 1px green");
                     return true;
                 }
             }
             function pswreq() {
-                if ($('#password').val() === "" || $('#password').val() === null) {
-                    $('#password').parent().css("border", "solid 1px red");
+                if ($('#loginpassword').val() === "" || $('#loginpassword').val() === null) {
+                    $('#loginpassword').parent().css("border", "solid 1px red");
                     return false;
                 } else {
-                    $('#password').parent().css("border", "solid 1px green");
+                    $('#loginpassword').parent().css("border", "solid 1px green");
                     return true;
                 }
             }
             $('#login-modal').on('hidden.bs.modal', function () {
                 $('#loginerror').html("");
-                $('#username').parent().css("border", "none");
-                $('#password').parent().css("border", "none");
+                $('#loginusername').parent().css("border", "none");
+                $('#loginpassword').parent().css("border", "none");
             });
             $('#_register').click(function (e) {
                 if (location.href.match('/register')) {
@@ -1064,7 +1068,10 @@
                 }
             });
             $('#forgotpwd').click(function (e) {
+                if (location.href.match('/resetting/request')) {
+                    e.preventDefault();
                 $('#login-modal').modal('toggle');
+            }
             });
             
         </script>
