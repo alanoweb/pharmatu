@@ -24,9 +24,18 @@ class ActivityCath
     /**
      * @var string
      *
-     * @ORM\Column(name="Libelle", type="string", length=255)
+     * @ORM\Column(name="libelle", type="string", length=255)
      */
-    private $libelle;/**
+    private $libelle;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=255)
+     */
+    private $status;
+    
+    /**
      * @var string
      *
      * @ORM\Column(name="img", type="string", length=255)
@@ -47,6 +56,12 @@ class ActivityCath
      */
     private $activation;
 
+     /**
+     * @var int
+     *
+     * @ORM\Column(name="nbr_act", type="integer")
+     */
+    private $nbr_act;
 
     /**
      * Get id
@@ -56,6 +71,29 @@ class ActivityCath
     public function getId()
     {
         return $this->id;
+    }
+    
+     /**
+     * Get nbr_act
+     *
+     * @return integer 
+     */
+    public function getNbrAct()
+    {
+        return $this->nbr_act;
+    }
+
+    /**
+     * Set nbr_act
+     *
+     * @param string $nbr_act
+     * @return ActivityCath
+     */
+    public function setNbrAct($nbr_act)
+    {
+        $this->nbr_act = $nbr_act;
+
+        return $this;
     }
 
     /**
@@ -79,7 +117,32 @@ class ActivityCath
     public function getLibelle()
     {
         return $this->libelle;
-    }/**
+    }
+    
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return ActivityCath
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+    
+    /**
      * Set img
      *
      * @param string $img

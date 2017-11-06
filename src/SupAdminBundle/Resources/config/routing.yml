@@ -4,5 +4,15 @@ sup_admin_homepage:
 categories:
     path:     /categories
     defaults: { _controller: SupAdminBundle:Default:categories }
-
-
+add_categorie:
+    path:     /AddCategorie
+    defaults: { _controller: SupAdminBundle:Default:AddCategorie }
+delete_categorie:
+    path:     /DeleteCategorie
+    defaults: { _controller: SupAdminBundle:Default:DeleteCategorie }
+activation_categorie:
+    path:     /ActivationCategorie
+    defaults: { _controller: SupAdminBundle:Default:ActivationCategorie }
+edit_categorie:
+    path:     /editCategorie
+    defaults: { _controller: SupAdminBundle:Default:EditCategorie }

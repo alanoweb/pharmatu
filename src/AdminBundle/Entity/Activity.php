@@ -23,7 +23,7 @@ class Activity
     /**
      * @var string
      *
-     * @ORM\Column(name="Nom", type="string", length=100, unique=true)
+     * @ORM\Column(name="nom", type="string", length=100, unique=true)
      */
     private $nom;
 	/**
@@ -35,7 +35,7 @@ class Activity
     /**
      * @var string
      *
-     * @ORM\Column(name="descrp", type="string", length=255)
+     * @ORM\Column(name="description", type="string", length=255)
      */
     private $description;
 
@@ -51,7 +51,7 @@ class Activity
     /**
      * @var int
      *
-     * @ORM\Column(name="Nbr_point", type="integer")
+     * @ORM\Column(name="nbr_point", type="integer")
      */
     private $nbrPoint;
     /**
@@ -72,6 +72,20 @@ class Activity
      * @ORM\Column(name="dat_fin", type="datetime")
      */
     private $dat_fin;
+    
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="activation", type="boolean")
+     */
+    private $activation;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=255)
+     */
+    private $status;
 
 
     /**
@@ -284,5 +298,51 @@ class Activity
     public function getdat_fin()
     {
         return $this->dat_fin;
+    }
+    
+    /**
+     * Set activation
+     *
+     * @param boolean $activation
+     * @return Activity
+     */
+    public function setActivation($activation)
+    {
+        $this->activation = $activation;
+
+        return $this;
+    }
+
+    /**
+     * Get activation
+     *
+     * @return boolean 
+     */
+    public function getActivation()
+    {
+        return $this->activation;
+    }
+    
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return ActivityCath
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string 
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }

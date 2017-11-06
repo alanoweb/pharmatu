@@ -25,7 +25,11 @@
             </div>
         </div>
     </section>
-
+    <div class="text-center">
+        <a href="javascript:void(0);" data-toggle="modal" data-target="#addact" class="button pill big primary">
+            <span class="plus icon"></span>Ajouter une activité
+        </a> 
+    </div>
     <section class="bg-grey-50" style="padding-top: 0px">
         <div class="container">
             <div class="row">
@@ -35,13 +39,17 @@
                         <div class="card">
                             <div class="card-img">
                                 <a href="{{path('actsingle',{'id':act.getId()})}}"><img src="{{asset(act.getImg())}}" alt=""></a>
-                                <div class="category"><span class="label label-success">Xbox</span></div>
-                                <div class="meta"><a href="games-single.html"><i class="fa fa-heart-o"></i> <span>15</span></a></div>
+                                <div class="category"><span class="label label-success">{{act.getStatus()}}</span></div>
+                                <div class="meta"><a href="{{path('actsingle',{'id':act.getId()})}}"><i class="fa fa-sign-in"></i> <span>15</span></a></div>
                             </div>
                             <div class="caption">
-                                <h3 class="card-title"><a href="{{path('actsingle',{'id':act.getId()})}}">{{act.getNom()}}</a></h3>
+                                <div class="text-center"><h3 class="card-title"><a href="{{path('actsingle',{'id':act.getId()})}}">{{act.getNom()}}</a></h3></div>
                                 <ul><li>{{act.getDescription()}}</li></ul>
-                                <div class="text-center"><a href="{{path('actsingle',{'id':act.getId()})}}" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right">Load More</a></div>
+                                <div class="text-center">
+                                    {%if act.getActivation() == 0%}<a href="javascript:void(0);" class="left positive pill button" style="" onclick="ValidationActivity({{act.getId()}});"><span class="unlock icon"></span>Activer</a>{%else%}<a href="#" class="left negative pill button" style="" onclick="ValidationActivity({{act.getId()}});"><span class="lock icon"></span>Desactiver</a>{%endif%} 
+                                    <a href="javascript:void(0);" class="middle pill button" onclick="editModalAct({{act.getId()}});"><span class="pen icon"></span>Modifier</a>
+                                    <a href="javascript:void(0);" class="right negative pill button" onclick="DeleteActivity({{act.getId()}});"><span class="cross icon"></span>Supprimer</a> 
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -53,187 +61,7 @@
                     <h5>{{act.getdat_deb()}}</h5>
                     <h5>{{act.getdat_fin()}}</h5>#}
                 {% endfor %}
-                {#<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="card">
-                                <div class="card-img">
-                                        <a href="games-single.html"><img src="{{asset('img/game/1.jpg')}}" alt=""></a>
-                                        <div class="category"><span class="label label-success">Xbox</span></div>
-                                        <div class="meta"><a href="games-single.html"><i class="fa fa-heart-o"></i> <span>15</span></a></div>
-                                </div>
-                                <div class="caption">
-                                        <h3 class="card-title"><a href="games-single.html">Assassin's Creed Syndicate</a></h3>
-                                        <ul><li>Lorem ipsum dolor sit amet, Lorem ipsum dolor sit</li></ul>
-                                        <div class="text-center"><a href="#" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right">Load More</a></div>
-                                </div>
-                        </div>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="card">
-                                <div class="card-img">
-                                        <a href="games-single.html"><img src="{{asset('img/game/2.jpg')}}" alt=""></a>
-                                        <div class="category"><span class="label label-warning">PC</span></div>
-                                        <div class="meta"><a href="games-single.html"><i class="fa fa-heart-o"></i> <span>6</span></a></div>
-                                </div>
-                                <div class="caption">
-                                        <h3 class="card-title"><a href="games-single.html">Witcher 3 Limited Edition</a></h3>
-                                        <ul><li>Lorem ipsum dolor sit amet, Lorem ipsum dolor sit</li></ul>
-                                        <div class="text-center"><a href="#" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right">Load More</a></div>
-                                </div>
-                        </div>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="card">
-                                <div class="card-img">
-                                        <a href="games-single.html"><img src="{{asset('img/game/3.jpg')}}" alt=""></a>
-                                        <div class="category"><span class="label label-primary">PS4</span></div>
-                                        <div class="meta"><a href="games-single.html"><i class="fa fa-heart-o"></i> <span>6</span></a></div>
-                                </div>
-                                <div class="caption">
-                                        <h3 class="card-title"><a href="games-single.html">Last of Us Remastered</a></h3>
-                                        <ul><li>Lorem ipsum dolor sit amet, Lorem ipsum dolor sit</li></ul>
-                                        <div class="text-center"><a href="#" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right">Load More</a></div>
-                                </div>
-                        </div>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="card">
-                                <div class="card-img">
-                                        <a href="games-single.html"><img src="{{asset('img/game/5.jpg')}}" alt=""></a>
-                                        <div class="category"><span class="label label-success">Xbox</span></div>
-                                        <div class="meta"><a href="games-single.html"><i class="fa fa-heart-o"></i> <span>32</span></a></div>
-                                </div>
-                                <div class="caption">
-                                        <h3 class="card-title"><a href="games-single.html">Grand Theft Auto 5</a></h3>
-                                        <ul><li>Lorem ipsum dolor sit amet, Lorem ipsum dolor sit</li></ul>
-                                        <div class="text-center"><a href="#" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right">Load More</a></div>
-                                </div>
-                        </div>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="card">
-                                <div class="card-img">
-                                        <a href="games-single.html"><img src="{{asset('img/game/4.jpg')}}" alt=""></a>
-                                        <div class="category"><span class="label label-primary">PS4</span></div>
-                                        <div class="meta"><a href="games-single.html"><i class="fa fa-heart-o"></i> <span>10</span></a></div>
-                                </div>
-                                <div class="caption">
-                                        <h3 class="card-title"><a href="games-single.html">Uncharted 4 Remastered</a></h3>
-                                        <ul><li>Lorem ipsum dolor sit amet, Lorem ipsum dolor sit</li></ul>
-                                        <div class="text-center"><a href="#" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right">Load More</a></div>
-                                </div>
-                        </div>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="card">
-                                <div class="card-img">
-                                        <a href="games-single.html"><img src="{{asset('img/game/6.jpg')}}" alt=""></a>
-                                        <div class="category"><span class="label label-danger">Steam</span></div>
-                                        <div class="meta"><a href="games-single.html"><i class="fa fa-heart-o"></i> <span>15</span></a></div>
-                                </div>
-                                <div class="caption">
-                                        <h3 class="card-title"><a href="games-single.html">Deadpool The War</a></h3>
-                                        <ul><li>Lorem ipsum dolor sit amet, Lorem ipsum dolor sit</li></ul>
-                                        <div class="text-center"><a href="#" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right">Load More</a></div>
-                                </div>
-                        </div>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="card">
-                                <div class="card-img">
-                                        <a href="games-single.html"><img src="{{asset('img/game/7.jpg')}}" alt=""></a>
-                                        <div class="category"><span class="label label-danger">Steam</span></div>
-                                        <div class="meta"><a href="games-single.html"><i class="fa fa-heart-o"></i> <span>15</span></a></div>
-                                </div>
-                                <div class="caption">
-                                        <h3 class="card-title"><a href="games-single.html">Guardians of the Galaxy</a></h3>
-                                        <ul><li>Lorem ipsum dolor sit amet, Lorem ipsum dolor sit</li></ul>
-                                        <div class="text-center"><a href="#" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right">Load More</a></div>
-                                </div>
-                        </div>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="card">
-                                <div class="card-img">
-                                        <a href="games-single.html"><img src="{{asset('img/game/8.jpg')}}" alt=""></a>
-                                        <div class="category"><span class="label label-success">Xbox</span></div>
-                                        <div class="meta"><a href="games-single.html"><i class="fa fa-heart-o"></i> <span>6</span></a></div>
-                                </div>
-                                <div class="caption">
-                                        <h3 class="card-title"><a href="games-single.html">Bioshock Infinite</a></h3>
-                                        <ul><li>Lorem ipsum dolor sit amet, Lorem ipsum dolor sit</li></ul>
-                                        <div class="text-center"><a href="#" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right">Load More</a></div>
-                                </div>
-                        </div>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="card">
-                                <div class="card-img">
-                                        <a href="games-single.html"><img src="{{asset('img/game/9.jpg')}}" alt=""></a>
-                                        <div class="category"><span class="label label-warning">PC</span></div>
-                                        <div class="meta"><a href="games-single.html"><i class="fa fa-heart-o"></i> <span>6</span></a></div>
-                                </div>
-                                <div class="caption">
-                                        <h3 class="card-title"><a href="games-single.html">Grand Theft Auto 5</a></h3>
-                                        <ul><li>Lorem ipsum dolor sit amet, Lorem ipsum dolor sit</li></ul>
-                                        <div class="text-center"><a href="#" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right">Load More</a></div>
-                                </div>
-                        </div>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="card">
-                                <div class="card-img">
-                                        <a href="games-single.html"><img src="{{asset('img/game/11.jpg')}}" alt=""></a>
-                                        <div class="category"><span class="label label-primary">PS4</span></div>
-                                        <div class="meta"><a href="games-single.html"><i class="fa fa-heart-o"></i> <span>32</span></a></div>
-                                </div>
-                                <div class="caption">
-                                        <h3 class="card-title"><a href="games-single.html">Alien Isolation</a></h3>
-                                        <ul><li>Lorem ipsum dolor sit amet, Lorem ipsum dolor sit</li></ul>
-                                        <div class="text-center"><a href="#" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right">Load More</a></div>
-                                </div>
-                                </div>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="card">
-                                <div class="card-img">
-                                        <a href="games-single.html"><img src="{{asset('img/game/10.jpg')}}" alt=""></a>
-                                        <div class="category"><span class="label label-warning">PC</span></div>
-                                        <div class="meta"><a href="games-single.html"><i class="fa fa-heart-o"></i> <span>10</span></a></div>
-                                </div>
-                                <div class="caption">
-                                        <h3 class="card-title"><a href="games-single.html">Walking Dead</a></h3>
-                                        <ul><li>Lorem ipsum dolor sit amet, Lorem ipsum dolor sit</li></ul>
-                                        <div class="text-center"><a href="#" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right">Load More</a></div>
-                                </div>
-                        </div>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="card">
-                                <div class="card-img">
-                                        <a href="games-single.html"><img src="{{asset('img/game/12.jpg')}}" alt=""></a>
-                                        <div class="category"><span class="label label-success">Xbox</span></div>
-                                        <div class="meta"><a href="games-single.html"><i class="fa fa-heart-o"></i> <span>15</span></a></div>
-                                </div>
-                                <div class="caption">
-                                        <h3 class="card-title"><a href="games-single.html">Hitman Absolution</a></h3>
-                                        <ul><li>Lorem ipsum dolor sit amet, Lorem ipsum dolor sit</li></ul>
-                                        <div class="text-center"><a href="#" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right">Load More</a></div>
-                                </div>
-                        </div>
-                </div>#}
             </div>
-
             <ul class="pagination margin-top-20" style="    margin-left: 25%;">
                 <li class="disabled"><a href="#">Previous</a></li>
                 <li class="disabled"><a href="#">1</a></li>
@@ -251,7 +79,144 @@
             </ul>
         </div>
     </section>
+    <div class="text-center">
+        <a href="#" data-toggle="modal" data-target="#addact" class="button pill big primary">
+            <span class="plus icon"></span>Ajouter une activité
+        </a>
+    </div>
 
+    <!-- ---------------------- Modals ---------------------------------------------->
+    <div class="container modal fade" id="addact" tabindex="-1" role="dialog" aria-labelledby="addactLabel" >
+        <div class="card card-container" style="max-width:60%">
+
+            <form >
+                <fieldset>
+                    <legend>Ajouter une Activité</legend>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Nom<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bookmark"></i></span>
+                                <input value="" name="NomAct" placeholder="Exemple : Flappy bird" id="NomAct" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Description<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
+                                <textarea name="DescriptionAct" placeholder="faut mettre le principe du jeu içi" id="DescriptionAct" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Image<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
+                                <input type='file' name="ImageAct" placeholder="Deposer l'image içi" id="ImageAct" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Activer ?</label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="rdio rdio-theme circle col-md-3" style="transform: scale(0.9);margin-left: 1%;">
+                                <input id="radio-type-circle1" type="radio"  name="activationAct" value="1" checked>
+                                <label for="radio-type-circle1">Oui</label>
+                            </div>
+                            <div style="transform: scale(0.9);" class="rdio rdio-theme circle col-md-3">
+                                <input id="radio-type-circle2" type="radio" name="activationAct" value="0">
+                                <label for="radio-type-circle2">Non</label>
+                            </div>
+                        </div>
+                    </div>
+                      <div class="form-group">
+                        <label class="col-md-4 control-label" >Date Début<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                <input value="{{ "now"|date("d/m/Y") }}" data-mask="39/19/2999" name="DateDebutAct" placeholder="Date début activité" id="DateDebutAct" class="form-control datepicker"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                      <div class="form-group">
+                        <label class="col-md-4 control-label" >Date Fin<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                <input value="{{ "now"|date_modify("+7 day")|date("d/m/Y") }}" data-mask="39/19/2999" name="DateFinAct" placeholder="Date Fin activité" id="DateFinAct" class="form-control datepicker"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                       <div class="form-group">
+                        <label class="col-md-4 control-label" >Coins<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bitcoin"></i></span>
+                                <input value="" name="NbrPointAct" placeholder="Nombre Point Totale a Gagnée" id="NbrPointAct" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                       <div class="form-group">
+                        <label class="col-md-4 control-label" >Experience<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></span>
+                                <input value="" name="ExpAct" placeholder="Experience a Gagnée" id="ExpAct" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <input id="AddCategorie" type="button" value="ajouter une activité" onclick="AjouterActivity();"/>
+            </form>
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+
+    <!-- ------------------------------------------------------------------------------ -- >
+
+    <div class="container modal fade" id="editcat" tabindex="-1" role="dialog" aria-labelledby="addcatLabel" >
+        <div class="card card-container" style="max-width:60%">
+
+            <form >
+                <fieldset>
+                    <legend></legend>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Libellé<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bookmark"></i></span>
+                                <input value="" name="EditLibelleCat" placeholder="Exemple : Jeux" id="EditLibelleCat" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Description<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
+                                <textarea name="EditDescriptionCat" placeholder="Exemple : Ici vous trouverez les jeux" id="EditDescriptionCat" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Image<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
+                                <input type='file' name="EditImageCat" placeholder="Deposer l'image içi" id="EditImageCat" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Activer ?</label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="rdio rdio-theme circle col-md-3" style="transform: scale(0.9);margin-left: 1%;">
+                                <input id="Edit-radio-type-circle1" type="radio"  name="Editactivation" value="1">
+                                <label for="Edit-radio-type-circle1">Oui</label>
+                            </div>
+                            <div style="transform: scale(0.9);" class="rdio rdio-theme circle col-md-3">
+                                <input id="Edit-radio-type-circle2" type="radio" name="Editactivation" value="0">
+                                <label for="Edit-radio-type-circle2">Non</label>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <input id="EditCategorie" type="button" value="Modifier catégorie"/>
+            </form>
+        </div><!-- /card-container -- >
+    </div><!-- /container -->
 {% endblock %}
 {% block javascript %}
     <script>
@@ -272,4 +237,19 @@
         scroll();
         document.onscroll = scroll;
     </script>
+    <script>
+           $("#DateFinAct").datepicker({ dateFormat: 'dd-mm-yy',
+altField: "#datepicker",
+closeText: 'Fermer',
+prevText: 'Précédent',
+nextText: 'Suivant',
+currentText: 'Aujourd\'hui',
+monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
+dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+weekHeader: 'Sem.'
+});
+        </script>
 {% endblock %}

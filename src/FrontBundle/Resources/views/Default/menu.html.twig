@@ -1,13 +1,15 @@
 
 {%for cathegorie in cathegories%}
-<li class="col-md-3">
-									<a href="{{path('activity',{'id':cathegorie.getId()})}}">
-										<img src="{{asset(cathegorie.getImg())}}" alt="">
-										<div class="caption">
-											<span class="label label-warning">PC</span>
-											<h3>{{cathegorie.getLibelle()}}</h3>
-											<p>{{cathegorie.getDescription()}}</p>
-										</div>
-									</a>
-								</li>
+    {%if not (cathegorie.getStatus() == "Desactiver" or cathegorie.getStatus() == "Deleted" or cathegorie.getStatus() == "Nouveau") %}
+        <li class="col-md-3">
+            <a href="{{path('activity',{'id':cathegorie.getId()})}}">
+                <img src="{{asset(cathegorie.getImg())}}" alt="">
+                <div class="caption">
+                    <span class="label label-warning">PC</span>
+                    <h3>{{cathegorie.getLibelle()}}</h3>
+                    <p>{{cathegorie.getDescription()}}</p>
+                </div>
+            </a>
+        </li>
+    {% endif %}
 {% endfor %}
