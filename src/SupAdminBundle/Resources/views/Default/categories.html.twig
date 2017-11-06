@@ -1,41 +1,37 @@
 {% extends '::dashboard.html.twig' %}
 {% block Dashboard %}
-    <div class="text-center"><a href="#" data-toggle="modal" data-target="#addcat" class="button pill big primary"><span class="plus icon"></span>ajouter une catégorie</a> </div>
+    <div class="text-center"><a href="javascript:void(0);" data-toggle="modal" data-target="#addcat" class="button pill big primary"><span class="plus icon"></span>ajouter une catégorie</a> </div>
     <div class="row">
         {%for cathegorie in cathegories%}
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="card">
                     <div class="card-img">
                         <a href="{{path('activity',{'id':cathegorie.getId()})}}"><img src="{{asset(cathegorie.getImg())}}" alt=""></a>
-                        <div class="category"><span class="label label-success">Xbox</span></div>
-                        <div class="meta"><a href="{{path('activity',{'id':cathegorie.getId()})}}"><i class="fa fa-heart-o"></i> <span>15</span></a></div>
+                        <div class="category"><span class="label label-success">{{cathegorie.getStatus()}}</span></div>
+                        <div class="meta"><a href="{{path('activity',{'id':cathegorie.getId()})}}"><i class="fa fa-gamepad"></i> <span>{{cathegorie.getNbrAct()}}</span></a></div>
                     </div>
                     <div class="caption">
-                        <h3 class="card-title"><a href="{{path('activity',{'id':cathegorie.getId()})}}">{{cathegorie.getLibelle()}}</a></h3>
+                        <div class="text-center"> <h3 class="card-title"><a href="{{path('activity',{'id':cathegorie.getId()})}}">{{cathegorie.getLibelle()}}</a></h3></div>
                         <ul><li>{{cathegorie.getDescription()}}</li></ul>
                         <div class="text-center">
-                            <a href="#" class="left pill button big" style="margin-right: -4px;"><span class="pen icon"></span>Modifier</a> 
-                            <a href="#" class="right negative pill button big"><span class="cross icon"></span>Supprimer</a> 
-                            <!--a href="#" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right">Load More</a-->
+                            {%if cathegorie.getActivation() == 0%}<a href="javascript:void(0);" class="left positive pill button" style="" onclick="ValidationCategorie({{cathegorie.getId()}});"><span class="unlock icon"></span>Activer</a>{%else%}<a href="#" class="left negative pill button" style="" onclick="ValidationCategorie({{cathegorie.getId()}});"><span class="lock icon"></span>Desactiver</a>{%endif%} 
+                            <a href="javascript:void(0);" class="middle pill button" onclick="editModal({{cathegorie.getId()}});"><span class="pen icon"></span>Modifier</a>
+                            <a href="javascript:void(0);" class="right negative pill button" onclick="DeleteCategorie({{cathegorie.getId()}});"><span class="cross icon"></span>Supprimer</a> 
                         </div>
                     </div>
                 </div>
             </div>
-            {#<h5>{{act.getcadeaux()}}</h5>
-            {{asset('img/game/menu-1.jpg')}}
-            <h5>{{act.getNbrPoint()}}</h5>
-            <h5>{{act.getexperience()}}</h5>
-            <h5>{{act.getdat_deb()}}</h5>
-            <h5>{{act.getdat_fin()}}</h5>#}
         {% endfor %}
     </div>
-    <div class="text-center"><a href="#" data-toggle="modal" data-target="#addcat" class="button pill big primary"><span class="plus icon"></span>ajouter une catégorie</a> </div>
+    <div class="text-center"><a href="#" data-toggle="modal" data-target="#addcat" class="button pill big primary"><span class="plus icon"></span>Ajouter une catégorie</a> </div>
+   
+            <!-- ---------------------- Modals ---------------------------------------------->
     <div class="container modal fade" id="addcat" tabindex="-1" role="dialog" aria-labelledby="addcatLabel" >
         <div class="card card-container" style="max-width:60%">
 
             <form >
                 <fieldset>
-                    <legend>Catégories d'activite</legend>
+                    <legend>Ajouter une Catégorie d'activite</legend>
                     <div class="form-group">
                         <label class="col-md-4 control-label" >Libellé<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
                         <div class="col-md-6  inputGroupContainer">
@@ -64,18 +60,152 @@
                         <label class="col-md-4 control-label">Activer ?</label>
                         <div class="col-md-6  inputGroupContainer">
                             <div class="rdio rdio-theme circle col-md-3" style="transform: scale(0.9);margin-left: 1%;">
-                                <input id="radio-type-circle1" type="radio"  name="activation" value="Oui" checked>
+                                <input id="radio-type-circle1" type="radio"  name="activation" value="1" checked>
                                 <label for="radio-type-circle1">Oui</label>
                             </div>
                             <div style="transform: scale(0.9);" class="rdio rdio-theme circle col-md-3">
-                                <input id="radio-type-circle2" type="radio" name="activation" value="Non">
+                                <input id="radio-type-circle2" type="radio" name="activation" value="0">
                                 <label for="radio-type-circle2">Non</label>
                             </div>
                         </div>
                     </div>
                 </fieldset>
-                <input type="button" value="ajouter une catégorie"/>
+                <input id="AddCategorie" type="button" value="ajouter une catégorie" onclick="AjouterCategorie();"/>
             </form>
         </div><!-- /card-container -->
     </div><!-- /container -->
+
+    <!-- ------------------------------------------------------------------------------ -->
+
+    <div class="container modal fade" id="editcat" tabindex="-1" role="dialog" aria-labelledby="addcatLabel" >
+        <div class="card card-container" style="max-width:60%">
+
+            <form >
+                <fieldset>
+                    <legend></legend>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Libellé<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bookmark"></i></span>
+                                <input value="" name="EditLibelleCat" placeholder="Exemple : Jeux" id="EditLibelleCat" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Description<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
+                                <textarea name="EditDescriptionCat" placeholder="Exemple : Ici vous trouverez les jeux" id="EditDescriptionCat" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Image<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
+                                <input type='file' name="EditImageCat" placeholder="Deposer l'image içi" id="EditImageCat" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Activer ?</label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="rdio rdio-theme circle col-md-3" style="transform: scale(0.9);margin-left: 1%;">
+                                <input id="Edit-radio-type-circle1" type="radio"  name="Editactivation" value="1">
+                                <label for="Edit-radio-type-circle1">Oui</label>
+                            </div>
+                            <div style="transform: scale(0.9);" class="rdio rdio-theme circle col-md-3">
+                                <input id="Edit-radio-type-circle2" type="radio" name="Editactivation" value="0">
+                                <label for="Edit-radio-type-circle2">Non</label>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <input id="EditCategorie" type="button" value="Modifier catégorie"/>
+            </form>
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+{% endblock %}
+{% block javascript %}
+    <script>
+        function AjouterCategorie() {
+            $_data = {
+                'catlibelle': $("#LibelleCat").val(),
+                'catdescription': $("#DescriptionCat").val(),
+                'catactivation': $("input[name='activation']:checked").val(),
+                'catimage': "img\\game\\3.jpg"
+            };
+            $.ajax({
+                type: "POST",
+                url: "{{path('add_categorie')}}",
+                data: $_data,
+                success: function () {
+                    location.reload();
+                }
+            });
+        }
+        function DeleteCategorie($id) {
+            $_data = {
+                'id': $id
+            };
+            $.ajax({
+                type: "POST",
+                url: "{{path('delete_categorie')}}",
+                data: $_data,
+                success: function () {
+                    location.reload();
+                }
+            });
+        }
+        function ValidationCategorie($id) {
+            $_data = {
+                'id': $id
+            };
+            $.ajax({
+                type: "POST",
+                url: "{{path('activation_categorie')}}",
+                data: $_data,
+                success: function () {
+                    location.reload();
+                }
+            });
+        }
+
+        function editModal($idcat) {
+        {%for cathegorie in cathegories%}
+                if ($idcat == {{cathegorie.getId()}}) {
+                    $('#editcat').find("legend").first().html("Modifier Catégorie | {{cathegorie.getLibelle()}}");
+                    $('#EditLibelleCat').val("{{cathegorie.getLibelle()}}");
+                    $('#EditDescriptionCat').val("{{cathegorie.getDescription()}}");
+            {%if cathegorie.getActivation() == "0"%}
+                        $("#Edit-radio-type-circle1").prop('checked', false);
+                        $("#Edit-radio-type-circle2").prop('checked', true);
+            {%elseif cathegorie.getActivation() == "1"%}
+                        $("#Edit-radio-type-circle2").prop('checked', false);
+                        $("#Edit-radio-type-circle1").prop('checked', true);
+            {%endif%}
+                $("#EditCategorie").attr('onclick', "ModifierCategorie('{{cathegorie.getId()}}')");
+
+                        $('#editcat').modal('show');
+                    }
+        {% endfor %}
+            }
+            function ModifierCategorie($id) {
+            $_data = {
+                'id': $id,
+                'catlibelle': $("#EditLibelleCat").val(),
+                'catdescription': $("#EditDescriptionCat").val(),
+                'catactivation': $("input[name='Editactivation']:checked").val(),
+                'catimage': "img\\game\\3.jpg"
+            };
+            $.ajax({
+                type: "POST",
+                url: "{{path('edit_categorie')}}",
+                data: $_data,
+                success: function () {
+                    location.reload();
+                }
+            });
+        }
+    </script>
 {% endblock %}
