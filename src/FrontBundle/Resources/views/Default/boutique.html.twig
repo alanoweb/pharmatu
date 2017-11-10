@@ -26,25 +26,68 @@
         </div>
     </section>
 
+    {% if is_granted('ROLE_ADMIN')%}
+        <div class="text-center">
+            <a href="javascript:void(0);" data-toggle="modal" data-target="#addProduit" class="button pill big primary">
+                <span class="plus icon"></span>Ajouter un Produit
+            </a> 
+        </div>
+    {%endif%}
     <section class="bg-grey-50" style="padding-top: 0px">
         <div class="container">
             <div class="row">
                 {%for produit in produits%}
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="card">
-                            <div class="card-img">
-                                <img src="{{asset(produit.getImage())}}" alt="">
-                                <div class="category"><span class="label label-success">{{produit.getNbrCoin()}} Coin</span></div>
-                                <div class="meta"><i class="fa fa-heart-o"></i> <span>stock : {{produit.getStock()}}</span></div>
-                            </div>
-                            <div class="caption">
-                                <h3 class="card-title">{{produit.getLibele()}}</h3>
-                                <ul><li>{{produit.getDescription()}}</li></ul>
-                                <div class="text-center">{% if is_granted('ROLE_ADMIN')%}<a href="#" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right"> Modifier </a> {%elseif (is_granted('ROLE_ENTREPRISE')or not app.user)%}{%else%}<a href="#" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right">Acheter </a>{%endif%}</div>
+                    {%if is_granted('ROLE_ADMIN') %}
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <div class="card">
+                                <div class="card-img">
+                                    <img src="{{asset(produit.getImage())}}" alt="">
+                                    <div class="category"><span class="label label-success">{{produit.getStatus()}}</span></div>
+                                    <div class="meta"><i class="fa fa-cubes"></i> <span>stock : {{produit.getStock()}}</span></div>
+                                </div>
+                                <div class="caption">
+                                    <div class="text-center"><h3 class="card-title">{{produit.getLibele()}}</h3></div>
+                                    <ul><li>{{produit.getDescription()}}</li></ul>
+                                    <div class="text-center">
+                                        <a href="javascript:void(0);" class="left positive pill button" style="" onclick="StockModalProduit({{produit.getId()}});"><span class="fa fa-cubes"></span> Stock</a> 
+                                        <a href="javascript:void(0);" class="middle pill button" onclick="editModalProduit({{produit.getId()}});"><span class="pen icon"></span>Modifier</a>
+                                        <a href="javascript:void(0);" class="right negative pill button" onclick="DeleteProduit({{produit.getId()}});"><span class="cross icon"></span>Supprimer</a> 
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
+                    {%elseif (is_granted('ROLE_ENTREPRISE')or not app.user)%}
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <div class="card">
+                                <div class="card-img">
+                                    <img src="{{asset(produit.getImage())}}" alt="">
+                                    <div class="category"><span class="label label-success">{{produit.getNbrCoin()}} Coin</span></div>
+                                    <div class="meta"><i class="fa fa-cubes"></i> <span>stock : {{produit.getStock()}}</span></div>
+                                </div>
+                                <div class="caption">
+                                    <div class="text-center"><h3 class="card-title">{{produit.getLibele()}}</h3></div>
+                                    <ul><li>{{produit.getDescription()}}</li></ul>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        {%if not (produit.getStatus() == "Stock epuiser" or produit.getStatus() == "Deleted" ) %}
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="card">
+                                    <div class="card-img">
+                                        <img src="{{asset(produit.getImage())}}" alt="">
+                                        <div class="category"><span class="label label-success">{{produit.getNbrCoin()}} Coin</span></div>
+                                        <div class="meta"><i class="fa fa-cubes"></i> <span>stock : {{produit.getStock()}}</span></div>
+                                    </div>
+                                    <div class="caption">
+                                        <div class="text-center"><h3 class="card-title">{{produit.getLibele()}}</h3></div>
+                                        <ul><li>{{produit.getDescription()}}</li></ul>
+                                        <div class="text-center"><a href="javascript:void(0);" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right" onclick="AcheterProduit({{produit.getId()}});">Acheter </a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endif %}
                 {% endfor %}	
             </div>
 
@@ -67,8 +110,169 @@
             </ul>
         </div>
     </section>
+    {% if is_granted('ROLE_ADMIN')%}
+        <div class="text-center">
+            <a href="javascript:void(0);" data-toggle="modal" data-target="#addProduit" class="button pill big primary">
+                <span class="plus icon"></span>Ajouter un Produit
+            </a> 
+        </div>
+    {%endif%}
 
+    <!-- ---------------------- Modals ---------------------------------------------->
+    <div class="container modal fade" id="addProduit" tabindex="-1" role="dialog" aria-labelledby="addProduitLabel" >
+        <div class="card card-container" style="max-width:60%">
 
+            <form >
+                <fieldset>
+                    <legend>Ajouter un Produit</legend>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Libele<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bookmark"></i></span>
+                                <input value="" name="LibeleProduit" placeholder="Exemple : Smart phone" id="LibeleProduit" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Description<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
+                                <textarea name="DescriptionProduit" placeholder="Description du produit ou fiche technique" id="DescriptionProduit" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Image<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
+                                <input type='file' name="ImageProduit" placeholder="Deposer l'image içi" id="ImageProduit" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Coins<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bitcoin"></i></span>
+                                <input value="" name="NbrPointProduit" placeholder="Prix en Point" id="NbrPointProduit" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Stock<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
+                                <input value="" name="StockProduit" placeholder="Quantité en stock" id="StockProduit" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Prix<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
+                                <input value="" name="PrixProduit" placeholder="Prix réel du produit" id="PrixProduit" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <input id="AddProduit" type="button" value="ajouter un produit" onclick="AjouterProduit();"/>
+            </form>
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+
+    <!-- ------------------------------------------------------------------------------ -->
+    
+    <div class="container modal fade" id="EditeStockProduit" tabindex="-1" role="dialog" aria-labelledby="EditeStockProduitLabel" >
+        <div class="card card-container" style="max-width:60%">
+
+            <form >
+                <fieldset>
+                    <legend></legend>
+                    <div class="form-group" >
+                        <label class="col-md-4 control-label" >Stock<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
+                                <input disabled value="" name="ModifierStockProduit" placeholder="Quantité en stock" id="ModifierStockProduit" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Quantité<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
+                                <input value="" name="QuantiteProduit" placeholder="Quantité à ajouter ou supprimer" id="QuantiteProduit" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <input id="AddStockProduit" type="button" value="ajouter au stock" />
+                <input id="DeminuerStockProduit" type="button" value="remove du stock" />
+            </form>
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+
+    <!-- ------------------------------------------------------------------------------ -->
+
+        <div class="container modal fade" id="editProduit" tabindex="-1" role="dialog" aria-labelledby="editProduitLabel" >
+        <div class="card card-container" style="max-width:60%">
+
+            <form >
+                <fieldset>
+                    <legend></legend>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Libele<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bookmark"></i></span>
+                                <input value="" name="EditLibeleProduit" placeholder="Exemple : Smart phone" id="EditLibeleProduit" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Description<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
+                                <textarea name="EditDescriptionProduit" placeholder="Description du produit ou fiche technique" id="EditDescriptionProduit" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Image<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
+                                <input type='file' name="EditImageProduit" placeholder="Deposer l'image içi" id="EditImageProduit" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Coins<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bitcoin"></i></span>
+                                <input value="" name="EditNbrPointProduit" placeholder="Prix en Point" id="EditNbrPointProduit" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Stock<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
+                                <input value="" name="EditStockProduit" placeholder="Quantité en stock" id="EditStockProduit" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Prix<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
+                                <input value="" name="EditPrixProduit" placeholder="Prix réel du produit" id="EditPrixProduit" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <input id="EditProduit" type="button" value="Modifier produit" />
+            </form>
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+
+    <!-- ------------------------------------------------------------------------------ -->
 {% endblock %}
 {% block javascript %}
     <script>
@@ -88,5 +292,116 @@
         }
         scroll();
         document.onscroll = scroll;
+    </script>
+    <script>
+        function AjouterProduit() {
+            $_data = {
+                'LibeleProduit': $("#LibeleProduit").val(),
+                'DescriptionProduit': $("#DescriptionProduit").val(),
+                'NbrPointProduit': $("#NbrPointProduit").val(),
+                'StockProduit': $("#StockProduit").val(),
+                'PrixProduit': $("#PrixProduit").val(),
+                'ImageProduit': "img\\game\\2.jpg"
+            };
+            $.ajax({
+                type: "POST",
+                url: "{{path('add_produit')}}",
+                data: $_data,
+                success: function () {
+                    location.reload();
+                }
+            });
+        }
+        function DeleteProduit($id) {
+            $_data = {
+                'id': $id
+            };
+            $.ajax({
+                type: "POST",
+                url: "{{path('delete_produit')}}",
+                data: $_data,
+                success: function () {
+                    location.reload();
+                }
+            });
+        }
+        function StockModalProduit($idProduit) {
+        {%for produit in produits%}
+                if ($idProduit == {{produit.getId()}}) {
+                    $("#ModifierStockProduit").val("{{produit.getStock()}}");
+                    $('#EditeStockProduit').find("legend").first().html("Modifier Stock Produit | {{produit.getLibele()}}");
+
+                    $("#AddStockProduit").attr('onclick', "StockProduit('{{produit.getId()}}','ajouter')");
+                    $("#DeminuerStockProduit").attr('onclick', "StockProduit('{{produit.getId()}}','deminuer')");
+
+                    $('#EditeStockProduit').modal('show');
+                    }
+        {% endfor %}
+            }
+            
+            function StockProduit($idProduit,$type) {
+                $_data = {
+                    'idProduit': $idProduit,
+                    'QuantiteProduit': $('#QuantiteProduit').val(),
+                    'Type': $type
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "{{path('edit_stock_produit')}}",
+                    data: $_data,
+                    success: function () {
+                        location.reload();
+                    }
+                });
+            }
+            
+            function editModalProduit($idProduit) {
+        {%for produit in produits%}
+                if ($idProduit == {{produit.getId()}}) {
+                   $("#EditLibeleProduit").val("{{produit.getLibele()}}");
+                   $("#EditDescriptionProduit").val("{{produit.getDescription()}}");
+                   $("#EditNbrPointProduit").val("{{produit.getNbrCoin()}}");
+                   $("#EditStockProduit").val("{{produit.getStock()}}");
+                   $("#EditPrixProduit").val("{{produit.getPrix()}}");
+                    $('#editProduit').find("legend").first().html("Modifier Produit | {{produit.getLibele()}}");
+
+                        $("#EditProduit").attr('onclick', "ModifierProduit('{{produit.getId()}}')");
+
+                        $('#editProduit').modal('show');
+                    }
+        {% endfor %}
+            }
+            function ModifierProduit($id) {
+                $_data = {
+                    'id': $id,
+                    'LibeleProduit': $("#EditLibeleProduit").val(),
+                'DescriptionProduit': $("#EditDescriptionProduit").val(),
+                'NbrPointProduit': $("#EditNbrPointProduit").val(),
+                'StockProduit': $("#EditStockProduit").val(),
+                'PrixProduit': $("#EditPrixProduit").val(),
+                'ImageProduit': "img\\game\\2.jpg"
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "{{path('edit_produit')}}",
+                    data: $_data,
+                    success: function () {
+                        location.reload();
+                    }
+                });
+            }
+            function AcheterProduit($idProduit) {
+                $_data = {
+                    'idProduit': $idProduit
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "{{path('acheter_produit')}}",
+                    data: $_data,
+                    success: function () {
+                        location.reload();
+                    }
+                });
+            }
     </script>
 {% endblock %}

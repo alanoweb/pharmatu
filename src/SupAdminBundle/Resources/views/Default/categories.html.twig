@@ -14,7 +14,7 @@
                         <div class="text-center"> <h3 class="card-title"><a href="{{path('activity',{'id':cathegorie.getId()})}}">{{cathegorie.getLibelle()}}</a></h3></div>
                         <ul><li>{{cathegorie.getDescription()}}</li></ul>
                         <div class="text-center">
-                            {%if cathegorie.getActivation() == 0%}<a href="javascript:void(0);" class="left positive pill button" style="" onclick="ValidationCategorie({{cathegorie.getId()}});"><span class="unlock icon"></span>Activer</a>{%else%}<a href="#" class="left negative pill button" style="" onclick="ValidationCategorie({{cathegorie.getId()}});"><span class="lock icon"></span>Desactiver</a>{%endif%} 
+                            {%if cathegorie.getActivation() == 0%}<a href="javascript:void(0);" class="left positive pill button" style="" onclick="ValidationCategorie({{cathegorie.getId()}});"><span class="unlock icon"></span>Activer</a>{%else%}<a href="javascript:void(0);" class="left negative pill button" style="" onclick="ValidationCategorie({{cathegorie.getId()}});"><span class="lock icon"></span>Desactiver</a>{%endif%} 
                             <a href="javascript:void(0);" class="middle pill button" onclick="editModal({{cathegorie.getId()}});"><span class="pen icon"></span>Modifier</a>
                             <a href="javascript:void(0);" class="right negative pill button" onclick="DeleteCategorie({{cathegorie.getId()}});"><span class="cross icon"></span>Supprimer</a> 
                         </div>
