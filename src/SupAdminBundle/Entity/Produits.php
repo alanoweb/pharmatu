@@ -63,6 +63,12 @@ class Produits
      */
     private $image;
 
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=255)
+     */
+    private $status;
 
     /**
      * Get id
@@ -210,5 +216,27 @@ class Produits
     public function getImage()
     {
         return $this->image;
+    }
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return Produits
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string 
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }

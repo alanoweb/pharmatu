@@ -25,41 +25,47 @@
             </div>
         </div>
     </section>
-    <div class="text-center">
-        <a href="javascript:void(0);" data-toggle="modal" data-target="#addact" class="button pill big primary">
-            <span class="plus icon"></span>Ajouter une activité
-        </a> 
-    </div>
+    {% if is_granted('ROLE_ADMIN')%}
+        <div class="text-center">
+            <a href="javascript:void(0);" data-toggle="modal" data-target="#addact" class="button pill big primary">
+                <span class="plus icon"></span>Ajouter une activité
+            </a> 
+        </div>
+    {%endif%}
     <section class="bg-grey-50" style="padding-top: 0px">
         <div class="container">
             <div class="row">
 
                 {%for act in activites%}
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="card">
-                            <div class="card-img">
-                                <a href="{{path('actsingle',{'id':act.getId()})}}"><img src="{{asset(act.getImg())}}" alt=""></a>
-                                <div class="category"><span class="label label-success">{{act.getStatus()}}</span></div>
-                                <div class="meta"><a href="{{path('actsingle',{'id':act.getId()})}}"><i class="fa fa-sign-in"></i> <span>15</span></a></div>
-                            </div>
-                            <div class="caption">
-                                <div class="text-center"><h3 class="card-title"><a href="{{path('actsingle',{'id':act.getId()})}}">{{act.getNom()}}</a></h3></div>
-                                <ul><li>{{act.getDescription()}}</li></ul>
-                                <div class="text-center">
-                                    {%if act.getActivation() == 0%}<a href="javascript:void(0);" class="left positive pill button" style="" onclick="ValidationActivity({{act.getId()}});"><span class="unlock icon"></span>Activer</a>{%else%}<a href="#" class="left negative pill button" style="" onclick="ValidationActivity({{act.getId()}});"><span class="lock icon"></span>Desactiver</a>{%endif%} 
-                                    <a href="javascript:void(0);" class="middle pill button" onclick="editModalAct({{act.getId()}});"><span class="pen icon"></span>Modifier</a>
-                                    <a href="javascript:void(0);" class="right negative pill button" onclick="DeleteActivity({{act.getId()}});"><span class="cross icon"></span>Supprimer</a> 
+                    {%if not (act.getStatus() == "Desactiver" or act.getStatus() == "Deleted" ) %}
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <div class="card">
+                                <div class="card-img">
+                                    <a href="{{path('actsingle',{'id':act.getId()})}}"><img src="{{asset(act.getImg())}}" alt=""></a>
+                                    {% if is_granted('ROLE_ADMIN')%}<div class="category"><span class="label label-success">{{act.getStatus()}}</span></div>{%endif%}
+                                    <div class="meta"><a href="{{path('actsingle',{'id':act.getId()})}}"><i class="fa fa-sign-in"></i> <span>15</span></a></div>
+                                </div>
+                                <div class="caption">
+                                    <div class="text-center"><h3 class="card-title"><a href="{{path('actsingle',{'id':act.getId()})}}">{{act.getNom()}}</a></h3></div>
+                                    <ul><li>{{act.getDescription()}}</li></ul>
+                                            {% if is_granted('ROLE_ADMIN')%}
+                                        <div class="text-center">
+                                            {%if act.getActivation() == 0%}<a href="javascript:void(0);" class="left positive pill button" style="" onclick="ValidationActivity({{act.getId()}});"><span class="unlock icon"></span>Activer</a>{%else%}<a href="javascript:void(0);" class="left negative pill button" style="" onclick="ValidationActivity({{act.getId()}});"><span class="lock icon"></span>Desactiver</a>{%endif%} 
+                                            <a href="javascript:void(0);" class="middle pill button" onclick="editModalAct({{act.getId()}});"><span class="pen icon"></span>Modifier</a>
+                                            <a href="javascript:void(0);" class="right negative pill button" onclick="DeleteActivity({{act.getId()}});"><span class="cross icon"></span>Supprimer</a> 
+                                        </div>
+                                    {% else %}
+                                        <div class="text-center">
+                                            <a href="{{path('actsingle',{'id':act.getId()})}}" class="button pill big primary">
+                                                <span class="fa fa-play"></span> Commencer
+                                            </a> 
+                                        </div>
+                                    {%endif%}
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <h3></h3>
-                    {#<h5>{{act.getcadeaux()}}</h5>
-                    {{asset('img/game/menu-1.jpg')}}
-                    <h5>{{act.getNbrPoint()}}</h5>
-                    <h5>{{act.getexperience()}}</h5>
-                    <h5>{{act.getdat_deb()}}</h5>
-                    <h5>{{act.getdat_fin()}}</h5>#}
+                        <h3></h3>
+                    {% endif %}
                 {% endfor %}
             </div>
             <ul class="pagination margin-top-20" style="    margin-left: 25%;">
@@ -79,11 +85,13 @@
             </ul>
         </div>
     </section>
-    <div class="text-center">
-        <a href="#" data-toggle="modal" data-target="#addact" class="button pill big primary">
-            <span class="plus icon"></span>Ajouter une activité
-        </a>
-    </div>
+    {% if is_granted('ROLE_ADMIN')%}
+        <div class="text-center">
+            <a href="#" data-toggle="modal" data-target="#addact" class="button pill big primary">
+                <span class="plus icon"></span>Ajouter une activité
+            </a>
+        </div>
+    {%endif%}
 
     <!-- ---------------------- Modals ---------------------------------------------->
     <div class="container modal fade" id="addact" tabindex="-1" role="dialog" aria-labelledby="addactLabel" >
@@ -129,7 +137,7 @@
                             </div>
                         </div>
                     </div>
-                      <div class="form-group">
+                    <div class="form-group">
                         <label class="col-md-4 control-label" >Date Début<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
                         <div class="col-md-6  inputGroupContainer">
                             <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
@@ -137,7 +145,7 @@
                             </div>
                         </div>
                     </div>
-                      <div class="form-group">
+                    <div class="form-group">
                         <label class="col-md-4 control-label" >Date Fin<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
                         <div class="col-md-6  inputGroupContainer">
                             <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
@@ -145,7 +153,7 @@
                             </div>
                         </div>
                     </div>
-                       <div class="form-group">
+                    <div class="form-group">
                         <label class="col-md-4 control-label" >Coins<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
                         <div class="col-md-6  inputGroupContainer">
                             <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bitcoin"></i></span>
@@ -153,7 +161,7 @@
                             </div>
                         </div>
                     </div>
-                       <div class="form-group">
+                    <div class="form-group">
                         <label class="col-md-4 control-label" >Experience<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
                         <div class="col-md-6  inputGroupContainer">
                             <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></span>
@@ -167,19 +175,19 @@
         </div><!-- /card-container -->
     </div><!-- /container -->
 
-    <!-- ------------------------------------------------------------------------------ -- >
+    <!-- ------------------------------------------------------------------------------ -->
 
-    <div class="container modal fade" id="editcat" tabindex="-1" role="dialog" aria-labelledby="addcatLabel" >
+    <div class="container modal fade" id="editact" tabindex="-1" role="dialog" aria-labelledby="addactLabel" >
         <div class="card card-container" style="max-width:60%">
 
             <form >
                 <fieldset>
                     <legend></legend>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" >Libellé<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <label class="col-md-4 control-label" >Nom<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
                         <div class="col-md-6  inputGroupContainer">
                             <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bookmark"></i></span>
-                                <input value="" name="EditLibelleCat" placeholder="Exemple : Jeux" id="EditLibelleCat" class="form-control"  type="text">
+                                <input value="" name="EditNomAct" placeholder="Exemple : Flappy bird" id="EditNomAct" class="form-control"  type="text">
                             </div>
                         </div>
                     </div>
@@ -187,7 +195,7 @@
                         <label class="col-md-4 control-label" >Description<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
                         <div class="col-md-6  inputGroupContainer">
                             <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
-                                <textarea name="EditDescriptionCat" placeholder="Exemple : Ici vous trouverez les jeux" id="EditDescriptionCat" class="form-control"></textarea>
+                                <textarea name="EditDescriptionAct" placeholder="faut mettre le principe du jeu içi" id="EditDescriptionAct" class="form-control"></textarea>
                             </div>
                         </div>
                     </div>
@@ -195,7 +203,7 @@
                         <label class="col-md-4 control-label" >Image<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
                         <div class="col-md-6  inputGroupContainer">
                             <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
-                                <input type='file' name="EditImageCat" placeholder="Deposer l'image içi" id="EditImageCat" class="form-control"/>
+                                <input type='file' name="EditImageAct" placeholder="Deposer l'image içi" id="EditImageAct" class="form-control"/>
                             </div>
                         </div>
                     </div>
@@ -203,19 +211,51 @@
                         <label class="col-md-4 control-label">Activer ?</label>
                         <div class="col-md-6  inputGroupContainer">
                             <div class="rdio rdio-theme circle col-md-3" style="transform: scale(0.9);margin-left: 1%;">
-                                <input id="Edit-radio-type-circle1" type="radio"  name="Editactivation" value="1">
+                                <input id="Edit-radio-type-circle1" type="radio"  name="EditactivationAct" value="1" checked>
                                 <label for="Edit-radio-type-circle1">Oui</label>
                             </div>
                             <div style="transform: scale(0.9);" class="rdio rdio-theme circle col-md-3">
-                                <input id="Edit-radio-type-circle2" type="radio" name="Editactivation" value="0">
+                                <input id="Edit-radio-type-circle2" type="radio" name="EditactivationAct" value="0">
                                 <label for="Edit-radio-type-circle2">Non</label>
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Date Début<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                <input value="" data-mask="39/19/2999" name="EditDateDebutAct" placeholder="Date début activité" id="EditDateDebutAct" class="form-control datepicker"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Date Fin<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                <input value="" data-mask="39/19/2999" name="EditDateFinAct" placeholder="Date Fin activité" id="EditDateFinAct" class="form-control datepicker"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Coins<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bitcoin"></i></span>
+                                <input value="" name="EditNbrPointAct" placeholder="Nombre Point Totale a Gagnée" id="EditNbrPointAct" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Experience<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></span>
+                                <input value="" name="EditExpAct" placeholder="Experience a Gagnée" id="EditExpAct" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
                 </fieldset>
-                <input id="EditCategorie" type="button" value="Modifier catégorie"/>
+                <input id="EditActivity" type="button" value="Modifier Activité"/>
             </form>
-        </div><!-- /card-container -- >
+        </div><!-- /card-container -->
     </div><!-- /container -->
 {% endblock %}
 {% block javascript %}
@@ -238,18 +278,114 @@
         document.onscroll = scroll;
     </script>
     <script>
-           $("#DateFinAct").datepicker({ dateFormat: 'dd-mm-yy',
-altField: "#datepicker",
-closeText: 'Fermer',
-prevText: 'Précédent',
-nextText: 'Suivant',
-currentText: 'Aujourd\'hui',
-monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
-dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
-dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
-dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
-weekHeader: 'Sem.'
-});
-        </script>
+        $("#DateFinAct").datepicker({dateFormat: 'dd-mm-yy',
+            altField: "#datepicker",
+            closeText: 'Fermer',
+            prevText: 'Précédent',
+            nextText: 'Suivant',
+            currentText: 'Aujourd\'hui',
+            monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+            monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+            dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+            dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
+            dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+            weekHeader: 'Sem.'
+        });
+    </script>
+    <script>
+        function AjouterActivity() {
+            $_data = {
+                'idCategorie': "{{categorie.getId()}}",
+                'actNom': $("#NomAct").val(),
+                'actDescription': $("#DescriptionAct").val(),
+                'actActivation': $("input[name='activationAct']:checked").val(),
+                'actDatedebut': $("#DateDebutAct").val(),
+                'actDatefin': $("#DateFinAct").val(),
+                'actNbrpoint': $("#NbrPointAct").val(),
+                'actexp': $("#ExpAct").val(),
+                'actImage': "img\\game\\1.jpg"
+            };
+            $.ajax({
+                type: "POST",
+                url: "{{path('add_activite')}}",
+                data: $_data,
+                success: function () {
+                    location.reload();
+                }
+            });
+        }
+        function DeleteActivity($id) {
+            $_data = {
+                'id': $id
+            };
+            $.ajax({
+                type: "POST",
+                url: "{{path('delete_activite')}}",
+                data: $_data,
+                success: function () {
+                    location.reload();
+                }
+            });
+        }
+        function ValidationActivity($id) {
+            $_data = {
+                'id': $id
+            };
+            $.ajax({
+                type: "POST",
+                url: "{{path('activation_activite')}}",
+                data: $_data,
+                success: function () {
+                    location.reload();
+                }
+            });
+        }
+
+        function editModalAct($idact) {
+        {%for act in activites%}
+                if ($idact == {{act.getId()}}) {
+                    $("#EditNomAct").val("{{act.getNom()}}");
+                    $("#EditDescriptionAct").val("{{act.getDescription()}}");
+                    $("#EditDateDebutAct").val("{{act.getdat_deb()|date("d/m/Y")}}");
+                    $("#EditDateFinAct").val("{{act.getdat_fin()|date("d/m/Y")}}");
+                    $("#EditNbrPointAct").val("{{act.getNbrPoint()}}");
+                    $("#EditExpAct").val("{{act.getExperience()}}");
+                    $('#editact').find("legend").first().html("Modifier Activité | {{act.getNom()}}");
+
+
+            {%if act.getActivation() == "0"%}
+                        $("#Edit-radio-type-circle1").prop('checked', false);
+                        $("#Edit-radio-type-circle2").prop('checked', true);
+            {%elseif act.getActivation() == "1"%}
+                        $("#Edit-radio-type-circle2").prop('checked', false);
+                        $("#Edit-radio-type-circle1").prop('checked', true);
+            {%endif%}
+                        $("#EditActivity").attr('onclick', "ModifierActivity('{{act.getId()}}')");
+
+                        $('#editact').modal('show');
+                    }
+        {% endfor %}
+            }
+            function ModifierActivity($id) {
+                $_data = {
+                    'id': $id,
+                    'actNom': $("#EditNomAct").val(),
+                    'actDescription': $("#EditDescriptionAct").val(),
+                    'actActivation': $("input[name='EditactivationAct']:checked").val(),
+                    'actDatedebut': $("#EditDateDebutAct").val(),
+                    'actDatefin': $("#EditDateFinAct").val(),
+                    'actNbrpoint': $("#EditNbrPointAct").val(),
+                    'actexp': $("#EditExpAct").val(),
+                    'actImage': "img\\game\\1.jpg"
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "{{path('edit_activite')}}",
+                    data: $_data,
+                    success: function () {
+                        location.reload();
+                    }
+                });
+            }
+    </script>
 {% endblock %}

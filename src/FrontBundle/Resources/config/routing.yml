@@ -23,3 +23,30 @@ actsingle:
 monprofil:
     path:  /monprofil
     defaults: { _controller:FrontBundle:Default:monprofil }
+add_activite:
+    path:     /AddActivite
+    defaults: { _controller:FrontBundle:Default:AddActivite }
+delete_activite:
+    path:     /DeleteActivite
+    defaults: { _controller:FrontBundle:Default:DeleteActivite }
+activation_activite:
+    path:     /ActivationActivite
+    defaults: { _controller:FrontBundle:Default:ActivationActivite }
+edit_activite:
+    path:     /editActivite
+    defaults: { _controller:FrontBundle:Default:EditActivite }
+add_produit:
+    path:     /AddProduit
+    defaults: { _controller:FrontBundle:Default:AddProduit }
+delete_produit:
+    path:     /DeleteProduit
+    defaults: { _controller:FrontBundle:Default:DeleteProduit }
+edit_stock_produit:
+    path:     /EditStockProduit
+    defaults: { _controller:FrontBundle:Default:EditStockProduit }
+edit_produit:
+    path:     /editProduit
+    defaults: { _controller:FrontBundle:Default:EditProduit }
+acheter_produit:
+    path:     /acheterProduit
+    defaults: { _controller:FrontBundle:Default:AcheterProduit }

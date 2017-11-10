@@ -239,7 +239,7 @@ class Activity
      * @param integer $experience
      * @return Activity
      */
-    public function setexperience($experience)
+    public function setExperience($experience)
     {
         $this->experience = $experience;
 
@@ -251,7 +251,7 @@ class Activity
      *
      * @return integer 
      */
-    public function getexperience()
+    public function getExperience()
     {
         return $this->experience;
     }
