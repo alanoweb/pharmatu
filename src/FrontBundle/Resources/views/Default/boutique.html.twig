@@ -1,37 +1,24 @@
 {% extends 'FrontBundle::layout.html.twig' %}
-
-{% block wrapper %}
-    <section id="boutique2ndnav" class="padding-top-25 no-padding-bottom border-bottom-1 border-grey-300" style="padding-top: 25px !important;background-color: #E0E2E0;height:60px">
-        <div class="container">
-            <div class="headline" style="margin-top: -16px">
-                <h4>Recent Games</h4>
-                <div class="btn-group pull-right">
-                    <a href="#" class="btn btn-default"><i class="fa fa-th-large no-margin"></i></a>
-                    <a href="#" class="btn btn-default"><i class="fa fa-bars no-margin"></i></a>
-                </div>
-                <div class="recherche" style="padding-right:30%;">
-                    <input type="text" class="form-control hidden-xs" placeholder="Search Game...">
-
-                    <div class="dropdown" style="margin-right:10%;" > 
-                        <a href="#" class="btn btn-default btn-icon-left btn-icon-right dropdown-toggle" data-toggle="dropdown"><i class="fa fa-sort-amount-desc"></i> Sort by <i class="fa fa-caret-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Date</a></li>
-                            <li><a href="#">Score</a></li>
-                            <li><a href="#">A-Z</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
+{% block slide %}
     {% if is_granted('ROLE_ADMIN')%}
-        <div class="text-center">
-            <a href="javascript:void(0);" data-toggle="modal" data-target="#addProduit" class="button pill big primary">
-                <span class="plus icon"></span>Ajouter un Produit
-            </a> 
-        </div>
+    {%else%}
+        {{ parent() }}
+    {% endif%}
+{% endblock%}
+{% block wrapper %}
+    {% if is_granted('ROLE_ADMIN')%}
+        <section id="boutique2ndnav" class="padding-top-25 no-padding-bottom border-bottom-1 border-grey-300" style="padding-top: 25px !important;background-color: #E0E2E0;height:60px">
+            <div class="container">
+                <div class="headline" style="margin-top: -16px">
+                    <div class="text-center">
+                        <a href="javascript:void(0);" data-toggle="modal" data-target="#addProduit" class="button pill big primary">
+                            <span class="plus icon"></span>Ajouter un Produit
+                        </a> 
+                    </div>
+
+                </div>
+            </div>
+        </section>
     {%endif%}
     <section class="bg-grey-50" style="padding-top: 0px">
         <div class="container">
@@ -49,9 +36,9 @@
                                     <div class="text-center"><h3 class="card-title">{{produit.getLibele()}}</h3></div>
                                     <ul><li>{{produit.getDescription()}}</li></ul>
                                     <div class="text-center">
-                                        <a href="javascript:void(0);" class="left positive pill button" style="" onclick="StockModalProduit({{produit.getId()}});"><span class="fa fa-cubes"></span> Stock</a> 
-                                        <a href="javascript:void(0);" class="middle pill button" onclick="editModalProduit({{produit.getId()}});"><span class="pen icon"></span>Modifier</a>
-                                        <a href="javascript:void(0);" class="right negative pill button" onclick="DeleteProduit({{produit.getId()}});"><span class="cross icon"></span>Supprimer</a> 
+                                        <a href="javascript:void(0);" class="left positive pill button" style="padding-left: 5px;margin-right: -5px" onclick="StockModalProduit({{produit.getId()}});"><span class="fa fa-cubes"></span> Stock</a> 
+                                        <a href="javascript:void(0);" {%if produit.getStatus() == "Deleted" %}class="right pill button"{%else%}class="middle pill button"{%endif%} style="padding-left: 5px;" onclick="editModalProduit({{produit.getId()}});"><span class="fa fa-pencil"></span> Modifier</a>
+                                        {%if produit.getStatus() != "Deleted" %}<a href="javascript:void(0);" class="right negative pill button" style="padding-left: 5px;margin-left: -4px" onclick="DeleteProduit({{produit.getId()}});"><span class="fa fa-close"></span> Supprimer</a> {%endif%}
                                     </div>
                                 </div>
                             </div>
@@ -110,13 +97,6 @@
             </ul>
         </div>
     </section>
-    {% if is_granted('ROLE_ADMIN')%}
-        <div class="text-center">
-            <a href="javascript:void(0);" data-toggle="modal" data-target="#addProduit" class="button pill big primary">
-                <span class="plus icon"></span>Ajouter un Produit
-            </a> 
-        </div>
-    {%endif%}
 
     <!-- ---------------------- Modals ---------------------------------------------->
     <div class="container modal fade" id="addProduit" tabindex="-1" role="dialog" aria-labelledby="addProduitLabel" >
@@ -180,7 +160,7 @@
     </div><!-- /container -->
 
     <!-- ------------------------------------------------------------------------------ -->
-    
+
     <div class="container modal fade" id="EditeStockProduit" tabindex="-1" role="dialog" aria-labelledby="EditeStockProduitLabel" >
         <div class="card card-container" style="max-width:60%">
 
@@ -212,7 +192,7 @@
 
     <!-- ------------------------------------------------------------------------------ -->
 
-        <div class="container modal fade" id="editProduit" tabindex="-1" role="dialog" aria-labelledby="editProduitLabel" >
+    <div class="container modal fade" id="editProduit" tabindex="-1" role="dialog" aria-labelledby="editProduitLabel" >
         <div class="card card-container" style="max-width:60%">
 
             <form >
@@ -278,15 +258,13 @@
     <script>
         var menu = $('#boutique2ndnav');
         var origOffsetY = menu.offset().top;
-
         function scroll() {
-            if ($(window).scrollTop() >= origOffsetY - 50) {
-                $('#boutique2ndnav').css({'position': 'fixed', 'width': '100%', 'top': '60px', 'z-index': '1020'});
-            } else {
-                $('#boutique2ndnav').removeAttr('style');
-                $('#boutique2ndnav').css({'padding-top': '25px', 'background-color': '#E0E2E0', 'height': '60px'});
-
-            }
+        if ($(window).scrollTop() >= origOffsetY - 50) {
+        $('#boutique2ndnav').css({'position': 'fixed', 'width': '100%', 'top': '60px', 'z-index': '1020'});
+        } else {
+        $('#boutique2ndnav').removeAttr('style');
+        $('#boutique2ndnav').css({'padding-top': '25px', 'background-color': '#E0E2E0', 'height': '60px'});
+        }
 
 
         }
@@ -295,113 +273,109 @@
     </script>
     <script>
         function AjouterProduit() {
-            $_data = {
-                'LibeleProduit': $("#LibeleProduit").val(),
+        $_data = {
+        'LibeleProduit': $("#LibeleProduit").val(),
                 'DescriptionProduit': $("#DescriptionProduit").val(),
                 'NbrPointProduit': $("#NbrPointProduit").val(),
                 'StockProduit': $("#StockProduit").val(),
                 'PrixProduit': $("#PrixProduit").val(),
                 'ImageProduit': "img\\game\\2.jpg"
-            };
-            $.ajax({
-                type: "POST",
+        };
+        $.ajax({
+        type: "POST",
                 url: "{{path('add_produit')}}",
                 data: $_data,
                 success: function () {
-                    location.reload();
+                location.reload();
                 }
-            });
+        });
         }
         function DeleteProduit($id) {
-            $_data = {
-                'id': $id
-            };
-            $.ajax({
-                type: "POST",
+        $_data = {
+        'id': $id
+        };
+        $.ajax({
+        type: "POST",
                 url: "{{path('delete_produit')}}",
                 data: $_data,
                 success: function () {
-                    location.reload();
+                location.reload();
                 }
-            });
+        });
         }
         function StockModalProduit($idProduit) {
         {%for produit in produits%}
-                if ($idProduit == {{produit.getId()}}) {
-                    $("#ModifierStockProduit").val("{{produit.getStock()}}");
-                    $('#EditeStockProduit').find("legend").first().html("Modifier Stock Produit | {{produit.getLibele()}}");
-
-                    $("#AddStockProduit").attr('onclick', "StockProduit('{{produit.getId()}}','ajouter')");
-                    $("#DeminuerStockProduit").attr('onclick', "StockProduit('{{produit.getId()}}','deminuer')");
-
-                    $('#EditeStockProduit').modal('show');
-                    }
+            if ($idProduit == {{produit.getId()}}) {
+            $("#ModifierStockProduit").val("{{produit.getStock()}}");
+            $('#EditeStockProduit').find("legend").first().html("Modifier Stock Produit | {{produit.getLibele()}}");
+            $("#AddStockProduit").attr('onclick', "StockProduit('{{produit.getId()}}','ajouter')");
+            $("#DeminuerStockProduit").attr('onclick', "StockProduit('{{produit.getId()}}','deminuer')");
+            $('#EditeStockProduit').modal('show');
+            }
         {% endfor %}
             }
-            
-            function StockProduit($idProduit,$type) {
-                $_data = {
-                    'idProduit': $idProduit,
+
+            function StockProduit($idProduit, $type) {
+            $_data = {
+            'idProduit': $idProduit,
                     'QuantiteProduit': $('#QuantiteProduit').val(),
                     'Type': $type
-                };
-                $.ajax({
-                    type: "POST",
+            };
+            $.ajax({
+            type: "POST",
                     url: "{{path('edit_stock_produit')}}",
                     data: $_data,
                     success: function () {
-                        location.reload();
+                    location.reload();
                     }
-                });
+            });
             }
-            
+
             function editModalProduit($idProduit) {
         {%for produit in produits%}
-                if ($idProduit == {{produit.getId()}}) {
-                   $("#EditLibeleProduit").val("{{produit.getLibele()}}");
-                   $("#EditDescriptionProduit").val("{{produit.getDescription()}}");
-                   $("#EditNbrPointProduit").val("{{produit.getNbrCoin()}}");
-                   $("#EditStockProduit").val("{{produit.getStock()}}");
-                   $("#EditPrixProduit").val("{{produit.getPrix()}}");
-                    $('#editProduit').find("legend").first().html("Modifier Produit | {{produit.getLibele()}}");
-
-                        $("#EditProduit").attr('onclick', "ModifierProduit('{{produit.getId()}}')");
-
-                        $('#editProduit').modal('show');
-                    }
+            if ($idProduit == {{produit.getId()}}) {
+            $("#EditLibeleProduit").val("{{produit.getLibele()}}");
+            $("#EditDescriptionProduit").val("{{produit.getDescription()}}");
+            $("#EditNbrPointProduit").val("{{produit.getNbrCoin()}}");
+            $("#EditStockProduit").val("{{produit.getStock()}}");
+            $("#EditPrixProduit").val("{{produit.getPrix()}}");
+            $('#editProduit').find("legend").first().html("Modifier Produit | {{produit.getLibele()}}");
+            $("#EditProduit").attr('onclick', "ModifierProduit('{{produit.getId()}}')");
+            $('#editProduit').modal('show');
+            }
         {% endfor %}
             }
             function ModifierProduit($id) {
-                $_data = {
-                    'id': $id,
+            $_data = {
+            'id': $id,
                     'LibeleProduit': $("#EditLibeleProduit").val(),
-                'DescriptionProduit': $("#EditDescriptionProduit").val(),
-                'NbrPointProduit': $("#EditNbrPointProduit").val(),
-                'StockProduit': $("#EditStockProduit").val(),
-                'PrixProduit': $("#EditPrixProduit").val(),
-                'ImageProduit': "img\\game\\2.jpg"
-                };
-                $.ajax({
-                    type: "POST",
+                    'DescriptionProduit': $("#EditDescriptionProduit").val(),
+                    'NbrPointProduit': $("#EditNbrPointProduit").val(),
+                    'StockProduit': $("#EditStockProduit").val(),
+                    'PrixProduit': $("#EditPrixProduit").val(),
+                    'ImageProduit': "img\\game\\2.jpg"
+            };
+            $.ajax({
+            type: "POST",
                     url: "{{path('edit_produit')}}",
                     data: $_data,
                     success: function () {
-                        location.reload();
+                    location.reload();
                     }
-                });
+            });
             }
             function AcheterProduit($idProduit) {
-                $_data = {
-                    'idProduit': $idProduit
-                };
-                $.ajax({
-                    type: "POST",
+            $_data = {
+            'idProduit': $idProduit
+            };
+            $.ajax({
+            type: "POST",
                     url: "{{path('acheter_produit')}}",
                     data: $_data,
                     success: function () {
-                        location.reload();
+                    location.reload();
                     }
-                });
+            });
             }
     </script>
 {% endblock %}
