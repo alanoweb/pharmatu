@@ -323,7 +323,23 @@
 
         <div class="modal-search">
             <div class="container">
-                <input type="text" class="form-control" placeholder="Type to search...">
+                <h4>Recent Games</h4>
+                <div class="btn-group pull-right">
+                    <a href="#" class="btn btn-default"><i class="fa fa-th-large no-margin"></i></a>
+                    <a href="#" class="btn btn-default"><i class="fa fa-bars no-margin"></i></a>
+                </div>
+                <div class="recherche" style="padding-right:30%;">
+                    <input type="text" class="form-control hidden-xs" placeholder="Search Game...">
+
+                    <div class="dropdown" style="margin-right:10%;" > 
+                        <a href="#" class="btn btn-default btn-icon-left btn-icon-right dropdown-toggle" data-toggle="dropdown"><i class="fa fa-sort-amount-desc"></i> Sort by <i class="fa fa-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Date</a></li>
+                            <li><a href="#">Score</a></li>
+                            <li><a href="#">A-Z</a></li>
+                        </ul>
+                    </div>
+                </div>
                 <i class="fa fa-times close"></i>
             </div>
         </div><!-- /.modal-search -->
@@ -345,7 +361,7 @@
                                     <div class="carousel-caption" style="height:400px; ">
                                         <h1 data-animation="animated animate1 bounceInDown" style="margin:auto !important; height:auto; ">The Witcher 3: Wild Hunt</h1>
                                         <p data-animation="animated animate7 fadeInUp">The world is in chaos. The air is thick with tension and the smoke of burnt villages.</p>
-                                        <a href="#signin" data-toggle="modal" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn">Became a member now</a>
+                                       {% if not app.user %} <a href="{{path('fos_user_registration_register')}}" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn">Inscrivez vous maintenant</a>{% endif %}
                                     </div>		
                                 </div>
                             </div>
@@ -356,7 +372,7 @@
                                     <div class="carousel-caption" style="height:400px; " >
                                         <h1 data-animation="animated animate1 fadeInDown" style="margin:auto !important;">The Last of Us: Remastered</h1>
                                         <p data-animation="animated animate7 fadeIn">Survive an apocalypse on Earth in The Last of Us, a PlayStation 4-exclusive title by Naughty Dog.</p>
-                                        <a href="#signin" data-toggle="modal" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn" >Became a member now</a>
+                                       {% if not app.user %} <a href="{{path('fos_user_registration_register')}}" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn">Inscrivez vous maintenant</a>{% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -367,7 +383,7 @@
                                     <div class="carousel-caption"  style="height:400px; ">
                                         <h1 data-animation="animated animate1 fadeIn" style="margin:auto !important">Star Wars: Battlefront 3</h1>
                                         <p data-animation="animated animate7 fadeIn">Galactic forces clash in this reboot of Star Wars Battlefront, the blockbuster shooter.</p>
-                                        <a href="#signin" data-toggle="modal" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn">Became a member now</a>
+                                       {% if not app.user %} <a href="{{path('fos_user_registration_register')}}" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn">Inscrivez vous maintenant</a>{% endif %}
                                     </div>
                                 </div>
                             </div>

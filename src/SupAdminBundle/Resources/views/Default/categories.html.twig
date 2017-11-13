@@ -1,6 +1,16 @@
 {% extends '::dashboard.html.twig' %}
 {% block Dashboard %}
-    <div class="text-center"><a href="javascript:void(0);" data-toggle="modal" data-target="#addcat" class="button pill big primary"><span class="plus icon"></span>ajouter une catégorie</a> </div>
+    <section id="boutique2ndnav" class="padding-top-25 no-padding-bottom border-bottom-1 border-grey-300" style="padding-top: 25px !important;background-color: #E0E2E0;height:60px">
+        <div class="container">
+            <div class="headline" style="margin-top: -16px">
+                <div class="text-center">
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#addcat" class="button pill big primary">
+                        <span class="plus icon"></span>ajouter une catégorie
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
     <div class="row">
         {%for cathegorie in cathegories%}
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
@@ -14,18 +24,17 @@
                         <div class="text-center"> <h3 class="card-title"><a href="{{path('activity',{'id':cathegorie.getId()})}}">{{cathegorie.getLibelle()}}</a></h3></div>
                         <ul><li>{{cathegorie.getDescription()}}</li></ul>
                         <div class="text-center">
-                            {%if cathegorie.getActivation() == 0%}<a href="javascript:void(0);" class="left positive pill button" style="" onclick="ValidationCategorie({{cathegorie.getId()}});"><span class="unlock icon"></span>Activer</a>{%else%}<a href="javascript:void(0);" class="left negative pill button" style="" onclick="ValidationCategorie({{cathegorie.getId()}});"><span class="lock icon"></span>Desactiver</a>{%endif%} 
-                            <a href="javascript:void(0);" class="middle pill button" onclick="editModal({{cathegorie.getId()}});"><span class="pen icon"></span>Modifier</a>
-                            <a href="javascript:void(0);" class="right negative pill button" onclick="DeleteCategorie({{cathegorie.getId()}});"><span class="cross icon"></span>Supprimer</a> 
+                            {%if cathegorie.getActivation() == 0%}<a href="javascript:void(0);" class="left positive pill button" style="padding-left: 5px;margin-right: -5px" onclick="ValidationCategorie({{cathegorie.getId()}});"><span class="fa fa-unlock"></span> Activer</a>{%else%}<a href="javascript:void(0);" class="left negative pill button" style="padding-left: 5px;margin-right: -5px" onclick="ValidationCategorie({{cathegorie.getId()}});"><span class="fa fa-lock"></span> Desactiver</a>{%endif%} 
+                            <a href="javascript:void(0);" {%if cathegorie.getStatus() == "Deleted"%}class="right pill button"{%else%}class="middle pill button"{%endif%} style="padding-left: 5px;" onclick="editModal({{cathegorie.getId()}});"><span class="fa fa-pencil"></span> Modifier</a>
+                           {%if cathegorie.getStatus() != "Deleted"%} <a href="javascript:void(0);" class="right negative pill button" style="padding-left: 5px;margin-left: -5px" onclick="DeleteCategorie({{cathegorie.getId()}});"><span class="fa fa-close"></span> Supprimer</a> {%endif%}
                         </div>
                     </div>
                 </div>
             </div>
         {% endfor %}
     </div>
-    <div class="text-center"><a href="#" data-toggle="modal" data-target="#addcat" class="button pill big primary"><span class="plus icon"></span>Ajouter une catégorie</a> </div>
-   
-            <!-- ---------------------- Modals ---------------------------------------------->
+
+    <!-- ---------------------- Modals ---------------------------------------------->
     <div class="container modal fade" id="addcat" tabindex="-1" role="dialog" aria-labelledby="addcatLabel" >
         <div class="card card-container" style="max-width:60%">
 
@@ -128,6 +137,24 @@
 {% endblock %}
 {% block javascript %}
     <script>
+        var menu = $('#boutique2ndnav');
+        var origOffsetY = menu.offset().top;
+
+        function scroll() {
+            if ($(window).scrollTop() >= origOffsetY - 50) {
+                $('#boutique2ndnav').css({'position': 'fixed', 'width': '100%', 'top': '60px', 'z-index': '1020'});
+            } else {
+                $('#boutique2ndnav').removeAttr('style');
+                $('#boutique2ndnav').css({'padding-top': '25px', 'background-color': '#E0E2E0', 'height': '60px'});
+
+            }
+
+
+        }
+        scroll();
+        document.onscroll = scroll;
+    </script>
+    <script>
         function AjouterCategorie() {
             $_data = {
                 'catlibelle': $("#LibelleCat").val(),
@@ -184,28 +211,28 @@
                         $("#Edit-radio-type-circle2").prop('checked', false);
                         $("#Edit-radio-type-circle1").prop('checked', true);
             {%endif%}
-                $("#EditCategorie").attr('onclick', "ModifierCategorie('{{cathegorie.getId()}}')");
+                        $("#EditCategorie").attr('onclick', "ModifierCategorie('{{cathegorie.getId()}}')");
 
                         $('#editcat').modal('show');
                     }
         {% endfor %}
             }
             function ModifierCategorie($id) {
-            $_data = {
-                'id': $id,
-                'catlibelle': $("#EditLibelleCat").val(),
-                'catdescription': $("#EditDescriptionCat").val(),
-                'catactivation': $("input[name='Editactivation']:checked").val(),
-                'catimage': "img\\game\\3.jpg"
-            };
-            $.ajax({
-                type: "POST",
-                url: "{{path('edit_categorie')}}",
-                data: $_data,
-                success: function () {
-                    location.reload();
-                }
-            });
-        }
+                $_data = {
+                    'id': $id,
+                    'catlibelle': $("#EditLibelleCat").val(),
+                    'catdescription': $("#EditDescriptionCat").val(),
+                    'catactivation': $("input[name='Editactivation']:checked").val(),
+                    'catimage': "img\\game\\3.jpg"
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "{{path('edit_categorie')}}",
+                    data: $_data,
+                    success: function () {
+                        location.reload();
+                    }
+                });
+            }
     </script>
 {% endblock %}
