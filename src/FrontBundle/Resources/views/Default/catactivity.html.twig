@@ -93,7 +93,7 @@
             </ul>
         </div>
     </section>
-
+{%if is_granted('ROLE_ADMIN') %}
     <!-- ---------------------- Modals ---------------------------------------------->
     <div class="container modal fade" id="addact" tabindex="-1" role="dialog" aria-labelledby="addactLabel" >
         <div class="card card-container" style="max-width:60%">
@@ -171,6 +171,7 @@
                         </div>
                     </div>
                 </fieldset>
+                <input id="AddCategorieid" name="AddCategorieid" type="hidden" value="{{categorie.getId()}}"/>
                 <input id="AddCategorie" type="button" value="ajouter une activité" onclick="AjouterActivity();"/>
             </form>
         </div><!-- /card-container -->
@@ -254,12 +255,15 @@
                         </div>
                     </div>
                 </fieldset>
+                <input id="EditActivityid" name="EditActivityid" type="hidden" value=""/>
                 <input id="EditActivity" type="button" value="Modifier Activité"/>
             </form>
         </div><!-- /card-container -->
     </div><!-- /container -->
+    {%endif%}
 {% endblock %}
 {% block javascript %}
+    {%if is_granted('ROLE_ADMIN') %}
     <script>
         var menu = $('#boutique2ndnav');
         var origOffsetY = menu.offset().top;
@@ -295,21 +299,11 @@
     </script>
     <script>
         function AjouterActivity() {
-            $_data = {
-                'idCategorie': "{{categorie.getId()}}",
-                'actNom': $("#NomAct").val(),
-                'actDescription': $("#DescriptionAct").val(),
-                'actActivation': $("input[name='activationAct']:checked").val(),
-                'actDatedebut': $("#DateDebutAct").val(),
-                'actDatefin': $("#DateFinAct").val(),
-                'actNbrpoint': $("#NbrPointAct").val(),
-                'actexp': $("#ExpAct").val(),
-                'actImage': "img\\game\\1.jpg"
-            };
             $.ajax({
                 type: "POST",
                 url: "{{path('add_activite')}}",
-                data: $_data,
+                processData: false,  contentType: false,  cache: false,
+                data: new FormData($('#addact').find('form')[0]),
                 success: function () {
                     location.reload();
                 }
@@ -351,6 +345,7 @@
                     $("#EditDateFinAct").val("{{act.getdat_fin()|date("d/m/Y")}}");
                     $("#EditNbrPointAct").val("{{act.getNbrPoint()}}");
                     $("#EditExpAct").val("{{act.getExperience()}}");
+                    $("#EditActivityid").val("{{act.getId()}}");
                     $('#editact').find("legend").first().html("Modifier Activité | {{act.getNom()}}");
 
 
@@ -361,32 +356,23 @@
                         $("#Edit-radio-type-circle2").prop('checked', false);
                         $("#Edit-radio-type-circle1").prop('checked', true);
             {%endif%}
-                        $("#EditActivity").attr('onclick', "ModifierActivity('{{act.getId()}}')");
+                        $("#EditActivity").attr('onclick', "ModifierActivity()");
 
                         $('#editact').modal('show');
                     }
         {% endfor %}
             }
-            function ModifierActivity($id) {
-                $_data = {
-                    'id': $id,
-                    'actNom': $("#EditNomAct").val(),
-                    'actDescription': $("#EditDescriptionAct").val(),
-                    'actActivation': $("input[name='EditactivationAct']:checked").val(),
-                    'actDatedebut': $("#EditDateDebutAct").val(),
-                    'actDatefin': $("#EditDateFinAct").val(),
-                    'actNbrpoint': $("#EditNbrPointAct").val(),
-                    'actexp': $("#EditExpAct").val(),
-                    'actImage': "img\\game\\1.jpg"
-                };
+            function ModifierActivity() {
                 $.ajax({
                     type: "POST",
                     url: "{{path('edit_activite')}}",
-                    data: $_data,
+                    processData: false,  contentType: false,  cache: false,
+                    data: new FormData($('#editact').find('form')[0]),
                     success: function () {
                         location.reload();
                     }
                 });
             }
     </script>
+    {%endif %}
 {% endblock %}

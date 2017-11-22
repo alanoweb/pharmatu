@@ -1,48 +1,72 @@
 {% trans_default_domain 'FOSUserBundle' %}
-{% block css %}
-    <style>
-        .profile-img-card{
+{% block Dashboard %}
+    <section class="hero hero-panel" style="background-image: url({{asset('img/cover/cover-register.jpg')}});">
+        <div class="hero-bg"></div>
+        <div class="container relative">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pull-none margin-auto" style="-webkit-box-shadow: 2px 2px 60px 10px rgba(255, 255, 255, 0.8);padding-right: 0px; padding-left: 0px;">
+                    <div class="panel panel-default panel-login">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-users"></i> Register to Gameforest</h3>
+                        </div>
+                        <div class="panel-body">
+                            <a class="btn btn-block btn-social btn-google-plus"><i class="fa fa-google"></i> Connect with Google</a>
+                            <div class="separator"><span>or</span></div>
+                            <form id="registerform" action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="post" class="form-signin" >
+                                <div class="input-group" style="margin-bottom:10px">
+                                    <span class="input-group-addon" ><i class="glyphicon glyphicon-user"></i></span>
+                                        {{ form_widget(form.username, { 'attr': {'class': 'form-control','style':"margin-bottom:0px" , 'placeholder': 'form.username'|trans } }) }}
 
-            margin-top:41px;}
-        </style>
-    {% endblock %}
+                                </div>  
+                                <span id="loginerror" style="color:red"> {{ form_errors(form.username) }}</span>
+                                <div class="input-group" style="margin-bottom:10px">
+                                    <span class="input-group-addon" ><i class="glyphicon glyphicon-envelope"></i></span>   
+                                        {{ form_widget(form.email, { 'attr': {'class': 'form-control','style':"margin-bottom:0px" , 'placeholder': 'form.email'|trans } }) }}
 
-    <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-<form id="registerform" action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="post" class="form-signin" style="width: 43%; margin-left: 29%;">
-    <div class="input-group" style="margin-bottom:10px">
-        <span class="input-group-addon" ><i class="glyphicon glyphicon-envelope"></i></span>   
-            {{ form_widget(form.email, { 'attr': {'class': 'form-control','style':"margin-bottom:0px" , 'placeholder': 'form.email'|trans } }) }}
+                                </div>
+                                <span id="loginerror" style="color:red"> {{ form_errors(form.email) }}</span>
+                                <div class="input-group" style="margin-bottom:10px">
+                                    <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
+                                        {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control','style':"margin-bottom:0px" , 'placeholder': 'form.password'|trans } }) }}
 
-    </div>
-    <span id="loginerror" style="color:red"> {{ form_errors(form.email) }}</span>
+                                </div>
+                                <span id="loginerror" style="color:red">{{ form_errors(form.plainPassword.first) }}</span>
+                                <div class="input-group" style="margin-bottom:10px">
+                                    <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
+                                        {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control','style':"margin-bottom:0px" , 'placeholder': 'form.password_confirmation'|trans } }) }}
 
-    <div class="input-group" style="margin-bottom:10px">
-        <span class="input-group-addon" ><i class="glyphicon glyphicon-user"></i></span>
-            {{ form_widget(form.username, { 'attr': {'class': 'form-control','style':"margin-bottom:0px" , 'placeholder': 'form.username'|trans } }) }}
-
-    </div>  
-    <span id="loginerror" style="color:red"> {{ form_errors(form.username) }}</span>
-
-    <div class="input-group" style="margin-bottom:10px">
-        <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
-            {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control','style':"margin-bottom:0px" , 'placeholder': 'form.password'|trans } }) }}
-
-    </div>
-    <span id="loginerror" style="color:red">{{ form_errors(form.plainPassword.first) }}</span>
-    <div class="input-group" style="margin-bottom:10px">
-        <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
-            {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control','style':"margin-bottom:0px" , 'placeholder': 'form.password_confirmation'|trans } }) }}
-
-    </div>
-    <span id="loginerror" style="color:red"> {{ form_errors(form.plainPassword.second) }}</span>
-    {{ form_rest(form) }}
-    <input class="btn btn-lg btn-primary btn-block btn-signin" type="submit" value="{{ 'registration.submit'|trans }}">
-    <!--span id="reauth-email" class="reauth-email"></span-->
-
-
-
-
-
-</form><!-- /form -->
-<p id="profile-name" class="profile-name-card" style="    margin-bottom: 20px;">Vous avez un compte ? <a href="javascript:void(0);" data-toggle="modal" data-target="#login-modal" class="forgot-password" data-dismiss="modal">
-        se connecter !</a></p>
+                                </div>
+                                <span id="loginerror" style="color:red"> {{ form_errors(form.plainPassword.second) }}</span>
+                                <div class="controls form-group">
+                                    <div class="row">
+                                        <div class="col-lg-4 no-padding-right">
+                                            <span class="helper-left">5 + 5 <i style="float:right ">=</i></span>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" id="security-password" placeholder="Your Answer" />
+                                        </div>
+                                    </div>
+                                </div>
+                                {{ form_rest(form) }}
+                                <input class="btn btn-lg btn-primary btn-block btn-signin" type="submit" value="{{ 'registration.submit'|trans }}">
+                                <!--span id="reauth-email" class="reauth-email"></span-->
+                                <div class="form-actions">
+                                    <div class="checkbox checkbox-primary" style="margin-bottom:20px">
+                                        <input type="checkbox" id="checkbox"> 
+                                        <label for="checkbox">Accept terms and service.</label>
+                                    </div>
+                                    <div class="checkbox checkbox-primary">
+                                      Vous avez un compte ? <a href="javascript:void(0);" style="color:blue" data-toggle="modal" data-target="#login-modal" class="forgot-password" data-dismiss="modal">
+                                    se connecter !</a>
+                                    </div>
+                                    
+                                </div>
+                            </form><!-- /form -->
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock Dashboard %}

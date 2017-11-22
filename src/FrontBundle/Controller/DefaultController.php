@@ -65,21 +65,27 @@ class DefaultController extends Controller {
     public function AddActiviteAction() {
         $em = $this->getDoctrine()->getManager();
         $request = $this->container->get('request');
-        $categorie = $em->getRepository('AdminBundle:ActivityCath')->find($request->get('idCategorie'));
+        $categorie = $em->getRepository('AdminBundle:ActivityCath')->find($request->get('AddCategorieid'));
 
         $Activite = new Activity();
-        $Activite->setNom($request->get('actNom'));
-        $Activite->setDescription($request->get('actDescription'));
-        $Activite->setActivation($request->get('actActivation'));
-        $Activite->setImg($request->get("actImage"));
-        $Activite->setdat_deb(date_create(date('Y-m-d', strtotime($request->get("actDatedebut")))));
-        $Activite->setdat_fin(date_create(date('Y-m-d', strtotime($request->get("actDatefin")))));
-        $Activite->setNbrPoint($request->get("actNbrpoint"));
-        $Activite->setExperience($request->get("actexp"));
+        $Activite->setNom($request->get('NomAct'));
+        $Activite->setDescription($request->get('DescriptionAct'));
+        $Activite->setActivation($request->get('activationAct'));
+        $file = $request->files->get('ImageAct');
+       if (isset($file)){
+           $fileName = md5($Activite->getId()).'.'.$file->guessExtension();
+           $photoDir = $this->container->getParameter('kernel.root_dir').'/../web/img/activity';
+           $file->move($photoDir, $fileName);
+           $Activite->setImg('img/activity/'.$fileName);
+       }
+        $Activite->setdat_deb(date_create(date('Y-m-d', strtotime($request->get("DateDebutAct")))));
+        $Activite->setdat_fin(date_create(date('Y-m-d', strtotime($request->get("DateFinAct")))));
+        $Activite->setNbrPoint($request->get("NbrPointAct"));
+        $Activite->setExperience($request->get("ExpAct"));
         $Activite->setCategorie($categorie);
         $Activite->setStatus("Nouveau");
 
-        if ($request->get('actActivation') == "1") {
+        if ($request->get('activationAct') == "1") {
             $categorie->setActivation("1");
             $categorie->setStatus("Activer");
         }
@@ -132,20 +138,26 @@ class DefaultController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $request = $this->container->get('request');
 
-        $id = $request->get('id');
+        $id = $request->get('EditActivityid');
         $Activite = $em->getRepository('AdminBundle:Activity')->find($id);
 
-        $Activite->setNom($request->get('actNom'));
-        $Activite->setDescription($request->get('actDescription'));
-        $Activite->setActivation($request->get('actActivation'));
-        $Activite->setImg($request->get("actImage"));
-        $Activite->setdat_deb(date_create(date('Y-m-d', strtotime($request->get("actDatedebut")))));
-        $Activite->setdat_fin(date_create(date('Y-m-d', strtotime($request->get("actDatefin")))));
-        $Activite->setNbrPoint($request->get("actNbrpoint"));
-        $Activite->setExperience($request->get("actexp"));
+        $Activite->setNom($request->get('EditNomAct'));
+        $Activite->setDescription($request->get('EditDescriptionAct'));
+        $Activite->setActivation($request->get('EditactivationAct'));
+        $file = $request->files->get('EditImageAct');
+       if (isset($file)){
+           $fileName = md5($id).'.'.$file->guessExtension();
+           $photoDir = $this->container->getParameter('kernel.root_dir').'/../web/img/activity';
+           $file->move($photoDir, $fileName);
+           $Activite->setImg('img/activity/'.$fileName);
+       }
+        $Activite->setdat_deb(date_create(date('Y-m-d', strtotime($request->get("EditDateDebutAct")))));
+        $Activite->setdat_fin(date_create(date('Y-m-d', strtotime($request->get("EditDateFinAct")))));
+        $Activite->setNbrPoint($request->get("EditNbrPointAct"));
+        $Activite->setExperience($request->get("EditExpAct"));
 
 
-        if ($request->get("actActivation") == "0") {
+        if ($request->get("EditactivationAct") == "0") {
             $Activite->setStatus("Desactiver");
         } else {
             $Activite->setStatus("Activer");
@@ -166,7 +178,13 @@ class DefaultController extends Controller {
         $Produit->setNbrCoin($request->get('NbrPointProduit'));
         $Produit->setStock($request->get("StockProduit"));
         $Produit->setPrix($request->get("PrixProduit"));
-        $Produit->setImage($request->get("ImageProduit"));
+        $file = $request->files->get('ImageProduit');
+       if (isset($file)){
+           $fileName = md5($Produit->getId()).'.'.$file->guessExtension();
+           $photoDir = $this->container->getParameter('kernel.root_dir').'/../web/img/produits';
+           $file->move($photoDir, $fileName);
+           $Produit->setImage('img/produits/'.$fileName);
+       }
         if ($request->get("StockProduit") == 0){
             $Produit->setStatus("Stock epuiser");
         }
@@ -228,16 +246,22 @@ class DefaultController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $request = $this->container->get('request');
 
-        $id = $request->get('id');
+        $id = $request->get('EditProduitid');
         $Produit = $em->getRepository('SupAdminBundle:Produits')->find($id);
 
-        $Produit->setLibele($request->get('LibeleProduit'));
-        $Produit->setDescription($request->get('DescriptionProduit'));
-        $Produit->setNbrCoin($request->get('NbrPointProduit'));
-        $Produit->setStock($request->get("StockProduit"));
-        $Produit->setPrix($request->get("PrixProduit"));
-        $Produit->setImage($request->get("ImageProduit"));
-         if ($request->get("StockProduit") == 0){
+        $Produit->setLibele($request->get('EditLibeleProduit'));
+        $Produit->setDescription($request->get('EditDescriptionProduit'));
+        $Produit->setNbrCoin($request->get('EditNbrPointProduit'));
+        $Produit->setStock($request->get("EditStockProduit"));
+        $Produit->setPrix($request->get("EditPrixProduit"));
+        $file = $request->files->get('EditImageProduit');
+       if (isset($file)){
+           $fileName = md5($id).'.'.$file->guessExtension();
+           $photoDir = $this->container->getParameter('kernel.root_dir').'/../web/img/produits';
+           $file->move($photoDir, $fileName);
+           $Produit->setImage('img/produits/'.$fileName);
+       }
+         if ($request->get("EditStockProduit") == 0){
                 $Produit->setStatus("Stock epuiser");
             }
             else{
