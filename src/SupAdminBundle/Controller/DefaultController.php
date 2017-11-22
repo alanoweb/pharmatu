@@ -23,10 +23,17 @@ class DefaultController extends Controller {
         $request = $this->container->get('request');
 
         $Categorie = new ActivityCath();
-        $Categorie->setLibelle($request->get('catlibelle'));
-        $Categorie->setDescription($request->get('catdescription'));
-        $Categorie->setActivation($request->get('catactivation'));
-        $Categorie->setImg($request->get("catimage"));
+        $Categorie->setLibelle($request->get('LibelleCat'));
+        $Categorie->setDescription($request->get('DescriptionCat'));
+        $Categorie->setActivation($request->get('activation'));
+        
+        $file = $request->files->get('ImageCat');
+       if (isset($file)){
+           $fileName = md5($Categorie->getId()).'.'.$file->guessExtension();
+           $photoDir = $this->container->getParameter('kernel.root_dir').'/../web/img/categorie';
+           $file->move($photoDir, $fileName);
+           $Categorie->setImg('img/categorie/'.$fileName);
+       }
         $Categorie->setStatus("Nouveau");
         $Categorie->setNbrAct(0);
 
@@ -77,15 +84,23 @@ class DefaultController extends Controller {
     public function EditCategorieAction() {
         $em = $this->getDoctrine()->getManager();
         $request = $this->container->get('request');
-
-        $id = $request->get('id');
+        
+        $id = $request->get('EditCategorieid');
         $Categorie = $em->getRepository('AdminBundle:ActivityCath')->find($id);
-
-        $Categorie->setLibelle($request->get('catlibelle'));
-        $Categorie->setDescription($request->get('catdescription'));
-        $Categorie->setActivation($request->get('catactivation'));
-        $Categorie->setImg($request->get("catimage"));
-        if ($request->get("catactivation") == "0") {
+        
+       $file = $request->files->get('EditImageCat');
+       if (isset($file)){
+           $fileName = md5($id).'.'.$file->guessExtension();
+           $photoDir = $this->container->getParameter('kernel.root_dir').'/../web/img/categorie';
+           $file->move($photoDir, $fileName);
+           $Categorie->setImg('img/categorie/'.$fileName);
+       }
+       
+        $Categorie->setLibelle($request->get('EditLibelleCat'));
+        $Categorie->setDescription($request->get('EditDescriptionCat'));
+        $Categorie->setActivation($request->get('Editactivation'));
+        
+        if ($request->get("Editactivation") == "0") {
             $Categorie->setStatus("Desactiver");
         } else {
             $Categorie->setStatus("Activer");

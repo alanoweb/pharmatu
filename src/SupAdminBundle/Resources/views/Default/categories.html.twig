@@ -130,6 +130,7 @@
                         </div>
                     </div>
                 </fieldset>
+                <input id="EditCategorieid" name="EditCategorieid" type="hidden" value=""/>
                 <input id="EditCategorie" type="button" value="Modifier catégorie"/>
             </form>
         </div><!-- /card-container -->
@@ -156,16 +157,11 @@
     </script>
     <script>
         function AjouterCategorie() {
-            $_data = {
-                'catlibelle': $("#LibelleCat").val(),
-                'catdescription': $("#DescriptionCat").val(),
-                'catactivation': $("input[name='activation']:checked").val(),
-                'catimage': "img\\game\\3.jpg"
-            };
             $.ajax({
                 type: "POST",
                 url: "{{path('add_categorie')}}",
-                data: $_data,
+                processData: false,  contentType: false,  cache: false,
+                data: new FormData($('#addcat').find('form')[0]),
                 success: function () {
                     location.reload();
                 }
@@ -204,6 +200,7 @@
                     $('#editcat').find("legend").first().html("Modifier Catégorie | {{cathegorie.getLibelle()}}");
                     $('#EditLibelleCat').val("{{cathegorie.getLibelle()}}");
                     $('#EditDescriptionCat').val("{{cathegorie.getDescription()}}");
+                    $('#EditCategorieid').val("{{cathegorie.getId()}}");
             {%if cathegorie.getActivation() == "0"%}
                         $("#Edit-radio-type-circle1").prop('checked', false);
                         $("#Edit-radio-type-circle2").prop('checked', true);
@@ -211,24 +208,19 @@
                         $("#Edit-radio-type-circle2").prop('checked', false);
                         $("#Edit-radio-type-circle1").prop('checked', true);
             {%endif%}
-                        $("#EditCategorie").attr('onclick', "ModifierCategorie('{{cathegorie.getId()}}')");
+                        $("#EditCategorie").attr('onclick', "ModifierCategorie()");
 
                         $('#editcat').modal('show');
                     }
         {% endfor %}
             }
-            function ModifierCategorie($id) {
-                $_data = {
-                    'id': $id,
-                    'catlibelle': $("#EditLibelleCat").val(),
-                    'catdescription': $("#EditDescriptionCat").val(),
-                    'catactivation': $("input[name='Editactivation']:checked").val(),
-                    'catimage': "img\\game\\3.jpg"
-                };
+            function ModifierCategorie() {
+                               
                 $.ajax({
                     type: "POST",
                     url: "{{path('edit_categorie')}}",
-                    data: $_data,
+                    data: new FormData($('#editcat').find('form')[0]),
+                    processData: false,  contentType: false,  cache: false,
                     success: function () {
                         location.reload();
                     }
