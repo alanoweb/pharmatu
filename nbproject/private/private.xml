@@ -6,10 +6,10 @@
             <file>file:/F:/wamp64/www/Test1/src/FrontBundle/Controller/DefaultController.php</file>
             <file>file:/F:/wamp64/www/Test1/src/FrontBundle/Resources/views/Default/boutique.html.twig</file>
             <file>file:/F:/wamp64/www/Test1/app/Resources/views/base.html.twig</file>
+            <file>file:/F:/wamp64/www/Test1/src/FrontBundle/Resources/views/Default/contact.html.twig</file>
             <file>file:/F:/wamp64/www/Test1/src/FrontBundle/Resources/views/Default/catactivity.html.twig</file>
-            <file>file:/F:/wamp64/www/Test1/src/SupAdminBundle/Entity/Produits.php</file>
-            <file>file:/F:/wamp64/www/Test1/src/AdminBundle/Entity/Activity.php</file>
-            <file>file:/F:/wamp64/www/Test1/src/FrontBundle/Resources/config/routing.yml</file>
+            <file>file:/F:/wamp64/www/Test1/src/SupAdminBundle/Resources/views/Default/categories.html.twig</file>
+            <file>file:/F:/wamp64/www/Test1/src/SupAdminBundle/Controller/DefaultController.php</file>
         </group>
     </open-files>
 </project-private>

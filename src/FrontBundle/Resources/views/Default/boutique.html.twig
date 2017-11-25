@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                         </div>
-                    {%elseif (is_granted('ROLE_ENTREPRISE')or not app.user)%}
+                    {%elseif ((is_granted('ROLE_ENTREPRISE')or not app.user) and not (produit.getStatus() == "Stock epuiser" or produit.getStatus() == "Deleted" ))%}
                         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <div class="card">
                                 <div class="card-img">
@@ -123,6 +123,7 @@
         </div>
     </section>
 
+  {%if is_granted('ROLE_ADMIN') %}
     <!-- ---------------------- Modals ---------------------------------------------->
     <div class="container modal fade" id="addProduit" tabindex="-1" role="dialog" aria-labelledby="addProduitLabel" >
         <div class="card card-container" style="max-width:60%">
@@ -272,14 +273,17 @@
                         </div>
                     </div>
                 </fieldset>
+                <input id="EditProduitid" name="EditProduitid" type="hidden" value=""/>
                 <input id="EditProduit" type="button" value="Modifier produit" />
             </form>
         </div><!-- /card-container -->
     </div><!-- /container -->
-
+{%endif %}
+    
     <!-- ------------------------------------------------------------------------------ -->
 {% endblock %}
 {% block javascript %}
+    {%if is_granted('ROLE_ADMIN') %}
     <script>
         var menu = $('#boutique2ndnav');
         var origOffsetY = menu.offset().top;
@@ -296,20 +300,15 @@
         scroll();
         document.onscroll = scroll;
     </script>
+    {%endif%}
     <script>
+        {%if is_granted('ROLE_ADMIN') %}
         function AjouterProduit() {
-        $_data = {
-        'LibeleProduit': $("#LibeleProduit").val(),
-                'DescriptionProduit': $("#DescriptionProduit").val(),
-                'NbrPointProduit': $("#NbrPointProduit").val(),
-                'StockProduit': $("#StockProduit").val(),
-                'PrixProduit': $("#PrixProduit").val(),
-                'ImageProduit': "img\\game\\2.jpg"
-        };
         $.ajax({
-        type: "POST",
+                type: "POST",
                 url: "{{path('add_produit')}}",
-                data: $_data,
+                data: new FormData($('#addProduit').find('form')[0]),
+                processData: false, contentType: false, cache: false,
                 success: function () {
                 location.reload();
                 }
@@ -364,31 +363,25 @@
             $("#EditNbrPointProduit").val("{{produit.getNbrCoin()}}");
             $("#EditStockProduit").val("{{produit.getStock()}}");
             $("#EditPrixProduit").val("{{produit.getPrix()}}");
+            $("#EditProduitid").val("{{produit.getId()}}");
             $('#editProduit').find("legend").first().html("Modifier Produit | {{produit.getLibele()}}");
-            $("#EditProduit").attr('onclick', "ModifierProduit('{{produit.getId()}}')");
+            $("#EditProduit").attr('onclick', "ModifierProduit()");
             $('#editProduit').modal('show');
             }
         {% endfor %}
             }
-            function ModifierProduit($id) {
-            $_data = {
-            'id': $id,
-                    'LibeleProduit': $("#EditLibeleProduit").val(),
-                    'DescriptionProduit': $("#EditDescriptionProduit").val(),
-                    'NbrPointProduit': $("#EditNbrPointProduit").val(),
-                    'StockProduit': $("#EditStockProduit").val(),
-                    'PrixProduit': $("#EditPrixProduit").val(),
-                    'ImageProduit': "img\\game\\2.jpg"
-            };
+            function ModifierProduit() {
             $.ajax({
             type: "POST",
                     url: "{{path('edit_produit')}}",
-                    data: $_data,
+                    data: new FormData($('#editProduit').find('form')[0]),
+                    processData: false,  contentType: false,  cache: false,
                     success: function () {
                     location.reload();
                     }
             });
             }
+            {%endif%}
             function AcheterProduit($idProduit) {
             $_data = {
             'idProduit': $idProduit
