@@ -283,7 +283,7 @@
         document.onscroll = scroll;
     </script>
     <script>
-        $("#DateFinAct").datepicker({dateFormat: 'dd-mm-yy',
+        $(".datepicker").datepicker({dateFormat: 'd/m/yy',
             altField: "#datepicker",
             closeText: 'Fermer',
             prevText: 'Précédent',
@@ -296,6 +296,7 @@
             dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
             weekHeader: 'Sem.'
         });
+           $(".datepicker").css("z-index","10000");
     </script>
     <script>
         function AjouterActivity() {
