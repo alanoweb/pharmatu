@@ -125,74 +125,85 @@
 
   {%if is_granted('ROLE_ADMIN') %}
     <!-- ---------------------- Modals ---------------------------------------------->
-    <div class="container modal fade" id="addProduit" tabindex="-1" role="dialog" aria-labelledby="addProduitLabel" >
-        <div class="card card-container" style="max-width:60%">
+    <div class="bs-modal modal fade" id="addProduit" tabindex="-1" role="dialog" aria-labelledby="addProduitLabel" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" data-dismiss="modal" style="float: right;"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Ajouter un Produit</h4>
+                </div>
+                <div class="modal-body">
 
-            <form >
-                <fieldset>
-                    <legend>Ajouter un Produit</legend>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" >Libele<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bookmark"></i></span>
-                                <input value="" name="LibeleProduit" placeholder="Exemple : Smart phone" id="LibeleProduit" class="form-control"  type="text">
+                    <form >
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" >Libele<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                            <div class="col-md-6  inputGroupContainer">
+                                <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bookmark"></i></span>
+                                    <input value="" name="LibeleProduit" placeholder="Exemple : Smart phone" id="LibeleProduit" class="form-control"  type="text">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" >Description<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
-                                <textarea name="DescriptionProduit" placeholder="Description du produit ou fiche technique" id="DescriptionProduit" class="form-control"></textarea>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" >Description<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                            <div class="col-md-6  inputGroupContainer">
+                                <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
+                                    <textarea name="DescriptionProduit" placeholder="Description du produit ou fiche technique" id="DescriptionProduit" class="form-control"></textarea>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" >Image<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
-                                <input type='file' name="ImageProduit" placeholder="Deposer l'image içi" id="ImageProduit" class="form-control"/>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" >Image<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                            <div class="col-md-6  inputGroupContainer">
+                                <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
+                                    <input type='file' name="ImageProduit" placeholder="Deposer l'image içi" id="ImageProduit" class="form-control"/>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" >Coins<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bitcoin"></i></span>
-                                <input value="" name="NbrPointProduit" placeholder="Prix en Point" id="NbrPointProduit" class="form-control"  type="text">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" >Coins<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                            <div class="col-md-6  inputGroupContainer">
+                                <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bitcoin"></i></span>
+                                    <input value="" name="NbrPointProduit" placeholder="Prix en Point" id="NbrPointProduit" class="form-control"  type="text">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" >Stock<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
-                                <input value="" name="StockProduit" placeholder="Quantité en stock" id="StockProduit" class="form-control"  type="text">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" >Stock<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                            <div class="col-md-6  inputGroupContainer">
+                                <div class="input-group"> <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
+                                    <input value="" name="StockProduit" placeholder="Quantité en stock" id="StockProduit" class="form-control"  type="text">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" >Prix<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
-                                <input value="" name="PrixProduit" placeholder="Prix réel du produit" id="PrixProduit" class="form-control"  type="text">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" >Prix<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                            <div class="col-md-6  inputGroupContainer">
+                                <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
+                                    <input value="" name="PrixProduit" placeholder="Prix réel du produit" id="PrixProduit" class="form-control"  type="text">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </fieldset>
-                <input id="AddProduit" type="button" value="ajouter un produit" onclick="AjouterProduit();"/>
-            </form>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <input id="AddProduit" class="btn btn-primary" type="button" value="ajouter un produit" onclick="AjouterProduit();"/>
+
+                </div>
+            </div>
         </div><!-- /card-container -->
     </div><!-- /container -->
 
     <!-- ------------------------------------------------------------------------------ -->
 
-    <div class="container modal fade" id="EditeStockProduit" tabindex="-1" role="dialog" aria-labelledby="EditeStockProduitLabel" >
-        <div class="card card-container" style="max-width:60%">
-
-            <form >
-                <fieldset>
-                    <legend></legend>
+    <div class="bs-modal modal fade" id="EditeStockProduit" tabindex="-1" role="dialog" aria-labelledby="EditeStockProduitLabel" >
+        <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" data-dismiss="modal" style="float: right;"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 id="EditeStockProduitTitle" class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
                     <div class="form-group" >
                         <label class="col-md-4 control-label" >Stock<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
                         <div class="col-md-6  inputGroupContainer">
@@ -209,21 +220,27 @@
                             </div>
                         </div>
                     </div>
-                </fieldset>
-                <input id="AddStockProduit" type="button" value="ajouter au stock" />
-                <input id="DeminuerStockProduit" type="button" value="remove du stock" />
-            </form>
+                            </form>
+                </div>
+                    <div class="modal-footer">
+                <input id="AddStockProduit" class="btn btn-primary" type="button" value="ajouter au stock" />
+                <input id="DeminuerStockProduit" class="btn btn-danger" type="button" value="remove du stock" />
+            </div>
+            </div>
         </div><!-- /card-container -->
     </div><!-- /container -->
 
     <!-- ------------------------------------------------------------------------------ -->
 
-    <div class="container modal fade" id="editProduit" tabindex="-1" role="dialog" aria-labelledby="editProduitLabel" >
-        <div class="card card-container" style="max-width:60%">
-
-            <form >
-                <fieldset>
-                    <legend></legend>
+    <div class="bs-modal modal fade" id="editProduit" tabindex="-1" role="dialog" aria-labelledby="editProduitLabel" >
+         <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" data-dismiss="modal" style="float: right;"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 id="editProduitTitle" class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <form >
                     <div class="form-group">
                         <label class="col-md-4 control-label" >Libele<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
                         <div class="col-md-6  inputGroupContainer">
@@ -272,10 +289,13 @@
                             </div>
                         </div>
                     </div>
-                </fieldset>
+                </form>
+                        </div>
+                    <div class="modal-footer">
                 <input id="EditProduitid" name="EditProduitid" type="hidden" value=""/>
-                <input id="EditProduit" type="button" value="Modifier produit" />
-            </form>
+                <input id="EditProduit" class="btn btn-primary" type="button" value="Modifier produit" />
+            </div>
+             </div>
         </div><!-- /card-container -->
     </div><!-- /container -->
 {%endif %}
@@ -331,7 +351,7 @@
         {%for produit in produits%}
             if ($idProduit == {{produit.getId()}}) {
             $("#ModifierStockProduit").val("{{produit.getStock()}}");
-            $('#EditeStockProduit').find("legend").first().html("Modifier Stock Produit | {{produit.getLibele()}}");
+            $('#EditeStockProduitTitle').html("Modifier Stock Produit | {{produit.getLibele()}}");
             $("#AddStockProduit").attr('onclick', "StockProduit('{{produit.getId()}}','ajouter')");
             $("#DeminuerStockProduit").attr('onclick', "StockProduit('{{produit.getId()}}','deminuer')");
             $('#EditeStockProduit').modal('show');
@@ -364,7 +384,7 @@
             $("#EditStockProduit").val("{{produit.getStock()}}");
             $("#EditPrixProduit").val("{{produit.getPrix()}}");
             $("#EditProduitid").val("{{produit.getId()}}");
-            $('#editProduit').find("legend").first().html("Modifier Produit | {{produit.getLibele()}}");
+            $('#editProduitTitle').html("Modifier Produit | {{produit.getLibele()}}");
             $("#EditProduit").attr('onclick', "ModifierProduit()");
             $('#editProduit').modal('show');
             }
