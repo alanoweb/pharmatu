@@ -32,8 +32,8 @@
         <link href="{{asset('css/custom.css')}}" rel="stylesheet">
        
 
-        {%block css %}
-        {%endblock%}
+        {% block css %}
+        {% endblock css %}
     </head>
 
     <body class="fixed-header">
@@ -255,20 +255,20 @@
                                     {% if app.user.admin != null %}
                                         {% if app.user.admin.pseudo != null and app.user.admin.pseudo != ""%}
                                             {{app.user.admin.pseudo}}
-                                        {%else%}
+                                        {% else %}
                                             {{app.user.admin.nom}} {{app.user.admin.prenom}}
                                         {%endif%}
-                                    {%elseif app.user.entreprise != null%}
+                                    {% elseif app.user.entreprise != null %}
                                         {{app.user.entreprise.nom}}
-                                    {%elseif app.user.utilisateur%}
+                                    {% elseif app.user.utilisateur %}
                                         {% if app.user.utilisateur.pseudo != null and app.user.utilisateur.pseudo != ""%}
                                             {{app.user.utilisateur.pseudo}}
                                         {%else%}
                                             {{app.user.utilisateur.nom}} {{app.user.utilisateur.prenom}}
                                         {%endif%}
-                                    {%else%}
+                                    {% else %}
                                         {{app.user.username}}
-                                    {%endif%}
+                                    {% endif %}
                                 </span>
                             </a>
                             <ul class="dropdown-menu">
@@ -307,31 +307,31 @@
                                 <li class="dropdown-footer"><a href="#">View all games</a></li>
                             </ul>
                         </div>
-                    {%else%}
+                    {% else %}
                         <div class="nav-profile ">
                             <a href="javascript:void(0);" data-toggle="modal" data-target="#login-modal" class="dropdown-toggle" ><img src="{{asset('img/user/avatar.jpg')}}" alt=""> <span>Anonyme</span></a>  
                         </div>
-                    {%endif%}
-					{% block searchicon %}
-                    <a href="#" data-toggle="modal-search"><i class="fa fa-search"></i></a>
-					{% endblock %}
+                    {% endif %}
+                    {% block searchicon %}
+                        <a href="#" data-toggle="modal-search"><i class="fa fa-search"></i></a>
+                        {% endblock %}
                 </div>
             </div>
         </header>
         <!-- /header -->
-{% block search %}
-        <div class="modal-search">
-            <div class="container">
-               
-                <div class="recherche" style="padding-right:30%;">
-                    <input type="text" class="form-control hidden-xs" style="    padding: 9px 9px 9px 9px;     background: #afafaf70;    color: #1a1b1d;" placeholder="Search Game...">
+        {% block search %}
+            <div class="modal-search">
+                <div class="container">
 
-                  
+                    <div class="recherche" style="padding-right:30%;">
+                        <input type="text" class="form-control hidden-xs" style="    padding: 9px 9px 9px 9px;     background: #afafaf;    color: #1a1b1d;" placeholder="Search Game...">
+
+
+                    </div>
+                    <i class="fa fa-times close"></i>
                 </div>
-                <i class="fa fa-times close"></i>
-            </div>
-        </div><!-- /.modal-search -->
-{% endblock%}
+            </div><!-- /.modal-search -->
+        {% endblock%}
         <!-- wrapper -->
         <div id="wrapper">
             {% block Dashboard %}
@@ -942,46 +942,58 @@
         <!-- Modales -->
 
 
-        <div class="container modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="card card-container">
-                <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
-                <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-                <p id="profile-name" class="profile-name-card"></p>
-                <form id="loginform" action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
-                    <span id="loginerror" style="color:red"></span>
-                    <span id="reauth-email" class="reauth-email"></span>
-                    <div class="input-group" style="margin-bottom:10px;border:none">
-                        <span class="input-group-addon" ><i class="glyphicon glyphicon-user"></i></span>   
-                        <input onfocusout="usernamereq();" type="text" id="loginusername" name="_username" required="required" class="form-control " placeholder="{{ 'security.login.username'|trans }}" style="margin-bottom:0px"/>
+        <div class="bs-modal-sm modal fade" id="login-modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" data-dismiss="modal" style="float: right;"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">Login</h4>
+                        <!--img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" /-->
                     </div>
-                    <div class="input-group" style="margin-bottom:10px">
-                        <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
-                        <input onfocusout="pswreq();" type="password" class="form-control " id="loginpassword" name="_password" required="required" placeholder="{{ 'security.login.password'|trans }}" style="margin-bottom:0px"/>
-                    </div>  
-                    <div id="remember" class="checkbox">
-                        <input type="checkbox" id="loginremember_me" name="_remember_me" value="on"/>
-                        <label for="loginremember_me">{{ 'security.login.remember_me'|trans }}</label>
-                    </div>
-                    <button id="login_submit" name="_submit" class="btn btn-lg btn-primary btn-block btn-signin" type="submit" style="width:49%;display:inline-block">{{ 'security.login.submit'|trans }}</button>
-                    <a href="{{path('fos_user_registration_register')}}"><button id="_register" name="_register" class="btn btn-lg btn-primary btn-block btn-signin" type="button" style="width:49%;display:inline;float:right;background-color:#AFAFAF;">{#{ 'security.login.register'|trans }#}Inscription</button></a>
-                </form><!-- /form -->
-                <a id="forgotpwd" href="{{ path('fos_user_resetting_request') }}" class="forgot-password">
-                <!--a id="forgotpwd" href="javascript:void(0);" data-toggle="modal" data-target="#change-pwd"-->
-                    Mot de passe oublier ?
-                </a>
+
+                    <form id="loginform" action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
+                        <div class="modal-body">
+                            <span id="loginerror" style="color:red"></span>
+                            <span id="reauth-email" class="reauth-email"></span>
+                            <div class="input-group" style="margin-bottom:10px;border:none">
+                                <span class="input-group-addon" ><i class="glyphicon glyphicon-user"></i></span>   
+                                <input onfocusout="usernamereq();" type="text" id="loginusername" name="_username" required="required" class="form-control " placeholder="{{ 'security.login.username'|trans }}" style="margin-bottom:0px"/>
+                            </div>
+                            <div class="input-group" style="margin-bottom:10px">
+                                <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
+                                <input onfocusout="pswreq();" type="password" class="form-control " id="loginpassword" name="_password" required="required" placeholder="{{ 'security.login.password'|trans }}" style="margin-bottom:0px"/>
+                            </div>  
+                            <div id="remember" class="checkbox">
+                                <input type="checkbox" id="loginremember_me" name="_remember_me" value="on"/>
+                                <label for="loginremember_me">{{ 'security.login.remember_me'|trans }}</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="login_submit" name="_submit" class="btn btn-primary" type="submit" style="width:30%;display:inline-block">{{ 'security.login.submit'|trans }}</button>
+                            <a href="{{path('fos_user_registration_register')}}"><button id="_register" name="_register" class="btn btn-danger" type="button" style="width:30%;float:right;">{#{ 'security.login.register'|trans }#}Inscription</button></a>
+                            <br><a id="forgotpwd" href="{{ path('fos_user_resetting_request') }}" class="forgot-password">
+                                <!--a id="forgotpwd" href="javascript:void(0);" data-toggle="modal" data-target="#change-pwd"-->
+                                Mot de passe oublier ?
+                            </a>
+                        </div>
+                    </form><!-- /form -->
+
+                </div>
             </div><!-- /card-container -->
         </div><!-- /container -->
 
-       {# <div class="container modal fade" id="change-pwd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="card card-container">
-{% include "UserBundle:Resetting:request_content.html.twig" %}
-            </div><!-- /card-container -->
-        </div><!-- /container -->#}
+        {# <div class="container modal fade" id="change-pwd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+             <div class="card card-container">
+ {% include "UserBundle:Resetting:request_content.html.twig" %}
+             </div><!-- /card-container -->
+         </div><!-- /container -->#}
 
         <!-- Javascript -->
         <script src="{{asset('plugins/jquery/jquery-3.1.0.min.js')}}"></script>
         <script src="{{asset('plugins/bootstrap/js/bootstrap.min.js')}}"></script>
         <script src="{{asset('plugins/twitter/twitter.js')}}"></script>
+        <script src="{{ asset('js/jquery-ui-1.12.0/jquery-ui.js') }}"></script>
+        <!--script src="{{asset('plugins/ekko-lightbox/ekko-lightbox.min.js')}}"></script-->
         <script src="{{asset('js/core.min.js')}}"></script>
         <script src="{{asset('plugins/owl-carousel/owl.carousel.min.js')}}"></script>
         
@@ -1011,8 +1023,8 @@
                                     $('#loginusername').parent().css("border", "solid 1px red");
                                     $('#loginpassword').parent().css("border", "solid 1px red");
                                 } else
-                                    if ((location.href.match('/register'))||(location.href.match('/resetting/request')))
-                                        window.location.href = "{{path('homepage')}}";
+                                if ((location.href.match('/register')) || (location.href.match('/resetting/request')))
+                                    window.location.href = "{{path('homepage')}}";
                                 else
                                     location.reload();
                             },
@@ -1079,10 +1091,10 @@
             $('#forgotpwd').click(function (e) {
                 if (location.href.match('/resetting/request')) {
                     e.preventDefault();
-                $('#login-modal').modal('toggle');
-            }
+                    $('#login-modal').modal('toggle');
+                }
             });
-            
+
         </script>
         {% block javascript %}
         {% endblock javascript %}

@@ -26,7 +26,7 @@
                         <div class="text-center">
                             {%if cathegorie.getActivation() == 0%}<a href="javascript:void(0);" class="left positive pill button" style="padding-left: 5px;margin-right: -5px" onclick="ValidationCategorie({{cathegorie.getId()}});"><span class="fa fa-unlock"></span> Activer</a>{%else%}<a href="javascript:void(0);" class="left negative pill button" style="padding-left: 5px;margin-right: -5px" onclick="ValidationCategorie({{cathegorie.getId()}});"><span class="fa fa-lock"></span> Desactiver</a>{%endif%} 
                             <a href="javascript:void(0);" {%if cathegorie.getStatus() == "Deleted"%}class="right pill button"{%else%}class="middle pill button"{%endif%} style="padding-left: 5px;" onclick="editModal({{cathegorie.getId()}});"><span class="fa fa-pencil"></span> Modifier</a>
-                           {%if cathegorie.getStatus() != "Deleted"%} <a href="javascript:void(0);" class="right negative pill button" style="padding-left: 5px;margin-left: -5px" onclick="DeleteCategorie({{cathegorie.getId()}});"><span class="fa fa-close"></span> Supprimer</a> {%endif%}
+                            {%if cathegorie.getStatus() != "Deleted"%} <a href="javascript:void(0);" class="right negative pill button" style="padding-left: 5px;margin-left: -5px" onclick="DeleteCategorie({{cathegorie.getId()}});"><span class="fa fa-close"></span> Supprimer</a> {%endif%}
                         </div>
                     </div>
                 </div>
@@ -35,104 +35,122 @@
     </div>
 
     <!-- ---------------------- Modals ---------------------------------------------->
-    <div class="container modal fade" id="addcat" tabindex="-1" role="dialog" aria-labelledby="addcatLabel" >
-        <div class="card card-container" style="max-width:60%">
+    <div class="modal fade bs-modal" id="addcat" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
-            <form >
-                <fieldset>
-                    <legend>Ajouter une Catégorie d'activite</legend>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" >Libellé<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bookmark"></i></span>
-                                <input value="" name="LibelleCat" placeholder="Exemple : Jeux" id="LibelleCat" class="form-control"  type="text">
+                <div class="modal-header">
+                    <button type="button" data-dismiss="modal" style="float: right;"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>  
+                    <h4 class="modal-title">Ajouter une Catégorie d'activite</h4>
+                </div>
+
+                <div class="modal-body">
+                    <form >
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" >Libellé<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                            <div class="col-md-6  inputGroupContainer">
+                                <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bookmark"></i></span>
+                                    <input value="" name="LibelleCat" placeholder="Exemple : Jeux" id="LibelleCat" class="form-control"  type="text">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" >Description<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
-                                <textarea name="DescriptionCat" placeholder="Exemple : Ici vous trouverez les jeux" id="DescriptionCat" class="form-control"></textarea>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" >Description<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                            <div class="col-md-6  inputGroupContainer">
+                                <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
+                                    <textarea name="DescriptionCat" placeholder="Exemple : Ici vous trouverez les jeux" id="DescriptionCat" class="form-control"></textarea>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" >Image<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
-                                <input type='file' name="ImageCat" placeholder="Deposer l'image içi" id="ImageCat" class="form-control"/>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" >Image<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                            <div class="col-md-6  inputGroupContainer">
+                                <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
+                                    <input type='file' name="ImageCat" placeholder="Deposer l'image içi" id="ImageCat" class="form-control"/>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">Activer ?</label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="rdio rdio-theme circle col-md-3" style="transform: scale(0.9);margin-left: 1%;">
-                                <input id="radio-type-circle1" type="radio"  name="activation" value="1" checked>
-                                <label for="radio-type-circle1">Oui</label>
-                            </div>
-                            <div style="transform: scale(0.9);" class="rdio rdio-theme circle col-md-3">
-                                <input id="radio-type-circle2" type="radio" name="activation" value="0">
-                                <label for="radio-type-circle2">Non</label>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Activer ?</label>
+                            <div class="col-md-6  inputGroupContainer">
+                                <div class="rdio rdio-theme circle col-md-3" style="transform: scale(0.9);margin-left: 1%;">
+                                    <input id="radio-type-circle1" type="radio"  name="activation" value="1" checked>
+                                    <label for="radio-type-circle1">Oui</label>
+                                </div>
+                                <div style="transform: scale(0.9);" class="rdio rdio-theme circle col-md-3">
+                                    <input id="radio-type-circle2" type="radio" name="activation" value="0">
+                                    <label for="radio-type-circle2">Non</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </fieldset>
-                <input id="AddCategorie" type="button" value="ajouter une catégorie" onclick="AjouterCategorie();"/>
-            </form>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <input id="AddCategorie" class="btn btn-primary" type="button" value="ajouter une catégorie" onclick="AjouterCategorie();"/>
+                </div> 
+
+            </div>      
         </div><!-- /card-container -->
     </div><!-- /container -->
 
     <!-- ------------------------------------------------------------------------------ -->
 
-    <div class="container modal fade" id="editcat" tabindex="-1" role="dialog" aria-labelledby="addcatLabel" >
-        <div class="card card-container" style="max-width:60%">
+    <div class="modal fade bs-modal" id="editcat" tabindex="-1" role="dialog" >
+        <div class="modal-dialog">
+            <div class="modal-content">
 
-            <form >
-                <fieldset>
-                    <legend></legend>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" >Libellé<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bookmark"></i></span>
-                                <input value="" name="EditLibelleCat" placeholder="Exemple : Jeux" id="EditLibelleCat" class="form-control"  type="text">
+                <div class="modal-header">
+                    <button type="button" data-dismiss="modal" style="float: right;"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 id="editTitleCat" class="modal-title"></h4>
+                </div>
+
+                <div class="modal-body">
+                    <form >
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" >Libellé<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                            <div class="col-md-6  inputGroupContainer">
+                                <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bookmark"></i></span>
+                                    <input value="" name="EditLibelleCat" placeholder="Exemple : Jeux" id="EditLibelleCat" class="form-control"  type="text">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" >Description<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
-                                <textarea name="EditDescriptionCat" placeholder="Exemple : Ici vous trouverez les jeux" id="EditDescriptionCat" class="form-control"></textarea>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" >Description<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                            <div class="col-md-6  inputGroupContainer">
+                                <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
+                                    <textarea name="EditDescriptionCat" placeholder="Exemple : Ici vous trouverez les jeux" id="EditDescriptionCat" class="form-control"></textarea>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" >Image<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
-                                <input type='file' name="EditImageCat" placeholder="Deposer l'image içi" id="EditImageCat" class="form-control"/>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" >Image<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                            <div class="col-md-6  inputGroupContainer">
+                                <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
+                                    <input type='file' name="EditImageCat" placeholder="Deposer l'image içi" id="EditImageCat" class="form-control"/>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">Activer ?</label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="rdio rdio-theme circle col-md-3" style="transform: scale(0.9);margin-left: 1%;">
-                                <input id="Edit-radio-type-circle1" type="radio"  name="Editactivation" value="1">
-                                <label for="Edit-radio-type-circle1">Oui</label>
-                            </div>
-                            <div style="transform: scale(0.9);" class="rdio rdio-theme circle col-md-3">
-                                <input id="Edit-radio-type-circle2" type="radio" name="Editactivation" value="0">
-                                <label for="Edit-radio-type-circle2">Non</label>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Activer ?</label>
+                            <div class="col-md-6  inputGroupContainer">
+                                <div class="rdio rdio-theme circle col-md-3" style="transform: scale(0.9);margin-left: 1%;">
+                                    <input id="Edit-radio-type-circle1" type="radio"  name="Editactivation" value="1">
+                                    <label for="Edit-radio-type-circle1">Oui</label>
+                                </div>
+                                <div style="transform: scale(0.9);" class="rdio rdio-theme circle col-md-3">
+                                    <input id="Edit-radio-type-circle2" type="radio" name="Editactivation" value="0">
+                                    <label for="Edit-radio-type-circle2">Non</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </fieldset>
-                <input id="EditCategorieid" name="EditCategorieid" type="hidden" value=""/>
-                <input id="EditCategorie" type="button" value="Modifier catégorie"/>
-            </form>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <input id="EditCategorieid" name="EditCategorieid" type="hidden" value=""/>
+                    <input id="EditCategorie" class="btn btn-primary" type="button" value="Modifier catégorie"/>
+                </div>
+
+            </div>
         </div><!-- /card-container -->
     </div><!-- /container -->
 {% endblock %}
@@ -160,7 +178,7 @@
             $.ajax({
                 type: "POST",
                 url: "{{path('add_categorie')}}",
-                processData: false,  contentType: false,  cache: false,
+                processData: false, contentType: false, cache: false,
                 data: new FormData($('#addcat').find('form')[0]),
                 success: function () {
                     location.reload();
@@ -197,7 +215,7 @@
         function editModal($idcat) {
         {%for cathegorie in cathegories%}
                 if ($idcat == {{cathegorie.getId()}}) {
-                    $('#editcat').find("legend").first().html("Modifier Catégorie | {{cathegorie.getLibelle()}}");
+                    $('#editTitleCat').html("Modifier Catégorie | {{cathegorie.getLibelle()}}");
                     $('#EditLibelleCat').val("{{cathegorie.getLibelle()}}");
                     $('#EditDescriptionCat').val("{{cathegorie.getDescription()}}");
                     $('#EditCategorieid').val("{{cathegorie.getId()}}");
@@ -215,12 +233,12 @@
         {% endfor %}
             }
             function ModifierCategorie() {
-                               
+
                 $.ajax({
                     type: "POST",
                     url: "{{path('edit_categorie')}}",
                     data: new FormData($('#editcat').find('form')[0]),
-                    processData: false,  contentType: false,  cache: false,
+                    processData: false, contentType: false, cache: false,
                     success: function () {
                         location.reload();
                     }

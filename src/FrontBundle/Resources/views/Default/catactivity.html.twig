@@ -1,27 +1,43 @@
 {% extends 'FrontBundle::layout.html.twig' %}
-{% block search %}
-        <div class="modal-search">
-            <div class="container">
-    
-                <div class="btn-group pull-right">
-                    <a href="#" class="btn btn-default"><i class="fa fa-th-large no-margin"></i></a>
-                    <a href="#" class="btn btn-default"><i class="fa fa-bars no-margin"></i></a>
-                </div>
-                <div class="recherche" style="padding-right:30%;">
-                    <input type="text" class="form-control hidden-xs" placeholder="Search Game...">
+{% block css %}
+    <style>
 
-                    <div class="dropdown" style="margin-right:10%;" > 
-                        <a href="#" class="btn btn-default btn-icon-left btn-icon-right dropdown-toggle" data-toggle="dropdown"><i class="fa fa-sort-amount-desc"></i> Sort by <i class="fa fa-caret-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Date</a></li>
-                            <li><a href="#">Score</a></li>
-                            <li><a href="#">A-Z</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <i class="fa fa-times close"></i>
+.modal-baniere_gauche{
+width:50%;
+height:100%;
+float:left;
+}
+ 
+.modal-baniere_droite{
+float:right;
+width:50%;
+height:100%;
+}
+    </style>
+{% endblock css %}
+{% block search %}
+    <div class="modal-search">
+        <div class="container">
+
+            <div class="btn-group pull-right">
+                <a href="#" class="btn btn-default"><i class="fa fa-th-large no-margin"></i></a>
+                <a href="#" class="btn btn-default"><i class="fa fa-bars no-margin"></i></a>
             </div>
-        </div><!-- /.modal-search -->
+            <div class="recherche" style="padding-right:30%;">
+                <input type="text" class="form-control hidden-xs" placeholder="Search Game...">
+
+                <div class="dropdown" style="margin-right:10%;" > 
+                    <a href="#" class="btn btn-default btn-icon-left btn-icon-right dropdown-toggle" data-toggle="dropdown"><i class="fa fa-sort-amount-desc"></i> Sort by <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Date</a></li>
+                        <li><a href="#">Score</a></li>
+                        <li><a href="#">A-Z</a></li>
+                    </ul>
+                </div>
+            </div>
+            <i class="fa fa-times close"></i>
+        </div>
+    </div><!-- /.modal-search -->
 {% endblock%}
 {% block slide %}
     {% if is_granted('ROLE_ADMIN')%}
@@ -117,14 +133,18 @@
             </ul>
         </div>
     </section>
-{%if is_granted('ROLE_ADMIN') %}
-    <!-- ---------------------- Modals ---------------------------------------------->
-    <div class="container modal fade" id="addact" tabindex="-1" role="dialog" aria-labelledby="addactLabel" >
-        <div class="card card-container" style="max-width:60%">
-
-            <form >
-                <fieldset>
-                    <legend>Ajouter une Activité</legend>
+    {%if is_granted('ROLE_ADMIN') %}
+        <!-- ---------------------- Modals ---------------------------------------------->
+        <div class="bs-modal-lg modal fade" id="addact" tabindex="-1" role="dialog" aria-labelledby="addactLabel" >
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" data-dismiss="modal" style="float: right;"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">Ajouter une Activité</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form >
+                            <div class="modal-baniere_gauche">
                     <div class="form-group">
                         <label class="col-md-4 control-label" >Nom<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
                         <div class="col-md-6  inputGroupContainer">
@@ -162,6 +182,8 @@
                             </div>
                         </div>
                     </div>
+                                </div>
+                                <div class="modal-baniere_droite">
                     <div class="form-group">
                         <label class="col-md-4 control-label" >Date Début<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
                         <div class="col-md-6  inputGroupContainer">
@@ -194,210 +216,224 @@
                             </div>
                         </div>
                     </div>
-                </fieldset>
+                            </div>
+                </form>
+                            </div>
+                            <div class="modal-footer">
                 <input id="AddCategorieid" name="AddCategorieid" type="hidden" value="{{categorie.getId()}}"/>
-                <input id="AddCategorie" type="button" value="ajouter une activité" onclick="AjouterActivity();"/>
-            </form>
-        </div><!-- /card-container -->
-    </div><!-- /container -->
+                <input id="AddCategorie" class="btn btn-primary" type="button" value="ajouter une activité" onclick="AjouterActivity();"/>
+                </div>
+                </div>
+            </div><!-- /card-container -->
+        </div><!-- /container -->
 
-    <!-- ------------------------------------------------------------------------------ -->
+        <!-- ------------------------------------------------------------------------------ -->
 
-    <div class="container modal fade" id="editact" tabindex="-1" role="dialog" aria-labelledby="addactLabel" >
-        <div class="card card-container" style="max-width:60%">
-
-            <form >
-                <fieldset>
-                    <legend></legend>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" >Nom<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bookmark"></i></span>
-                                <input value="" name="EditNomAct" placeholder="Exemple : Flappy bird" id="EditNomAct" class="form-control"  type="text">
-                            </div>
-                        </div>
+        <div class="bs-modal-lg modal fade" id="editact" tabindex="-1" role="dialog" aria-labelledby="addactLabel" >
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" data-dismiss="modal" style="float: right;"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="editTitleact"></h4>
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" >Description<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
-                                <textarea name="EditDescriptionAct" placeholder="faut mettre le principe du jeu içi" id="EditDescriptionAct" class="form-control"></textarea>
+                    <div class="modal-body">
+                        <form >
+                            <div class="modal-baniere_gauche">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" >Nom<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                <div class="col-md-6  inputGroupContainer">
+                                    <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bookmark"></i></span>
+                                        <input value="" name="EditNomAct" placeholder="Exemple : Flappy bird" id="EditNomAct" class="form-control"  type="text">
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" >Description<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                <div class="col-md-6  inputGroupContainer">
+                                    <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
+                                        <textarea name="EditDescriptionAct" placeholder="faut mettre le principe du jeu içi" id="EditDescriptionAct" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" >Image<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                <div class="col-md-6  inputGroupContainer">
+                                    <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
+                                        <input type='file' name="EditImageAct" placeholder="Deposer l'image içi" id="EditImageAct" class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Activer ?</label>
+                                <div class="col-md-6  inputGroupContainer">
+                                    <div class="rdio rdio-theme circle col-md-3" style="transform: scale(0.9);margin-left: 1%;">
+                                        <input id="Edit-radio-type-circle1" type="radio"  name="EditactivationAct" value="1" checked>
+                                        <label for="Edit-radio-type-circle1">Oui</label>
+                                    </div>
+                                    <div style="transform: scale(0.9);" class="rdio rdio-theme circle col-md-3">
+                                        <input id="Edit-radio-type-circle2" type="radio" name="EditactivationAct" value="0">
+                                        <label for="Edit-radio-type-circle2">Non</label>
+                                    </div>
+                                </div>
+                            </div>
+                                </div>
+                            <div class="modal-baniere_droite">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" >Date Début<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                <div class="col-md-6  inputGroupContainer">
+                                    <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        <input value="" data-mask="39/19/2999" name="EditDateDebutAct" placeholder="Date début activité" id="EditDateDebutAct" class="form-control datepicker"  type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" >Date Fin<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                <div class="col-md-6  inputGroupContainer">
+                                    <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        <input value="" data-mask="39/19/2999" name="EditDateFinAct" placeholder="Date Fin activité" id="EditDateFinAct" class="form-control datepicker"  type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" >Coins<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                <div class="col-md-6  inputGroupContainer">
+                                    <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bitcoin"></i></span>
+                                        <input value="" name="EditNbrPointAct" placeholder="Nombre Point Totale a Gagnée" id="EditNbrPointAct" class="form-control"  type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" >Experience<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                <div class="col-md-6  inputGroupContainer">
+                                    <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></span>
+                                        <input value="" name="EditExpAct" placeholder="Experience a Gagnée" id="EditExpAct" class="form-control"  type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" >Image<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
-                                <input type='file' name="EditImageAct" placeholder="Deposer l'image içi" id="EditImageAct" class="form-control"/>
-                            </div>
-                        </div>
+                    <div class="modal-footer">
+                        <input id="EditActivityid" name="EditActivityid" type="hidden" value=""/>
+                        <input class="btn btn-primary" id="EditActivity" type="button" value="Modifier Activité"/>
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">Activer ?</label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="rdio rdio-theme circle col-md-3" style="transform: scale(0.9);margin-left: 1%;">
-                                <input id="Edit-radio-type-circle1" type="radio"  name="EditactivationAct" value="1" checked>
-                                <label for="Edit-radio-type-circle1">Oui</label>
-                            </div>
-                            <div style="transform: scale(0.9);" class="rdio rdio-theme circle col-md-3">
-                                <input id="Edit-radio-type-circle2" type="radio" name="EditactivationAct" value="0">
-                                <label for="Edit-radio-type-circle2">Non</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" >Date Début<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                <input value="" data-mask="39/19/2999" name="EditDateDebutAct" placeholder="Date début activité" id="EditDateDebutAct" class="form-control datepicker"  type="text">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" >Date Fin<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                <input value="" data-mask="39/19/2999" name="EditDateFinAct" placeholder="Date Fin activité" id="EditDateFinAct" class="form-control datepicker"  type="text">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" >Coins<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bitcoin"></i></span>
-                                <input value="" name="EditNbrPointAct" placeholder="Nombre Point Totale a Gagnée" id="EditNbrPointAct" class="form-control"  type="text">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" >Experience<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></span>
-                                <input value="" name="EditExpAct" placeholder="Experience a Gagnée" id="EditExpAct" class="form-control"  type="text">
-                            </div>
-                        </div>
-                    </div>
-                </fieldset>
-                <input id="EditActivityid" name="EditActivityid" type="hidden" value=""/>
-                <input id="EditActivity" type="button" value="Modifier Activité"/>
-            </form>
-        </div><!-- /card-container -->
-    </div><!-- /container -->
+                </div>
+            </div><!-- /card-container -->
+        </div><!-- /container -->
     {%endif%}
 {% endblock %}
 {% block javascript %}
     {%if is_granted('ROLE_ADMIN') %}
-    <script>
-        var menu = $('#boutique2ndnav');
-        var origOffsetY = menu.offset().top;
+        <script>
+            var menu = $('#boutique2ndnav');
+            var origOffsetY = menu.offset().top;
 
-        function scroll() {
-            if ($(window).scrollTop() >= origOffsetY - 50) {
-                $('#boutique2ndnav').css({'position': 'fixed', 'width': '100%', 'top': '60px', 'z-index': '1020'});
-            } else {
-                $('#boutique2ndnav').removeAttr('style');
-                $('#boutique2ndnav').css({'padding-top': '25px', 'background-color': '#E0E2E0', 'height': '60px'});
+            function scroll() {
+                if ($(window).scrollTop() >= origOffsetY - 50) {
+                    $('#boutique2ndnav').css({'position': 'fixed', 'width': '100%', 'top': '60px', 'z-index': '1020'});
+                } else {
+                    $('#boutique2ndnav').removeAttr('style');
+                    $('#boutique2ndnav').css({'padding-top': '25px', 'background-color': '#E0E2E0', 'height': '60px'});
+
+                }
+
 
             }
-
-
-        }
-        scroll();
-        document.onscroll = scroll;
-    </script>
-    <script>
-        $(".datepicker").datepicker({dateFormat: 'd/m/yy',
-            altField: "#datepicker",
-            closeText: 'Fermer',
-            prevText: 'Précédent',
-            nextText: 'Suivant',
-            currentText: 'Aujourd\'hui',
-            monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-            monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
-            dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
-            dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
-            dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
-            weekHeader: 'Sem.'
-        });
-           $(".datepicker").css("z-index","10000");
-    </script>
-    <script>
-        function AjouterActivity() {
-            $.ajax({
-                type: "POST",
-                url: "{{path('add_activite')}}",
-                processData: false,  contentType: false,  cache: false,
-                data: new FormData($('#addact').find('form')[0]),
-                success: function () {
-                    location.reload();
-                }
+            scroll();
+            document.onscroll = scroll;
+        </script>
+        <script>
+            $(".datepicker").datepicker({dateFormat: 'd/m/yy',
+                altField: "#datepicker",
+                closeText: 'Fermer',
+                prevText: 'Précédent',
+                nextText: 'Suivant',
+                currentText: 'Aujourd\'hui',
+                monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+                monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+                dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+                dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
+                dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+                weekHeader: 'Sem.'
             });
-        }
-        function DeleteActivity($id) {
-            $_data = {
-                'id': $id
-            };
-            $.ajax({
-                type: "POST",
-                url: "{{path('delete_activite')}}",
-                data: $_data,
-                success: function () {
-                    location.reload();
-                }
-            });
-        }
-        function ValidationActivity($id) {
-            $_data = {
-                'id': $id
-            };
-            $.ajax({
-                type: "POST",
-                url: "{{path('activation_activite')}}",
-                data: $_data,
-                success: function () {
-                    location.reload();
-                }
-            });
-        }
-
-        function editModalAct($idact) {
-        {%for act in activites%}
-                if ($idact == {{act.getId()}}) {
-                    $("#EditNomAct").val("{{act.getNom()}}");
-                    $("#EditDescriptionAct").val("{{act.getDescription()}}");
-                    $("#EditDateDebutAct").val("{{act.getdat_deb()|date("d/m/Y")}}");
-                    $("#EditDateFinAct").val("{{act.getdat_fin()|date("d/m/Y")}}");
-                    $("#EditNbrPointAct").val("{{act.getNbrPoint()}}");
-                    $("#EditExpAct").val("{{act.getExperience()}}");
-                    $("#EditActivityid").val("{{act.getId()}}");
-                    $('#editact').find("legend").first().html("Modifier Activité | {{act.getNom()}}");
-
-
-            {%if act.getActivation() == "0"%}
-                        $("#Edit-radio-type-circle1").prop('checked', false);
-                        $("#Edit-radio-type-circle2").prop('checked', true);
-            {%elseif act.getActivation() == "1"%}
-                        $("#Edit-radio-type-circle2").prop('checked', false);
-                        $("#Edit-radio-type-circle1").prop('checked', true);
-            {%endif%}
-                        $("#EditActivity").attr('onclick', "ModifierActivity()");
-
-                        $('#editact').modal('show');
-                    }
-        {% endfor %}
-            }
-            function ModifierActivity() {
+            $(".datepicker").css("z-index", "10000");
+        </script>
+        <script>
+            function AjouterActivity() {
                 $.ajax({
                     type: "POST",
-                    url: "{{path('edit_activite')}}",
-                    processData: false,  contentType: false,  cache: false,
-                    data: new FormData($('#editact').find('form')[0]),
+                    url: "{{path('add_activite')}}",
+                    processData: false, contentType: false, cache: false,
+                    data: new FormData($('#addact').find('form')[0]),
                     success: function () {
                         location.reload();
                     }
                 });
             }
-    </script>
+            function DeleteActivity($id) {
+                $_data = {
+                    'id': $id
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "{{path('delete_activite')}}",
+                    data: $_data,
+                    success: function () {
+                        location.reload();
+                    }
+                });
+            }
+            function ValidationActivity($id) {
+                $_data = {
+                    'id': $id
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "{{path('activation_activite')}}",
+                    data: $_data,
+                    success: function () {
+                        location.reload();
+                    }
+                });
+            }
+
+            function editModalAct($idact) {
+            {%for act in activites%}
+                    if ($idact == {{act.getId()}}) {
+                        $("#EditNomAct").val("{{act.getNom()}}");
+                        $("#EditDescriptionAct").val("{{act.getDescription()}}");
+                        $("#EditDateDebutAct").val("{{act.getdat_deb()|date("d/m/Y")}}");
+                        $("#EditDateFinAct").val("{{act.getdat_fin()|date("d/m/Y")}}");
+                        $("#EditNbrPointAct").val("{{act.getNbrPoint()}}");
+                        $("#EditExpAct").val("{{act.getExperience()}}");
+                        $("#EditActivityid").val("{{act.getId()}}");
+                        $('#editTitleact').html("Modifier Activité | {{act.getNom()}}");
+
+
+                {%if act.getActivation() == "0"%}
+                            $("#Edit-radio-type-circle1").prop('checked', false);
+                            $("#Edit-radio-type-circle2").prop('checked', true);
+                {%elseif act.getActivation() == "1"%}
+                            $("#Edit-radio-type-circle2").prop('checked', false);
+                            $("#Edit-radio-type-circle1").prop('checked', true);
+                {%endif%}
+                            $("#EditActivity").attr('onclick', "ModifierActivity()");
+
+                            $('#editact').modal('show');
+                        }
+            {% endfor %}
+                }
+                function ModifierActivity() {
+                    $.ajax({
+                        type: "POST",
+                        url: "{{path('edit_activite')}}",
+                        processData: false, contentType: false, cache: false,
+                        data: new FormData($('#editact').find('form')[0]),
+                        success: function () {
+                            location.reload();
+                        }
+                    });
+                }
+        </script>
     {%endif %}
 {% endblock %}
