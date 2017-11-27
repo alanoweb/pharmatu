@@ -19,21 +19,18 @@
         <!-- CORE CSS -->
         <link href="{{asset('plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
         <link href="{{asset('plugins/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
-        <!--link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700' rel='stylesheet' type='text/css'--> 
-        <link rel="stylesheet" href="{{ asset('js/jquery-ui-1.12.0/jquery-ui.css') }}" />
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700' rel='stylesheet' type='text/css'> 
+       
 
         <!-- PLUGINS -->
         <link href="{{asset('plugins/animate/animate.min.css')}}" rel="stylesheet">
         <link href="{{asset('plugins/owl-carousel/owl.carousel.css')}}" rel="stylesheet">
-        <link href="{{asset('plugins/ekko-lightbox/ekko-lightbox.min.css')}}" rel="stylesheet">
+  
 
         <!-- THEME CSS -->
         <link href="{{asset('css/theme.min.css')}}" rel="stylesheet">
         <link href="{{asset('css/custom.css')}}" rel="stylesheet">
-        <link href="{{asset('css/css3buttons.css')}}" rel="stylesheet">
-
-        <!-- My CSS -->
-        <link href="{{asset('css/loginmodal.css')}}" rel="stylesheet">
+       
 
         {% block css %}
         {% endblock css %}
@@ -339,54 +336,64 @@
         <div id="wrapper">
             {% block Dashboard %}
                 {% block slide %}
-                    <div id="full-carousel" class="ken-burns carousel slide full-carousel carousel-fade" data-ride="carousel" style="height:400px;">
-                        <ol class="carousel-indicators">
-                            <li data-target="#full-carousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#full-carousel" data-slide-to="1"></li>
-                            <li data-target="#full-carousel" data-slide-to="2"></li>
-                        </ol>
-                        <div class="carousel-inner" style="height:400px; ">
-                            <div class="item active inactiveUntilOnLoad" style="height:400px; ">
-                                <img src="{{asset('img/slideshow/1.jpg')}}" alt="">
-                                <div class="container" style="height:400px; position:fixed;">
-                                    <div class="carousel-caption" style="height:400px; ">
-                                        <h1 data-animation="animated animate1 bounceInDown" style="margin:auto !important; height:auto; ">The Witcher 3: Wild Hunt</h1>
-                                        <p data-animation="animated animate7 fadeInUp">The world is in chaos. The air is thick with tension and the smoke of burnt villages.</p>
-                                        {% if not app.user %} <a href="{{path('fos_user_registration_register')}}" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn">Inscrivez vous maintenant</a>{% endif %}
-                                    </div>		
-                                </div>
-                            </div>
-
-                            <div class="item" style="height:400px; ">
-                                <img src="{{asset('img/slideshow/2.jpg')}}" alt="">
-                                <div class="container" style="height:400px; position:fixed;">
-                                    <div class="carousel-caption" style="height:400px; " >
-                                        <h1 data-animation="animated animate1 fadeInDown" style="margin:auto !important;">The Last of Us: Remastered</h1>
-                                        <p data-animation="animated animate7 fadeIn">Survive an apocalypse on Earth in The Last of Us, a PlayStation 4-exclusive title by Naughty Dog.</p>
-                                        {% if not app.user %} <a href="{{path('fos_user_registration_register')}}" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn">Inscrivez vous maintenant</a>{% endif %}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="item" style="height:400px; ">
-                                <img src="{{asset('img/slideshow/3.jpg')}}" alt="">
-                                <div class="container" style="height:400px; position:fixed;">
-                                    <div class="carousel-caption"  style="height:400px; ">
-                                        <h1 data-animation="animated animate1 fadeIn" style="margin:auto !important">Star Wars: Battlefront 3</h1>
-                                        <p data-animation="animated animate7 fadeIn">Galactic forces clash in this reboot of Star Wars Battlefront, the blockbuster shooter.</p>
-                                        {% if not app.user %} <a href="{{path('fos_user_registration_register')}}" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn">Inscrivez vous maintenant</a>{% endif %}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <a class="left carousel-control" href="#full-carousel" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                            </a>
-                            <a class="right carousel-control" href="#full-carousel" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                            </a>
+				<section class="border-bottom-1 border-grey-200 padding-top-15 padding-bottom-10">
+			<div class="owl-carousel owl-video">
+				<div class="card card-video">
+					<div class="card card-img">
+						<a href="videos-single.html"><img src="{{asset('img/slideshow/2.jpg')}}"  alt=""></a>
+						<div class="time">15:42</div>
+					</div>
+				</div>
+				<div class="card card-video">
+					<div class="card-img">
+						<a href="videos-single.html"><img src="{{asset('img/slideshow/1.jpg')}}"  alt=""></a>
+						<div class="time">13:52</div>
+					</div>
+				</div>
+				<div class="card card-video">
+					<div class="card-img">
+						<a href="videos-single.html"><img src="{{asset('img/slideshow/3.jpg')}}" alt=""></a>
+						<div class="time">08:03</div>
+					</div>
+				</div>
+				<div class="card card-video">
+					<div class="card-img">
+						<a href="videos-single.html"><img src="{{asset('img/slideshow/1.jpg')}}" alt="" ></a>
+						<div class="time">11:15</div>
+					</div>
+				</div>
+				<div class="card card-video">
+					<div class="card-img">
+						<a href="videos-single.html"><img src="{{asset('img/slideshow/1.jpg')}}"  alt=""></a>
+						<div class="time">16:20</div>
+					</div>
+				</div>
+				<div class="card card-video">
+					<div class="card-img">
+						<a href="videos-single.html"><img src="{{asset('img/slideshow/2.jpg')}}" alt=""></a>
+						<div class="time">05:31</div>
+					</div>
+				</div>
+				<div class="card card-video">
+					<div class="card-img">
+						<a href="videos-single.html"><img src="{{asset('img/slideshow/2.jpg')}}"   alt=""></a>
+						<div class="time">04:55</div>
+					</div>
+				</div>
+				<div class="card card-video">
+					<div class="card-img">
+						<a href="videos-single.html"><img src="{{asset('img/slideshow/2.jpg')}}"  alt=""></a>
+						<div class="time">14:17</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-5"> </div> 
+			<div class="col-md-3">   {% if not app.user %} <a href="{{path('fos_user_registration_register')}}" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn">Inscrivez vous maintenant</a>{% endif %}
                         </div>
-                    </div>
+		</section>
+		
+             			
+                            
                 {% endblock slide%}
                 {% block wrapper %}
                     <section class="bg-grey-50 padding-top-30">
@@ -562,9 +569,9 @@
                                             </div>
                                         </div>
                                     </div>
+									
                                     <div class="ay">
                                         <div class="col-md-6" >
-
                                             <div class="panel panel-default panel-post">
                                                 <div class="panel-body">
                                                     <div class="post">
@@ -984,38 +991,12 @@
         <!-- Javascript -->
         <script src="{{asset('plugins/jquery/jquery-3.1.0.min.js')}}"></script>
         <script src="{{asset('plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('plugins/twitter/twitter.js')}}"></script>
         <script src="{{ asset('js/jquery-ui-1.12.0/jquery-ui.js') }}"></script>
         <!--script src="{{asset('plugins/ekko-lightbox/ekko-lightbox.min.js')}}"></script-->
         <script src="{{asset('js/core.min.js')}}"></script>
         <script src="{{asset('plugins/owl-carousel/owl.carousel.min.js')}}"></script>
-        <script>
-            (function ($) {
-                "use strict";
-                var owl = $(".owl-carousel");
-
-                owl.owlCarousel({
-                    autoPlay: 3000,
-                    items: 1, //4 items above 1000px browser width
-                    itemsDesktop: [1000, 3], //3 items between 1000px and 0
-                    itemsTablet: [600, 1], //1 items between 600 and 0
-                    itemsMobile: false // itemsMobile disabled - inherit from itemsTablet option
-                });
-
-                $(document).delegate('*[data-toggle="lightbox"]', 'click', function (event) {
-                    event.preventDefault();
-                    $(this).ekkoLightbox();
-                });
-
-                $(window).scroll(function () {
-                    if ($(this).scrollTop() > 350) {
-                        $('body').addClass('fixed-tab');
-                    } else {
-                        $('body').removeClass('fixed-tab');
-                    }
-                });
-            })(jQuery);
-
-        </script>
+        
         <script>
             $(document).ready(function () {
                 window.scrollTo(0, 0);
@@ -1056,7 +1037,28 @@
                 });
             });
         </script>
+		<script>
+		(function($) {
+	"use strict";
+		var config1 = {
+			  "id": $('#twitter').data("twitter"),
+			  "domId": 'twitter',
+			  "maxTweets": 1,
+			  "enableLinks": true
+			};
+		twitterFetcher.fetch(config1);
+		
+		$(".owl-carousel").owlCarousel({
+			autoPlay: true,
+			items : 6, //4 items above 1000px browser width
+			itemsDesktop : [1600,3], //3 items between 1000px and 0
+			itemsTablet: [940,1], //1 items between 600 and 0
+			itemsMobile : false // itemsMobile disabled - inherit from itemsTablet option
+		}); 
+	})(jQuery);
+	</script>
         <script>
+		
             function usernamereq() {
                 if ($('#loginusername').val() === "" || $('#loginusername').val() === null) {
                     $('#loginusername').parent().css("border", "solid 1px red");
