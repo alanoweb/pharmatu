@@ -24,7 +24,7 @@ class Entreprise
 /**
      * @ORM\OneToOne(targetEntity="UserBundle\Entity\User")
      */
-    private $User;
+    private $user;
 
     /**
      * @var string
@@ -79,26 +79,26 @@ class Entreprise
         return $this->id;
     }
 /**
-     * Set User
+     * Set user
      *
-     * @param string $User
+     * @param string $user
      * @return Activity
      */
-    public function setUser($User)
+    public function setUser($user)
     {
-        $this->User = $User;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get User
+     * Get user
      *
      * @return string 
      */
     public function getUser()
     {
-        return $this->User;
+        return $this->user;
     }
 
     /**
