@@ -47,11 +47,11 @@ height:100%;
 {% endblock%}
 {% block wrapper %}
     {% if is_granted('ROLE_ADMIN')%}
-        <section id="boutique2ndnav" class="padding-top-25 no-padding-bottom border-bottom-1 border-grey-300" style="padding-top: 25px !important;background-color: #E0E2E0;height:60px">
+        <section id="boutique2ndnav" class="padding-top-25 no-padding-bottom border-bottom-1 border-grey-300" style="padding-top: 25px !important;background-color: #FFFFFF;height:60px">
             <div class="container">
                 <div class="headline" style="margin-top: -16px">
                     <div class="text-center">
-                        <a href="javascript:void(0);" data-toggle="modal" data-target="#addact" class="button pill big primary">
+                        <a href="javascript:void(0);" data-toggle="modal" data-target="#addact" class="btn btn-primary btn-rounded">
                             <span class="plus icon"></span>Ajouter une activité
                         </a> 
                     </div>
@@ -60,7 +60,7 @@ height:100%;
             </div>
         </section>
     {%endif%}
-    <section class="bg-grey-50" style="padding-top: 0px">
+    <section class="bg-grey-50" style="padding-top: 1%">
         <div class="container">
             <div class="row">
 
@@ -79,16 +79,16 @@ height:100%;
 
                                     <div class="text-center">
                                         {%if act.getActivation() == 0%}
-                                            <a href="javascript:void(0);" class="left positive pill button" style="padding-left: 5px;margin-right: -5px" onclick="ValidationActivity({{act.getId()}});">
+                                            <a href="javascript:void(0);" class="btn btn-danger btn-outline" style="padding-left: 5px;margin-right: -5px" onclick="ValidationActivity({{act.getId()}});">
                                                 <span class="fa fa-unlock"></span> Activer
                                             </a>
                                         {%else%}
-                                            <a href="javascript:void(0);" class="left negative pill button" style="padding-left: 5px;margin-right: -5px" onclick="ValidationActivity({{act.getId()}});">
+                                            <a href="javascript:void(0);" class="btn btn-inverse btn-outline"style="padding-left: 5px;margin-right: -5px" onclick="ValidationActivity({{act.getId()}});">
                                                 <span class="fa fa-lock"></span> Desactiver
                                             </a>
                                         {%endif%} 
-                                        <a href="javascript:void(0);" {%if act.getStatus() == "Deleted"%}class="right pill button"{% else %}class="middle pill button"{%endif%} style="padding-left: 5px;" onclick="editModalAct({{act.getId()}});"><span class="fa fa-pencil"></span> Modifier</a>
-                                        {%if act.getStatus() != "Deleted"%}<a href="javascript:void(0);" class="right negative pill button" style="padding-left: 5px;margin-left: -5px" onclick="DeleteActivity({{act.getId()}});"><span class="fa fa-close"></span> Supprimer</a> {% endif %}
+                                        <a href="javascript:void(0);" {%if act.getStatus() == "Deleted"%}class="btn btn-success btn-outline"{% else %}class="btn btn-success btn-outline"{%endif%} style="padding-left: 5px;" onclick="editModalAct({{act.getId()}});"><span class="fa fa-pencil"></span> Modifier</a>
+                                        {%if act.getStatus() != "Deleted"%}<a href="javascript:void(0);" class="btn btn-info btn-outline" style="padding-left: 5px;margin-left: -5px" onclick="DeleteActivity({{act.getId()}});"><span class="fa fa-close"></span> Supprimer</a> {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -333,7 +333,7 @@ height:100%;
                     $('#boutique2ndnav').css({'position': 'fixed', 'width': '100%', 'top': '60px', 'z-index': '1020'});
                 } else {
                     $('#boutique2ndnav').removeAttr('style');
-                    $('#boutique2ndnav').css({'padding-top': '25px', 'background-color': '#E0E2E0', 'height': '60px'});
+                    $('#boutique2ndnav').css({'padding-top': '25px', 'background-color': '#FFFFFF', 'height': '60px'});
 
                 }
 
