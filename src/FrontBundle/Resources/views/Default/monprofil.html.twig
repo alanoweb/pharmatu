@@ -1,11 +1,277 @@
 {% extends 'FrontBundle::layout.html.twig' %}
- {% block body %}
- <h1>Mon Profil</h1>
-<div class="row">
-<label>Nom </label>
+{% block Dashboard %}
+    <section class="hero cover hidden-xs" style="background-image: url({{asset('img/cover/cover-profile.jpg')}});">
+        <div class="hero-bg"></div>
+        <div class="container relative">
+            <div class="page-header">
+                <div class="page-title">
+                    {% if app.user.utilisateur != null and  app.user.utilisateur.nom != null and app.user.utilisateur.prenom%}
+                        {{app.user.utilisateur.nom}} {{app.user.utilisateur.prenom}}
+                    {% else %}
+                        {{app.user.username}}
+                    {% endif %}
+                </div>	
+                <div class="profile-avatar">
+                    <div class="thumbnail">
+                        <a href="javascript:void(0);">
+                            <img src="{{asset('img/user/profile.jpg')}}">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-</div>
- {% endblock %}
-{% block slide%}
-<!-- slide hide-->
-{% endblock slide%}
+    <section class="profile-nav height-50 border-bottom-1 border-grey-300  hidden-xs">
+        <div class="tab-select">
+            <div class="container">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="active"><a href="#tabJornale" data-toggle="tab">Jornale</a></li>
+                    <li><a href="#tabdatapersonel" data-toggle="tab">Données Personnel</a></li>
+                    <li><a href="javascript:void(0);">Friends <span>(34)</span></a></li>
+                    <li><a href="javascript:void(0);">Images <span>(8)</span></a></li>
+                    <li><a href="javascript:void(0);">Videos <span>(2)</span></a></li>
+                    <li><a href="javascript:void(0);">Groups</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-grey-50 padding-top-60 padding-top-sm-30">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-3 hidden-xs">
+                    <div class="widget">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">  
+                                {% if app.user.utilisateur != null and app.user.utilisateur.pseudo != null and app.user.utilisateur.pseudo != "" %}
+                                    {{app.user.utilisateur.pseudo}}
+                                {% else %}
+                                    Données Personnel
+                                {% endif %}
+                            </div>
+                            <div class="panel-body">
+                                I am a frontend developer & designer
+                                <ul class="panel-list margin-top-25">
+                                    <li><i class="fa fa-clock-o"></i> Joined December 2009</li>
+                                    <li><i class="fa fa-map-marker"></i> United Kingdom</li>
+                                    <li><i class="fa fa-chain-broken"></i> Gameforest</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="widget">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Navigation</div>
+                            <div class="panel-body no-padding">
+                                <ul class="panel-list-bordered">
+                                    <li><a href="javascript:void(0);"><i class="fa fa-gamepad"></i> Games (4)</a></li>
+                                    <li><a href="javascript:void(0);"><i class="fa fa-film"></i> Videos (2)</a></li>
+                                    <li><a href="javascript:void(0);"><i class="fa fa-picture-o"></i> Galleries (3)</a></li>
+                                    <li><a href="javascript:void(0);"><i class="fa fa-calendar-o"></i> Events</a></li>
+                                    <li><a href="javascript:void(0);"><i class="fa fa-users"></i> Groups (1)</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="widget widget-friends">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Friends (34)</div>
+                            <div class="panel-body">
+                                <ul>
+                                    <li><a href="javascript:void(0);" data-toggle="tooltip" title="Orb"><img src="img/user/avatar2.jpg" alt=""></a></li>
+                                    <li><a href="javascript:void(0);" data-toggle="tooltip" title="Patrick"><img src="img/user/avatar3.jpg" alt=""></a></li>
+                                    <li><a href="javascript:void(0);" data-toggle="tooltip" title="John"><img src="img/user/avatar4.jpg" alt=""></a></li>
+                                    <li><a href="javascript:void(0);" data-toggle="tooltip" title="Michael"><img src="img/user/avatar5.jpg" alt=""></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="widget widget-list">
+                        <div class="panel panel-default">
+                            <div class="panel-heading bold">Recent Feeds</div>
+                            <div class="panel-body">
+                                <ul>
+                                    <li>
+                                        <a href="javascript:void(0);" class="thumb"><img src="img/blog/xs/1.jpg" alt=""></a>
+                                        <div class="widget-list-meta">
+                                            <h4 class="widget-list-title"><a href="javascript:void(0);">Overwatch Closed Beta</a></h4>
+                                            <p><i class="fa fa-clock-o"></i> September 15, 2016</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" class="thumb"><img src="img/blog/xs/2.jpg" alt=""></a>
+                                        <div class="widget-list-meta">
+                                            <h4 class="widget-list-title"><a href="javascript:void(0);">Blood and Gore</a></h4>
+                                            <p><i class="fa fa-clock-o"></i> September 13, 2016</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" class="thumb"><img src="img/blog/xs/3.jpg" alt=""></a>
+                                        <div class="widget-list-meta">
+                                            <h4 class="widget-list-title"><a href="javascript:void(0);">Warner Bros. Interactive</a></h4>
+                                            <p><i class="fa fa-clock-o"></i> September 12, 2016</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" class="thumb"><img src="img/blog/xs/4.jpg" alt=""></a>
+                                        <div class="widget-list-meta">
+                                            <h4 class="widget-list-title"><a href="javascript:void(0);">Sharks Don't Sleep</a></h4>
+                                            <p><i class="fa fa-clock-o"></i> September 11, 2016</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" class="thumb"><img src="img/blog/xs/5.jpg" alt=""></a>
+                                        <div class="widget-list-meta">
+                                            <h4 class="widget-list-title"><a href="javascript:void(0);">GTA 5 Reaches 5 Million</a></h4>
+                                            <p><i class="fa fa-clock-o"></i> September 10, 2016</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-9 col-sm-8" >
+                    <div class="tab-pane fade in active" id="tabJornale">
+                    <div class="panel panel-default margin-bottom-40">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <textarea class="form-control" rows="4" placeholder="What's in your head?..."></textarea>
+                            </div>
+                            <div class="btn-group pull-left">
+                                <a href="javascript:void(0);" class="btn btn-link btn-icon-left no-padding-left"><i class="fa fa-image"></i> Image</a>
+                                <a href="javascript:void(0);" class="btn btn-link btn-icon-left"><i class="fa fa-film"></i> Video</a>
+                                <a href="javascript:void(0);" class="btn btn-link btn-icon-left"><i class="fa fa-map-marker"></i> Location</a>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-icon-left pull-right"><i class="fa fa-edit"></i> Submit</button>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default panel-post">
+                        <div class="panel-body">
+                            <div class="post">
+                                <div class="post-header post-author">
+                                    <a href="javascript:void(0);" class="author" data-toggle="tooltip" title="YAKUZI"><img src="img/user/avatar.jpg" alt=""></a>
+                                    <div class="post-title">
+                                        <h3><a href="javascript:void(0);">Deadpool Gets the Movie He Deserves</a></h3>
+                                        <ul class="post-meta">
+                                            <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                            <li><a href="javascript:void(0);">#hashtag</a>, <a href="javascript:void(0);">#witcher 3</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <ul class="post-action">
+                                <li><a href="javascript:void(0);"><i class="fa fa-heart"></i> like (5)</a></li>
+                                <li><a href="javascript:void(0);"><i class="fa fa-comments"></i> Comments</a></li>
+                                <li><a href="javascript:void(0);"><i class="fa fa-reply"></i> share</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default panel-post">
+                        <div class="panel-body">
+                            <div class="post">
+                                <div class="post-header post-author">
+                                    <a href="javascript:void(0);" class="author" data-toggle="tooltip" title="YAKUZI"><img src="img/user/avatar.jpg" alt=""></a>
+                                    <div class="post-title">
+                                        <h3><a href="javascript:void(0);">Official Mirror’s Edge Catalyst Trailer</a></h3>
+                                        <ul class="post-meta">
+                                            <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                            <li><a href="javascript:void(0);">#hashtag</a>, <a href="javascript:void(0);">#witcher 3</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="post-thumbnail">
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/IsDX_LiJT7E?rel=0&amp;showinfo=0" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+
+                                Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <ul class="post-action">
+                                <li><a href="javascript:void(0);" class="active"><i class="fa fa-heart"></i> you like it (7)</a></li>
+                                <li><a href="javascript:void(0);"><i class="fa fa-comments"></i> Comments</a></li>
+                                <li><a href="javascript:void(0);"><i class="fa fa-reply"></i> share</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h4 class="page-header text-center no-padding"><i class="fa fa-clock-o"></i> February, 2016</h4>
+                    <div class="panel panel-default panel-post">
+                        <div class="panel-body">
+                            <div class="post">
+                                <div class="post-header post-author">
+                                    <a href="javascript:void(0);" class="author" data-toggle="tooltip" title="YAKUZI"><img src="img/user/avatar.jpg" alt=""></a>
+                                    <div class="post-title">
+                                        <h3><a href="javascript:void(0);">The Witcher 3 is Game of the Year</a></h3>
+                                        <ul class="post-meta">
+                                            <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                            <li><a href="javascript:void(0);">#hashtag</a>, <a href="javascript:void(0);">#witcher 3</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <ul class="post-action">
+                                <li><a href="javascript:void(0);"><i class="fa fa-heart"></i> like (5)</a></li>
+                                <li><a href="javascript:void(0);"><i class="fa fa-comments"></i> Comments</a></li>
+                                <li><a href="javascript:void(0);"><i class="fa fa-reply"></i> share</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <center><a href="javascript:void(0);" class="btn btn-primary btn-lg btn-shadow btn-rounded">Show More</a></center>
+                </div>
+                    <div id="tabdatapersonel" class="tab-pane fade">
+                    <div class="panel-body">
+                        <div class="post">
+                            <div class="post-header post-author">
+                                <a href="javascript:void(0);" class="author" data-toggle="tooltip" title="YAKUZI"><img src="img/user/avatar.jpg" alt=""></a>
+                                <div class="post-title">
+                                    <h3><a href="javascript:void(0);">Official Mirror’s Edge Catalyst Trailer</a></h3>
+                                    <ul class="post-meta">
+                                        <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                        <li><a href="javascript:void(0);">#hashtag</a>, <a href="javascript:void(0);">#witcher 3</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="post-thumbnail">
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/IsDX_LiJT7E?rel=0&amp;showinfo=0" allowfullscreen></iframe>
+                                </div>
+                            </div>
+
+                            Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <ul class="post-action">
+                            <li><a href="javascript:void(0);" class="active"><i class="fa fa-heart"></i> you like it (7)</a></li>
+                            <li><a href="javascript:void(0);"><i class="fa fa-comments"></i> Comments</a></li>
+                            <li><a href="javascript:void(0);"><i class="fa fa-reply"></i> share</a></li>
+                        </ul>
+                    </div>
+                </div>
+                    </div>
+                
+                <div class="col-md-9 col-sm-8" id=""></div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
