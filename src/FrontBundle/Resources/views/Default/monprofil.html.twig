@@ -26,12 +26,12 @@
         <div class="tab-select">
             <div class="container">
                 <ul class="nav nav-tabs" role="tablist">
-                    <li class="active"><a href="#tabJornale" data-toggle="tab">Jornale</a></li>
-                    <li><a href="#tabdatapersonel" data-toggle="tab">Données Personnel</a></li>
-                    <li><a href="javascript:void(0);">Friends <span>(34)</span></a></li>
-                    <li><a href="javascript:void(0);">Images <span>(8)</span></a></li>
-                    <li><a href="javascript:void(0);">Videos <span>(2)</span></a></li>
-                    <li><a href="javascript:void(0);">Groups</a></li>
+                    <li {% if app.user.utilisateur != null %}class="active"{% endif %}><a href="#tabJournal" data-toggle="tab">Journal</a></li>
+                    <li {% if app.user.utilisateur == null %}class="active"{% endif %}><a href="#tabdatapersonel" data-toggle="tab">Données Personnel</a></li>
+                    <li><a href="#tabdatageneral" data-toggle="tab">Données Générale</a></li>
+                    <li><a href="javascript:void(0);" data-toggle="tab">Images <span>(8)</span></a></li>
+                    <li><a href="javascript:void(0);" data-toggle="tab">Videos <span>(2)</span></a></li>
+                    <li><a href="javascript:void(0);" data-toggle="tab">Groups</a></li>
                 </ul>
             </div>
         </div>
@@ -137,141 +137,307 @@
                 </div>
 
                 <div class="col-md-9 col-sm-8" >
-                    <div class="tab-pane fade in active" id="tabJornale">
-                    <div class="panel panel-default margin-bottom-40">
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <textarea class="form-control" rows="4" placeholder="What's in your head?..."></textarea>
+                    <div class="tab-content">
+                        <div class="tab-pane {% if app.user.utilisateur != null %}fade in active{% endif %}" id="tabJournal">
+                            <div class="panel panel-default margin-bottom-40">
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <textarea class="form-control" rows="4" placeholder="What's in your head?..."></textarea>
+                                    </div>
+                                    <div class="btn-group pull-left">
+                                        <a href="javascript:void(0);" class="btn btn-link btn-icon-left no-padding-left"><i class="fa fa-image"></i> Image</a>
+                                        <a href="javascript:void(0);" class="btn btn-link btn-icon-left"><i class="fa fa-film"></i> Video</a>
+                                        <a href="javascript:void(0);" class="btn btn-link btn-icon-left"><i class="fa fa-map-marker"></i> Location</a>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-icon-left pull-right"><i class="fa fa-edit"></i> Submit</button>
+                                </div>
                             </div>
-                            <div class="btn-group pull-left">
-                                <a href="javascript:void(0);" class="btn btn-link btn-icon-left no-padding-left"><i class="fa fa-image"></i> Image</a>
-                                <a href="javascript:void(0);" class="btn btn-link btn-icon-left"><i class="fa fa-film"></i> Video</a>
-                                <a href="javascript:void(0);" class="btn btn-link btn-icon-left"><i class="fa fa-map-marker"></i> Location</a>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-icon-left pull-right"><i class="fa fa-edit"></i> Submit</button>
-                        </div>
-                    </div>
 
-                    <div class="panel panel-default panel-post">
-                        <div class="panel-body">
-                            <div class="post">
-                                <div class="post-header post-author">
-                                    <a href="javascript:void(0);" class="author" data-toggle="tooltip" title="YAKUZI"><img src="img/user/avatar.jpg" alt=""></a>
-                                    <div class="post-title">
-                                        <h3><a href="javascript:void(0);">Deadpool Gets the Movie He Deserves</a></h3>
-                                        <ul class="post-meta">
-                                            <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
-                                            <li><a href="javascript:void(0);">#hashtag</a>, <a href="javascript:void(0);">#witcher 3</a></li>
-                                        </ul>
+                            <div class="panel panel-default panel-post">
+                                <div class="panel-body">
+                                    <div class="post">
+                                        <div class="post-header post-author">
+                                            <a href="javascript:void(0);" class="author" data-toggle="tooltip" title="YAKUZI"><img src="img/user/avatar.jpg" alt=""></a>
+                                            <div class="post-title">
+                                                <h3><a href="javascript:void(0);">Deadpool Gets the Movie He Deserves</a></h3>
+                                                <ul class="post-meta">
+                                                    <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                                    <li><a href="javascript:void(0);">#hashtag</a>, <a href="javascript:void(0);">#witcher 3</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
                                     </div>
                                 </div>
-                                Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
-                            </div>
-                        </div>
-                        <div class="panel-footer">
-                            <ul class="post-action">
-                                <li><a href="javascript:void(0);"><i class="fa fa-heart"></i> like (5)</a></li>
-                                <li><a href="javascript:void(0);"><i class="fa fa-comments"></i> Comments</a></li>
-                                <li><a href="javascript:void(0);"><i class="fa fa-reply"></i> share</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="panel panel-default panel-post">
-                        <div class="panel-body">
-                            <div class="post">
-                                <div class="post-header post-author">
-                                    <a href="javascript:void(0);" class="author" data-toggle="tooltip" title="YAKUZI"><img src="img/user/avatar.jpg" alt=""></a>
-                                    <div class="post-title">
-                                        <h3><a href="javascript:void(0);">Official Mirror’s Edge Catalyst Trailer</a></h3>
-                                        <ul class="post-meta">
-                                            <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
-                                            <li><a href="javascript:void(0);">#hashtag</a>, <a href="javascript:void(0);">#witcher 3</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="post-thumbnail">
-                                    <div class="embed-responsive embed-responsive-16by9">
-                                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/IsDX_LiJT7E?rel=0&amp;showinfo=0" allowfullscreen></iframe>
-                                    </div>
-                                </div>
-
-                                Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
-                            </div>
-                        </div>
-                        <div class="panel-footer">
-                            <ul class="post-action">
-                                <li><a href="javascript:void(0);" class="active"><i class="fa fa-heart"></i> you like it (7)</a></li>
-                                <li><a href="javascript:void(0);"><i class="fa fa-comments"></i> Comments</a></li>
-                                <li><a href="javascript:void(0);"><i class="fa fa-reply"></i> share</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <h4 class="page-header text-center no-padding"><i class="fa fa-clock-o"></i> February, 2016</h4>
-                    <div class="panel panel-default panel-post">
-                        <div class="panel-body">
-                            <div class="post">
-                                <div class="post-header post-author">
-                                    <a href="javascript:void(0);" class="author" data-toggle="tooltip" title="YAKUZI"><img src="img/user/avatar.jpg" alt=""></a>
-                                    <div class="post-title">
-                                        <h3><a href="javascript:void(0);">The Witcher 3 is Game of the Year</a></h3>
-                                        <ul class="post-meta">
-                                            <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
-                                            <li><a href="javascript:void(0);">#hashtag</a>, <a href="javascript:void(0);">#witcher 3</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
-                            </div>
-                        </div>
-                        <div class="panel-footer">
-                            <ul class="post-action">
-                                <li><a href="javascript:void(0);"><i class="fa fa-heart"></i> like (5)</a></li>
-                                <li><a href="javascript:void(0);"><i class="fa fa-comments"></i> Comments</a></li>
-                                <li><a href="javascript:void(0);"><i class="fa fa-reply"></i> share</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <center><a href="javascript:void(0);" class="btn btn-primary btn-lg btn-shadow btn-rounded">Show More</a></center>
-                </div>
-                    <div id="tabdatapersonel" class="tab-pane fade">
-                    <div class="panel-body">
-                        <div class="post">
-                            <div class="post-header post-author">
-                                <a href="javascript:void(0);" class="author" data-toggle="tooltip" title="YAKUZI"><img src="img/user/avatar.jpg" alt=""></a>
-                                <div class="post-title">
-                                    <h3><a href="javascript:void(0);">Official Mirror’s Edge Catalyst Trailer</a></h3>
-                                    <ul class="post-meta">
-                                        <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
-                                        <li><a href="javascript:void(0);">#hashtag</a>, <a href="javascript:void(0);">#witcher 3</a></li>
+                                <div class="panel-footer">
+                                    <ul class="post-action">
+                                        <li><a href="javascript:void(0);"><i class="fa fa-heart"></i> like (5)</a></li>
+                                        <li><a href="javascript:void(0);"><i class="fa fa-comments"></i> Comments</a></li>
+                                        <li><a href="javascript:void(0);"><i class="fa fa-reply"></i> share</a></li>
                                     </ul>
                                 </div>
                             </div>
 
-                            <div class="post-thumbnail">
-                                <div class="embed-responsive embed-responsive-16by9">
-                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/IsDX_LiJT7E?rel=0&amp;showinfo=0" allowfullscreen></iframe>
+                            <div class="panel panel-default panel-post">
+                                <div class="panel-body">
+                                    <div class="post">
+                                        <div class="post-header post-author">
+                                            <a href="javascript:void(0);" class="author" data-toggle="tooltip" title="YAKUZI"><img src="img/user/avatar.jpg" alt=""></a>
+                                            <div class="post-title">
+                                                <h3><a href="javascript:void(0);">Official Mirror’s Edge Catalyst Trailer</a></h3>
+                                                <ul class="post-meta">
+                                                    <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                                    <li><a href="javascript:void(0);">#hashtag</a>, <a href="javascript:void(0);">#witcher 3</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="post-thumbnail">
+                                            <div class="embed-responsive embed-responsive-16by9">
+                                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/IsDX_LiJT7E?rel=0&amp;showinfo=0" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+
+                                        Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <ul class="post-action">
+                                        <li><a href="javascript:void(0);" class="active"><i class="fa fa-heart"></i> you like it (7)</a></li>
+                                        <li><a href="javascript:void(0);"><i class="fa fa-comments"></i> Comments</a></li>
+                                        <li><a href="javascript:void(0);"><i class="fa fa-reply"></i> share</a></li>
+                                    </ul>
                                 </div>
                             </div>
 
-                            Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
+                            <h4 class="page-header text-center no-padding"><i class="fa fa-clock-o"></i> February, 2016</h4>
+                            <div class="panel panel-default panel-post">
+                                <div class="panel-body">
+                                    <div class="post">
+                                        <div class="post-header post-author">
+                                            <a href="javascript:void(0);" class="author" data-toggle="tooltip" title="YAKUZI"><img src="img/user/avatar.jpg" alt=""></a>
+                                            <div class="post-title">
+                                                <h3><a href="javascript:void(0);">The Witcher 3 is Game of the Year</a></h3>
+                                                <ul class="post-meta">
+                                                    <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                                    <li><a href="javascript:void(0);">#hashtag</a>, <a href="javascript:void(0);">#witcher 3</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <ul class="post-action">
+                                        <li><a href="javascript:void(0);"><i class="fa fa-heart"></i> like (5)</a></li>
+                                        <li><a href="javascript:void(0);"><i class="fa fa-comments"></i> Comments</a></li>
+                                        <li><a href="javascript:void(0);"><i class="fa fa-reply"></i> share</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <center><a href="javascript:void(0);" class="btn btn-primary btn-lg btn-shadow btn-rounded">Show More</a></center>
+                        </div>
+                        <div id="tabdatapersonel" class="tab-pane fade {% if app.user.utilisateur == null %}fade in active{% endif %}">
+                            <div class="panel panel-default margin-bottom-40">
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" >Nom<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                        <div class="col-md-8  inputGroupContainer">
+                                            <div class="input-group" style="margin-bottom:10px;border:none">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-grain"></i></span>   
+                                                <input onfocusout="" type="text" id="" name="" required="required" class="form-control " placeholder="Votre nom de la famille" style="margin-bottom:0px"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" >Prénom<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                        <div class="col-md-8  inputGroupContainer">
+                                            <div class="input-group" style="margin-bottom:10px;border:none">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-user"></i></span>   
+                                                <input onfocusout="" type="text" id="" name="" required="required" class="form-control " placeholder="Votre prénom" style="margin-bottom:0px"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" >CIN<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                        <div class="col-md-8  inputGroupContainer">
+                                            <div class="input-group" style="margin-bottom:10px;border:none">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-credit-card"></i></span>   
+                                                <input onfocusout="" type="text" id="" name="" required="required" class="form-control " placeholder="Votre numero de carte d'identité" style="margin-bottom:0px"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" >date de naissance<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                        <div class="col-md-8  inputGroupContainer">
+                                            <div class="input-group" style="margin-bottom:10px;border:none">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-calendar"></i></span>   
+                                                <input onfocusout="" type="text" id="" name="" required="required" class="form-control " placeholder="Votre date de naissance" style="margin-bottom:0px"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" >Adresse<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                        <div class="col-md-8  inputGroupContainer">
+                                            <div class="input-group" style="margin-bottom:10px;border:none">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-bookmark"></i></span>   
+                                                <input onfocusout="" type="text" id="" name="" required="required" class="form-control " placeholder="Votre adresse" style="margin-bottom:0px"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" >Numero de telephone<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                        <div class="col-md-8  inputGroupContainer">
+                                            <div class="input-group" style="margin-bottom:10px;border:none">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-phone"></i></span>   
+                                                <input onfocusout="" type="text" id="" name="" required="required" class="form-control " placeholder="Votre Numero" style="margin-bottom:0px"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" >pseudo</label>
+                                        <div class="col-md-8  inputGroupContainer">
+                                            <div class="input-group" style="margin-bottom:10px;border:none">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-tag"></i></span>   
+                                                <input onfocusout="" type="text" id="" name="" required="required" class="form-control " placeholder="Votre pseudo" style="margin-bottom:0px"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <button type="button" class="btn btn-primary btn-icon-left pull-right"><i class="fa fa-floppy-o"></i> Sauvegarder</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tabdatageneral" class="tab-pane fade">
+                            <div class="panel panel-default margin-bottom-40">
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" >Civilité</label>
+                                        <div class="row">
+							<div class="radio radio-inline">
+								<input type="radio" name="radio-inline" id="inline-radio1" checked> 
+								<label for="inline-radio1">Mr</label>
+							</div>
+							<div class="radio radio-inline">
+								<input type="radio" name="radio-inline" id="inline-radio2"> 
+								<label for="inline-radio2">Mrs</label>
+							</div>
+							<div class="radio radio-inline">
+								<input type="radio" name="radio-inline" id="inline-radio3"> 
+								<label for="inline-radio3">Mlle</label>
+							</div>
+						</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" >Metier</label>
+                                        <div class="col-md-8  inputGroupContainer">
+                                            <div class="input-group" style="margin-bottom:10px;border:none">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-briefcase"></i></span>   
+                                                <input onfocusout="" type="text" id="" name="" required="required" class="form-control " placeholder="Votre Metier" style="margin-bottom:0px"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" >Lieu de travail</label>
+                                        <div class="col-md-8  inputGroupContainer">
+                                            <div class="input-group" style="margin-bottom:10px;border:none">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-map-marker"></i></span>   
+                                                <input onfocusout="" type="text" id="" name="" required="required" class="form-control " placeholder="Votre lieu de travail" style="margin-bottom:0px"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" >Niveau scolaire</label>
+                                        <div class="col-md-8  inputGroupContainer">
+                                            <div class="input-group" style="margin-bottom:10px;border:none">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-education"></i></span>
+                                                <select id="" class="form-control input-md" placeholder="Votre niveau scolaire">
+                                                    <option value="bounce">bounce</option>
+                                                    <option value="bounce">bounce</option>
+                                                    <option value="bounce">bounce</option>
+                                                    <option value="bounce">bounce</option>
+						</select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" >Diplôme</label>
+                                        <div class="col-md-8  inputGroupContainer">
+                                            <div class="input-group" style="margin-bottom:10px;border:none">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-education"></i></span>   
+                                                <input onfocusout="" type="text" id="" name="" required="required" class="form-control " placeholder="Votre diplôme" style="margin-bottom:0px"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" >Ville d'origine</label>
+                                        <div class="col-md-8  inputGroupContainer">
+                                            <div class="input-group" style="margin-bottom:10px;border:none">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-map-marker"></i></span>   
+                                                <input onfocusout="" type="text" id="" name="" required="required" class="form-control " placeholder="Votre ville d'origine" style="margin-bottom:0px"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" >Situation amoureuse</label>
+                                        <div class="col-md-8  inputGroupContainer">
+                                            <div class="input-group" style="margin-bottom:10px;border:none">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-heart-empty"></i></span>
+                                                <select id="" class="form-control input-md" placeholder="Votre Situation amoureuse">
+                                                    <option value="bounce">bounce</option>
+                                                    <option value="bounce">bounce</option>
+                                                    <option value="bounce">bounce</option>
+                                                    <option value="bounce">bounce</option>
+						</select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" >Site web</label>
+                                        <div class="col-md-8  inputGroupContainer">
+                                            <div class="input-group" style="margin-bottom:10px;border:none">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-link"></i></span>   
+                                                <input onfocusout="" type="text" id="" name="" required="required" class="form-control " placeholder="Site web heberger ou blog " style="margin-bottom:0px"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" >Langues</label>
+                                        <div class="col-md-8  inputGroupContainer">
+                                            <div class="input-group" style="margin-bottom:10px;border:none">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-flag"></i></span>   
+                                                <input onfocusout="" type="text" id="" name="" required="required" class="form-control " placeholder="Vos Langues" style="margin-bottom:0px"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" >Auto-description</label>
+                                        <div class="col-md-8  inputGroupContainer">
+                                            <div class="input-group" style="margin-bottom:10px;border:none">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-pencil"></i></span>
+                                                <textarea class="form-control" rows="7" placeholder="une petite résumer sur vous"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <button type="button" class="btn btn-primary btn-icon-left pull-right"><i class="fa fa-floppy-o"></i> Sauvegarder</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="panel-footer">
-                        <ul class="post-action">
-                            <li><a href="javascript:void(0);" class="active"><i class="fa fa-heart"></i> you like it (7)</a></li>
-                            <li><a href="javascript:void(0);"><i class="fa fa-comments"></i> Comments</a></li>
-                            <li><a href="javascript:void(0);"><i class="fa fa-reply"></i> share</a></li>
-                        </ul>
-                    </div>
+                    <div class="col-md-9 col-sm-8" id=""></div>
                 </div>
-                    </div>
-                
-                <div class="col-md-9 col-sm-8" id=""></div>
+
             </div>
         </div>
     </section>
 {% endblock %}
+
+{% block javascript %}
+    <script>
+      /*  window.onbeforeunload = function() {
+            return 'bbb';
+        }*/
+    </script>
+{% endblock javascript %}
 
