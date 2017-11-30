@@ -48,7 +48,6 @@ class DefaultController extends Controller {
     
     public function monprofilAction() {
         $em = $this->getDoctrine()->getManager();
-        $request = $this->get('request');
         $user = $this->get('security.context')->getToken()->getUser();
         if ($user->hasRole('ROLE_ADMIN')) {
             $utilisateur = $em->getRepository('AdminBundle:Admin')->findOneBy(array('user' => $user));
