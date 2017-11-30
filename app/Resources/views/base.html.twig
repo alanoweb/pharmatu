@@ -3,6 +3,20 @@
 
     <!-- Mirrored from gameforest.yakuzi.eu/games-single.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 19 Feb 2017 10:13:32 GMT -->
     <head>
+        <script>
+            {% if app.user and not is_granted('ROLE_SUPER_ADMIN')%}
+                {% if is_granted('ROLE_ADMIN') and app.user.admin == null%}
+                    //if (!location.href.match('/monprofil')){
+                    //window.location.href = "{{path('monprofil')}}";}
+                {% elseif is_granted('ROLE_ENTREPRISE') and app.user.entreprise == null%}
+                    //if (!location.href.match('/monprofil')){
+                    //window.location.href = "{{path('monprofil')}}";}
+                {% elseif not is_granted('ROLE_SUPER_ADMIN') and not is_granted('ROLE_ADMIN') and not is_granted('ROLE_ENTREPRISE') and app.user.utilisateur == null%}
+                    if (!location.href.match('/monprofil')){
+                    window.location.href = "{{path('monprofil')}}";}
+                {% endif %}
+            {% endif %}
+        </script>
         {% trans_default_domain 'FOSUserBundle' %}
         <!-- META -->
         <meta charset="utf-8">
@@ -285,12 +299,12 @@
                                     {% endif %}
                                     {% if is_granted('ROLE_SUPER_ADMIN') == false%}
                                     <li><a href="{{path('monprofil')}}"><i class="fa fa-user"></i> Mon profil</a></li>
-                                    {%endif%}
+                                    {% endif %}
                                     {% if is_granted('ROLE_SUPER_ADMIN') == false and is_granted('ROLE_ADMIN') == false and is_granted('ROLE_ENTREPRISE') == false%}
                                     <li><a href="#"><i class="fa fa-heart"></i> Likes <span class="label label-info">32</span></a></li>
                                     <li><a href="#"><i class="fa fa-gamepad"></i> Games</a></li>
                                     <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
-                                    {%endif%}
+                                    {% endif %}
                                 <li class="divider"></li>
                                 <li><a href="{{path('fos_user_security_logout')}}"><i class="fa fa-power-off"></i>Déconnection</a></li>
                             </ul>
