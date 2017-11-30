@@ -50,3 +50,6 @@ edit_produit:
 acheter_produit:
     path:     /acheterProduit
     defaults: { _controller:FrontBundle:Utilisateur:AcheterProduit }
+save_personnal_data:
+    path:     /save_personnal_data
+    defaults: { _controller:FrontBundle:Utilisateur:SavePersonnalData }

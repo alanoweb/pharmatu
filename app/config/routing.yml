@@ -24,3 +24,6 @@ fos_user:
 new_user:
     pattern: /new
     defaults: { _controller: UserBundle:user:new}
+creat_user_profil:
+    pattern: /creat_user_profil
+    defaults: { _controller: FrontBundle:Default:CreatUserProfil}

@@ -240,12 +240,13 @@
                         <div id="tabdatapersonel" class="tab-pane fade {% if app.user.utilisateur == null %}fade in active{% endif %}">
                             <div class="panel panel-default margin-bottom-40">
                                 <div class="panel-body">
+                                    <form id="PersonnalDataForm">
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" >Nom<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
                                         <div class="col-md-8  inputGroupContainer">
                                             <div class="input-group" style="margin-bottom:10px;border:none">
                                                 <span class="input-group-addon" ><i class="glyphicon glyphicon-grain"></i></span>   
-                                                <input onfocusout="" type="text" id="" name="" required="required" class="form-control " placeholder="Votre nom de la famille" style="margin-bottom:0px"/>
+                                                <input value="{{user.nom}}" type="text" id="Personnalnom" name="Personnalnom" required="required" class="form-control " placeholder="Votre nom de la famille" style="margin-bottom:0px"/>
                                             </div>
                                         </div>
                                     </div>
@@ -254,7 +255,7 @@
                                         <div class="col-md-8  inputGroupContainer">
                                             <div class="input-group" style="margin-bottom:10px;border:none">
                                                 <span class="input-group-addon" ><i class="glyphicon glyphicon-user"></i></span>   
-                                                <input onfocusout="" type="text" id="" name="" required="required" class="form-control " placeholder="Votre prénom" style="margin-bottom:0px"/>
+                                                <input value="{{user.prenom}}" type="text" id="Personnalprenom" name="Personnalprenom" required="required" class="form-control " placeholder="Votre prénom" style="margin-bottom:0px"/>
                                             </div>
                                         </div>
                                     </div>
@@ -263,7 +264,7 @@
                                         <div class="col-md-8  inputGroupContainer">
                                             <div class="input-group" style="margin-bottom:10px;border:none">
                                                 <span class="input-group-addon" ><i class="glyphicon glyphicon-credit-card"></i></span>   
-                                                <input onfocusout="" type="text" id="" name="" required="required" class="form-control " placeholder="Votre numero de carte d'identité" style="margin-bottom:0px"/>
+                                                <input value="{{user.cin}}" type="text" id="Personnalcin" name="Personnalcin" required="required" class="form-control " placeholder="Votre numero de carte d'identité" style="margin-bottom:0px"/>
                                             </div>
                                         </div>
                                     </div>
@@ -272,7 +273,7 @@
                                         <div class="col-md-8  inputGroupContainer">
                                             <div class="input-group" style="margin-bottom:10px;border:none">
                                                 <span class="input-group-addon" ><i class="glyphicon glyphicon-calendar"></i></span>   
-                                                <input onfocusout="" type="text" id="" name="" required="required" class="form-control " placeholder="Votre date de naissance" style="margin-bottom:0px"/>
+                                                <input value="{{user.date_nais|date('d/m/Y')}}" type="text" id="Personnaldatenais" name="Personnaldatenais" required="required" class="form-control datepicker" placeholder="Votre date de naissance" style="margin-bottom:0px"/>
                                             </div>
                                         </div>
                                     </div>
@@ -281,7 +282,7 @@
                                         <div class="col-md-8  inputGroupContainer">
                                             <div class="input-group" style="margin-bottom:10px;border:none">
                                                 <span class="input-group-addon" ><i class="glyphicon glyphicon-bookmark"></i></span>   
-                                                <input onfocusout="" type="text" id="" name="" required="required" class="form-control " placeholder="Votre adresse" style="margin-bottom:0px"/>
+                                                <input value="{{user.adresse}}" type="text" id="Personnaladresse" name="Personnaladresse" required="required" class="form-control " placeholder="Votre adresse" style="margin-bottom:0px"/>
                                             </div>
                                         </div>
                                     </div>
@@ -290,7 +291,7 @@
                                         <div class="col-md-8  inputGroupContainer">
                                             <div class="input-group" style="margin-bottom:10px;border:none">
                                                 <span class="input-group-addon" ><i class="glyphicon glyphicon-phone"></i></span>   
-                                                <input onfocusout="" type="text" id="" name="" required="required" class="form-control " placeholder="Votre Numero" style="margin-bottom:0px"/>
+                                                <input value="{{user.numero}}" type="text" id="Personnalnum" name="Personnalnum" required="required" class="form-control " placeholder="Votre Numero" style="margin-bottom:0px"/>
                                             </div>
                                         </div>
                                     </div>
@@ -299,12 +300,13 @@
                                         <div class="col-md-8  inputGroupContainer">
                                             <div class="input-group" style="margin-bottom:10px;border:none">
                                                 <span class="input-group-addon" ><i class="glyphicon glyphicon-tag"></i></span>   
-                                                <input onfocusout="" type="text" id="" name="" required="required" class="form-control " placeholder="Votre pseudo" style="margin-bottom:0px"/>
+                                                <input value="{{user.pseudo}}" type="text" id="Personnalpseudo" name="Personnalpseudo" required="required" class="form-control " placeholder="Votre pseudo" style="margin-bottom:0px"/>
                                             </div>
                                         </div>
                                     </div>
                                     
-                                    <button type="button" class="btn btn-primary btn-icon-left pull-right"><i class="fa fa-floppy-o"></i> Sauvegarder</button>
+                                    <button type="button" class="btn btn-primary btn-icon-left pull-right" onclick="SavePersonalData();"><i class="fa fa-floppy-o"></i> Sauvegarder</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -435,9 +437,18 @@
 
 {% block javascript %}
     <script>
-      /*  window.onbeforeunload = function() {
-            return 'bbb';
-        }*/
+        function SavePersonalData() {
+                    $.ajax({
+                        type: "POST",
+                        url: "{{path('save_personnal_data')}}",
+                        processData: false, contentType: false, cache: false,
+                        data: new FormData($('#PersonnalDataForm')[0]),
+                        success: function () {
+                            location.reload();
+                        }
+                    });
+                }
+   
     </script>
 {% endblock javascript %}
 

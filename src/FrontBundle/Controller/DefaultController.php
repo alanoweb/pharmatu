@@ -6,6 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AdminBundle\Entity\Activity;
 use Symfony\Component\HttpFoundation\Response;
 use SupAdminBundle\Entity\Produits;
+use FrontBundle\Entity\Utilisateur;
+use AdminBundle\Entity\Admin;
+use EntrepriseBundle\Entity\Entreprise;
 
 class DefaultController extends Controller {
 
@@ -60,10 +63,49 @@ class DefaultController extends Controller {
             return $this->render('FrontBundle:Default:monprofil.html.twig', array('user' => $utilisateur));
         }
     }
-
+    public function CreatUserProfilAction() {
+        $em = $this->getDoctrine()->getManager();
+        $userManager = $this->container->get('fos_user.user_manager');
+        
+        $user = $this->get('security.context')->getToken()->getUser();
+        
+        if ($user->hasRole('ROLE_ADMIN')) {
+            $profil = new Admin();
+            $profil->setUser($user);
+            
+            $em->persist($profil);
+            
+            $user->setAdmin($profil);
+            
+            $userManager->updateUser($user);
+            $em->flush();
+            return new Response($profil->getId());
+        } elseif ($user->hasRole('ROLE_ENTREPRISE')) {
+            $profil = new Entreprise();
+            $profil->setUser($user);
+            
+            $em->persist($profil);
+            
+            $user->setEntreprise($profil);
+            
+            $userManager->updateUser($user);
+            $em->flush();
+            return new Response($profil->getId());
+        } elseif ($user->hasRole('ROLE_USER')) {
+            $profil = new Utilisateur();
+            $profil->setUser($user);
+            
+            $em->persist($profil);
+            
+            $user->setUtilisateur($profil);
+            
+            $userManager->updateUser($user);
+            $em->flush();
+            return new Response($profil->getId());
+        }
+    }
+ 
     
-    
-     
 }
 
 ?>
