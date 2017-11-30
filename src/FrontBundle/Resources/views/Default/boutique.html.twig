@@ -83,7 +83,7 @@
                             </div>
                         </div>
                     {% else %}
-                        {%if not (produit.getStatus() == "Stock epuiser" or produit.getStatus() == "Deleted" ) %}
+                        {% if not (produit.getStatus() == "Stock epuiser" or produit.getStatus() == "Deleted" ) %}
                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                 <div class="card">
                                     <div class="card-img">
@@ -402,18 +402,21 @@
             });
             }
             {%endif%}
-            function AcheterProduit($idProduit) {
-            $_data = {
-            'idProduit': $idProduit
-            };
-            $.ajax({
-            type: "POST",
+            function AcheterProduit($idProduit) 
+            {
+                {#% if app.user.utilisateur %}            
+                window.location.href = "{{path('monprofil')}}";
+                {% endif %#}
+                $_data = {'idProduit': $idProduit};
+                $.ajax({
+                    type: "POST",
                     url: "{{path('acheter_produit')}}",
                     data: $_data,
-                    success: function () {
-                    location.reload();
-                    }
-            });
+                    success: function () 
+                        {
+                        location.reload();
+                        }
+                });
             }
     </script>
 {% endblock %}

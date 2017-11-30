@@ -325,6 +325,7 @@ height:100%;
 {% block javascript %}
     {%if is_granted('ROLE_ADMIN') %}
         <script>
+            $(".datepicker").css("z-index", "10000");
             var menu = $('#boutique2ndnav');
             var origOffsetY = menu.offset().top;
 
@@ -341,22 +342,6 @@ height:100%;
             }
             scroll();
             document.onscroll = scroll;
-        </script>
-        <script>
-            $(".datepicker").datepicker({dateFormat: 'd/m/yy',
-                altField: "#datepicker",
-                closeText: 'Fermer',
-                prevText: 'Précédent',
-                nextText: 'Suivant',
-                currentText: 'Aujourd\'hui',
-                monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-                monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
-                dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
-                dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
-                dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
-                weekHeader: 'Sem.'
-            });
-            $(".datepicker").css("z-index", "10000");
         </script>
         <script>
             function AjouterActivity() {

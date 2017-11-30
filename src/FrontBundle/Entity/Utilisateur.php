@@ -28,50 +28,66 @@ class Utilisateur
     /**
      * @var string
      *
-     * @ORM\Column(name="Nom", type="string", length=255)
+     * @ORM\Column(name="Nom", type="string", length=255 , nullable = true)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=255)
+     * @ORM\Column(name="prenom", type="string", length=255, nullable = true)
      */
     private $prenom;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cin", type="string", length=255, nullable = true)
+     */
+    private $cin;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="adresse", type="string", length=255)
+     * @ORM\Column(name="adresse", type="string", length=255, nullable = true)
      */
     private $adresse;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="numero", type="integer")
+     * @ORM\Column(name="numero", type="integer", nullable = true)
      */
     private $numero;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="pseudo", type="string", length=255, unique=true)
+     * @ORM\Column(name="pseudo", type="string", length=255, unique=true, nullable = true)
      */
     private $pseudo;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="coin", type="integer")
+     * @ORM\Column(name="coin", type="integer", nullable = true)
      */
     private $coin;
-	/**
+    
+    /**
      * @var int
      *
-     * @ORM\Column(name="experience", type="integer")
+     * @ORM\Column(name="experience", type="integer", nullable = true)
      */
     private $experience;
+    
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="date_nais", type="datetime", nullable = true)
+     */
+    private $date_nais;
+    
     /**
      * Get id
      *
@@ -261,5 +277,51 @@ class Utilisateur
     public function getexperience()
     {
         return $this->experience;
+    }
+    
+    /**
+     * Set cin
+     *
+     * @param string $cin
+     * @return Utilisateur
+     */
+    public function setCin($cin)
+    {
+        $this->cin = $cin;
+
+        return $this;
+    }
+
+    /**
+     * Get cin
+     *
+     * @return string 
+     */
+    public function getCin()
+    {
+        return $this->cin;
+    }
+    
+    /**
+     * Set date_nais
+     *
+     * @param datetime $date_nais
+     * @return Utilisateur
+     */
+    public function setDate_nais($date_nais)
+    {
+        $this->date_nais = $date_nais;
+
+        return $this;
+    }
+
+    /**
+     * Get date_nais
+     *
+     * @return datetime 
+     */
+    public function getDate_nais()
+    {
+        return $this->date_nais;
     }
 }
