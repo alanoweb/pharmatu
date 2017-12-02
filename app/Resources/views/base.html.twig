@@ -1130,6 +1130,41 @@
                 {% endif %}
             {% endif %}
         </script>
+        <script>
+            function CheckEmptyRequiredInput($id, $message) {
+                $valide = true;
+                $('#' + $id).find("label > span").each(function () {
+                    $input = $(this).parent().next().find("input");
+                    if ($input.val() === "") {
+                        $input.parent().css('border', '1px solid red');
+                        $input.parent().prev('span').html($(this).parent().html().replace('*', $message));
+                        $valide = false;
+                    } else {
+                        $input.parent().css('border', '1px solid green');
+                        $input.parent().prev('span').html('');
+                    }
+                });
+                return $valide;
+            }
+            function CheckNumeriqueInput($id, $message) {
+                $valide = true;
+                $input = $('#' + $id);
+                if ($input.val() === '') {
+                    $input.parent().css('border', '1px solid red');
+                    $input.parent().prev('span').html($input.parent().parent().prev('label').html().replace('*', $message));
+                    $valide = false;
+                } else if (!$.isNumeric($input.val())) {
+                    $input.parent().css('border', '1px solid red');
+                    $input.parent().prev('span').html($input.parent().parent().prev('label').html().replace('*', 'doit etre numerique'));
+                    $valide = false;
+                } else {
+                    $input.parent().css('border', '1px solid green');
+                    $input.parent().prev('span').html('');
+                }
+
+                return $valide;
+            }
+        </script>
         {% block javascript %}
         {% endblock javascript %}
     </body>

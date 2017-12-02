@@ -241,71 +241,77 @@
                             <div class="panel panel-default margin-bottom-40">
                                 <div class="panel-body">
                                     <form id="PersonnalDataForm">
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" >Nom<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                                        <div class="col-md-8  inputGroupContainer">
-                                            <div class="input-group" style="margin-bottom:10px;border:none">
-                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-grain"></i></span>   
-                                                <input value="{{user.nom}}" type="text" id="Personnalnom" name="Personnalnom" required="required" class="form-control " placeholder="Votre nom de la famille" style="margin-bottom:0px"/>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" >Nom<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                            <div class="col-md-8  inputGroupContainer">
+                                                <span style="color:red;font-weight: 900"></span>
+                                                <div class="input-group" style="margin-bottom:10px;border:none">
+                                                    <span class="input-group-addon" ><i class="glyphicon glyphicon-grain"></i></span>   
+                                                    <input value="{{user.nom}}" type="text" id="Personnalnom" name="Personnalnom" required="required" class="form-control " placeholder="Votre nom de la famille" style="margin-bottom:0px"/>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" >Prénom<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                                        <div class="col-md-8  inputGroupContainer">
-                                            <div class="input-group" style="margin-bottom:10px;border:none">
-                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-user"></i></span>   
-                                                <input value="{{user.prenom}}" type="text" id="Personnalprenom" name="Personnalprenom" required="required" class="form-control " placeholder="Votre prénom" style="margin-bottom:0px"/>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" >Prénom<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                            <div class="col-md-8  inputGroupContainer">
+                                                <span style="color:red;font-weight: 900"></span>
+                                                <div class="input-group" style="margin-bottom:10px;border:none">
+                                                    <span class="input-group-addon" ><i class="glyphicon glyphicon-user"></i></span>   
+                                                    <input value="{{user.prenom}}" type="text" id="Personnalprenom" name="Personnalprenom" required="required" class="form-control " placeholder="Votre prénom" style="margin-bottom:0px"/>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" >CIN<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                                        <div class="col-md-8  inputGroupContainer">
-                                            <div class="input-group" style="margin-bottom:10px;border:none">
-                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-credit-card"></i></span>   
-                                                <input value="{{user.cin}}" type="text" id="Personnalcin" name="Personnalcin" required="required" class="form-control " placeholder="Votre numero de carte d'identité" style="margin-bottom:0px"/>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" >CIN<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                            <div class="col-md-8  inputGroupContainer">
+                                                <span style="color:red;font-weight: 900"></span>
+                                                <div class="input-group" style="margin-bottom:10px;border:none">
+                                                    <span class="input-group-addon" ><i class="glyphicon glyphicon-credit-card"></i></span>   
+                                                    <input value="{{user.cin}}" type="text" id="Personnalcin" name="Personnalcin" required="required" class="form-control " placeholder="Votre numero de carte d'identité" style="margin-bottom:0px"/>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" >date de naissance<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                                        <div class="col-md-8  inputGroupContainer">
-                                            <div class="input-group" style="margin-bottom:10px;border:none">
-                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-calendar"></i></span>   
-                                                <input value="{{user.date_nais|date('d/m/Y')}}" type="text" id="Personnaldatenais" name="Personnaldatenais" required="required" class="form-control datepicker" placeholder="Votre date de naissance" style="margin-bottom:0px"/>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" >date de naissance<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                            <div class="col-md-8  inputGroupContainer">
+                                                <span style="color:red;font-weight: 900"></span>
+                                                <div class="input-group" style="margin-bottom:10px;border:none">
+                                                    <span class="input-group-addon" ><i class="glyphicon glyphicon-calendar"></i></span>   
+                                                    <input value="{{user.date_nais|date('d/m/Y')}}" type="text" id="Personnaldatenais" name="Personnaldatenais" required="required" class="form-control datepicker" placeholder="Votre date de naissance" style="margin-bottom:0px"/>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" >Adresse<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                                        <div class="col-md-8  inputGroupContainer">
-                                            <div class="input-group" style="margin-bottom:10px;border:none">
-                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-bookmark"></i></span>   
-                                                <input value="{{user.adresse}}" type="text" id="Personnaladresse" name="Personnaladresse" required="required" class="form-control " placeholder="Votre adresse" style="margin-bottom:0px"/>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" >Adresse<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                            <div class="col-md-8  inputGroupContainer">
+                                                <span style="color:red;font-weight: 900"></span>
+                                                <div class="input-group" style="margin-bottom:10px;border:none">
+                                                    <span class="input-group-addon" ><i class="glyphicon glyphicon-bookmark"></i></span>   
+                                                    <input value="{{user.adresse}}" type="text" id="Personnaladresse" name="Personnaladresse" required="required" class="form-control " placeholder="Votre adresse" style="margin-bottom:0px"/>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" >Numero de telephone<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                                        <div class="col-md-8  inputGroupContainer">
-                                            <div class="input-group" style="margin-bottom:10px;border:none">
-                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-phone"></i></span>   
-                                                <input value="{{user.numero}}" type="text" id="Personnalnum" name="Personnalnum" required="required" class="form-control " placeholder="Votre Numero" style="margin-bottom:0px"/>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" >Numero de telephone<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                            <div class="col-md-8  inputGroupContainer">
+                                                <span style="color:red;font-weight: 900"></span>
+                                                <div class="input-group" style="margin-bottom:10px;border:none">
+                                                    <span class="input-group-addon" ><i class="glyphicon glyphicon-phone"></i></span>   
+                                                    <input value="{{user.numero}}" type="text" id="Personnalnum" name="Personnalnum" required="required" class="form-control " placeholder="Votre Numero" style="margin-bottom:0px"/>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" >pseudo</label>
-                                        <div class="col-md-8  inputGroupContainer">
-                                            <div class="input-group" style="margin-bottom:10px;border:none">
-                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-tag"></i></span>   
-                                                <input value="{{user.pseudo}}" type="text" id="Personnalpseudo" name="Personnalpseudo" required="required" class="form-control " placeholder="Votre pseudo" style="margin-bottom:0px"/>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" >pseudo</label>
+                                            <div class="col-md-8  inputGroupContainer">
+                                                <div class="input-group" style="margin-bottom:10px;border:none">
+                                                    <span class="input-group-addon" ><i class="glyphicon glyphicon-tag"></i></span>   
+                                                    <input value="{{user.pseudo}}" type="text" id="Personnalpseudo" name="Personnalpseudo" required="required" class="form-control " placeholder="Votre pseudo" style="margin-bottom:0px"/>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    
-                                    <button type="button" class="btn btn-primary btn-icon-left pull-right" onclick="SavePersonalData();"><i class="fa fa-floppy-o"></i> Sauvegarder</button>
+
+                                        <button type="button" class="btn btn-primary btn-icon-left pull-right" onclick="SavePersonalData();"><i class="fa fa-floppy-o"></i> Sauvegarder</button>
                                     </form>
                                 </div>
                             </div>
@@ -316,19 +322,19 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" >Civilité</label>
                                         <div class="row">
-							<div class="radio radio-inline">
-								<input type="radio" name="radio-inline" id="inline-radio1" checked> 
-								<label for="inline-radio1">Mr</label>
-							</div>
-							<div class="radio radio-inline">
-								<input type="radio" name="radio-inline" id="inline-radio2"> 
-								<label for="inline-radio2">Mrs</label>
-							</div>
-							<div class="radio radio-inline">
-								<input type="radio" name="radio-inline" id="inline-radio3"> 
-								<label for="inline-radio3">Mlle</label>
-							</div>
-						</div>
+                                            <div class="radio radio-inline">
+                                                <input type="radio" name="radio-inline" id="inline-radio1" checked> 
+                                                <label for="inline-radio1">Mr</label>
+                                            </div>
+                                            <div class="radio radio-inline">
+                                                <input type="radio" name="radio-inline" id="inline-radio2"> 
+                                                <label for="inline-radio2">Mrs</label>
+                                            </div>
+                                            <div class="radio radio-inline">
+                                                <input type="radio" name="radio-inline" id="inline-radio3"> 
+                                                <label for="inline-radio3">Mlle</label>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" >Metier</label>
@@ -358,7 +364,7 @@
                                                     <option value="bounce">bounce</option>
                                                     <option value="bounce">bounce</option>
                                                     <option value="bounce">bounce</option>
-						</select>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -390,7 +396,7 @@
                                                     <option value="bounce">bounce</option>
                                                     <option value="bounce">bounce</option>
                                                     <option value="bounce">bounce</option>
-						</select>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -421,7 +427,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <button type="button" class="btn btn-primary btn-icon-left pull-right"><i class="fa fa-floppy-o"></i> Sauvegarder</button>
                                 </div>
                             </div>
@@ -438,17 +444,27 @@
 {% block javascript %}
     <script>
         function SavePersonalData() {
-                    $.ajax({
-                        type: "POST",
-                        url: "{{path('save_personnal_data')}}",
-                        processData: false, contentType: false, cache: false,
-                        data: new FormData($('#PersonnalDataForm')[0]),
-                        success: function () {
-                            location.reload();
-                        }
-                    });
+            $checkempty = CheckEmptyRequiredInput('PersonnalDataForm' , 'obligatoire');
+            $checknumeric1 = CheckNumeriqueInput('Personnalnum', 'obligatoire');
+            $checknumeric2 = CheckNumeriqueInput('Personnalcin', 'obligatoire');
+            
+
+           if ($checkempty && $checknumeric1 && $checknumeric2 ){
+               $.ajax({
+                type: "POST",
+                url: "{{path('save_personnal_data')}}",
+                processData: false, contentType: false, cache: false,
+                data: new FormData($('#PersonnalDataForm')[0]),
+                success: function () {
+                    location.reload();
                 }
-   
+            });
+            } 
+            else{
+             alert('resoud les erreurs svp !!!')
+            }
+        }
+
     </script>
 {% endblock javascript %}
 
