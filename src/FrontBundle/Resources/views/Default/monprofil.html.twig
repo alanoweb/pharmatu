@@ -53,7 +53,7 @@
                             <div class="panel-body">
                                 {% if user.description %}{{user.description}}{% endif %}
                                 <ul class="panel-list margin-top-25">
-                                    <li><i class="fa fa-clock-o"></i> Membre depuis :</li>
+                                    <li><i class="fa fa-clock-o"></i> Membre depuis : {{user.date_membre|date('d/m/Y')}}</li>
                                     {% if user.pays %}<li><i class="fa fa-map-marker"></i> {{user.pays}}</li>{% endif %}
                                     {% if user.siteweb %}<li><i class="fa fa-link"></i> <a href="https://{{user.siteweb}}" target="_blank"> {{user.siteweb}}</a></li>{% endif %}
                                 </ul>
@@ -235,6 +235,7 @@
                                     </ul>
                                 </div>
                             </div>
+                            <h4 id="datebginmember" class="page-header text-center no-padding"><i class="fa fa-clock-o"></i> vous ete devenu membre de notre site depuis le {{user.date_membre|date('j F Y \\à g:ia')}}</h4>
                             <center><a href="javascript:void(0);" class="btn btn-primary btn-lg btn-shadow btn-rounded">Show More</a></center>
                         </div>
                         <div id="tabdatapersonel" class="tab-pane fade {% if app.user.utilisateur == null %}fade in active{% endif %}">
@@ -452,6 +453,7 @@
 
 {% block javascript %}
     <script>
+        $('#datebginmember').html($('#datebginmember').html().replace('December','décembre'));
         function SavePersonalData() {
             $checkempty = CheckEmptyRequiredInput('PersonnalDataForm' , 'obligatoire');
             $checknumeric1 = CheckNumeriqueInput('Personnalnum', 'obligatoire');

@@ -95,6 +95,13 @@ class Utilisateur
      */
     private $date_nais;
     
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="date_membre", type="datetime", nullable = true)
+     */
+    private $date_membre;
+    
      /**
      * @var string
      *
@@ -400,6 +407,29 @@ class Utilisateur
     public function getDate_nais()
     {
         return $this->date_nais;
+    }
+    
+    /**
+     * Set date_membre
+     *
+     * @param datetime $date_membre
+     * @return Utilisateur
+     */
+    public function setDate_membre($date_membre)
+    {
+        $this->date_membre = $date_membre;
+
+        return $this;
+    }
+
+    /**
+     * Get date_membre
+     *
+     * @return datetime 
+     */
+    public function getDate_membre()
+    {
+        return $this->date_membre;
     }
     
     /**
