@@ -28,7 +28,7 @@ class Utilisateur
     /**
      * @var string
      *
-     * @ORM\Column(name="Nom", type="string", length=255 , nullable = true)
+     * @ORM\Column(name="nom", type="string", length=255 , nullable = true)
      */
     private $nom;
 
@@ -38,6 +38,13 @@ class Utilisateur
      * @ORM\Column(name="prenom", type="string", length=255, nullable = true)
      */
     private $prenom;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sexe", type="string", length=255 , nullable = true)
+     */
+    private $sexe;
     
     /**
      * @var string
@@ -87,6 +94,76 @@ class Utilisateur
      * @ORM\Column(name="date_nais", type="datetime", nullable = true)
      */
     private $date_nais;
+    
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="metier", type="string", length=255 , nullable = true)
+     */
+    private $metier;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lieutravail", type="string", length=255 , nullable = true)
+     */
+    private $lieutravail;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="niveauscolaire", type="string", length=255 , nullable = true)
+     */
+    private $niveauscolaire;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="diplome", type="string", length=255 , nullable = true)
+     */
+    private $diplome;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="situation", type="string", length=255 , nullable = true)
+     */
+    private $situation;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pays", type="string", length=255 , nullable = true)
+     */
+    private $pays;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="siteweb", type="string", length=255 , nullable = true)
+     */
+    private $siteweb;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="langues", type="string", length=255 , nullable = true)
+     */
+    private $langues;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255 , nullable = true)
+     */
+    private $description;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="datavalider", type="string", length=255 , nullable = true)
+     */
+    private $datavalider;
     
     /**
      * Get id
@@ -323,5 +400,258 @@ class Utilisateur
     public function getDate_nais()
     {
         return $this->date_nais;
+    }
+    
+    /**
+     * Set sexe
+     *
+     * @param string $sexe
+     * @return Utilisateur
+     */
+    public function setSexe($sexe)
+    {
+        $this->sexe = $sexe;
+
+        return $this;
+    }
+
+    /**
+     * Get sexe
+     *
+     * @return string 
+     */
+    public function getSexe()
+    {
+        return $this->sexe;
+    }
+    
+    /**
+     * Set metier
+     *
+     * @param string $metier
+     * @return Utilisateur
+     */
+    public function setMetier($metier)
+    {
+        $this->metier = $metier;
+
+        return $this;
+    }
+
+    /**
+     * Get metier
+     *
+     * @return string 
+     */
+    public function getMetier()
+    {
+        return $this->metier;
+    }
+    
+    /**
+     * Set lieutravail
+     *
+     * @param string $lieutravail
+     * @return Utilisateur
+     */
+    public function setLieutravail($lieutravail)
+    {
+        $this->lieutravail = $lieutravail;
+
+        return $this;
+    }
+
+    /**
+     * Get lieutravail
+     *
+     * @return string 
+     */
+    public function getLieutravail()
+    {
+        return $this->lieutravail;
+    }
+    
+    /**
+     * Set niveauscolaire
+     *
+     * @param string $niveauscolaire
+     * @return Utilisateur
+     */
+    public function setNiveauscolaire($niveauscolaire)
+    {
+        $this->niveauscolaire = $niveauscolaire;
+
+        return $this;
+    }
+
+    /**
+     * Get niveauscolaire
+     *
+     * @return string 
+     */
+    public function getNiveauscolaire()
+    {
+        return $this->niveauscolaire;
+    }
+    
+    /**
+     * Set diplome
+     *
+     * @param string $diplome
+     * @return Utilisateur
+     */
+    public function setDiplome($diplome)
+    {
+        $this->diplome = $diplome;
+
+        return $this;
+    }
+
+    /**
+     * Get diplome
+     *
+     * @return string 
+     */
+    public function getDiplome()
+    {
+        return $this->diplome;
+    }
+    
+    /**
+     * Set pays
+     *
+     * @param string $pays
+     * @return Utilisateur
+     */
+    public function setPays($pays)
+    {
+        $this->pays = $pays;
+
+        return $this;
+    }
+
+    /**
+     * Get pays
+     *
+     * @return string 
+     */
+    public function getPays()
+    {
+        return $this->pays;
+    }
+    
+    /**
+     * Set situation
+     *
+     * @param string $situation
+     * @return Utilisateur
+     */
+    public function setSituation($situation)
+    {
+        $this->situation = $situation;
+
+        return $this;
+    }
+
+    /**
+     * Get situation
+     *
+     * @return string 
+     */
+    public function getSituation()
+    {
+        return $this->situation;
+    }
+    
+    /**
+     * Set siteweb
+     *
+     * @param string $siteweb
+     * @return Utilisateur
+     */
+    public function setSiteweb($siteweb)
+    {
+        $this->siteweb = $siteweb;
+
+        return $this;
+    }
+
+    /**
+     * Get siteweb
+     *
+     * @return string 
+     */
+    public function getSiteweb()
+    {
+        return $this->siteweb;
+    }
+    
+    /**
+     * Set langues
+     *
+     * @param string $langues
+     * @return Utilisateur
+     */
+    public function setLangues($langues)
+    {
+        $this->langues = $langues;
+
+        return $this;
+    }
+
+    /**
+     * Get langues
+     *
+     * @return string 
+     */
+    public function getLangues()
+    {
+        return $this->langues;
+    }
+    
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Utilisateur
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+    
+    /**
+     * Set datavalider
+     *
+     * @param string $datavalider
+     * @return Utilisateur
+     */
+    public function setDatavalider($datavalider)
+    {
+        $this->datavalider = $datavalider;
+
+        return $this;
+    }
+
+    /**
+     * Get datavalider
+     *
+     * @return string 
+     */
+    public function getDatavalider()
+    {
+        return $this->datavalider;
     }
 }

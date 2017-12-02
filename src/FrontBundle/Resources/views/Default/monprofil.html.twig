@@ -47,15 +47,15 @@
                                 {% if app.user.utilisateur != null and app.user.utilisateur.pseudo != null and app.user.utilisateur.pseudo != "" %}
                                     {{app.user.utilisateur.pseudo}}
                                 {% else %}
-                                    Données Personnel
+                                    Fiche Personnel
                                 {% endif %}
                             </div>
                             <div class="panel-body">
-                                I am a frontend developer & designer
+                                {% if user.description %}{{user.description}}{% endif %}
                                 <ul class="panel-list margin-top-25">
-                                    <li><i class="fa fa-clock-o"></i> Joined December 2009</li>
-                                    <li><i class="fa fa-map-marker"></i> United Kingdom</li>
-                                    <li><i class="fa fa-chain-broken"></i> Gameforest</li>
+                                    <li><i class="fa fa-clock-o"></i> Membre depuis :</li>
+                                    {% if user.pays %}<li><i class="fa fa-map-marker"></i> {{user.pays}}</li>{% endif %}
+                                    {% if user.siteweb %}<li><i class="fa fa-link"></i> <a href="https://{{user.siteweb}}" target="_blank"> {{user.siteweb}}</a></li>{% endif %}
                                 </ul>
                             </div>
                         </div>
@@ -277,7 +277,7 @@
                                                 <span style="color:red;font-weight: 900"></span>
                                                 <div class="input-group" style="margin-bottom:10px;border:none">
                                                     <span class="input-group-addon" ><i class="glyphicon glyphicon-calendar"></i></span>   
-                                                    <input value="{{user.date_nais|date('d/m/Y')}}" type="text" id="Personnaldatenais" name="Personnaldatenais" required="required" class="form-control datepicker" placeholder="Votre date de naissance" style="margin-bottom:0px"/>
+                                                    <input value="{{user.date_nais|date('d-m-Y')}}" type="text" id="Personnaldatenais" name="Personnaldatenais" required="required" class="form-control datepicker" placeholder="Votre date de naissance" style="margin-bottom:0px"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -319,20 +319,21 @@
                         <div id="tabdatageneral" class="tab-pane fade">
                             <div class="panel panel-default margin-bottom-40">
                                 <div class="panel-body">
+                                    <form id="GeneralDataForm">
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" >Civilité</label>
                                         <div class="row">
                                             <div class="radio radio-inline">
-                                                <input type="radio" name="radio-inline" id="inline-radio1" checked> 
-                                                <label for="inline-radio1">Mr</label>
+                                                <input type="radio" name="Generalsexe" id="Generalsexe1" {%if user.sexe == null or user.sexe == "Mr"%}checked{%endif%} value="Mr"> 
+                                                <label for="Generalsexe1">Mr</label>
                                             </div>
                                             <div class="radio radio-inline">
-                                                <input type="radio" name="radio-inline" id="inline-radio2"> 
-                                                <label for="inline-radio2">Mrs</label>
+                                                <input type="radio" name="Generalsexe" id="Generalsexe2" {%if user.sexe == "Mrs"%}checked{%endif%} value="Mrs"> 
+                                                <label for="Generalsexe2">Mrs</label>
                                             </div>
                                             <div class="radio radio-inline">
-                                                <input type="radio" name="radio-inline" id="inline-radio3"> 
-                                                <label for="inline-radio3">Mlle</label>
+                                                <input type="radio" name="Generalsexe" id="Generalsexe3" {%if user.sexe == "Mlle"%}checked{%endif%} value="Mlle"> 
+                                                <label for="Generalsexe3">Mlle</label>
                                             </div>
                                         </div>
                                     </div>
@@ -341,7 +342,7 @@
                                         <div class="col-md-8  inputGroupContainer">
                                             <div class="input-group" style="margin-bottom:10px;border:none">
                                                 <span class="input-group-addon" ><i class="glyphicon glyphicon-briefcase"></i></span>   
-                                                <input onfocusout="" type="text" id="" name="" required="required" class="form-control " placeholder="Votre Metier" style="margin-bottom:0px"/>
+                                                <input value="{{user.metier}}" type="text" id="Generalmetier" name="Generalmetier" required="required" class="form-control " placeholder="Votre Metier" style="margin-bottom:0px"/>
                                             </div>
                                         </div>
                                     </div>
@@ -350,7 +351,7 @@
                                         <div class="col-md-8  inputGroupContainer">
                                             <div class="input-group" style="margin-bottom:10px;border:none">
                                                 <span class="input-group-addon" ><i class="glyphicon glyphicon-map-marker"></i></span>   
-                                                <input onfocusout="" type="text" id="" name="" required="required" class="form-control " placeholder="Votre lieu de travail" style="margin-bottom:0px"/>
+                                                <input value="{{user.lieutravail}}" type="text" id="Generallieutravail" name="Generallieutravail" required="required" class="form-control " placeholder="Votre lieu de travail" style="margin-bottom:0px"/>
                                             </div>
                                         </div>
                                     </div>
@@ -359,11 +360,14 @@
                                         <div class="col-md-8  inputGroupContainer">
                                             <div class="input-group" style="margin-bottom:10px;border:none">
                                                 <span class="input-group-addon" ><i class="glyphicon glyphicon-education"></i></span>
-                                                <select id="" class="form-control input-md" placeholder="Votre niveau scolaire">
-                                                    <option value="bounce">bounce</option>
-                                                    <option value="bounce">bounce</option>
-                                                    <option value="bounce">bounce</option>
-                                                    <option value="bounce">bounce</option>
+                                                <select id="Generalniveauscolaire" name="Generalniveauscolaire" class="form-control input-md" placeholder="Votre niveau scolaire">
+                                                    <option value="bac" {%if user.niveauscolaire == "bac"%}selected="selected"{%endif%}>bac</option>
+                                                    <option value="bac+1" {%if user.niveauscolaire == "bac+1"%}selected="selected"{%endif%}>bac+1</option>
+                                                    <option value="bac+2" {%if user.niveauscolaire == "bac+2"%}selected="selected"{%endif%}>bac+2</option>
+                                                    <option value="bac+3" {%if user.niveauscolaire == "bac+3"%}selected="selected"{%endif%}>bac+3</option>
+                                                    <option value="Ingenieurie" {%if user.niveauscolaire == "Ingenieurie"%}selected="selected"{%endif%}>Ingenieurie</option>
+                                                    <option value="Mastere" {%if user.niveauscolaire == "Mastere"%}selected="selected"{%endif%}>Mastere</option>
+                                                    <option value="Doctorat" {%if user.niveauscolaire == "Doctorat"%}selected="selected"{%endif%}>Doctorat</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -373,16 +377,16 @@
                                         <div class="col-md-8  inputGroupContainer">
                                             <div class="input-group" style="margin-bottom:10px;border:none">
                                                 <span class="input-group-addon" ><i class="glyphicon glyphicon-education"></i></span>   
-                                                <input onfocusout="" type="text" id="" name="" required="required" class="form-control " placeholder="Votre diplôme" style="margin-bottom:0px"/>
+                                                <input value="{{user.diplome}}" type="text" id="Generaldiplome" name="Generaldiplome" required="required" class="form-control " placeholder="Votre diplôme" style="margin-bottom:0px"/>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" >Ville d'origine</label>
+                                        <label class="col-md-4 control-label" >Pays d'origine</label>
                                         <div class="col-md-8  inputGroupContainer">
                                             <div class="input-group" style="margin-bottom:10px;border:none">
                                                 <span class="input-group-addon" ><i class="glyphicon glyphicon-map-marker"></i></span>   
-                                                <input onfocusout="" type="text" id="" name="" required="required" class="form-control " placeholder="Votre ville d'origine" style="margin-bottom:0px"/>
+                                                <input value="{{user.pays}}" type="text" id="Generalpays" name="Generalpays" required="required" class="form-control " placeholder="Votre pays d'origine" style="margin-bottom:0px"/>
                                             </div>
                                         </div>
                                     </div>
@@ -391,11 +395,11 @@
                                         <div class="col-md-8  inputGroupContainer">
                                             <div class="input-group" style="margin-bottom:10px;border:none">
                                                 <span class="input-group-addon" ><i class="glyphicon glyphicon-heart-empty"></i></span>
-                                                <select id="" class="form-control input-md" placeholder="Votre Situation amoureuse">
-                                                    <option value="bounce">bounce</option>
-                                                    <option value="bounce">bounce</option>
-                                                    <option value="bounce">bounce</option>
-                                                    <option value="bounce">bounce</option>
+                                                <select id="Generalsituation" name="Generalsituation" class="form-control input-md" placeholder="Votre Situation amoureuse">
+                                                    <option value="Divorcé" {%if user.situation == "Divorcé"%}selected="selected"{%endif%}>Divorcé</option>
+                                                    <option value="Marié" {%if user.situation == "Marié"%}selected="selected"{%endif%}>Marié</option>
+                                                    <option value="Celibataire" {%if user.situation == "Celibataire"%}selected="selected"{%endif%}>Celibataire</option>
+                                                    <option value="Veuf" {%if user.situation == "Veuf"%}selected="selected"{%endif%}>Veuf</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -405,7 +409,7 @@
                                         <div class="col-md-8  inputGroupContainer">
                                             <div class="input-group" style="margin-bottom:10px;border:none">
                                                 <span class="input-group-addon" ><i class="glyphicon glyphicon-link"></i></span>   
-                                                <input onfocusout="" type="text" id="" name="" required="required" class="form-control " placeholder="Site web heberger ou blog " style="margin-bottom:0px"/>
+                                                <input value="{{user.siteweb}}" type="text" id="Generalsiteweb" name="Generalsiteweb" required="required" class="form-control " placeholder="Site web heberger ou blog " style="margin-bottom:0px"/>
                                             </div>
                                         </div>
                                     </div>
@@ -414,7 +418,12 @@
                                         <div class="col-md-8  inputGroupContainer">
                                             <div class="input-group" style="margin-bottom:10px;border:none">
                                                 <span class="input-group-addon" ><i class="glyphicon glyphicon-flag"></i></span>   
-                                                <input onfocusout="" type="text" id="" name="" required="required" class="form-control " placeholder="Vos Langues" style="margin-bottom:0px"/>
+                                                <select id="Generallangues" name="Generallangues" class="form-control input-md">
+                                                    <option value="Arabe" {%if user.langues == "Arabe"%}selected="selected"{%endif%}>Arabe</option>
+                                                    <option value="Français" {%if user.langues == "Français"%}selected="selected"{%endif%}>Français</option>
+                                                    <option value="Anglais" {%if user.langues == "Anglais"%}selected="selected"{%endif%}>Anglais</option>
+                                                    <option value="Italien" {%if user.langues == "Italien"%}selected="selected"{%endif%}>Italien</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -423,12 +432,12 @@
                                         <div class="col-md-8  inputGroupContainer">
                                             <div class="input-group" style="margin-bottom:10px;border:none">
                                                 <span class="input-group-addon" ><i class="glyphicon glyphicon-pencil"></i></span>
-                                                <textarea class="form-control" rows="7" placeholder="une petite résumer sur vous"></textarea>
+                                                <textarea id="Generaldescription" name="Generaldescription" class="form-control" rows="7" placeholder="une petite résumer sur vous">{{user.description}}</textarea>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <button type="button" class="btn btn-primary btn-icon-left pull-right"><i class="fa fa-floppy-o"></i> Sauvegarder</button>
+                                    <button type="button" class="btn btn-primary btn-icon-left pull-right" onclick="SaveGeneralData();"><i class="fa fa-floppy-o"></i> Sauvegarder</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -461,10 +470,22 @@
             });
             } 
             else{
-             alert('resoud les erreurs svp !!!')
+             alert('resoud les erreurs svp !!!');
             }
         }
-
+        
+        function SaveGeneralData() {
+        
+            $.ajax({
+                type: "POST",
+                url: "{{path('save_general_data')}}",
+                processData: false, contentType: false, cache: false,
+                data: new FormData($('#GeneralDataForm')[0]),
+                success: function () {
+                    location.reload();
+                }
+            });
+            } 
     </script>
 {% endblock javascript %}
 

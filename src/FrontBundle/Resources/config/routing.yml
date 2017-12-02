@@ -53,3 +53,6 @@ acheter_produit:
 save_personnal_data:
     path:     /save_personnal_data
     defaults: { _controller:FrontBundle:Utilisateur:SavePersonnalData }
+save_general_data:
+    path:     /save_general_data
+    defaults: { _controller:FrontBundle:Utilisateur:SaveGeneralData }
