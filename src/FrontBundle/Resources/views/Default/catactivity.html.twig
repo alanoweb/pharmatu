@@ -51,7 +51,7 @@ height:100%;
             <div class="container">
                 <div class="headline" style="margin-top: -16px">
                     <div class="text-center">
-                        <a href="javascript:void(0);" data-toggle="modal" data-target="#addact" class="btn btn-primary btn-rounded">
+                        <a href="javascript:void(0);" data-toggle="modal" data-target="#addact" class="btn btn-primary btn-shadow">
                             <span class="plus icon"></span>Ajouter une activité
                         </a> 
                     </div>
@@ -79,16 +79,16 @@ height:100%;
 
                                     <div class="text-center">
                                         {%if act.getActivation() == 0%}
-                                            <a href="javascript:void(0);" class="btn btn-danger btn-outline" style="padding-left: 5px;margin-right: -5px" onclick="ValidationActivity({{act.getId()}});">
+                                            <a href="javascript:void(0);" class="btn btn-success btn-outline" style="" onclick="ValidationActivity({{act.getId()}});">
                                                 <span class="fa fa-unlock"></span> Activer
                                             </a>
                                         {%else%}
-                                            <a href="javascript:void(0);" class="btn btn-inverse btn-outline"style="padding-left: 5px;margin-right: -5px" onclick="ValidationActivity({{act.getId()}});">
+                                            <a href="javascript:void(0);" class="btn btn-inverse btn-outline" style="padding-left: 5px;" onclick="ValidationActivity({{act.getId()}});">
                                                 <span class="fa fa-lock"></span> Desactiver
                                             </a>
                                         {%endif%} 
-                                        <a href="javascript:void(0);" {%if act.getStatus() == "Deleted"%}class="btn btn-success btn-outline"{% else %}class="btn btn-success btn-outline"{%endif%} style="padding-left: 5px;" onclick="editModalAct({{act.getId()}});"><span class="fa fa-pencil"></span> Modifier</a>
-                                        {%if act.getStatus() != "Deleted"%}<a href="javascript:void(0);" class="btn btn-info btn-outline" style="padding-left: 5px;margin-left: -5px" onclick="DeleteActivity({{act.getId()}});"><span class="fa fa-close"></span> Supprimer</a> {% endif %}
+                                        <a href="javascript:void(0);" class="btn btn-primary btn-outline" style="" onclick="editModalAct({{act.getId()}});"><span class="fa fa-pencil"></span> Modifier</a>
+                                        {%if act.getStatus() != "Deleted"%}<a href="javascript:void(0);" class="btn btn-danger btn-outline" style="padding-left: 5px;" onclick="DeleteActivity({{act.getId()}});"><span class="fa fa-close"></span> Supprimer</a> {% endif %}
                                     </div>
                                 </div>
                             </div>
