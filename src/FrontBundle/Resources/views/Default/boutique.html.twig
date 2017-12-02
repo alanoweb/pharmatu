@@ -36,7 +36,7 @@
             <div class="container">
                 <div class="headline" style="margin-top: -16px">
                     <div class="text-center">
-                        <a href="javascript:void(0);" data-toggle="modal" data-target="#addProduit" class="btn btn-info btn-rounded">
+                        <a href="javascript:void(0);" data-toggle="modal" data-target="#addProduit" class="btn btn-primary btn-shadow">
                             <span class="plus icon"></span>Ajouter un Produit
                         </a> 
                     </div>
@@ -61,9 +61,9 @@
                                     <div class="text-center"><h3 class="card-title">{{produit.getLibele()}}</h3></div>
                                     <ul><li>{{produit.getDescription()}}</li></ul>
                                     <div class="text-center">
-                                        <a href="javascript:void(0);" class="btn btn-danger btn-outline"style="padding-left: 5px;margin-right: -5px" onclick="StockModalProduit({{produit.getId()}});"><span class="fa fa-cubes"></span> Stock</a> 
-                                        <a href="javascript:void(0);" {%if produit.getStatus() == "Deleted" %}class="btn btn-success btn-outline"{%else%}class="btn btn-success btn-outline"{%endif%} style="padding-left: 5px;" onclick="editModalProduit({{produit.getId()}});"><span class="fa fa-pencil"></span> Modifier</a>
-                                        {%if produit.getStatus() != "Deleted" %}<a href="javascript:void(0);" class="btn btn-info btn-outline" style="padding-left: 5px;margin-left: -4px" onclick="DeleteProduit({{produit.getId()}});"><span class="fa fa-close"></span> Supprimer</a> {%endif%}
+                                        <a href="javascript:void(0);" class="btn btn-success btn-outline" style="" onclick="StockModalProduit({{produit.getId()}});"><span class="fa fa-cubes"></span> Stock</a> 
+                                        <a href="javascript:void(0);" class="btn btn-primary btn-outline" style="" onclick="editModalProduit({{produit.getId()}});"><span class="fa fa-pencil"></span> Modifier</a>
+                                        {%if produit.getStatus() != "Deleted" %}<a href="javascript:void(0);" class="btn btn-danger btn-outline" style="" onclick="DeleteProduit({{produit.getId()}});"><span class="fa fa-close"></span> Supprimer</a> {%endif%}
                                     </div>
                                 </div>
                             </div>
