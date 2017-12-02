@@ -38,7 +38,30 @@ class UtilisateurController extends Controller {
         $utilisateur->setNumero($request->get('Personnalnum'));
         $utilisateur->setPseudo($request->get('Personnalpseudo'));
         $utilisateur->setCin($request->get('Personnalcin'));
+        $utilisateur->setDatavalider('true');
         $utilisateur->setDate_nais(date_create(date('Y-m-d', strtotime($request->get("Personnaldatenais")))));
+     
+        $em->flush();
+
+        return new Response();
+    }
+    
+    public function SaveGeneralDataAction() {
+        $em = $this->getDoctrine()->getManager();
+        $request = $this->container->get('request');
+        $user = $this->get('security.context')->getToken()->getUser();
+        $utilisateur = $em->getRepository('FrontBundle:Utilisateur')->findOneBy(array('user' => $user));
+
+        $utilisateur->setSexe($request->get('Generalsexe'));
+        $utilisateur->setMetier($request->get('Generalmetier'));
+        $utilisateur->setLieutravail($request->get('Generallieutravail'));
+        $utilisateur->setNiveauscolaire($request->get('Generalniveauscolaire'));
+        $utilisateur->setDiplome($request->get('Generaldiplome'));
+        $utilisateur->setPays($request->get('Generalpays'));
+        $utilisateur->setSituation($request->get("Generalsituation"));
+        $utilisateur->setSiteweb($request->get("Generalsiteweb"));
+        $utilisateur->setLangues($request->get("Generallangues"));
+        $utilisateur->setDescription($request->get("Generaldescription"));
      
         $em->flush();
 
