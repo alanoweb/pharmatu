@@ -20,17 +20,17 @@
         <link href="{{asset('plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
         <link href="{{asset('plugins/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700' rel='stylesheet' type='text/css'> 
-       
+
 
         <!-- PLUGINS -->
         <link href="{{asset('plugins/animate/animate.min.css')}}" rel="stylesheet">
         <link href="{{asset('plugins/owl-carousel/owl.carousel.css')}}" rel="stylesheet">
-  
+
 
         <!-- THEME CSS -->
         <link href="{{asset('css/theme.min.css')}}" rel="stylesheet">
         <link href="{{asset('css/custom.css')}}" rel="stylesheet">
-       
+
 
         {% block css %}
         {% endblock css %}
@@ -255,16 +255,20 @@
                                     {% if app.user.admin != null %}
                                         {% if app.user.admin.pseudo != null and app.user.admin.pseudo != ""%}
                                             {{app.user.admin.pseudo}}
-                                        {% else %}
+                                        {% elseif app.user.admin.nom != null and  app.user.admin.prenom !=null%}
                                             {{app.user.admin.nom}} {{app.user.admin.prenom}}
+                                        {% else %}
+                                            {{app.user.username}}
                                         {%endif%}
-                                    {% elseif app.user.entreprise != null %}
+                                    {% elseif app.user.entreprise != null and app.user.entreprise.nom != null%}
                                         {{app.user.entreprise.nom}}
-                                    {% elseif app.user.utilisateur %}
+                                    {% elseif app.user.utilisateur != null %}
                                         {% if app.user.utilisateur.pseudo != null and app.user.utilisateur.pseudo != ""%}
                                             {{app.user.utilisateur.pseudo}}
-                                        {%else%}
+                                        {%elseif app.user.utilisateur.nom != null and app.user.utilisateur.prenom != null%}
                                             {{app.user.utilisateur.nom}} {{app.user.utilisateur.prenom}}
+                                        {% else %}
+                                            {{app.user.username}}
                                         {%endif%}
                                     {% else %}
                                         {{app.user.username}}
@@ -285,12 +289,12 @@
                                     {% endif %}
                                     {% if is_granted('ROLE_SUPER_ADMIN') == false%}
                                     <li><a href="{{path('monprofil')}}"><i class="fa fa-user"></i> Mon profil</a></li>
-                                    {%endif%}
+                                    {% endif %}
                                     {% if is_granted('ROLE_SUPER_ADMIN') == false and is_granted('ROLE_ADMIN') == false and is_granted('ROLE_ENTREPRISE') == false%}
                                     <li><a href="#"><i class="fa fa-heart"></i> Likes <span class="label label-info">32</span></a></li>
                                     <li><a href="#"><i class="fa fa-gamepad"></i> Games</a></li>
                                     <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
-                                    {%endif%}
+                                    {% endif %}
                                 <li class="divider"></li>
                                 <li><a href="{{path('fos_user_security_logout')}}"><i class="fa fa-power-off"></i>Déconnection</a></li>
                             </ul>
@@ -336,64 +340,64 @@
         <div id="wrapper">
             {% block Dashboard %}
                 {% block slide %}
-				<section class="border-bottom-1 border-grey-200 padding-top-15 padding-bottom-10">
-			<div class="owl-carousel owl-video">
-				<div class="card card-video">
-					<div class="card card-img">
-						<a href="videos-single.html"><img src="{{asset('img/slideshow/2.jpg')}}"  alt=""></a>
-						<div class="time">15:42</div>
-					</div>
-				</div>
-				<div class="card card-video">
-					<div class="card-img">
-						<a href="videos-single.html"><img src="{{asset('img/slideshow/1.jpg')}}"  alt=""></a>
-						<div class="time">13:52</div>
-					</div>
-				</div>
-				<div class="card card-video">
-					<div class="card-img">
-						<a href="videos-single.html"><img src="{{asset('img/slideshow/3.jpg')}}" alt=""></a>
-						<div class="time">08:03</div>
-					</div>
-				</div>
-				<div class="card card-video">
-					<div class="card-img">
-						<a href="videos-single.html"><img src="{{asset('img/slideshow/1.jpg')}}" alt="" ></a>
-						<div class="time">11:15</div>
-					</div>
-				</div>
-				<div class="card card-video">
-					<div class="card-img">
-						<a href="videos-single.html"><img src="{{asset('img/slideshow/1.jpg')}}"  alt=""></a>
-						<div class="time">16:20</div>
-					</div>
-				</div>
-				<div class="card card-video">
-					<div class="card-img">
-						<a href="videos-single.html"><img src="{{asset('img/slideshow/2.jpg')}}" alt=""></a>
-						<div class="time">05:31</div>
-					</div>
-				</div>
-				<div class="card card-video">
-					<div class="card-img">
-						<a href="videos-single.html"><img src="{{asset('img/slideshow/2.jpg')}}"   alt=""></a>
-						<div class="time">04:55</div>
-					</div>
-				</div>
-				<div class="card card-video">
-					<div class="card-img">
-						<a href="videos-single.html"><img src="{{asset('img/slideshow/2.jpg')}}"  alt=""></a>
-						<div class="time">14:17</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-5"> </div> 
-			<div class="col-md-3">   {% if not app.user %} <a href="{{path('fos_user_registration_register')}}" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn">Inscrivez vous maintenant</a>{% endif %}
+                    <section class="border-bottom-1 border-grey-200 padding-top-15 padding-bottom-10">
+                        <div class="owl-carousel owl-video">
+                            <div class="card card-video">
+                                <div class="card card-img">
+                                    <a href="videos-single.html"><img src="{{asset('img/slideshow/2.jpg')}}"  alt=""></a>
+                                    <div class="time">15:42</div>
+                                </div>
+                            </div>
+                            <div class="card card-video">
+                                <div class="card-img">
+                                    <a href="videos-single.html"><img src="{{asset('img/slideshow/1.jpg')}}"  alt=""></a>
+                                    <div class="time">13:52</div>
+                                </div>
+                            </div>
+                            <div class="card card-video">
+                                <div class="card-img">
+                                    <a href="videos-single.html"><img src="{{asset('img/slideshow/3.jpg')}}" alt=""></a>
+                                    <div class="time">08:03</div>
+                                </div>
+                            </div>
+                            <div class="card card-video">
+                                <div class="card-img">
+                                    <a href="videos-single.html"><img src="{{asset('img/slideshow/1.jpg')}}" alt="" ></a>
+                                    <div class="time">11:15</div>
+                                </div>
+                            </div>
+                            <div class="card card-video">
+                                <div class="card-img">
+                                    <a href="videos-single.html"><img src="{{asset('img/slideshow/1.jpg')}}"  alt=""></a>
+                                    <div class="time">16:20</div>
+                                </div>
+                            </div>
+                            <div class="card card-video">
+                                <div class="card-img">
+                                    <a href="videos-single.html"><img src="{{asset('img/slideshow/2.jpg')}}" alt=""></a>
+                                    <div class="time">05:31</div>
+                                </div>
+                            </div>
+                            <div class="card card-video">
+                                <div class="card-img">
+                                    <a href="videos-single.html"><img src="{{asset('img/slideshow/2.jpg')}}"   alt=""></a>
+                                    <div class="time">04:55</div>
+                                </div>
+                            </div>
+                            <div class="card card-video">
+                                <div class="card-img">
+                                    <a href="videos-single.html"><img src="{{asset('img/slideshow/2.jpg')}}"  alt=""></a>
+                                    <div class="time">14:17</div>
+                                </div>
+                            </div>
                         </div>
-		</section>
-		
-             			
-                            
+                        <div class="col-md-5"> </div> 
+                        <div class="col-md-3">   {% if not app.user %} <a href="{{path('fos_user_registration_register')}}" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn">Inscrivez vous maintenant</a>{% endif %}
+                        </div>
+                    </section>
+
+
+
                 {% endblock slide%}
                 {% block wrapper %}
                     <section class="bg-grey-50 padding-top-30">
@@ -569,7 +573,7 @@
                                             </div>
                                         </div>
                                     </div>
-									
+
                                     <div class="ay">
                                         <div class="col-md-6" >
                                             <div class="panel panel-default panel-post">
@@ -946,7 +950,7 @@
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" data-dismiss="modal" style="float: right;"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                         <h4 class="modal-title">Login</h4>
                         <!--img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" /-->
                     </div>
@@ -993,10 +997,25 @@
         <script src="{{asset('plugins/bootstrap/js/bootstrap.min.js')}}"></script>
         <script src="{{asset('plugins/twitter/twitter.js')}}"></script>
         <script src="{{ asset('js/jquery-ui-1.12.0/jquery-ui.js') }}"></script>
-        <!--script src="{{asset('plugins/ekko-lightbox/ekko-lightbox.min.js')}}"></script-->
+        <script src="{{asset('plugins/ekko-lightbox/ekko-lightbox.min.js')}}"></script>
         <script src="{{asset('js/core.min.js')}}"></script>
         <script src="{{asset('plugins/owl-carousel/owl.carousel.min.js')}}"></script>
-        
+
+        <script>
+            $(".datepicker").datepicker({dateFormat: 'd-m-yy',
+                altField: "#datepicker",
+                closeText: 'Fermer',
+                prevText: 'Précédent',
+                nextText: 'Suivant',
+                currentText: 'Aujourd\'hui',
+                monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+                monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+                dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+                dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
+                dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+                weekHeader: 'Sem.'
+            });
+        </script>
         <script>
             $(document).ready(function () {
                 window.scrollTo(0, 0);
@@ -1037,28 +1056,28 @@
                 });
             });
         </script>
-		<script>
-		(function($) {
-	"use strict";
-		var config1 = {
-			  "id": $('#twitter').data("twitter"),
-			  "domId": 'twitter',
-			  "maxTweets": 1,
-			  "enableLinks": true
-			};
-		twitterFetcher.fetch(config1);
-		
-		$(".owl-carousel").owlCarousel({
-			autoPlay: true,
-			items : 6, //4 items above 1000px browser width
-			itemsDesktop : [1600,3], //3 items between 1000px and 0
-			itemsTablet: [940,1], //1 items between 600 and 0
-			itemsMobile : false // itemsMobile disabled - inherit from itemsTablet option
-		}); 
-	})(jQuery);
-	</script>
         <script>
-		
+            (function ($) {
+                "use strict";
+                var config1 = {
+                    "id": $('#twitter').data("twitter"),
+                    "domId": 'twitter',
+                    "maxTweets": 1,
+                    "enableLinks": true
+                };
+                twitterFetcher.fetch(config1);
+
+                $(".owl-carousel").owlCarousel({
+                    autoPlay: true,
+                    items: 6, //4 items above 1000px browser width
+                    itemsDesktop: [1600, 3], //3 items between 1000px and 0
+                    itemsTablet: [940, 1], //1 items between 600 and 0
+                    itemsMobile: false // itemsMobile disabled - inherit from itemsTablet option
+                });
+            })(jQuery);
+        </script>
+        <script>
+
             function usernamereq() {
                 if ($('#loginusername').val() === "" || $('#loginusername').val() === null) {
                     $('#loginusername').parent().css("border", "solid 1px red");
@@ -1095,6 +1114,56 @@
                 }
             });
 
+        </script>
+        <script>
+            {% if app.user and not is_granted('ROLE_SUPER_ADMIN')%}
+                {% if app.user.admin == null and app.user.utilisateur == null and app.user.entreprise == null %}
+                    $.ajax({
+                        type: "POST",
+                        url: '{{ path("creat_user_profil") }}',
+                        success: function (data, status, object) {
+                        },
+                        error: function (data, status, object) {
+                            console.log(data.message);
+                        }
+                    });
+                {% endif %}
+            {% endif %}
+        </script>
+        <script>
+            function CheckEmptyRequiredInput($id, $message) {
+                $valide = true;
+                $('#' + $id).find("label > span").each(function () {
+                    $input = $(this).parent().next().find("input");
+                    if ($input.val() === "") {
+                        $input.parent().css('border', '1px solid red');
+                        $input.parent().prev('span').html($(this).parent().html().replace('*', $message));
+                        $valide = false;
+                    } else {
+                        $input.parent().css('border', '1px solid green');
+                        $input.parent().prev('span').html('');
+                    }
+                });
+                return $valide;
+            }
+            function CheckNumeriqueInput($id, $message) {
+                $valide = true;
+                $input = $('#' + $id);
+                if ($input.val() === '') {
+                    $input.parent().css('border', '1px solid red');
+                    $input.parent().prev('span').html($input.parent().parent().prev('label').html().replace('*', $message));
+                    $valide = false;
+                } else if (!$.isNumeric($input.val())) {
+                    $input.parent().css('border', '1px solid red');
+                    $input.parent().prev('span').html($input.parent().parent().prev('label').html().replace('*', 'doit etre numerique'));
+                    $valide = false;
+                } else {
+                    $input.parent().css('border', '1px solid green');
+                    $input.parent().prev('span').html('');
+                }
+
+                return $valide;
+            }
         </script>
         {% block javascript %}
         {% endblock javascript %}

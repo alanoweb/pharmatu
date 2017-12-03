@@ -25,28 +25,34 @@ monprofil:
     defaults: { _controller:FrontBundle:Default:monprofil }
 add_activite:
     path:     /AddActivite
-    defaults: { _controller:FrontBundle:Default:AddActivite }
+    defaults: { _controller:FrontBundle:Admin:AddActivite }
 delete_activite:
     path:     /DeleteActivite
-    defaults: { _controller:FrontBundle:Default:DeleteActivite }
+    defaults: { _controller:FrontBundle:Admin:DeleteActivite }
 activation_activite:
     path:     /ActivationActivite
-    defaults: { _controller:FrontBundle:Default:ActivationActivite }
+    defaults: { _controller:FrontBundle:Admin:ActivationActivite }
 edit_activite:
     path:     /editActivite
-    defaults: { _controller:FrontBundle:Default:EditActivite }
+    defaults: { _controller:FrontBundle:Admin:EditActivite }
 add_produit:
     path:     /AddProduit
-    defaults: { _controller:FrontBundle:Default:AddProduit }
+    defaults: { _controller:FrontBundle:Admin:AddProduit }
 delete_produit:
     path:     /DeleteProduit
-    defaults: { _controller:FrontBundle:Default:DeleteProduit }
+    defaults: { _controller:FrontBundle:Admin:DeleteProduit }
 edit_stock_produit:
     path:     /EditStockProduit
-    defaults: { _controller:FrontBundle:Default:EditStockProduit }
+    defaults: { _controller:FrontBundle:Admin:EditStockProduit }
 edit_produit:
     path:     /editProduit
-    defaults: { _controller:FrontBundle:Default:EditProduit }
+    defaults: { _controller:FrontBundle:Admin:EditProduit }
 acheter_produit:
     path:     /acheterProduit
-    defaults: { _controller:FrontBundle:Default:AcheterProduit }
+    defaults: { _controller:FrontBundle:Utilisateur:AcheterProduit }
+save_personnal_data:
+    path:     /save_personnal_data
+    defaults: { _controller:FrontBundle:Utilisateur:SavePersonnalData }
+save_general_data:
+    path:     /save_general_data
+    defaults: { _controller:FrontBundle:Utilisateur:SaveGeneralData }

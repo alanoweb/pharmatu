@@ -1,11 +1,493 @@
 {% extends 'FrontBundle::layout.html.twig' %}
- {% block body %}
- <h1>Mon Profil</h1>
-<div class="row">
-<label>Nom </label>
+{% block Dashboard %}
+    <section class="hero cover hidden-xs" style="background-image: url({{asset('img/cover/cover-profile.jpg')}});">
+        <div class="hero-bg"></div>
+        <div class="container relative">
+            <div class="page-header">
+                <div class="page-title">
+                    {% if app.user.utilisateur != null and  app.user.utilisateur.nom != null and app.user.utilisateur.prenom%}
+                        {{app.user.utilisateur.nom}} {{app.user.utilisateur.prenom}}
+                    {% else %}
+                        {{app.user.username}}
+                    {% endif %}
+                </div>	
+                <div class="profile-avatar">
+                    <div class="thumbnail">
+                        <a href="javascript:void(0);">
+                            <img src="{{asset('img/user/profile.jpg')}}">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-</div>
- {% endblock %}
-{% block slide%}
-<!-- slide hide-->
-{% endblock slide%}
+    <section class="profile-nav height-50 border-bottom-1 border-grey-300  hidden-xs">
+        <div class="tab-select">
+            <div class="container">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li {% if app.user.utilisateur != null %}class="active"{% endif %}><a href="#tabJournal" data-toggle="tab">Journal</a></li>
+                    <li {% if app.user.utilisateur == null %}class="active"{% endif %}><a href="#tabdatapersonel" data-toggle="tab">Données Personnel</a></li>
+                    <li><a href="#tabdatageneral" data-toggle="tab">Données Générale</a></li>
+                    <li><a href="javascript:void(0);" data-toggle="tab">Images <span>(8)</span></a></li>
+                    <li><a href="javascript:void(0);" data-toggle="tab">Videos <span>(2)</span></a></li>
+                    <li><a href="javascript:void(0);" data-toggle="tab">Groups</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-grey-50 padding-top-60 padding-top-sm-30">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-3 hidden-xs">
+                    <div class="widget">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">  
+                                {% if app.user.utilisateur != null and app.user.utilisateur.pseudo != null and app.user.utilisateur.pseudo != "" %}
+                                    {{app.user.utilisateur.pseudo}}
+                                {% else %}
+                                    Fiche Personnel
+                                {% endif %}
+                            </div>
+                            <div class="panel-body">
+                                {% if user.description %}{{user.description}}{% endif %}
+                                <ul class="panel-list margin-top-25">
+                                    <li><i class="fa fa-clock-o"></i> Membre depuis : {{user.date_membre|date('d/m/Y')}}</li>
+                                    {% if user.pays %}<li><i class="fa fa-map-marker"></i> {{user.pays}}</li>{% endif %}
+                                    {% if user.siteweb %}<li><i class="fa fa-link"></i> <a href="https://{{user.siteweb}}" target="_blank"> {{user.siteweb}}</a></li>{% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="widget">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Navigation</div>
+                            <div class="panel-body no-padding">
+                                <ul class="panel-list-bordered">
+                                    <li><a href="javascript:void(0);"><i class="fa fa-gamepad"></i> Games (4)</a></li>
+                                    <li><a href="javascript:void(0);"><i class="fa fa-film"></i> Videos (2)</a></li>
+                                    <li><a href="javascript:void(0);"><i class="fa fa-picture-o"></i> Galleries (3)</a></li>
+                                    <li><a href="javascript:void(0);"><i class="fa fa-calendar-o"></i> Events</a></li>
+                                    <li><a href="javascript:void(0);"><i class="fa fa-users"></i> Groups (1)</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="widget widget-friends">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Friends (34)</div>
+                            <div class="panel-body">
+                                <ul>
+                                    <li><a href="javascript:void(0);" data-toggle="tooltip" title="Orb"><img src="img/user/avatar2.jpg" alt=""></a></li>
+                                    <li><a href="javascript:void(0);" data-toggle="tooltip" title="Patrick"><img src="img/user/avatar3.jpg" alt=""></a></li>
+                                    <li><a href="javascript:void(0);" data-toggle="tooltip" title="John"><img src="img/user/avatar4.jpg" alt=""></a></li>
+                                    <li><a href="javascript:void(0);" data-toggle="tooltip" title="Michael"><img src="img/user/avatar5.jpg" alt=""></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="widget widget-list">
+                        <div class="panel panel-default">
+                            <div class="panel-heading bold">Recent Feeds</div>
+                            <div class="panel-body">
+                                <ul>
+                                    <li>
+                                        <a href="javascript:void(0);" class="thumb"><img src="img/blog/xs/1.jpg" alt=""></a>
+                                        <div class="widget-list-meta">
+                                            <h4 class="widget-list-title"><a href="javascript:void(0);">Overwatch Closed Beta</a></h4>
+                                            <p><i class="fa fa-clock-o"></i> September 15, 2016</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" class="thumb"><img src="img/blog/xs/2.jpg" alt=""></a>
+                                        <div class="widget-list-meta">
+                                            <h4 class="widget-list-title"><a href="javascript:void(0);">Blood and Gore</a></h4>
+                                            <p><i class="fa fa-clock-o"></i> September 13, 2016</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" class="thumb"><img src="img/blog/xs/3.jpg" alt=""></a>
+                                        <div class="widget-list-meta">
+                                            <h4 class="widget-list-title"><a href="javascript:void(0);">Warner Bros. Interactive</a></h4>
+                                            <p><i class="fa fa-clock-o"></i> September 12, 2016</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" class="thumb"><img src="img/blog/xs/4.jpg" alt=""></a>
+                                        <div class="widget-list-meta">
+                                            <h4 class="widget-list-title"><a href="javascript:void(0);">Sharks Don't Sleep</a></h4>
+                                            <p><i class="fa fa-clock-o"></i> September 11, 2016</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" class="thumb"><img src="img/blog/xs/5.jpg" alt=""></a>
+                                        <div class="widget-list-meta">
+                                            <h4 class="widget-list-title"><a href="javascript:void(0);">GTA 5 Reaches 5 Million</a></h4>
+                                            <p><i class="fa fa-clock-o"></i> September 10, 2016</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-9 col-sm-8" >
+                    <div class="tab-content">
+                        <div class="tab-pane {% if app.user.utilisateur != null %}fade in active{% endif %}" id="tabJournal">
+                            <div class="panel panel-default margin-bottom-40">
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <textarea class="form-control" rows="4" placeholder="What's in your head?..."></textarea>
+                                    </div>
+                                    <div class="btn-group pull-left">
+                                        <a href="javascript:void(0);" class="btn btn-link btn-icon-left no-padding-left"><i class="fa fa-image"></i> Image</a>
+                                        <a href="javascript:void(0);" class="btn btn-link btn-icon-left"><i class="fa fa-film"></i> Video</a>
+                                        <a href="javascript:void(0);" class="btn btn-link btn-icon-left"><i class="fa fa-map-marker"></i> Location</a>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-icon-left pull-right"><i class="fa fa-edit"></i> Submit</button>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default panel-post">
+                                <div class="panel-body">
+                                    <div class="post">
+                                        <div class="post-header post-author">
+                                            <a href="javascript:void(0);" class="author" data-toggle="tooltip" title="YAKUZI"><img src="img/user/avatar.jpg" alt=""></a>
+                                            <div class="post-title">
+                                                <h3><a href="javascript:void(0);">Deadpool Gets the Movie He Deserves</a></h3>
+                                                <ul class="post-meta">
+                                                    <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                                    <li><a href="javascript:void(0);">#hashtag</a>, <a href="javascript:void(0);">#witcher 3</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <ul class="post-action">
+                                        <li><a href="javascript:void(0);"><i class="fa fa-heart"></i> like (5)</a></li>
+                                        <li><a href="javascript:void(0);"><i class="fa fa-comments"></i> Comments</a></li>
+                                        <li><a href="javascript:void(0);"><i class="fa fa-reply"></i> share</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default panel-post">
+                                <div class="panel-body">
+                                    <div class="post">
+                                        <div class="post-header post-author">
+                                            <a href="javascript:void(0);" class="author" data-toggle="tooltip" title="YAKUZI"><img src="img/user/avatar.jpg" alt=""></a>
+                                            <div class="post-title">
+                                                <h3><a href="javascript:void(0);">Official Mirror’s Edge Catalyst Trailer</a></h3>
+                                                <ul class="post-meta">
+                                                    <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                                    <li><a href="javascript:void(0);">#hashtag</a>, <a href="javascript:void(0);">#witcher 3</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="post-thumbnail">
+                                            <div class="embed-responsive embed-responsive-16by9">
+                                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/IsDX_LiJT7E?rel=0&amp;showinfo=0" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+
+                                        Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <ul class="post-action">
+                                        <li><a href="javascript:void(0);" class="active"><i class="fa fa-heart"></i> you like it (7)</a></li>
+                                        <li><a href="javascript:void(0);"><i class="fa fa-comments"></i> Comments</a></li>
+                                        <li><a href="javascript:void(0);"><i class="fa fa-reply"></i> share</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <h4 class="page-header text-center no-padding"><i class="fa fa-clock-o"></i> February, 2016</h4>
+                            <div class="panel panel-default panel-post">
+                                <div class="panel-body">
+                                    <div class="post">
+                                        <div class="post-header post-author">
+                                            <a href="javascript:void(0);" class="author" data-toggle="tooltip" title="YAKUZI"><img src="img/user/avatar.jpg" alt=""></a>
+                                            <div class="post-title">
+                                                <h3><a href="javascript:void(0);">The Witcher 3 is Game of the Year</a></h3>
+                                                <ul class="post-meta">
+                                                    <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
+                                                    <li><a href="javascript:void(0);">#hashtag</a>, <a href="javascript:void(0);">#witcher 3</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <ul class="post-action">
+                                        <li><a href="javascript:void(0);"><i class="fa fa-heart"></i> like (5)</a></li>
+                                        <li><a href="javascript:void(0);"><i class="fa fa-comments"></i> Comments</a></li>
+                                        <li><a href="javascript:void(0);"><i class="fa fa-reply"></i> share</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <h4 id="datebginmember" class="page-header text-center no-padding"><i class="fa fa-clock-o"></i> vous ete devenu membre de notre site depuis le {{user.date_membre|date('j F Y \\à g:ia')}}</h4>
+                            <center><a href="javascript:void(0);" class="btn btn-primary btn-lg btn-shadow btn-rounded">Show More</a></center>
+                        </div>
+                        <div id="tabdatapersonel" class="tab-pane fade {% if app.user.utilisateur == null %}fade in active{% endif %}">
+                            <div class="panel panel-default margin-bottom-40">
+                                <div class="panel-body">
+                                    <form id="PersonnalDataForm">
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" >Nom<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                            <div class="col-md-8  inputGroupContainer">
+                                                <span style="color:red;font-weight: 900"></span>
+                                                <div class="input-group" style="margin-bottom:10px;border:none">
+                                                    <span class="input-group-addon" ><i class="glyphicon glyphicon-grain"></i></span>   
+                                                    <input value="{{user.nom}}" type="text" id="Personnalnom" name="Personnalnom" required="required" class="form-control " placeholder="Votre nom de la famille" style="margin-bottom:0px"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" >Prénom<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                            <div class="col-md-8  inputGroupContainer">
+                                                <span style="color:red;font-weight: 900"></span>
+                                                <div class="input-group" style="margin-bottom:10px;border:none">
+                                                    <span class="input-group-addon" ><i class="glyphicon glyphicon-user"></i></span>   
+                                                    <input value="{{user.prenom}}" type="text" id="Personnalprenom" name="Personnalprenom" required="required" class="form-control " placeholder="Votre prénom" style="margin-bottom:0px"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" >CIN<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                            <div class="col-md-8  inputGroupContainer">
+                                                <span style="color:red;font-weight: 900"></span>
+                                                <div class="input-group" style="margin-bottom:10px;border:none">
+                                                    <span class="input-group-addon" ><i class="glyphicon glyphicon-credit-card"></i></span>   
+                                                    <input value="{{user.cin}}" type="text" id="Personnalcin" name="Personnalcin" required="required" class="form-control " placeholder="Votre numero de carte d'identité" style="margin-bottom:0px"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" >date de naissance<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                            <div class="col-md-8  inputGroupContainer">
+                                                <span style="color:red;font-weight: 900"></span>
+                                                <div class="input-group" style="margin-bottom:10px;border:none">
+                                                    <span class="input-group-addon" ><i class="glyphicon glyphicon-calendar"></i></span>   
+                                                    <input value="{{user.date_nais|date('d-m-Y')}}" type="text" id="Personnaldatenais" name="Personnaldatenais" required="required" class="form-control datepicker" placeholder="Votre date de naissance" style="margin-bottom:0px"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" >Adresse<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                            <div class="col-md-8  inputGroupContainer">
+                                                <span style="color:red;font-weight: 900"></span>
+                                                <div class="input-group" style="margin-bottom:10px;border:none">
+                                                    <span class="input-group-addon" ><i class="glyphicon glyphicon-bookmark"></i></span>   
+                                                    <input value="{{user.adresse}}" type="text" id="Personnaladresse" name="Personnaladresse" required="required" class="form-control " placeholder="Votre adresse" style="margin-bottom:0px"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" >Numero de telephone<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                            <div class="col-md-8  inputGroupContainer">
+                                                <span style="color:red;font-weight: 900"></span>
+                                                <div class="input-group" style="margin-bottom:10px;border:none">
+                                                    <span class="input-group-addon" ><i class="glyphicon glyphicon-phone"></i></span>   
+                                                    <input value="{{user.numero}}" type="text" id="Personnalnum" name="Personnalnum" required="required" class="form-control " placeholder="Votre Numero" style="margin-bottom:0px"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" >pseudo</label>
+                                            <div class="col-md-8  inputGroupContainer">
+                                                <div class="input-group" style="margin-bottom:10px;border:none">
+                                                    <span class="input-group-addon" ><i class="glyphicon glyphicon-tag"></i></span>   
+                                                    <input value="{{user.pseudo}}" type="text" id="Personnalpseudo" name="Personnalpseudo" required="required" class="form-control " placeholder="Votre pseudo" style="margin-bottom:0px"/>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <button type="button" class="btn btn-primary btn-icon-left pull-right" onclick="SavePersonalData();"><i class="fa fa-floppy-o"></i> Sauvegarder</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tabdatageneral" class="tab-pane fade">
+                            <div class="panel panel-default margin-bottom-40">
+                                <div class="panel-body">
+                                    <form id="GeneralDataForm">
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" >Civilité</label>
+                                        <div class="row">
+                                            <div class="radio radio-inline">
+                                                <input type="radio" name="Generalsexe" id="Generalsexe1" {%if user.sexe == null or user.sexe == "Mr"%}checked{%endif%} value="Mr"> 
+                                                <label for="Generalsexe1">Mr</label>
+                                            </div>
+                                            <div class="radio radio-inline">
+                                                <input type="radio" name="Generalsexe" id="Generalsexe2" {%if user.sexe == "Mrs"%}checked{%endif%} value="Mrs"> 
+                                                <label for="Generalsexe2">Mrs</label>
+                                            </div>
+                                            <div class="radio radio-inline">
+                                                <input type="radio" name="Generalsexe" id="Generalsexe3" {%if user.sexe == "Mlle"%}checked{%endif%} value="Mlle"> 
+                                                <label for="Generalsexe3">Mlle</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" >Metier</label>
+                                        <div class="col-md-8  inputGroupContainer">
+                                            <div class="input-group" style="margin-bottom:10px;border:none">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-briefcase"></i></span>   
+                                                <input value="{{user.metier}}" type="text" id="Generalmetier" name="Generalmetier" required="required" class="form-control " placeholder="Votre Metier" style="margin-bottom:0px"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" >Lieu de travail</label>
+                                        <div class="col-md-8  inputGroupContainer">
+                                            <div class="input-group" style="margin-bottom:10px;border:none">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-map-marker"></i></span>   
+                                                <input value="{{user.lieutravail}}" type="text" id="Generallieutravail" name="Generallieutravail" required="required" class="form-control " placeholder="Votre lieu de travail" style="margin-bottom:0px"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" >Niveau scolaire</label>
+                                        <div class="col-md-8  inputGroupContainer">
+                                            <div class="input-group" style="margin-bottom:10px;border:none">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-education"></i></span>
+                                                <select id="Generalniveauscolaire" name="Generalniveauscolaire" class="form-control input-md" placeholder="Votre niveau scolaire">
+                                                    <option value="bac" {%if user.niveauscolaire == "bac"%}selected="selected"{%endif%}>bac</option>
+                                                    <option value="bac+1" {%if user.niveauscolaire == "bac+1"%}selected="selected"{%endif%}>bac+1</option>
+                                                    <option value="bac+2" {%if user.niveauscolaire == "bac+2"%}selected="selected"{%endif%}>bac+2</option>
+                                                    <option value="bac+3" {%if user.niveauscolaire == "bac+3"%}selected="selected"{%endif%}>bac+3</option>
+                                                    <option value="Ingenieurie" {%if user.niveauscolaire == "Ingenieurie"%}selected="selected"{%endif%}>Ingenieurie</option>
+                                                    <option value="Mastere" {%if user.niveauscolaire == "Mastere"%}selected="selected"{%endif%}>Mastere</option>
+                                                    <option value="Doctorat" {%if user.niveauscolaire == "Doctorat"%}selected="selected"{%endif%}>Doctorat</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" >Diplôme</label>
+                                        <div class="col-md-8  inputGroupContainer">
+                                            <div class="input-group" style="margin-bottom:10px;border:none">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-education"></i></span>   
+                                                <input value="{{user.diplome}}" type="text" id="Generaldiplome" name="Generaldiplome" required="required" class="form-control " placeholder="Votre diplôme" style="margin-bottom:0px"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" >Pays d'origine</label>
+                                        <div class="col-md-8  inputGroupContainer">
+                                            <div class="input-group" style="margin-bottom:10px;border:none">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-map-marker"></i></span>   
+                                                <input value="{{user.pays}}" type="text" id="Generalpays" name="Generalpays" required="required" class="form-control " placeholder="Votre pays d'origine" style="margin-bottom:0px"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" >Situation amoureuse</label>
+                                        <div class="col-md-8  inputGroupContainer">
+                                            <div class="input-group" style="margin-bottom:10px;border:none">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-heart-empty"></i></span>
+                                                <select id="Generalsituation" name="Generalsituation" class="form-control input-md" placeholder="Votre Situation amoureuse">
+                                                    <option value="Divorcé" {%if user.situation == "Divorcé"%}selected="selected"{%endif%}>Divorcé</option>
+                                                    <option value="Marié" {%if user.situation == "Marié"%}selected="selected"{%endif%}>Marié</option>
+                                                    <option value="Celibataire" {%if user.situation == "Celibataire"%}selected="selected"{%endif%}>Celibataire</option>
+                                                    <option value="Veuf" {%if user.situation == "Veuf"%}selected="selected"{%endif%}>Veuf</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" >Site web</label>
+                                        <div class="col-md-8  inputGroupContainer">
+                                            <div class="input-group" style="margin-bottom:10px;border:none">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-link"></i></span>   
+                                                <input value="{{user.siteweb}}" type="text" id="Generalsiteweb" name="Generalsiteweb" required="required" class="form-control " placeholder="Site web heberger ou blog " style="margin-bottom:0px"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" >Langues</label>
+                                        <div class="col-md-8  inputGroupContainer">
+                                            <div class="input-group" style="margin-bottom:10px;border:none">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-flag"></i></span>   
+                                                <select id="Generallangues" name="Generallangues" class="form-control input-md">
+                                                    <option value="Arabe" {%if user.langues == "Arabe"%}selected="selected"{%endif%}>Arabe</option>
+                                                    <option value="Français" {%if user.langues == "Français"%}selected="selected"{%endif%}>Français</option>
+                                                    <option value="Anglais" {%if user.langues == "Anglais"%}selected="selected"{%endif%}>Anglais</option>
+                                                    <option value="Italien" {%if user.langues == "Italien"%}selected="selected"{%endif%}>Italien</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" >Auto-description</label>
+                                        <div class="col-md-8  inputGroupContainer">
+                                            <div class="input-group" style="margin-bottom:10px;border:none">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-pencil"></i></span>
+                                                <textarea id="Generaldescription" name="Generaldescription" class="form-control" rows="7" placeholder="une petite résumer sur vous">{{user.description}}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-primary btn-icon-left pull-right" onclick="SaveGeneralData();"><i class="fa fa-floppy-o"></i> Sauvegarder</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9 col-sm-8" id=""></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        $('#datebginmember').html($('#datebginmember').html().replace('December','décembre'));
+        function SavePersonalData() {
+            $checkempty = CheckEmptyRequiredInput('PersonnalDataForm' , 'obligatoire');
+            $checknumeric1 = CheckNumeriqueInput('Personnalnum', 'obligatoire');
+            $checknumeric2 = CheckNumeriqueInput('Personnalcin', 'obligatoire');
+            
+
+           if ($checkempty && $checknumeric1 && $checknumeric2 ){
+               $.ajax({
+                type: "POST",
+                url: "{{path('save_personnal_data')}}",
+                processData: false, contentType: false, cache: false,
+                data: new FormData($('#PersonnalDataForm')[0]),
+                success: function () {
+                    location.reload();
+                }
+            });
+            } 
+            else{
+             alert('resoud les erreurs svp !!!');
+            }
+        }
+        
+        function SaveGeneralData() {
+        
+            $.ajax({
+                type: "POST",
+                url: "{{path('save_general_data')}}",
+                processData: false, contentType: false, cache: false,
+                data: new FormData($('#GeneralDataForm')[0]),
+                success: function () {
+                    location.reload();
+                }
+            });
+            } 
+    </script>
+{% endblock javascript %}
+

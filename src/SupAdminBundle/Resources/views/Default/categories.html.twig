@@ -4,7 +4,7 @@
         <div class="container">
             <div class="headline" style="margin-top: -16px">
                 <div class="text-center">
-                    <a href="javascript:void(0);" data-toggle="modal" data-target="#addcat" class="button pill big primary">
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#addcat" class="btn btn-primary btn-shadow">
                         <span class="plus icon"></span>ajouter une catégorie
                     </a>
                 </div>
@@ -24,9 +24,9 @@
                         <div class="text-center"> <h3 class="card-title"><a href="{{path('activity',{'id':cathegorie.getId()})}}">{{cathegorie.getLibelle()}}</a></h3></div>
                         <ul><li>{{cathegorie.getDescription()}}</li></ul>
                         <div class="text-center">
-                            {%if cathegorie.getActivation() == 0%}<a href="javascript:void(0);" class="left positive pill button" style="padding-left: 5px;margin-right: -5px" onclick="ValidationCategorie({{cathegorie.getId()}});"><span class="fa fa-unlock"></span> Activer</a>{%else%}<a href="javascript:void(0);" class="left negative pill button" style="padding-left: 5px;margin-right: -5px" onclick="ValidationCategorie({{cathegorie.getId()}});"><span class="fa fa-lock"></span> Desactiver</a>{%endif%} 
-                            <a href="javascript:void(0);" {%if cathegorie.getStatus() == "Deleted"%}class="right pill button"{%else%}class="middle pill button"{%endif%} style="padding-left: 5px;" onclick="editModal({{cathegorie.getId()}});"><span class="fa fa-pencil"></span> Modifier</a>
-                            {%if cathegorie.getStatus() != "Deleted"%} <a href="javascript:void(0);" class="right negative pill button" style="padding-left: 5px;margin-left: -5px" onclick="DeleteCategorie({{cathegorie.getId()}});"><span class="fa fa-close"></span> Supprimer</a> {%endif%}
+                            {%if cathegorie.getActivation() == 0%}<a href="javascript:void(0);" class="btn btn-success btn-outline" style="" onclick="ValidationCategorie({{cathegorie.getId()}});"><span class="fa fa-unlock"></span> Activer</a>{%else%}<a href="javascript:void(0);" class="btn btn-inverse btn-outline" style="" onclick="ValidationCategorie({{cathegorie.getId()}});"><span class="fa fa-lock"></span> Desactiver</a>{%endif%} 
+                            <a href="javascript:void(0);" class="btn btn-primary btn-outline" style="" onclick="editModal({{cathegorie.getId()}});"><span class="fa fa-pencil"></span> Modifier</a>
+                            {%if cathegorie.getStatus() != "Deleted"%} <a href="javascript:void(0);" class="btn btn-danger btn-outline" style="" onclick="DeleteCategorie({{cathegorie.getId()}});"><span class="fa fa-close"></span> Supprimer</a> {%endif%}
                         </div>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <button type="button" data-dismiss="modal" style="float: right;"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>  
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>  
                     <h4 class="modal-title">Ajouter une Catégorie d'activite</h4>
                 </div>
 
@@ -100,7 +100,7 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <button type="button" data-dismiss="modal" style="float: right;"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 id="editTitleCat" class="modal-title"></h4>
                 </div>
 
