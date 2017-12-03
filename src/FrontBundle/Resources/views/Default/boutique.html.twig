@@ -61,8 +61,8 @@
                                     <div class="text-center"><h3 class="card-title">{{produit.getLibele()}}</h3></div>
                                     <ul><li>{{produit.getDescription()}}</li></ul>
                                     <div class="text-center">
-                                        <a href="javascript:void(0);" class="left positive pill button" style="padding-left: 5px;margin-right: -5px" onclick="StockModalProduit({{produit.getId()}});"><span class="fa fa-cubes"></span> Stock</a> 
-                                        <a href="javascript:void(0);" {%if produit.getStatus() == "Deleted" %}class="right pill button"{%else%}class="middle pill button"{%endif%} style="padding-left: 5px;" onclick="editModalProduit({{produit.getId()}});"><span class="fa fa-pencil"></span> Modifier</a>
+                                        <a href="javascript:void(0);" class="btn btn-danger btn-outline" style="padding-left: 5px;" onclick="StockModalProduit({{produit.getId()}});"><span class="fa fa-cubes"></span> Stock</a> 
+                                        <a href="javascript:void(0);" {%if produit.getStatus() == "Deleted" %}class="btn btn-inverse btn-outline"{%else%}class="btn btn-info btn-outline"{%endif%} style="padding-left: 5px;" onclick="editModalProduit({{produit.getId()}});"><span class="fa fa-pencil"></span> Modifier</a>
                                         {%if produit.getStatus() != "Deleted" %}<a href="javascript:void(0);" class="right negative pill button" style="padding-left: 5px;margin-left: -4px" onclick="DeleteProduit({{produit.getId()}});"><span class="fa fa-close"></span> Supprimer</a> {%endif%}
                                     </div>
                                 </div>
