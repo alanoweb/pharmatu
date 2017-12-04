@@ -172,6 +172,13 @@ class Utilisateur
      */
     private $datavalider;
     
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=255)
+     */
+    private $status;
+    
     /**
      * Get id
      *
@@ -338,7 +345,7 @@ class Utilisateur
      */
     public function getCoin()
     {
-        return $this->experience;
+        return $this->coin;
     } 
 	/**
      * Set experience
@@ -683,5 +690,28 @@ class Utilisateur
     public function getDatavalider()
     {
         return $this->datavalider;
+    }
+    
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return Utilisateur
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string 
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }

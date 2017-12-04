@@ -29,8 +29,8 @@ class UtilisateurController extends Controller {
     public function SavePersonnalDataAction() {
         $em = $this->getDoctrine()->getManager();
         $request = $this->container->get('request');
-        $user = $this->get('security.context')->getToken()->getUser();
-        $utilisateur = $em->getRepository('FrontBundle:Utilisateur')->findOneBy(array('user' => $user));
+        $user = $request->get('Personnalid');
+        $utilisateur = $em->getRepository('FrontBundle:Utilisateur')->find($user);
 
         $utilisateur->setNom($request->get('Personnalnom'));
         $utilisateur->setPrenom($request->get('Personnalprenom'));
@@ -49,9 +49,8 @@ class UtilisateurController extends Controller {
     public function SaveGeneralDataAction() {
         $em = $this->getDoctrine()->getManager();
         $request = $this->container->get('request');
-        $user = $this->get('security.context')->getToken()->getUser();
-        $utilisateur = $em->getRepository('FrontBundle:Utilisateur')->findOneBy(array('user' => $user));
-
+        $user = $request->get('Generalid');
+        $utilisateur = $em->getRepository('FrontBundle:Utilisateur')->find($user);
         $utilisateur->setSexe($request->get('Generalsexe'));
         $utilisateur->setMetier($request->get('Generalmetier'));
         $utilisateur->setLieutravail($request->get('Generallieutravail'));

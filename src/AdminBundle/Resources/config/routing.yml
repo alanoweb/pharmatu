@@ -4,5 +4,13 @@ admin_homepage:
 profils:
     path:     /profils
     defaults: { _controller: AdminBundle:Default:profils }
+user_profil:
+    path:     /UserProfil/{id}
+    defaults: { _controller: AdminBundle:Default:userProfil }
+    requirements:
+        page: '\d+'
+activation_profil:
+    path:     /ActivationProfil
+    defaults: { _controller: AdminBundle:Default:activationProfil }
     
 
