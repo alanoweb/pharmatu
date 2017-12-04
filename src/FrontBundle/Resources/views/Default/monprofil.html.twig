@@ -1,6 +1,106 @@
 {% extends 'FrontBundle::layout.html.twig' %}
+
+{% block css %}
+<style>
+	.tab-select {
+    margin-left: 2%!important;
+}
+@media (max-width: 767px)
+{
+.hidden-xs {
+width: 100%!important;
+}
+.hidden-xs {
+    width: 100%!important; 
+}
+}
+	@media (max-width:880px){
+	.profile-nav{
+	height: 20%!important;
+	}
+	}
+	@media (max-width:770px){
+	.profile-nav{
+	height: 20%!important;
+	}
+	.profile-nav .tab-select {
+    display:inherit!important;
+}
+	
+	}
+	@media (max-width: 990px) and (min-width:770px)
+{
+.profile-nav .tab-select {
+    display:inherit!important;
+	margin-left: 3%;
+}
+}
+	@media (max-width: 1250px){
+	.tab-select {
+    margin-left: 2%;
+}
+	.col-md-3{
+	width: 19%;
+	margin-left:3%;
+	.hidden-xs {
+    display:inherit!important;
+}
+	}
+	@media (max-width: 990px) and (min-width: 767px){
+	.hidden-xs {
+    display:inherit!important;
+}}
+	.col-md-3{
+	width: 22%;
+	margin-top:3%;
+	}
+	@media (max-width: 767px){
+	.col-md-3{
+	display:none!important;
+	}
+	.col-md-9 .col-sm-8{
+	margin:1%;
+	width:100%}
+}
+	@media (max-width: 306px){
+	
+	.profile-avatar{
+	
+    margin-bottom: 100px;
+    
+    width: 150px;;
+	}
+	
+	}
+	@media (max-width: 460px) and (min-width: 292px){
+	    .container {
+		
+		padding:1px 1px 1px 1px!important; }
+		.page-title {
+    margin-bottom: 17%;
+}
+}
+	@media (max-width: 460px)and (min-width: 306px){
+	.profile-avatar{
+	
+    margin-bottom: 100px;
+    
+    width: 150px;;
+	}
+
+
+}
+	.tab-select {
+    margin-left: 24%;
+	}
+	.row {
+    margin-right: -15px;
+    margin-left: -5%!important;
+}
+	</style>
+{% endblock %}
 {% block Dashboard %}
-    <section class="hero cover hidden-xs" style="background-image: url({{asset('img/cover/cover-profile.jpg')}});">
+    <section class="hero cover hidden-xs" style="background-image: url({{asset('img/cover/cover-profile.jpg')}}); width:100%!important;">
         <div class="hero-bg"></div>
         <div class="container relative">
             <div class="page-header">
@@ -40,7 +140,7 @@
     <section class="bg-grey-50 padding-top-60 padding-top-sm-30">
         <div class="container">
             <div class="row">
-                <div class="col-md-3 col-sm-3 hidden-xs">
+                <div class="col-md-3 col-sm-3 hidden-xs" style="margin-top:2%;">
                     <div class="widget">
                         <div class="panel panel-default">
                             <div class="panel-heading">  
