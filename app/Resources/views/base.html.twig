@@ -1038,9 +1038,12 @@
                             dataType: "json",
                             success: function (data, status, object) {
                                 if (!data.success) {
+                                    if (data.message === "User account is disabled.")
+                                        $('#loginerror').html("Compte Blocker par l'administration");
+                                    else{
                                     $('#loginerror').html("nom utilisateur ou mot de passe invalide");
                                     $('#loginusername').parent().css("border", "solid 1px red");
-                                    $('#loginpassword').parent().css("border", "solid 1px red");
+                                    $('#loginpassword').parent().css("border", "solid 1px red");}
                                 } else
                                 if ((location.href.match('/register')) || (location.href.match('/resetting/request')))
                                     window.location.href = "{{path('homepage')}}";

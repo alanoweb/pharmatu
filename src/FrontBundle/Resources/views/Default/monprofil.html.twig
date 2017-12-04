@@ -5,10 +5,10 @@
         <div class="container relative">
             <div class="page-header">
                 <div class="page-title">
-                    {% if app.user.utilisateur != null and  app.user.utilisateur.nom != null and app.user.utilisateur.prenom%}
-                        {{app.user.utilisateur.nom}} {{app.user.utilisateur.prenom}}
+                    {% if user and  user.nom != null and user.prenom%}
+                        {{user.nom}} {{user.prenom}}
                     {% else %}
-                        {{app.user.username}}
+                        {{user.user.username}}
                     {% endif %}
                 </div>	
                 <div class="profile-avatar">
@@ -26,8 +26,8 @@
         <div class="tab-select">
             <div class="container">
                 <ul class="nav nav-tabs" role="tablist">
-                    <li {% if app.user.utilisateur != null %}class="active"{% endif %}><a href="#tabJournal" data-toggle="tab">Journal</a></li>
-                    <li {% if app.user.utilisateur == null %}class="active"{% endif %}><a href="#tabdatapersonel" data-toggle="tab">Données Personnel</a></li>
+                    <li {% if user %}class="active"{% endif %}><a href="#tabJournal" data-toggle="tab">Journal</a></li>
+                    <li {% if user == null %}class="active"{% endif %}><a href="#tabdatapersonel" data-toggle="tab">Données Personnel</a></li>
                     <li><a href="#tabdatageneral" data-toggle="tab">Données Générale</a></li>
                     <li><a href="javascript:void(0);" data-toggle="tab">Images <span>(8)</span></a></li>
                     <li><a href="javascript:void(0);" data-toggle="tab">Videos <span>(2)</span></a></li>
@@ -44,8 +44,8 @@
                     <div class="widget">
                         <div class="panel panel-default">
                             <div class="panel-heading">  
-                                {% if app.user.utilisateur != null and app.user.utilisateur.pseudo != null and app.user.utilisateur.pseudo != "" %}
-                                    {{app.user.utilisateur.pseudo}}
+                                {% if user and user.pseudo != null and user.pseudo != "" %}
+                                    {{user.pseudo}}
                                 {% else %}
                                     Fiche Personnel
                                 {% endif %}
@@ -138,7 +138,7 @@
 
                 <div class="col-md-9 col-sm-8" >
                     <div class="tab-content">
-                        <div class="tab-pane {% if app.user.utilisateur != null %}fade in active{% endif %}" id="tabJournal">
+                        <div class="tab-pane {% if user %}fade in active{% endif %}" id="tabJournal">
                             <div class="panel panel-default margin-bottom-40">
                                 <div class="panel-body">
                                     <div class="form-group">
@@ -238,10 +238,11 @@
                             <h4 id="datebginmember" class="page-header text-center no-padding"><i class="fa fa-clock-o"></i> vous ete devenu membre de notre site depuis le {{user.date_membre|date('j F Y \\à g:ia')}}</h4>
                             <center><a href="javascript:void(0);" class="btn btn-primary btn-lg btn-shadow btn-rounded">Show More</a></center>
                         </div>
-                        <div id="tabdatapersonel" class="tab-pane fade {% if app.user.utilisateur == null %}fade in active{% endif %}">
+                        <div id="tabdatapersonel" class="tab-pane fade {% if user == null %}fade in active{% endif %}">
                             <div class="panel panel-default margin-bottom-40">
                                 <div class="panel-body">
                                     <form id="PersonnalDataForm">
+                                        <input value="{{user.id}}" type="hidden" id="Personnalid" name="Personnalid" />
                                         <div class="form-group">
                                             <label class="col-md-4 control-label" >Nom<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
                                             <div class="col-md-8  inputGroupContainer">
@@ -321,6 +322,7 @@
                             <div class="panel panel-default margin-bottom-40">
                                 <div class="panel-body">
                                     <form id="GeneralDataForm">
+                                        <input type="hidden" name="Generalid" id="Generalid" value="{{user.id}}"> 
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" >Civilité</label>
                                         <div class="row">

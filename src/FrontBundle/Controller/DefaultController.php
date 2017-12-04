@@ -94,13 +94,12 @@ class DefaultController extends Controller {
         } elseif ($user->hasRole('ROLE_USER')) {
             $profil = new Utilisateur();
             $profil->setUser($user);
+            $profil->setDate_membre(new \DateTime('now'));
+            $profil->setStatus('Actif');
             $em->persist($profil);
             
             $user->setUtilisateur($profil);
             $userManager->updateUser($user);
-            
-            $utilisateur = $em->getRepository('FrontBundle:Utilisateur')->findOneBy(array('user' => $user));
-            $utilisateur->setDate_membre(new \DateTime('now'));
             
             $em->flush();
             return new Response($profil->getId());
