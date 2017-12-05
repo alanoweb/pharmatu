@@ -3,6 +3,9 @@
 {% endblock%}
 {% block css %}
     <style>
+	.card-group .card {
+    height: auto;
+	}
         .card .time {
             right: 13%;
             background:#fff0; 
@@ -11,7 +14,28 @@
         }
         .btn btn-success btn-circle{
             margin:5%;}
-
+@media (max-width: 990px)
+{
+.profile-nav .tab-select {
+    display:inherit!important;
+}
+.profile-nav .tab-select .container {
+    padding-left: 2%;
+}
+.hidden-xs {
+display:inherit;
+  width: 100%!important; 
+}
+}
+@media (max-width: 767px){
+.profile-nav .tab-select .container {
+    padding-left: 2%;
+}
+.hidden-xs {
+display:inherit;
+  width: 100%!important; 
+}
+}
     </style>
 {% endblock %}
 {% block body %}
@@ -33,34 +57,38 @@
                     <div class="card-group">
                         <div class="row">
                             {% for utilisateur in utilisateurs %}
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                <div class="card card-video">
-                                    <div class="card-img">
-                                        <a href="{{ path('user_profil', { 'id': utilisateur.id }) }}"><img src="/Test1/web/img/slideshow/1.jpg" alt=""></a>
+                     
+							<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <div class="card">
+                                <div class="card-img">
+                                   <a href="{{ path('user_profil', { 'id': utilisateur.id }) }}"><img src="/Test1/web/img/slideshow/1.jpg" alt=""></a>
                                         <div class="category"><span class="label label-success">{{ utilisateur.status }}</span></div>
                                         <div class="meta"><a href="#"><i class="fa fa-sitemap"></i> <span>15</span></a></div>
                                     </div>
-                                    <div class="caption">
+                                <div class="caption">
+                                  
                                         <h3 class="card-title"><a href="{{ path('user_profil', { 'id': utilisateur.id }) }}">{% if utilisateur.nom %}{{ utilisateur.nom }} {{ utilisateur.prenom }} {% else %} {{ utilisateur.user.username }} {% endif %}</a></h3>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> {{utilisateur.date_membre|date('d/m/Y')}}</li>
-                                            <li><i class="fa fa-eye"></i> {{ utilisateur.user.lastlogin|date('j/m/Y g:i:sa')}}</li>
+                                            <li style="padding-left:0px!important"><i class="fa fa-clock-o"></i> {{utilisateur.date_membre|date('d/m/Y')}}</li>
+                                            <li style="padding-left:0px!important"><i class="fa fa-eye"></i> {{ utilisateur.user.lastlogin|date('j/m/Y g:i:sa')}}</li>
                                         </ul>
                                         <ul>
-                                            <li><i class="fa fa-bitcoin"></i> {{ utilisateur.coin }}</li>
-                                            <li><i class="fa fa-puzzle-piece"></i> {{ utilisateur.experience}}</li>
-                                        </ul>
-                                        <div class="text-center" >
+                                            <li style="padding-left:0px!important"><i class="fa fa-bitcoin"></i> {{ utilisateur.coin }}</li>
+                                            <li style="padding-left:0px!important"><i class="fa fa-puzzle-piece"></i> {{ utilisateur.experience}}</li>
+                                        </ul> 
+										
+										  <div class="text-center" >
                                             {% if utilisateur.getStatus() != "Blocked" %}
                                             <button type="button" class="btn btn-danger btn-outline" onclick="ValidationProfil('{{ utilisateur.id }}');"><i class="fa fa-trash-o"></i></button>
                                             {% else %}
                                             <button type="button" class="btn btn-success btn-outline" onclick="ValidationProfil('{{ utilisateur.id }}');"><i class="fa fa-check"></i></button>
                                             {% endif %}
                                         </div>
-                                    </div>
-                                        
-                                </div>
+										</div>
+										
+                                
                             </div>
+                        </div>
                             {% endfor %}
                         </div>
                     </div>
