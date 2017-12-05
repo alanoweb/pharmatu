@@ -29,7 +29,7 @@ class Pub
     /**
      * @var string
      *
-     * @ORM\Column(name="chemin", type="string", length=255, unique=true)
+     * @ORM\Column(name="chemin", type="string", length=255,nullable=true)
      */
     private $chemin;
 
@@ -60,6 +60,13 @@ class Pub
      * @ORM\Column(name="prix", type="float")
      */
     private $prix;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=255)
+     */
+    private $status;
 
     /**
      * Get id
@@ -206,5 +213,28 @@ class Pub
     public function getPrix()
     {
         return $this->prix;
+    }
+    
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return Pub
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string 
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }
