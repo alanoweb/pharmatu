@@ -1,4 +1,392 @@
 {% extends '::base.html.twig' %}
-{% block body %}
-pub
- {% endblock %}
+{% block slide %}
+    {% if is_granted('ROLE_ADMIN')%}
+    {%else%}
+        {{ parent() }}
+    {% endif%}
+{% endblock%}
+
+{% block wrapper %}
+    {% if is_granted('ROLE_ADMIN')%}
+        <section id="boutique2ndnav" class="padding-top-25 no-padding-bottom border-bottom-1 border-grey-300" style="padding-top: 25px !important;height:60px">
+            <div class="container">
+                <div class="headline" style="margin-top: -16px">
+                    <div class="text-center">
+                        <a href="javascript:void(0);" data-toggle="modal" data-target="#addPub" class="btn btn-primary btn-shadow">
+                            <span class="plus icon"></span>Ajouter une Publicité
+                        </a> 
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    {%endif%}
+    <section class="bg-grey-50" style="padding-top: 1%">
+        <div class="container">
+            <div class="row">
+                {%for pub in pubs%}
+                    {%if is_granted('ROLE_ADMIN') %}
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <div class="card">
+                                <div class="card-img">
+                                    <img src="{{asset(pub.getChemin())}}" alt="">
+                                    <div class="category"><span class="label label-success">{#{pub.getStatus()}#} activer</span></div>
+                                </div>
+                                <div class="caption">
+                                    <div class="text-center"><h3 class="card-title">{#{pub.entreprise.nom}#} ayoub</h3></div>
+                                    <ul>
+                                            <li><i class="fa fa-clock-o"></i> {{pub.dateDebut|date('d/m/Y')}}</li>
+                                            <li><i class="fa fa-eye"></i> {{ pub.dateFin|date('d/m/Y')}}</li>
+                                    </ul>
+                                    <div class="text-center">
+                                        <a href="javascript:void(0);" class="btn btn-success btn-outline" style="" onclick="DureeModalPub({{pub.getId()}});"><span class="fa fa-cubes"></span> Durée</a> 
+                                        <a href="javascript:void(0);" class="btn btn-primary btn-outline" style="" onclick="EditModalPub({{pub.getId()}});"><span class="fa fa-pencil"></span> Modifier</a>
+                                        {%if pub.getStatus() != "Deleted" %}<a href="javascript:void(0);" class="btn btn-danger btn-outline" style="" onclick="DeletePub({{pub.getId()}});"><span class="fa fa-close"></span> Supprimer</a> {%endif%}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {%elseif (is_granted('ROLE_ENTREPRISE') and not produit.getStatus() == "Deleted" )%}
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <div class="card">
+                                <div class="card-img">
+                                    <img src="{{asset(pub.getChemin())}}" alt="">
+                                    <div class="category"><span class="label label-success">{#{pub.getStatus()}#} activer</span></div>
+                                </div>
+                                <div class="caption">
+                                    <ul>
+                                            <li><i class="fa fa-clock-o"></i> {{pub.dateDebut|date('d/m/Y')}}</li>
+                                            <li><i class="fa fa-eye"></i> {{ pub.dateFin|date('d/m/Y')}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}	
+            </div>
+
+
+
+            <ul class="pagination margin-top-20" style="    margin-left: 25%;">
+                <li class="disabled"><a href="#">Previous</a></li>
+                <li class="disabled"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">6</a></li>
+                <li><a href="#">7</a></li>
+                <li><a href="#">8</a></li>
+                <li><a href="#">...</a></li>
+                <li><a href="#">124</a></li>
+                <li><a href="#">125</a></li>
+                <li><a href="#">Next</a></li>
+            </ul>
+        </div>
+    </section>
+
+  {#%if is_granted('ROLE_ADMIN') %#}
+    <!-- ---------------------- Modals ---------------------------------------------->
+    <div class="bs-modal modal fade" id="addPub" tabindex="-1" role="dialog" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Ajouter une Puplicité</h4>
+                </div>
+                <div class="modal-body">
+
+                    <form>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" >Entreprise<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                            <div class="col-md-6  inputGroupContainer">
+                                <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bookmark"></i></span>
+                                    <select id="PubEntreprise" name="PubEntreprise" class="form-control input-md" placeholder="Entreprise">
+                                        {%for entreprise in entreprises%}
+                                        <option value="{{ entreprise.id}}">{{ entreprise.nom}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" >Pub<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                            <div class="col-md-6  inputGroupContainer">
+                                <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
+                                    <input type='file' name="PubChemin" placeholder="Deposer le fichier içi" id="PubChemin" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" >Type<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                            <div class="col-md-6  inputGroupContainer">
+                                <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bitcoin"></i></span>
+                                     <select id="PubType" name="PubType" class="form-control input-md" placeholder="Entreprise">
+                                        <option value="Slide">Slide</option>
+                                        <option value="Gauche">Gauche</option>
+                                        <option value="Droite">Droite</option>
+                                        <option value="SA">Spéciale Activité</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" >Date début<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                            <div class="col-md-6  inputGroupContainer">
+                                <div class="input-group"> <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
+                                    <input value="" name="PubDate_debut" placeholder="Quantité en stock" id="PubDate_debut" class="form-control"  type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" >Date fin<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                            <div class="col-md-6  inputGroupContainer">
+                                <div class="input-group"> <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
+                                    <input value="" name="PubDate_fin" placeholder="Quantité en stock" id="PubDate_fin" class="form-control"  type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" >Prix<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                            <div class="col-md-6  inputGroupContainer">
+                                <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
+                                    <input value="" name="PubPrix" placeholder="Prix réel du produit" id="PubPrix" class="form-control"  type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <input id="AddPub" class="btn btn-primary" type="button" value="ajouter une publicité" onclick="AjouterPub();"/>
+                </div>
+            </div>
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+{#
+    <!-- ------------------------------------------------------------------------------ -->
+
+    <div class="bs-modal modal fade" id="EditeStockProduit" tabindex="-1" role="dialog" aria-labelledby="EditeStockProduitLabel" >
+        <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 id="EditeStockProduitTitle" class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                    <div class="form-group" >
+                        <label class="col-md-4 control-label" >Stock<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
+                                <input disabled value="" name="ModifierStockProduit" placeholder="Quantité en stock" id="ModifierStockProduit" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Quantité<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
+                                <input value="" name="QuantiteProduit" placeholder="Quantité à ajouter ou supprimer" id="QuantiteProduit" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                            </form>
+                </div>
+                    <div class="modal-footer">
+                <input id="AddStockProduit" class="btn btn-primary" type="button" value="ajouter au stock" />
+                <input id="DeminuerStockProduit" class="btn btn-danger" type="button" value="remove du stock" />
+            </div>
+            </div>
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+
+    <!-- ------------------------------------------------------------------------------ -->
+
+    <div class="bs-modal modal fade" id="editProduit" tabindex="-1" role="dialog" aria-labelledby="editProduitLabel" >
+         <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 id="editProduitTitle" class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <form >
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Libele<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bookmark"></i></span>
+                                <input value="" name="EditLibeleProduit" placeholder="Exemple : Smart phone" id="EditLibeleProduit" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Description<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
+                                <textarea name="EditDescriptionProduit" placeholder="Description du produit ou fiche technique" id="EditDescriptionProduit" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Image<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
+                                <input type='file' name="EditImageProduit" placeholder="Deposer l'image içi" id="EditImageProduit" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Coins<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bitcoin"></i></span>
+                                <input value="" name="EditNbrPointProduit" placeholder="Prix en Point" id="EditNbrPointProduit" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Stock<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
+                                <input value="" name="EditStockProduit" placeholder="Quantité en stock" id="EditStockProduit" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Prix<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
+                                <input value="" name="EditPrixProduit" placeholder="Prix réel du produit" id="EditPrixProduit" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                        </div>
+                    <div class="modal-footer">
+                <input id="EditProduitid" name="EditProduitid" type="hidden" value=""/>
+                <input id="EditProduit" class="btn btn-primary" type="button" value="Modifier produit" />
+            </div>
+             </div>
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+{%endif %#}
+    
+    <!-- ------------------------------------------------------------------------------ -->
+{% endblock %}
+{% block javascript %}
+    {%if is_granted('ROLE_ADMIN') %}
+    <script>
+        var menu = $('#boutique2ndnav');
+        var origOffsetY = menu.offset().top;
+        function scroll() {
+        if ($(window).scrollTop() >= origOffsetY - 50) {
+        $('#boutique2ndnav').css({'position': 'fixed', 'width': '100%', 'top': '60px', 'z-index': '1020'});
+        } else {
+        $('#boutique2ndnav').removeAttr('style');
+        $('#boutique2ndnav').css({'padding-top': '25px', 'background-color': '#FFFFFF', 'height': '60px'});
+        }
+
+
+        }
+        scroll();
+        document.onscroll = scroll;
+    </script>
+    {%endif%}
+    <script>
+        {#%if is_granted('ROLE_ADMIN') %#}
+        function AjouterPub() {
+        $.ajax({
+                type: "POST",
+                url: "{{path('add_pub')}}",
+                data: new FormData($('#addPub').find('form')[0]),
+                processData: false, contentType: false, cache: false,
+                success: function () {
+                location.reload();
+                }
+        });
+        }{#
+        function DeleteProduit($id) {
+        $_data = {
+        'id': $id
+        };
+        $.ajax({
+        type: "POST",
+                url: "{{path('delete_produit')}}",
+                data: $_data,
+                success: function () {
+                location.reload();
+                }
+        });
+        }
+        function StockModalProduit($idProduit) {
+        {%for produit in produits%}
+            if ($idProduit == {{produit.getId()}}) {
+            $("#ModifierStockProduit").val("{{produit.getStock()}}");
+            $('#EditeStockProduitTitle').html("Modifier Stock Produit | {{produit.getLibele()}}");
+            $("#AddStockProduit").attr('onclick', "StockProduit('{{produit.getId()}}','ajouter')");
+            $("#DeminuerStockProduit").attr('onclick', "StockProduit('{{produit.getId()}}','deminuer')");
+            $('#EditeStockProduit').modal('show');
+            }
+        {% endfor %}
+            }
+
+            function StockProduit($idProduit, $type) {
+            $_data = {
+            'idProduit': $idProduit,
+                    'QuantiteProduit': $('#QuantiteProduit').val(),
+                    'Type': $type
+            };
+            $.ajax({
+            type: "POST",
+                    url: "{{path('edit_stock_produit')}}",
+                    data: $_data,
+                    success: function () {
+                    location.reload();
+                    }
+            });
+            }
+
+            function editModalProduit($idProduit) {
+        {%for produit in produits%}
+            if ($idProduit == {{produit.getId()}}) {
+            $("#EditLibeleProduit").val("{{produit.getLibele()}}");
+            $("#EditDescriptionProduit").val("{{produit.getDescription()}}");
+            $("#EditNbrPointProduit").val("{{produit.getNbrCoin()}}");
+            $("#EditStockProduit").val("{{produit.getStock()}}");
+            $("#EditPrixProduit").val("{{produit.getPrix()}}");
+            $("#EditProduitid").val("{{produit.getId()}}");
+            $('#editProduitTitle').html("Modifier Produit | {{produit.getLibele()}}");
+            $("#EditProduit").attr('onclick', "ModifierProduit()");
+            $('#editProduit').modal('show');
+            }
+        {% endfor %}
+            }
+            function ModifierProduit() {
+            $.ajax({
+            type: "POST",
+                    url: "{{path('edit_produit')}}",
+                    data: new FormData($('#editProduit').find('form')[0]),
+                    processData: false,  contentType: false,  cache: false,
+                    success: function () {
+                    location.reload();
+                    }
+            });
+            }
+            {%endif%}
+            function AcheterProduit($idProduit) 
+            {
+                {#% if app.user.utilisateur %}            
+                window.location.href = "{{path('monprofil')}}";
+                {% endif %}
+                $_data = {'idProduit': $idProduit};
+                $.ajax({
+                    type: "POST",
+                    url: "{{path('acheter_produit')}}",
+                    data: $_data,
+                    success: function () 
+                        {
+                        location.reload();
+                        }
+                });
+            }#}
+    </script>
+{% endblock %}

@@ -43,28 +43,28 @@ class Entreprise
     /**
      * @var int
      *
-     * @ORM\Column(name="telephone", type="integer")
+     * @ORM\Column(name="telephone", type="integer",nullable=true)
      */
     private $telephone;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="portable", type="integer")
+     * @ORM\Column(name="portable", type="integer",nullable=true)
      */
     private $portable;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="fax", type="integer")
+     * @ORM\Column(name="fax", type="integer",nullable=true)
      */
     private $fax;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="siteweb", type="string", length=50, unique=true)
+     * @ORM\Column(name="siteweb", type="string", length=50, unique=true,nullable=true)
      */
     private $siteweb;
 
