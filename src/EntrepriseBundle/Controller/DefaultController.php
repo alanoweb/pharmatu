@@ -23,7 +23,9 @@ class DefaultController extends Controller
     }
 	public function gagnantsAction()
     {
-        return $this->render('EntrepriseBundle:Default:gagnants.html.twig');
+            $em = $this->getDoctrine()->getManager();
+        $gagnants = $em->getRepository('EntrepriseBundle:gagnants')->findall();
+        return $this->render('EntrepriseBundle:Default:gagnants.html.twig', array("gagnants" => $gagnants));
     }
 	public function statistiqueAction()
     {
@@ -83,14 +85,65 @@ class DefaultController extends Controller
            $file->move($photoDir, $fileName);
            $Pub->setChemin('img/pub/'.$entreprisefoldername.$fileName);
        }
-           
+        $em->flush();
+        return new Response();
+    }
+    
+     public function DeletePubAction() {
+        $em = $this->getDoctrine()->getManager();
+        $request = $this->container->get('request');
+
+        $id = $request->get('id');
+        $Pub = $em->getRepository('EntrepriseBundle:Pub')->find($id);
+
+        $Pub->setStatus("Deleted");
+
+        $em->persist($Pub);
         $em->flush();
 
+        return new Response();
+    }
+    
+    public function DureePubAction() {
+        $em = $this->getDoctrine()->getManager();
+        $request = $this->container->get('request');
 
+        $id = $request->get('idPub');
+        $Pub = $em->getRepository('EntrepriseBundle:Pub')->find($id);
+
+        $Pub->setDateDebut(date_create(date('Y-m-d', strtotime($request->get("Date_debut")))));
+        $Pub->setDateFin(date_create(date('Y-m-d', strtotime($request->get("Date_fin")))));
+        $Pub->setStatus("Activer");
+              
+        $em->flush();
+
+        return new Response();
+    }
+    
+     public function EditPubAction() {
+        $em = $this->getDoctrine()->getManager();
+        $request = $this->container->get('request');
+        $Entreprise = $em->getRepository('EntrepriseBundle:Entreprise')->find($request->get("EditPubEntreprise"));
+
+        $id = $request->get('EditPubid');
+        $Pub = $em->getRepository('EntrepriseBundle:Pub')->find($id);
+
+        $Pub->setEntreprise($Entreprise);
+        $Pub->setType($request->get("EditPubType"));
+        $Pub->setDateDebut(date_create(date('Y-m-d', strtotime($request->get("EditPubDate_debut")))));
+        $Pub->setDateFin(date_create(date('Y-m-d', strtotime($request->get("EditPubDate_fin")))));
+        $Pub->setPrix($request->get("EditPubPrix"));
+        $Pub->setStatus("Activer");
         
-
-        
-
+        $entreprisefoldername = md5($request->get("EditPubEntreprise")).'/';
+        $file = $request->files->get('EditPubChemin');
+       if (isset($file)){
+           $fileName = md5($Pub->getId()).'.'.$file->guessExtension();
+           $photoDir = $this->container->getParameter('kernel.root_dir').'/../web/img/pub/'.$entreprisefoldername;
+           $file->move($photoDir, $fileName);
+           $Pub->setChemin('img/pub/'.$entreprisefoldername.$fileName);
+       }
+        $em->flush();
         return new Response();
     }
 }
