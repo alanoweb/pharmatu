@@ -16,4 +16,13 @@ enregistrerprofilEnt:
 add_pub:
     path:     /AddPub
     defaults: { _controller:EntrepriseBundle:Default:AddPub }
+delete_pub:
+    path:     /DeletePub
+    defaults: { _controller:EntrepriseBundle:Default:DeletePub }
+duree_pub:
+    path:     /DureePub
+    defaults: { _controller:EntrepriseBundle:Default:DureePub }
+edit_pub:
+    path:     /EditPub
+    defaults: { _controller:EntrepriseBundle:Default:EditPub }
 

@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="activity")
  * @ORM\Entity(repositoryClass="AdminBundle\Repository\ActivityRepository")
  */
-class Activity
-{
+class Activity {
+
     /**
      * @var int
      *
@@ -20,18 +20,21 @@ class Activity
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
     /**
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=100, unique=true)
      */
     private $nom;
-	/**
+
+    /**
      * @var string
      *
      * @ORM\Column(name="img", type="string", length=100)
      */
     private $img;
+
     /**
      * @var string
      *
@@ -43,7 +46,8 @@ class Activity
      * @ORM\ManyToOne(targetEntity="AdminBundle\Entity\ActivityCath")
      */
     private $categorie;
-     /**
+
+    /**
      * @ORM\ManyToMany(targetEntity="SupAdminBundle\Entity\cadeaux")
      */
     private $cadeaux;
@@ -54,32 +58,35 @@ class Activity
      * @ORM\Column(name="nbr_point", type="integer")
      */
     private $nbrPoint;
+
     /**
      * @var int
      *
      * @ORM\Column(name="experience", type="integer")
      */
-    private $experience; 
-	/**
+    private $experience;
+
+    /**
      * @var datetime
      *
      * @ORM\Column(name="dat_deb", type="datetime")
      */
     private $dat_deb;
-	/**
+
+    /**
      * @var datetime
      *
      * @ORM\Column(name="dat_fin", type="datetime")
      */
     private $dat_fin;
-    
+
     /**
      * @var bool
      *
      * @ORM\Column(name="activation", type="boolean")
      */
     private $activation;
-    
+
     /**
      * @var string
      *
@@ -87,14 +94,12 @@ class Activity
      */
     private $status;
 
-
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -104,8 +109,7 @@ class Activity
      * @param string $nom
      * @return Activity
      */
-    public function setNom($nom)
-    {
+    public function setNom($nom) {
         $this->nom = $nom;
 
         return $this;
@@ -116,8 +120,7 @@ class Activity
      *
      * @return string 
      */
-    public function getNom()
-    {
+    public function getNom() {
         return $this->nom;
     }
 
@@ -127,8 +130,7 @@ class Activity
      * @param string $img
      * @return Activity
      */
-    public function setImg($img)
-    {
+    public function setImg($img) {
         $this->img = $img;
 
         return $this;
@@ -139,18 +141,17 @@ class Activity
      *
      * @return string 
      */
-    public function getImg()
-    {
+    public function getImg() {
         return $this->img;
     }
+
     /**
      * Set description
      *
      * @param string $description
      * @return Activity
      */
-    public function setDescription($description)
-    {
+    public function setDescription($description) {
         $this->description = $description;
 
         return $this;
@@ -161,8 +162,7 @@ class Activity
      *
      * @return string 
      */
-    public function getDescription()
-    {
+    public function getDescription() {
         return $this->description;
     }
 
@@ -172,8 +172,7 @@ class Activity
      * @param string $categorie
      * @return Activity
      */
-    public function setCategorie($categorie)
-    {
+    public function setCategorie($categorie) {
         $this->categorie = $categorie;
 
         return $this;
@@ -184,18 +183,17 @@ class Activity
      *
      * @return string 
      */
-    public function getCategorie()
-    {
+    public function getCategorie() {
         return $this->categorie;
     }
- /**
+
+    /**
      * Set cadeaux
      *
      * @param string $cadeaux
      * @return Activity
      */
-    public function setcadeaux($cadeaux)
-    {
+    public function setcadeaux($cadeaux) {
         $this->cadeaux = $cadeaux;
 
         return $this;
@@ -206,8 +204,7 @@ class Activity
      *
      * @return string 
      */
-    public function getcadeaux()
-    {
+    public function getcadeaux() {
         return $this->cadeaux;
     }
 
@@ -217,8 +214,7 @@ class Activity
      * @param integer $nbrPoint
      * @return Activity
      */
-    public function setNbrPoint($nbrPoint)
-    {
+    public function setNbrPoint($nbrPoint) {
         $this->nbrPoint = $nbrPoint;
 
         return $this;
@@ -229,18 +225,17 @@ class Activity
      *
      * @return integer 
      */
-    public function getNbrPoint()
-    {
+    public function getNbrPoint() {
         return $this->nbrPoint;
-    } 
-	/**
+    }
+
+    /**
      * Set experience
      *
      * @param integer $experience
      * @return Activity
      */
-    public function setExperience($experience)
-    {
+    public function setExperience($experience) {
         $this->experience = $experience;
 
         return $this;
@@ -251,18 +246,17 @@ class Activity
      *
      * @return integer 
      */
-    public function getExperience()
-    {
+    public function getExperience() {
         return $this->experience;
     }
-	/**
+
+    /**
      * Set dat_deb
      *
      * @param datetime $dat_deb
      * @return Activity
      */
-    public function setdat_deb($dat_deb)
-    {
+    public function setdat_deb($dat_deb) {
         $this->dat_deb = $dat_deb;
 
         return $this;
@@ -273,18 +267,17 @@ class Activity
      *
      * @return datetime 
      */
-    public function getdat_deb()
-    {
+    public function getdat_deb() {
         return $this->dat_deb;
     }
-	/**
+
+    /**
      * Set dat_fin
      *
      * @param datetime $dat_fin
      * @return Activity
      */
-    public function setdat_fin($dat_fin)
-    {
+    public function setdat_fin($dat_fin) {
         $this->dat_fin = $dat_fin;
 
         return $this;
@@ -295,19 +288,17 @@ class Activity
      *
      * @return datetime 
      */
-    public function getdat_fin()
-    {
+    public function getdat_fin() {
         return $this->dat_fin;
     }
-    
+
     /**
      * Set activation
      *
      * @param boolean $activation
      * @return Activity
      */
-    public function setActivation($activation)
-    {
+    public function setActivation($activation) {
         $this->activation = $activation;
 
         return $this;
@@ -318,19 +309,17 @@ class Activity
      *
      * @return boolean 
      */
-    public function getActivation()
-    {
+    public function getActivation() {
         return $this->activation;
     }
-    
+
     /**
      * Set status
      *
      * @param string $status
      * @return ActivityCath
      */
-    public function setStatus($status)
-    {
+    public function setStatus($status) {
         $this->status = $status;
 
         return $this;
@@ -341,8 +330,8 @@ class Activity
      *
      * @return string 
      */
-    public function getStatus()
-    {
+    public function getStatus() {
         return $this->status;
     }
+
 }

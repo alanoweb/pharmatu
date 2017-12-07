@@ -1,9 +1,6 @@
 {% extends '::base.html.twig' %}
 {% block slide %}
-    {% if is_granted('ROLE_ADMIN')%}
-    {%else%}
-        {{ parent() }}
-    {% endif%}
+
 {% endblock%}
 
 {% block wrapper %}
@@ -30,10 +27,10 @@
                             <div class="card">
                                 <div class="card-img">
                                     <img src="{{asset(pub.getChemin())}}" alt="">
-                                    <div class="category"><span class="label label-success">{#{pub.getStatus()}#} activer</span></div>
+                                    <div class="category"><span class="label label-success">{{pub.getStatus()}}</span></div>
                                 </div>
                                 <div class="caption">
-                                    <div class="text-center"><h3 class="card-title">{#{pub.entreprise.nom}#} ayoub</h3></div>
+                                    <div class="text-center"><h3 class="card-title">{{pub.entreprise.nom}}</h3></div>
                                     <ul>
                                             <li><i class="fa fa-clock-o"></i> {{pub.dateDebut|date('d/m/Y')}}</li>
                                             <li><i class="fa fa-eye"></i> {{ pub.dateFin|date('d/m/Y')}}</li>
@@ -46,12 +43,12 @@
                                 </div>
                             </div>
                         </div>
-                    {%elseif (is_granted('ROLE_ENTREPRISE') and not produit.getStatus() == "Deleted" )%}
+                    {%elseif (is_granted('ROLE_ENTREPRISE') and pub.getStatus() != "Deleted" )%}
                         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <div class="card">
                                 <div class="card-img">
                                     <img src="{{asset(pub.getChemin())}}" alt="">
-                                    <div class="category"><span class="label label-success">{#{pub.getStatus()}#} activer</span></div>
+                                    <div class="category"><span class="label label-success">{{pub.getStatus()}} </span></div>
                                 </div>
                                 <div class="caption">
                                     <ul>
@@ -85,7 +82,7 @@
         </div>
     </section>
 
-  {#%if is_granted('ROLE_ADMIN') %#}
+  {%if is_granted('ROLE_ADMIN') %}
     <!-- ---------------------- Modals ---------------------------------------------->
     <div class="bs-modal modal fade" id="addPub" tabindex="-1" role="dialog" >
         <div class="modal-dialog">
@@ -162,39 +159,38 @@
             </div>
         </div><!-- /card-container -->
     </div><!-- /container -->
-{#
+
     <!-- ------------------------------------------------------------------------------ -->
 
-    <div class="bs-modal modal fade" id="EditeStockProduit" tabindex="-1" role="dialog" aria-labelledby="EditeStockProduitLabel" >
+    <div class="bs-modal modal fade" id="DureePub" tabindex="-1" role="dialog" >
         <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <h4 id="EditeStockProduitTitle" class="modal-title"></h4>
+                        <h4 id="DureePubTitle" class="modal-title"></h4>
                     </div>
                     <div class="modal-body">
                         <form>
-                    <div class="form-group" >
-                        <label class="col-md-4 control-label" >Stock<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
-                                <input disabled value="" name="ModifierStockProduit" placeholder="Quantité en stock" id="ModifierStockProduit" class="form-control"  type="text">
-                            </div>
-                        </div>
-                    </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" >Quantité<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
-                                <input value="" name="QuantiteProduit" placeholder="Quantité à ajouter ou supprimer" id="QuantiteProduit" class="form-control"  type="text">
+                            <label class="col-md-4 control-label" >Date début<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                            <div class="col-md-6  inputGroupContainer">
+                                <div class="input-group"> <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
+                                    <input value="" name="DureePubDate_debut" placeholder="Quantité en stock" id="DureePubDate_debut" class="form-control"  type="text">
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" >Date fin<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                            <div class="col-md-6  inputGroupContainer">
+                                <div class="input-group"> <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
+                                    <input value="" name="DureePubDate_fin" placeholder="Quantité en stock" id="DureePubDate_fin" class="form-control"  type="text">
+                                </div>
+                            </div>
+                        </div>
                             </form>
                 </div>
                     <div class="modal-footer">
-                <input id="AddStockProduit" class="btn btn-primary" type="button" value="ajouter au stock" />
-                <input id="DeminuerStockProduit" class="btn btn-danger" type="button" value="remove du stock" />
+                <input id="dureepub" class="btn btn-primary" type="button" value="sauvegarder" />
             </div>
             </div>
         </div><!-- /card-container -->
@@ -202,73 +198,82 @@
 
     <!-- ------------------------------------------------------------------------------ -->
 
-    <div class="bs-modal modal fade" id="editProduit" tabindex="-1" role="dialog" aria-labelledby="editProduitLabel" >
+    <div class="bs-modal modal fade" id="editPub" tabindex="-1" role="dialog">
          <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <h4 id="editProduitTitle" class="modal-title"></h4>
+                        <h4 id="editPubTitle" class="modal-title"></h4>
                     </div>
                     <div class="modal-body">
                         <form >
+                            <input id="EditPubid" name="EditPubid" type="hidden" value=""/>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" >Libele<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bookmark"></i></span>
-                                <input value="" name="EditLibeleProduit" placeholder="Exemple : Smart phone" id="EditLibeleProduit" class="form-control"  type="text">
+                            <label class="col-md-4 control-label" >Entreprise<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                            <div class="col-md-6  inputGroupContainer">
+                                <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bookmark"></i></span>
+                                    <select id="EditPubEntreprise" name="EditPubEntreprise" class="form-control input-md" placeholder="Entreprise">
+                                        {%for entreprise in entreprises%}
+                                        <option value="{{ entreprise.id}}">{{ entreprise.nom}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" >Description<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
-                                <textarea name="EditDescriptionProduit" placeholder="Description du produit ou fiche technique" id="EditDescriptionProduit" class="form-control"></textarea>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" >Pub<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                            <div class="col-md-6  inputGroupContainer">
+                                <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
+                                    <input type='file' name="EditPubChemin" placeholder="Deposer le fichier içi" id="EditPubChemin" class="form-control"/>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" >Image<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
-                                <input type='file' name="EditImageProduit" placeholder="Deposer l'image içi" id="EditImageProduit" class="form-control"/>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" >Type<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                            <div class="col-md-6  inputGroupContainer">
+                                <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bitcoin"></i></span>
+                                     <select id="EditPubType" name="EditPubType" class="form-control input-md" placeholder="Entreprise">
+                                        <option value="Slide">Slide</option>
+                                        <option value="Gauche">Gauche</option>
+                                        <option value="Droite">Droite</option>
+                                        <option value="SA">Spéciale Activité</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" >Coins<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-bitcoin"></i></span>
-                                <input value="" name="EditNbrPointProduit" placeholder="Prix en Point" id="EditNbrPointProduit" class="form-control"  type="text">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" >Date début<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                            <div class="col-md-6  inputGroupContainer">
+                                <div class="input-group"> <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
+                                    <input value="" name="EditPubDate_debut" placeholder="Quantité en stock" id="EditPubDate_debut" class="form-control"  type="text">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" >Stock<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
-                                <input value="" name="EditStockProduit" placeholder="Quantité en stock" id="EditStockProduit" class="form-control"  type="text">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" >Date fin<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                            <div class="col-md-6  inputGroupContainer">
+                                <div class="input-group"> <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
+                                    <input value="" name="EditPubDate_fin" placeholder="Quantité en stock" id="EditPubDate_fin" class="form-control"  type="text">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" >Prix<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
-                        <div class="col-md-6  inputGroupContainer">
-                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
-                                <input value="" name="EditPrixProduit" placeholder="Prix réel du produit" id="EditPrixProduit" class="form-control"  type="text">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" >Prix<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                            <div class="col-md-6  inputGroupContainer">
+                                <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
+                                    <input value="" name="EditPubPrix" placeholder="Prix réel du produit" id="EditPubPrix" class="form-control"  type="text">
+                                </div>
                             </div>
                         </div>
-                    </div>
                 </form>
                         </div>
                     <div class="modal-footer">
-                <input id="EditProduitid" name="EditProduitid" type="hidden" value=""/>
-                <input id="EditProduit" class="btn btn-primary" type="button" value="Modifier produit" />
+                <input id="EditPub" class="btn btn-primary" type="button" value="Modifier produit" />
             </div>
              </div>
         </div><!-- /card-container -->
     </div><!-- /container -->
-{%endif %#}
+{%endif %}
     
     <!-- ------------------------------------------------------------------------------ -->
 {% endblock %}
@@ -292,7 +297,7 @@
     </script>
     {%endif%}
     <script>
-        {#%if is_granted('ROLE_ADMIN') %#}
+        {%if is_granted('ROLE_ADMIN') %}
         function AjouterPub() {
         $.ajax({
                 type: "POST",
@@ -303,68 +308,67 @@
                 location.reload();
                 }
         });
-        }{#
-        function DeleteProduit($id) {
+        }
+        function DeletePub($id) {
         $_data = {
         'id': $id
         };
         $.ajax({
         type: "POST",
-                url: "{{path('delete_produit')}}",
+                url: "{{path('delete_pub')}}",
                 data: $_data,
                 success: function () {
                 location.reload();
                 }
         });
         }
-        function StockModalProduit($idProduit) {
-        {%for produit in produits%}
-            if ($idProduit == {{produit.getId()}}) {
-            $("#ModifierStockProduit").val("{{produit.getStock()}}");
-            $('#EditeStockProduitTitle').html("Modifier Stock Produit | {{produit.getLibele()}}");
-            $("#AddStockProduit").attr('onclick', "StockProduit('{{produit.getId()}}','ajouter')");
-            $("#DeminuerStockProduit").attr('onclick', "StockProduit('{{produit.getId()}}','deminuer')");
-            $('#EditeStockProduit').modal('show');
+        
+        function DureeModalPub($idPub) {
+        {%for pub in pubs%}
+            if ($idPub == {{pub.getId()}}) {
+            $('#DureePubTitle').html("Modifier Duree Publicité | {{pub.entreprise.nom}}");
+            $("#dureepub").attr('onclick', "DureePub('{{pub.getId()}}')");
+            $('#DureePub').modal('show');
             }
         {% endfor %}
             }
 
-            function StockProduit($idProduit, $type) {
+            function DureePub($idPub) {
             $_data = {
-            'idProduit': $idProduit,
-                    'QuantiteProduit': $('#QuantiteProduit').val(),
-                    'Type': $type
+                'idPub': $idPub,
+                'Date_debut': $('#DureePubDate_debut').val(),
+                'Date_fin': $('#DureePubDate_fin').val()
             };
             $.ajax({
-            type: "POST",
-                    url: "{{path('edit_stock_produit')}}",
-                    data: $_data,
-                    success: function () {
+                type: "POST",
+                url: "{{path('duree_pub')}}",
+                data: $_data,
+                success: function () {
                     location.reload();
-                    }
+                }
             });
             }
 
-            function editModalProduit($idProduit) {
-        {%for produit in produits%}
-            if ($idProduit == {{produit.getId()}}) {
-            $("#EditLibeleProduit").val("{{produit.getLibele()}}");
-            $("#EditDescriptionProduit").val("{{produit.getDescription()}}");
-            $("#EditNbrPointProduit").val("{{produit.getNbrCoin()}}");
-            $("#EditStockProduit").val("{{produit.getStock()}}");
-            $("#EditPrixProduit").val("{{produit.getPrix()}}");
-            $("#EditProduitid").val("{{produit.getId()}}");
-            $('#editProduitTitle').html("Modifier Produit | {{produit.getLibele()}}");
-            $("#EditProduit").attr('onclick', "ModifierProduit()");
-            $('#editProduit').modal('show');
+            function EditModalPub($idPub) {
+        {%for pub in pubs%}
+            if ($idPub == {{pub.getId()}}) {
+            $("#EditPubEntreprise").val("{{pub.entreprise.id}}");
+            $("#EditPubType").val("{{pub.type}}");
+            $("#EditPubDate_debut").val("{{pub.dateDebut|date('d-m-Y')}}");
+            $("#EditPubDate_fin").val("{{pub.dateFin|date('d-m-Y')}}");
+            $("#EditPubPrix").val("{{pub.prix}}");
+            $('#editPubTitle').html("Modifier Pub | {{pub.entreprise.nom}}");
+            $("#EditPubid").val("{{pub.getId()}}");
+            $("#EditPub").attr('onclick', "ModifierPub()");
+            $('#editPub').modal('show');
             }
         {% endfor %}
             }
-            function ModifierProduit() {
+            function ModifierPub() {
             $.ajax({
             type: "POST",
-                    url: "{{path('edit_produit')}}",
-                    data: new FormData($('#editProduit').find('form')[0]),
+                    url: "{{path('edit_pub')}}",
+                    data: new FormData($('#editPub').find('form')[0]),
                     processData: false,  contentType: false,  cache: false,
                     success: function () {
                     location.reload();
@@ -372,21 +376,5 @@
             });
             }
             {%endif%}
-            function AcheterProduit($idProduit) 
-            {
-                {#% if app.user.utilisateur %}            
-                window.location.href = "{{path('monprofil')}}";
-                {% endif %}
-                $_data = {'idProduit': $idProduit};
-                $.ajax({
-                    type: "POST",
-                    url: "{{path('acheter_produit')}}",
-                    data: $_data,
-                    success: function () 
-                        {
-                        location.reload();
-                        }
-                });
-            }#}
     </script>
 {% endblock %}

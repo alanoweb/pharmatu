@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="gagnants")
  * @ORM\Entity(repositoryClass="EntrepriseBundle\Repository\gagnantsRepository")
  */
-class gagnants
-{
+class gagnants {
+
     /**
      * @var int
      *
@@ -20,55 +20,95 @@ class gagnants
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-	/**
-   * @ORM\OneToOne(targetEntity="SupAdminBundle\Entity\cadeaux")
-   */
-  private $cadeaux;
-/**
-   *  @ORM\OneToOne(targetEntity="FrontBundle\Entity\Utilisateur")
-   */
-  private $Utilisateur;
+
+    /**
+     * @ORM\OneToOne(targetEntity="AdminBundle\Entity\Activity")
+     */
+    private $activity;
+
+    /**
+     * @ORM\OneToOne(targetEntity="SupAdminBundle\Entity\cadeaux")
+     */
+    private $cadeaux;
+
+    /**
+     *  @ORM\OneToOne(targetEntity="FrontBundle\Entity\Utilisateur")
+     */
+    private $utilisateur;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="date", type="datetime")
+     */
+    private $date;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="rang", type="string", length=255)
+     */
+    private $rang;
 
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
-	/**
-     * Set cadeaux
+
+    /**
+     * Set Activity
+     *
+     * @param string $activity
+     * @return gagnants
+     */
+    public function setActivity($activity) {
+        $this->activity = $activity;
+
+        return $this;
+    }
+
+    /**
+     * Get Activity
+     *
+     * @return string 
+     */
+    public function getActivity() {
+        return $this->activity;
+    }
+
+    /**
+     * Set Cadeaux
      *
      * @param string $cadeaux
-     * @return Activity
+     * @return gagnants
      */
-    public function setcadeaux($cadeaux)
-    {
+    public function setCadeaux($cadeaux) {
         $this->cadeaux = $cadeaux;
 
         return $this;
     }
 
     /**
-     * Get cadeaux
+     * Get Cadeaux
      *
      * @return string 
      */
-    public function getcadeaux()
-    {
-        return $this->$cadeaux;
+    public function getCadeaux() {
+        return $this->cadeaux;
     }
-	/**
+
+    /**
      * Set Utilisateur
      *
-     * @param string $Utilisateur
-     * @return Activity
+     * @param string $utilisateur
+     * @return gagnants
      */
-    public function setUtilisateur($Utilisateur)
-    {
-        $this->Utilisateur = $Utilisateur;
+    public function setUtilisateur($utilisateur) {
+        $this->utilisateur = $utilisateur;
         return $this;
     }
 
@@ -77,8 +117,50 @@ class gagnants
      *
      * @return string 
      */
-    public function getUtilisateur()
-    {
-        return $this->$Utilisateur;
+    public function getUtilisateur() {
+        return $this->utilisateur;
     }
+
+    /**
+     * Set Date
+     *
+     * @param datetime $date
+     * @return gagnants
+     */
+    public function setDate($date) {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get Date
+     *
+     * @return datetime 
+     */
+    public function getDate() {
+        return $this->date;
+    }
+
+    /**
+     * Set rang
+     *
+     * @param string $rang
+     * @return gagnants
+     */
+    public function setRang($rang) {
+        $this->rang = $rang;
+
+        return $this;
+    }
+
+    /**
+     * Get rang
+     *
+     * @return string 
+     */
+    public function getRang() {
+        return $this->rang;
+    }
+
 }
