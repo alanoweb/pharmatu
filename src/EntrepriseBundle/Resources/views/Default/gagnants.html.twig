@@ -55,7 +55,33 @@
 {% block javascript %}
     <script>
         $(document).ready(function () {
-            $('#tableGagnants').DataTable();
+            $('#tableGagnants').DataTable({
+                "language": {
+                    "decimal": "",
+                    "emptyTable": "Aucune données dans le tableau ",
+                    "info": "Affichage de _START_ à _END_ de _TOTAL_ entrer",
+                    "infoEmpty": " 0 de 0 affiché",
+                    "infoFiltered": "(filtrer de _MAX_ entrer total)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Afficher _MENU_ par page",
+                    "loadingRecords": "Loading...",
+                    "processing": "Processe en cours...",
+                    "search": "Recherche:",
+                    "zeroRecords": "Aucune Resultas trouvée",
+
+                    "paginate": {
+                        "first": "Premiere",
+                        "last": "Derniere",
+                        "next": "Suivant",
+                        "previous": "Précedent"
+                    },
+                    "aria": {
+                        "sortAscending": ": activate to sort column ascending",
+                        "sortDescending": ": activate to sort column descending"
+                    }
+                }
+            });
         });
     </script>
 {% endblock %}
