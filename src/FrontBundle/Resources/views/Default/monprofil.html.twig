@@ -150,6 +150,9 @@ section.hero .profile-avatar {
 {% block Dashboard %}
     <section class="hero cover hidden-xs" style="background-image: url({{asset('img/cover/cover-profile.jpg')}}); width:100%!important;">
         <div class="hero-bg"></div>
+        <div class="col-md-3" style="border:1px solid whitesmoke;background-color:black;color: white ">
+            <i class="fa fa-camera"></i>Ajouter une photo de couverture
+        </div>
         <div class="container relative">
             <div class="page-header">
                 <div class="page-title">
@@ -161,9 +164,12 @@ section.hero .profile-avatar {
                 </div>	
                 <div class="profile-avatar">
                     <div class="thumbnail">
-                        <a href="javascript:void(0);">
-                            <img src="{{asset('img/user/profile.jpg')}}">
-                        </a>
+                        <img src="{{asset('img/user/profile.jpg')}}" style="width:100%;height: 100%">
+                        <form href="javascript:void(0);">
+                            <div class="" style="border:1px solid whitesmoke;background-color:black;color: whitesmoke;font-size: 14px ">
+                                <i class="fa fa-camera"></i>Ajouter une photo
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
