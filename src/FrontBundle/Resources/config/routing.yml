@@ -56,3 +56,9 @@ save_personnal_data:
 save_general_data:
     path:     /save_general_data
     defaults: { _controller:FrontBundle:Utilisateur:SaveGeneralData }
+edit_imgprofil:
+    path:     /editImgProfil
+    defaults: { _controller:FrontBundle:Utilisateur:EditImgProfil }
+edit_imgcouverture:
+    path:     /editImgCouverture
+    defaults: { _controller:FrontBundle:Utilisateur:EditImgCouverture }

@@ -66,8 +66,41 @@ class UtilisateurController extends Controller {
 
         return new Response();
     }
+    
+    public function EditImgProfilAction() {
+        $em = $this->getDoctrine()->getManager();
+        $request = $this->container->get('request');
+        $user = $request->get('photoprofilid');
+         $utilisateur = $em->getRepository('FrontBundle:Utilisateur')->find($user);
+        $file = $request->files->get('photoprofil');
+       if (isset($file)){
+           $fileName = md5($user.'photo').'.'.$file->guessExtension();
+           $photoDir = $this->container->getParameter('kernel.root_dir').'/../web/img/user/'.md5($user).'/';
+           $file->move($photoDir, $fileName);
+           $utilisateur->setImageprofil('img/user/'.md5($user).'/'.$fileName);
+       }
+        $em->flush();
 
-   
+        return new Response();
+    }
+    
+    public function EditImgCouvertureAction() {
+        $em = $this->getDoctrine()->getManager();
+        $request = $this->container->get('request');
+        $user = $request->get('photocouvertureid');
+         $utilisateur = $em->getRepository('FrontBundle:Utilisateur')->find($user);
+        $file = $request->files->get('photocouverture');
+       if (isset($file)){
+           $fileName = md5($user.'couverture').'.'.$file->guessExtension();
+           $photoDir = $this->container->getParameter('kernel.root_dir').'/../web/img/user/'.md5($user).'/';
+           $file->move($photoDir, $fileName);
+           $utilisateur->setImagecouverture('img/user/'.md5($user).'/'.$fileName);
+       }
+        $em->flush();
+
+        return new Response();
+    }
+       
 }
 
 ?>
