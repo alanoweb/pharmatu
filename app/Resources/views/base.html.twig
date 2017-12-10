@@ -60,9 +60,9 @@
                                     <a href="javascript:void(0);" data-toggle="modal" data-target="#login-modal">Se connecter</a>
                                 </li>
                             {% endif %}
-                            <li class="dropdown mega-dropdown">
+                            <li class="dropdown mega-dropdown" onmouseover="activitehouver();" onmouseout="$('#menu-mymenu').attr('style','height:90vh;overflow-y: scroll;');">
                                 <a >Activités</a>
-                                <ul id="menu-mymenu" class="dropdown-menu mega-dropdown-menu category">       
+                                <ul id="menu-mymenu" class="dropdown-menu mega-dropdown-menu category" style="height:90vh;overflow-y: scroll;">       
                                     {{ render(controller("FrontBundle:Default:menu")) }}
                                 </ul>
                             </li>
@@ -1017,6 +1017,12 @@
                 dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
                 weekHeader: 'Sem.'
             });
+           function activitehouver(){
+               if ($('#menu-mymenu').height() > $(window).height()){
+                   $('#menu-mymenu').attr('style','display: block !important;height:90vh;overflow-y: scroll;');
+               }
+               else{$('#menu-mymenu').attr('style','display: table !important;');}
+           }
         </script>
         <script>
             $(document).ready(function () {

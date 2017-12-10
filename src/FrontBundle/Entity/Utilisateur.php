@@ -180,6 +180,20 @@ class Utilisateur
     private $status;
     
     /**
+     * @var string
+     *
+     * @ORM\Column(name="imageprofil", type="string", length=255)
+     */
+    private $imageprofil;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="imagecouverture", type="string", length=255)
+     */
+    private $imagecouverture;
+    
+    /**
      * Get id
      *
      * @return integer 
@@ -713,5 +727,51 @@ class Utilisateur
     public function getStatus()
     {
         return $this->status;
+    }
+    
+    /**
+     * Set imageprofil
+     *
+     * @param string $imageprofil
+     * @return Utilisateur
+     */
+    public function setImageprofil($imageprofil)
+    {
+        $this->imageprofil = $imageprofil;
+
+        return $this;
+    }
+
+    /**
+     * Get imageprofil
+     *
+     * @return string 
+     */
+    public function getImageprofil()
+    {
+        return $this->imageprofil;
+    }
+    
+    /**
+     * Set imagecouverture
+     *
+     * @param string $imagecouverture
+     * @return Utilisateur
+     */
+    public function setImagecouverture($imagecouverture)
+    {
+        $this->imagecouverture = $imagecouverture;
+
+        return $this;
+    }
+
+    /**
+     * Get imagecouverture
+     *
+     * @return string 
+     */
+    public function getImagecouverture()
+    {
+        return $this->imagecouverture;
     }
 }

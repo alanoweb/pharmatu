@@ -5,7 +5,8 @@
             <a href="{{path('activity',{'id':cathegorie.getId()})}}">
                 <img src="{{asset(cathegorie.getImg())}}" alt="">
                 <div class="caption">
-                    <span class="label label-warning">PC</span>
+                    <span style="margin-left: 8px;" class="label label-success">{{cathegorie.getStatus()}}</span>
+                    <span style="position: relative;float: right;margin-right: 10px;" class="label label-warning">{{cathegorie.getNbrAct()}}</span>
                     <h3>{{cathegorie.getLibelle()}}</h3>
                     <p>{{cathegorie.getDescription()}}</p>
                 </div>
