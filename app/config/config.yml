@@ -67,7 +67,7 @@ swiftmailer:
     transport: gmail
     host:      localhost
     username:  akhannoussi5@gmail.com
-    password:  gonexgone
+    password:  Lina20122013
     spool:     { type: memory }
 fos_user: 
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel' 

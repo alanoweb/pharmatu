@@ -62,11 +62,10 @@ height:100%;
     {%endif%}
     <section class="bg-grey-50" style="padding-top: 1%">
         <div class="container">
-            <div class="row">
-
+            <div class="row" id="activitiesnumber">
                 {%for act in activites%}
                     {% if is_granted('ROLE_ADMIN')%}
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="count col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <div class="card">
                                 <div class="card-img">
                                     <a href="{{path('actsingle',{'id':act.getId()})}}"><img src="{{asset(act.getImg())}}" alt=""></a>
@@ -95,7 +94,7 @@ height:100%;
                         </div>
                     {%else%}
                         {%if not (act.getStatus() == "Desactiver" or act.getStatus() == "Deleted" ) %}
-                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <div class="count col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                 <div class="card">
                                     <div class="card-img">
                                         <a href="{{path('actsingle',{'id':act.getId()})}}"><img src="{{asset(act.getImg())}}" alt=""></a>
@@ -116,21 +115,17 @@ height:100%;
                     {% endif %}
                 {% endfor %}
             </div>
-            <ul class="pagination margin-top-20" style="    margin-left: 25%;">
-                <li class="disabled"><a href="#">Previous</a></li>
-                <li class="disabled"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">6</a></li>
-                <li><a href="#">7</a></li>
-                <li><a href="#">8</a></li>
-                <li><a href="#">...</a></li>
-                <li><a href="#">124</a></li>
-                <li><a href="#">125</a></li>
-                <li><a href="#">Next</a></li>
-            </ul>
+              <div class="text-center">
+                <div id="activitypagination">
+                </div>
+                <select id="nombreaffichageactivity">
+                    <option selected value="3">3</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                </select>
+            </div>
         </div>
     </section>
     {%if is_granted('ROLE_ADMIN') %}
@@ -420,5 +415,13 @@ height:100%;
                     });
                 }
         </script>
+        <script>
+        $(document).ready(function () {
+          Pagination("activitypagination","activitiesnumber",3);
+          $("#nombreaffichageactivity").change(function() {
+              Pagination("activitypagination","activitiesnumber",$("#nombreaffichageactivity option:selected").val());
+          });
+        });
+    </script>
     {%endif %}
 {% endblock %}

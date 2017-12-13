@@ -62,3 +62,6 @@ edit_imgprofil:
 edit_imgcouverture:
     path:     /editImgCouverture
     defaults: { _controller:FrontBundle:Utilisateur:EditImgCouverture }
+send_message_contact:
+    path:     /SendMessageContact
+    defaults: { _controller:FrontBundle:Default:SendMessageContact }

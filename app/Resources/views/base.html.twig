@@ -1002,6 +1002,7 @@
         <script src="{{asset('plugins/ekko-lightbox/ekko-lightbox.min.js')}}"></script>
         <script src="{{asset('js/core.min.js')}}"></script>
         <script src="{{asset('plugins/owl-carousel/owl.carousel.min.js')}}"></script>
+        <script src="{{asset('plugins/bootstrap/js/jquery.bootpag.min.js')}}"></script>
 
         <script>
             $(".datepicker").datepicker({dateFormat: 'd-m-yy',
@@ -1174,6 +1175,39 @@
                 }
 
                 return $valide;
+            }
+        </script>
+        <script>
+            function Pagination($paginationid,$contentid,$nombreaffichage){
+                $productnumber = $('#'+$contentid).children('.count').length;
+        $pages = Math.ceil($productnumber / $nombreaffichage);
+        $productnumber = $('#'+$contentid).children('.count').each(function( index ) {
+                if (index < $nombreaffichage ){
+                    $(this).css('display','block');
+                }
+                else{
+                    $(this).css('display','none');
+                }
+            });
+        $('#'+$paginationid).bootpag({
+        total: $pages,
+                page: 1,
+                maxVisible: 10,
+                leaps: true,
+                firstLastUse:true,
+                first:"Début",
+                last:"Fin",
+                });
+        $('#'+$paginationid).on("page", function(event, num){
+            $('#'+$contentid).children('.count').each(function( index ) {
+                if (Math.ceil((index+1) /$nombreaffichage )=== num){
+                    $(this).css('display','block');
+                }
+                else{
+                    $(this).css('display','none');
+                }
+            });
+        });
             }
         </script>
         {% block javascript %}
