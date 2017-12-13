@@ -106,6 +106,25 @@ class DefaultController extends Controller {
         }
     }
  
+     public function SendMessageContactAction() {
+        $em = $this->getDoctrine()->getManager();
+        $request = $this->container->get('request');
+        
+        $message = \Swift_Message::newInstance()
+        ->setSubject($request->get('sujetcontact'))
+        ->setFrom($request->get('emailcontact'))
+        ->setTo('khannoussi.ayoub.1@gmail.com')
+        ->setBody($request->get('messagecontact')
+            /*$this->renderView(
+                'HelloBundle:Hello:email.txt.twig',
+                array('name' => $name)
+            )*/
+        )
+    ;
+    $this->get('mailer')->send($message);
+        
+        return new Response();
+    }
     
 }
 

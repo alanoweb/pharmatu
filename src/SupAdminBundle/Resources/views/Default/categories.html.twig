@@ -11,9 +11,9 @@
             </div>
         </div>
     </section>
-    <div class="row">
+    <div class="row" id="categoriesnumber">
         {%for cathegorie in cathegories%}
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="count col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="card">
                     <div class="card-img">
                         <a href="{{path('activity',{'id':cathegorie.getId()})}}"><img src="{{asset(cathegorie.getImg())}}" alt=""></a>
@@ -33,6 +33,17 @@
             </div>
         {% endfor %}
     </div>
+    <div class="text-center">
+                <div id="categoriepagination">
+                </div>
+                <select id="nombreaffichagecategories">
+                    <option value="3">3</option>
+                    <option value="5">5</option>
+                    <option selected value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                </select>
+            </div>
 
     <!-- ---------------------- Modals ---------------------------------------------->
     <div class="modal fade bs-modal" id="addcat" tabindex="-1" role="dialog">
@@ -244,5 +255,13 @@
                     }
                 });
             }
+    </script>
+    <script>
+        $(document).ready(function () {
+          Pagination("categoriepagination","categoriesnumber",10);
+          $("#nombreaffichagecategories").change(function() {
+              Pagination("categoriepagination","categoriesnumber",$("#nombreaffichagecategories option:selected").val());
+          });
+        });
     </script>
 {% endblock %}
