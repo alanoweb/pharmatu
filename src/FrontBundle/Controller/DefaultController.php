@@ -114,14 +114,14 @@ class DefaultController extends Controller {
         ->setSubject($request->get('sujetcontact'))
         ->setFrom($request->get('emailcontact'))
         ->setTo('khannoussi.ayoub.1@gmail.com')
-        ->setBody($request->get('messagecontact')
-            /*$this->renderView(
-                'HelloBundle:Hello:email.txt.twig',
-                array('name' => $name)
-            )*/
+        ->setBody(
+            $this->renderView(
+                'FrontBundle:email:contact.html.twig',
+                array('messagecontact' => $request->get('messagecontact'))
+            )
         )
     ;
-    $this->get('mailer')->send($message);
+    $res = $this->get('mailer')->send($message);
         
         return new Response();
     }
