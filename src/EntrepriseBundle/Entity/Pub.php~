@@ -71,7 +71,7 @@ class Pub
      /**
      * @var string
      *
-     * @ORM\Column(name="importance", type="string", length=255,nullable=true)
+     * @ORM\Column(name="importance", type="string", length=255)
      */
     private $importance;
 
@@ -243,28 +243,5 @@ class Pub
     public function getStatus()
     {
         return $this->status;
-    }
-
-    /**
-     * Set importance
-     *
-     * @param string $importance
-     * @return Pub
-     */
-    public function setImportance($importance)
-    {
-        $this->importance = $importance;
-
-        return $this;
-    }
-
-    /**
-     * Get importance
-     *
-     * @return string 
-     */
-    public function getImportance()
-    {
-        return $this->importance;
     }
 }

@@ -11,6 +11,8 @@
             </div>
         </div>
     </section>
+    <section class="bg-grey-50" style="padding-top: 1%">
+        <div class="container">
     <div class="row" id="categoriesnumber">
         {%for cathegorie in cathegories%}
             <div class="count col-lg-4 col-md-4 col-sm-6 col-xs-12">
@@ -24,15 +26,17 @@
                         <div class="text-center"> <h3 class="card-title"><a href="{{path('activity',{'id':cathegorie.getId()})}}">{{cathegorie.getLibelle()}}</a></h3></div>
                         <ul><li>{{cathegorie.getDescription()}}</li></ul>
                         <div class="text-center">
-                            {%if cathegorie.getActivation() == 0%}<a href="javascript:void(0);" class="btn btn-success btn-outline" style="" onclick="ValidationCategorie({{cathegorie.getId()}});"><span class="fa fa-unlock"></span> Activer</a>{%else%}<a href="javascript:void(0);" class="btn btn-inverse btn-outline" style="" onclick="ValidationCategorie({{cathegorie.getId()}});"><span class="fa fa-lock"></span> Desactiver</a>{%endif%} 
-                            <a href="javascript:void(0);" class="btn btn-primary btn-outline" style="" onclick="editModal({{cathegorie.getId()}});"><span class="fa fa-pencil"></span> Modifier</a>
-                            {%if cathegorie.getStatus() != "Deleted"%} <a href="javascript:void(0);" class="btn btn-danger btn-outline" style="" onclick="DeleteCategorie({{cathegorie.getId()}});"><span class="fa fa-close"></span> Supprimer</a> {%endif%}
+                            {%if cathegorie.getActivation() == 0%}<a href="javascript:void(0);" class="btn btn-success btn-outline" style="" onclick="ValidationCategorie({{cathegorie.getId()}});"><span class="fa fa-unlock"></span> Activer</a>{%else%}<a href="javascript:void(0);" class="btn btn-inverse btn-outline" style="padding-left: 5px;" onclick="ValidationCategorie({{cathegorie.getId()}});"><span class="fa fa-lock"></span> Desactiver</a>{%endif%} 
+                            <a href="javascript:void(0);" class="btn btn-primary btn-outline" style="padding-left: 5px;" onclick="editModal({{cathegorie.getId()}});"><span class="fa fa-pencil"></span> Modifier</a>
+                            {%if cathegorie.getStatus() != "Deleted"%} <a href="javascript:void(0);" class="btn btn-danger btn-outline" style="padding-left: 5px;" onclick="DeleteCategorie({{cathegorie.getId()}});"><span class="fa fa-close"></span> Supprimer</a> {%endif%}
                         </div>
                     </div>
                 </div>
             </div>
         {% endfor %}
     </div>
+        </div>
+    </section>
     <div class="text-center">
                 <div id="categoriepagination">
                 </div>
@@ -117,6 +121,7 @@
 
                 <div class="modal-body">
                     <form >
+                        <input id="EditCategorieid" name="EditCategorieid" type="hidden" value=""/>
                         <div class="form-group">
                             <label class="col-md-4 control-label" >Libellé<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
                             <div class="col-md-6  inputGroupContainer">
@@ -157,7 +162,6 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <input id="EditCategorieid" name="EditCategorieid" type="hidden" value=""/>
                     <input id="EditCategorie" class="btn btn-primary" type="button" value="Modifier catégorie"/>
                 </div>
 
