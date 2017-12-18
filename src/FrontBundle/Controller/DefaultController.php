@@ -12,10 +12,28 @@ use EntrepriseBundle\Entity\Entreprise;
 
 class DefaultController extends Controller {
 
-    public function menuAction() {
+    public function MenuAction() {
         $em = $this->getDoctrine()->getManager();
         $cathegories = $em->getRepository('AdminBundle:ActivityCath')->findall();
         return $this->render('FrontBundle:Default:menu.html.twig', array("cathegories" => $cathegories));
+    }
+    
+    public function SlideAction() {
+        $em = $this->getDoctrine()->getManager();
+        $slides = $em->getRepository('EntrepriseBundle:Pub')->findby(array("type" => "Slide"));
+        return $this->render('FrontBundle:includes:slide.html.twig', array("slides" => $slides));
+    }
+    
+    public function PubDroiteAction() {
+        $em = $this->getDoctrine()->getManager();
+        $PubDroites = $em->getRepository('EntrepriseBundle:Pub')->findby(array("type" => "Droite"));
+        return $this->render('FrontBundle:includes:PubDroite.html.twig', array("PubDroites" => $PubDroites));
+    }
+    
+    public function PubGaucheAction() {
+        $em = $this->getDoctrine()->getManager();
+        $PubGauches = $em->getRepository('EntrepriseBundle:Pub')->findby(array("type" => "Gauche"));
+        return $this->render('FrontBundle:includes:PubGauche.html.twig', array("PubGauches" => $PubGauches));
     }
 
     public function indexAction() {
