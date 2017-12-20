@@ -65,3 +65,6 @@ edit_imgcouverture:
 send_message_contact:
     path:     /SendMessageContact
     defaults: { _controller:FrontBundle:Default:SendMessageContact }
+user_change_password:
+    path:     /ChangePWD
+    defaults: { _controller:FrontBundle:Default:ChangePWD }

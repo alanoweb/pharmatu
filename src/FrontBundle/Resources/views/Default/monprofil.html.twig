@@ -2,6 +2,25 @@
 
 {% block css %}
     <style>
+        .box {
+  background-color: #444;
+  color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 150%;
+  width: 100px;
+  height: 100px;
+}
+
+.box:nth-child(even) {
+  background-color: #ccc;
+  color: #000;
+}
+
+.Inventairewrapper {
+}
+    </style>
+    <style>
 	.card .card-img img{
 height:100%;
 }
@@ -614,94 +633,42 @@ height:100%;
                                 </div>
                             </div>
                             <div id="tabInventaire" class="tab-pane fade">
-                                <div class="panel panel-default margin-bottom-40">
-                                    <div class="panel-body">Inventaire ...</div>
+                                <div class="panel panel-default margin-bottom-40" >
+                                    <div class="panel-body" >
+                                        <div class="Inventairewrapper text-center" >
+                                            {% for x in 1..105 %}
+                                            <div class="box text-center" id="box-{{x}}" style="display: inline-flex;padding: 0px 0px 0px 0px"></div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div id="tabConfiguration" class="tab-pane fade">
                                 <div class="panel panel-default margin-bottom-40">
-                                    <div class="panel-body">Configueration ...</div>
+                                    <div class="panel-body">
+                                        <form action="{{ path('fos_user_change_password') }}" method="POST" class="fos_user_change_password">
+                                            <div>
+                                                <input type="submit" value="" />
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                             <div id="tabHistorique" class="tab-pane fade">
                                 <ul class="timeline margin-top-40">
+                                    {% for elem in historique %}
                                     <li>
                                         <div class="timeline-badge primary"></div>
                                         <div class="timeline-panel">
                                             <div class="timeline-heading">
-                                                <h4><a href="#">Timeline Title</a></h4>
+                                                <h4>{{elem.description}}</h4>
                                             </div>
                                             <div class="timeline-footer">
-                                                <i class="fa fa-calendar-o"></i> May 21. 2016, 10:50 am
+                                                <i class="fa fa-calendar-o"></i> {{elem.date|date('d/m/Y')}}<!--May 21. 2016, 10:50 am-->
                                             </div>
                                         </div>
                                     </li>
-                                    <li>
-                                        <div class="timeline-badge primary"></div>
-                                        <div class="timeline-panel">
-                                            <div class="timeline-heading">
-                                                <h4><a href="#">Timeline Title</a></h4>
-                                            </div>
-                                            <div class="timeline-footer">
-                                                <i class="fa fa-calendar-o"></i> May 21. 2016, 10:50 am
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="timeline-badge primary"></div>
-                                        <div class="timeline-panel">
-                                            <div class="timeline-heading">
-                                                <h4><a href="#">Timeline Title</a></h4>
-                                            </div>
-                                            <div class="timeline-footer">
-                                                <i class="fa fa-calendar-o"></i> May 21. 2016, 10:50 am
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="timeline-badge primary"></div>
-                                        <div class="timeline-panel">
-                                            <div class="timeline-heading">
-                                                <h4><a href="#">Timeline Title</a></h4>
-                                            </div>
-                                            <div class="timeline-footer">
-                                                <i class="fa fa-calendar-o"></i> May 21. 2016, 10:50 am
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="timeline-badge primary"></div>
-                                        <div class="timeline-panel">
-                                            <div class="timeline-heading">
-                                                <h4><a href="#">Timeline Title</a></h4>
-                                            </div>
-                                            <div class="timeline-footer">
-                                                <i class="fa fa-calendar-o"></i> May 21. 2016, 10:50 am
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="timeline-badge primary"></div>
-                                        <div class="timeline-panel">
-                                            <div class="timeline-heading">
-                                                <h4><a href="#">Timeline Title</a></h4>
-                                            </div>
-                                            <div class="timeline-footer">
-                                                <i class="fa fa-calendar-o"></i> May 21. 2016, 10:50 am
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="timeline-badge primary"></div>
-                                        <div class="timeline-panel">
-                                            <div class="timeline-heading">
-                                                <h4><a href="#">Timeline Title</a></h4>
-                                            </div>
-                                            <div class="timeline-footer">
-                                                <i class="fa fa-calendar-o"></i> May 21. 2016, 10:50 am
-                                            </div>
-                                        </div>
-                                    </li>
+                                    {% endfor %}
 
                                     <li class="clearfix" style="float: none;"></li>
                                 </ul>
@@ -774,6 +741,22 @@ height:100%;
                         }
                     });
             }
+        </script>
+        <script>
+            $i =1;
+            {% for elem in inventaire %}
+                {% if elem and elem.cadeau and elem.cadeau.chemin %}
+        $('#box-'+$i).html("<div style='display: inline-flex;width:100px!important;height:100px!important;border:solid black 1px;'><img src='{{asset(elem.cadeau.chemin)}}' alt='' style='width:98px!important;height:99px!important;border:solid black 1px;'><div style='z-index:2;position: relative;background-color: rgba(0, 0, 0, 0.5);bottom: 0px;right: 10px;'> <span style='color: #f00;opacity:1;filter: alpha(opacity=100);'>{{elem.nombre}}</span></div></div>");
+        $i = $i+1;
+                {% endif %}
+            {% endfor %}
+        </script>
+        <script>
+            $( "#formchangepwd" ).submit(function( event ) 
+            {
+               event.preventDefault();
+            });
+            
         </script>
     {% endblock javascript %}
 
