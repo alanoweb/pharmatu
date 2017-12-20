@@ -9,6 +9,14 @@ use SupAdminBundle\Entity\Produits;
 use FrontBundle\Entity\Utilisateur;
 use AdminBundle\Entity\Admin;
 use EntrepriseBundle\Entity\Entreprise;
+use FOS\UserBundle\FOSUserEvents;
+use FOS\UserBundle\Event\FormEvent;
+use FOS\UserBundle\Event\FilterUserResponseEvent;
+use FOS\UserBundle\Event\GetResponseUserEvent;
+use FOS\UserBundle\Model\UserInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class DefaultController extends Controller {
 
@@ -67,7 +75,7 @@ class DefaultController extends Controller {
         return $this->render('FrontBundle:Default:activity.html.twig', array("activity" => $activity));
     }
     
-    public function monprofilAction() {
+    public function monprofilAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $user = $this->get('security.context')->getToken()->getUser();
         if ($user->hasRole('ROLE_ADMIN')) {
@@ -78,7 +86,14 @@ class DefaultController extends Controller {
             return $this->render('EntrepriseBundle:Default:monprofil.html.twig', array('user' => $utilisateur));
         } elseif ($user->hasRole('ROLE_USER')) {
             $utilisateur = $em->getRepository('FrontBundle:Utilisateur')->findOneBy(array('user' => $user));
-            return $this->render('FrontBundle:Default:monprofil.html.twig', array('user' => $utilisateur));
+            $inventaire = $em->getRepository('FrontBundle:Inventaire')->findBy(array('utilisateur' => $utilisateur));
+            $historique = $em->getRepository('FrontBundle:UserHistorique')->findBy(array('utilisateur' => $utilisateur),array('date' => 'DESC'));
+            
+            return $this->render('FrontBundle:Default:monprofil.html.twig', array(
+                'user' => $utilisateur,
+                'inventaire' => $inventaire,
+                'historique' => $historique,
+                    ));
         }
     }
     public function CreatUserProfilAction() {
@@ -142,6 +157,14 @@ class DefaultController extends Controller {
     $res = $this->get('mailer')->send($message);
         
         return new Response();
+    }
+ 
+     public function ChangePWDAction() {
+        $em = $this->getDoctrine()->getManager();
+        $request = $this->container->get('request');
+        $user = $this->getUser();
+
+            return $response;
     }
     
 }
