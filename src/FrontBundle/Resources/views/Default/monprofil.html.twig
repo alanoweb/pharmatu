@@ -2,6 +2,9 @@
 
 {% block css %}
     <style>
+	body{
+	overflow-x: hidden;
+	}
         .box {
   background-color: #444;
   color: #fff;
@@ -82,7 +85,9 @@ height:100%;
             }
         }
         @media (max-width: 1250px){
+		
             .tab-select {
+			padding-left:1%;
                 margin-left: 2%;
             }
             .col-md-3{
@@ -108,17 +113,23 @@ height:100%;
                     margin:1%;
                     width:100%}
             }
-            @media (max-width: 306px){
-
-                .profile-avatar{
+			@media (max-width: 250px){
+			.profile-avatar{
+			left: 43px!important;
+			bottom: -93px!important;
+			}
+			.page-title{
+			bottom: -100px!important;
+			left: 29%!important;
+			}
+			}
+            @media (max-width: 460px) and (min-width: 250px){
+			 .profile-avatar{
 
                     margin-bottom: 100px;
 
-                    width: 150px;;
+                    width: 150px;
                 }
-
-            }
-            @media (max-width: 460px) and (min-width: 292px){
                 .container {
 
                     padding:1px 1px 1px 1px!important; }
@@ -131,10 +142,8 @@ height:100%;
 
                     margin-bottom: 100px;
 
-                    width: 150px;;
+                    width: 150px;
                 }
-
-
             }
             .tab-select {
                 margin-left: 24%;
@@ -210,7 +219,7 @@ height:100%;
 
         <section class="profile-nav height-50 border-bottom-1 border-grey-300  hidden-xs">
             <div class="tab-select">
-                <div class="container">
+                <div class="container" style="padding 0;">
                     <ul class="nav nav-tabs" role="tablist">
                         <li {% if user %}class="active"{% endif %}><a href="#tabJournal" data-toggle="tab">Journal</a></li>
                         <li {% if user == null %}class="active"{% endif %}><a href="#tabdatapersonel" data-toggle="tab">Données Personnel</a></li>
