@@ -17,13 +17,20 @@ use FOS\UserBundle\Model\UserInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use FrontBundle\Entity\Journal;
 
 class DefaultController extends Controller {
 
     public function MenuAction() {
         $em = $this->getDoctrine()->getManager();
         $cathegories = $em->getRepository('AdminBundle:ActivityCath')->findall();
-        return $this->render('FrontBundle:Default:menu.html.twig', array("cathegories" => $cathegories));
+        return $this->render('FrontBundle:includes:menu.html.twig', array("cathegories" => $cathegories));
+    }
+    
+    public function NotificationAction() {
+        $em = $this->getDoctrine()->getManager();
+        $notification = $em->getRepository('FrontBundle:Notification')->findby(array("status" => "nouveau","user" => $this->getUser()));
+        return $this->render('FrontBundle:includes:notification.html.twig', array("notification" => $notification,"nombreofnew"=>count($notification)));
     }
     
     public function SlideAction() {
@@ -75,7 +82,7 @@ class DefaultController extends Controller {
         return $this->render('FrontBundle:Default:activity.html.twig', array("activity" => $activity));
     }
     
-    public function monprofilAction(Request $request) {
+    public function monprofilAction($config) {
         $em = $this->getDoctrine()->getManager();
         $user = $this->get('security.context')->getToken()->getUser();
         if ($user->hasRole('ROLE_ADMIN')) {
@@ -88,11 +95,14 @@ class DefaultController extends Controller {
             $utilisateur = $em->getRepository('FrontBundle:Utilisateur')->findOneBy(array('user' => $user));
             $inventaire = $em->getRepository('FrontBundle:Inventaire')->findBy(array('utilisateur' => $utilisateur));
             $historique = $em->getRepository('FrontBundle:UserHistorique')->findBy(array('utilisateur' => $utilisateur),array('date' => 'DESC'));
+            $journal = $em->getRepository('FrontBundle:Journal')->findBy(array('utilisateur' => $utilisateur),array('date' => 'DESC'));
             
             return $this->render('FrontBundle:Default:monprofil.html.twig', array(
                 'user' => $utilisateur,
                 'inventaire' => $inventaire,
                 'historique' => $historique,
+                'journal' => $journal,
+                'config' => $config,
                     ));
         }
     }
@@ -159,14 +169,45 @@ class DefaultController extends Controller {
         return new Response();
     }
  
-     public function ChangePWDAction() {
+    public function ChangePWDAction() {
         $em = $this->getDoctrine()->getManager();
         $request = $this->container->get('request');
         $user = $this->getUser();
+        $encoder = $this->container->get('security.encoder_factory')->getEncoder($user);
+        $password = $request->get('changepasswordnew2');
+        $user->setPassword($encoder->encodePassword($password, $user->getSalt()));
 
-            return $response;
+        $em->flush();
+
+        return new Response();
     }
-    
+ 
+    public function PosteJournalAction() {
+        $em = $this->getDoctrine()->getManager();
+        $request = $this->container->get('request');
+        $user = $request->get('formpostjournalid');
+        $utilisateur = $em->getRepository('FrontBundle:Utilisateur')->find($user);
+        
+        $poste = new Journal();
+        $poste->setDescription($request->get('formpostjournaldescription'));
+        $poste->setTitle($request->get('formpostjournaltitle'));
+        $poste->setDate(new \DateTime('now'));
+        $poste->setUtilisateur($utilisateur);
+        
+        $em->persist($poste);
+        $em->flush();
+        $file = $request->files->get('formpostjournalimage');
+       if (isset($file)){
+           $fileName = md5($poste->getId()).'.'.$file->guessExtension();
+           $photoDir = $this->container->getParameter('kernel.root_dir').'/../web/img/journal/'.md5($user).'/';
+           $file->move($photoDir, $fileName);
+           $poste->setImage('img/journal/'.md5($user).'/'.$fileName);
+       } 
+        $em->flush();
+
+        return new Response();
+    }
+
 }
 
 ?>

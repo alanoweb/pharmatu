@@ -5,12 +5,12 @@ namespace FrontBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * UserHistorique
+ * Journal
  *
- * @ORM\Table(name="user_historique")
- * @ORM\Entity(repositoryClass="FrontBundle\Repository\UserHistoriqueRepository")
+ * @ORM\Table(name="journal")
+ * @ORM\Entity(repositoryClass="FrontBundle\Repository\JournalRepository")
  */
-class UserHistorique
+class Journal
 {
     /**
      * @var int
@@ -20,23 +20,37 @@ class UserHistorique
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="string", length=255)
-     */
-    private $description;
-    
+       
     /**
      * @ORM\ManyToOne(targetEntity="FrontBundle\Entity\Utilisateur")
      */
     private $utilisateur;
 
     /**
-     * @var \DateTime
+     * @var int
      *
-     * @ORM\Column(name="date", type="datetime")
+     * @ORM\Column(name="description", type="string", nullable=true, length=255)
+     */
+    private $description;
+    
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="title", type="string", nullable=true, length=255)
+     */
+    private $title;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     */
+    private $image;
+    
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="date", type="datetime", nullable = true)
      */
     private $date;
 
@@ -51,11 +65,13 @@ class UserHistorique
         return $this->id;
     }
 
+    
+
     /**
      * Set description
      *
      * @param string $description
-     * @return UserHistorique
+     * @return Journal
      */
     public function setDescription($description)
     {
@@ -75,10 +91,56 @@ class UserHistorique
     }
 
     /**
+     * Set title
+     *
+     * @param string $title
+     * @return Journal
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     * @return Journal
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
      * Set date
      *
      * @param \DateTime $date
-     * @return UserHistorique
+     * @return Journal
      */
     public function setDate($date)
     {
@@ -101,7 +163,7 @@ class UserHistorique
      * Set utilisateur
      *
      * @param \FrontBundle\Entity\Utilisateur $utilisateur
-     * @return UserHistorique
+     * @return Journal
      */
     public function setUtilisateur(\FrontBundle\Entity\Utilisateur $utilisateur = null)
     {

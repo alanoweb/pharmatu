@@ -121,7 +121,7 @@
                                     </ul>
                             </li>
                             <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle">Blog</a>
+                                    <a href="javascript:void(0);" class="dropdown-toggle">Blog</a>
                                     <ul class="dropdown-menu default">
                                             <li class="dropdown-submenu">
                                                     <a href="blog-large.html"><i class="fa fa-align-justify"></i> Blog Large</a>
@@ -156,7 +156,7 @@
                                     </ul>
                             </li>
                             <li class="dropdown mega-dropdown mega-dropdown-sm">
-                                    <a href="#">Pages</a>
+                                    <a href="javascript:void(0);">Pages</a>
                                     <ul class="dropdown-menu mega-dropdown-menu row">
                                             <li class="col-md-6">
                                                     <ul>
@@ -185,7 +185,7 @@
                                     </ul>
                             </li>
                             <li class="dropdown mega-dropdown">
-                                    <a href="#">Elements</a>
+                                    <a href="javascript:void(0);">Elements</a>
                                     <ul class="dropdown-menu mega-dropdown-menu row" style="background-image: url(img/content/menu.png);">
                                             <li class="col-md-3">
                                                     <ul>
@@ -251,7 +251,7 @@
                 <div class="nav-right">
                     {% if app.user %}
                         <div class="nav-profile">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{asset('img/user/avatar.jpg')}}" alt="">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><img src="{{asset('img/user/avatar.jpg')}}" alt="">
                                 <span>
                                     {% if app.user.admin != null %}
                                         {% if app.user.admin.pseudo != null and app.user.admin.pseudo != "" %}
@@ -292,25 +292,16 @@
                                     <li><a href="{{path('monprofil')}}"><i class="fa fa-user"></i> Mon profil</a></li>
                                     {% endif %}
                                     {% if is_granted('ROLE_SUPER_ADMIN') == false and is_granted('ROLE_ADMIN') == false and is_granted('ROLE_ENTREPRISE') == false %}
-                                    <li><a href="#"><i class="fa fa-heart"></i> Likes <span class="label label-info">32</span></a></li>
-                                    <li><a href="#"><i class="fa fa-gamepad"></i> Games</a></li>
-                                    <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
+                                    <li><a href="javascript:void(0);"><i class="fa fa-heart"></i> Likes <span class="label label-info">32</span></a></li>
+                                    <li><a href="javascript:void(0);"><i class="fa fa-gamepad"></i> Games</a></li>
+                                    <li><a href="{{ path('monprofil', {'config':'config'}) }}"><i class="fa fa-gear"></i> Configueration</a></li>
                                     {% endif %}
                                 <li class="divider"></li>
                                 <li><a href="{{path('fos_user_security_logout')}}"><i class="fa fa-power-off"></i>Déconnection</a></li>
                             </ul>
                         </div>
                         <div class="nav-dropdown dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <span class="label label-danger">3</span></a>
-                            <ul class="dropdown-menu">
-                                <li class="dropdown-header"><i class="fa fa-bell"></i> You have 5 new games</li>
-                                <li><a href="#">Alien Isolation</a></li>
-                                <li><a href="#">Witcher 3 <span class="label label-success">XBOX</span></a></li>
-                                <li><a href="#">Last of Us</a></li>
-                                <li><a href="#">Uncharted 4 <span class="label label-primary">PS4</span></a></li>
-                                <li><a href="#">GTA 5 <span class="label label-warning">PC</span></a></li>
-                                <li class="dropdown-footer"><a href="#">View all games</a></li>
-                            </ul>
+                            {{ render(controller("FrontBundle:Default:Notification")) }}
                         </div>
                     {% else %}
                         <div class="nav-profile ">
@@ -318,7 +309,7 @@
                         </div>
                     {% endif %}
                     {% block searchicon %}
-                        <a href="#" data-toggle="modal-search"><i class="fa fa-search"></i></a>
+                        <a href="javascript:void(0);" data-toggle="modal-search"><i class="fa fa-search"></i></a>
                         {% endblock %}
                 </div>
             </div>
@@ -408,80 +399,80 @@
                                                     <ul class="nav nav-tabs">
                                                         <li class="active"><a href="#tabs1" data-toggle="tab">Posts</a></li>
                                                         <li><a href="#tabs2" data-toggle="tab">Forums</a></li>
-                                                        <li><a href="#" data-toggle="tab">Images</a></li>
+                                                        <li><a href="javascript:void(0);" data-toggle="tab">Images</a></li>
                                                     </ul>
                                                 </div>
                                                 <div class="tab-content">
                                                     <ul class="tab-pane fade in active" id="tabs1">
                                                         <li>
-                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/1.jpg')}}" alt=""></a>
+                                                            <a href="javascript:void(0);" class="thumb"><img src="{{asset('img/blog/xs/1.jpg')}}" alt=""></a>
                                                             <div class="widget-list-meta">
-                                                                <h4 class="widget-list-title"><a href="#">Overwatch Closed Beta</a></h4>
+                                                                <h4 class="widget-list-title"><a href="javascript:void(0);">Overwatch Closed Beta</a></h4>
                                                                 <p><i class="fa fa-clock-o"></i> September 15, 2015</p>
                                                             </div>
                                                         </li>
                                                         <li>
-                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/2.jpg')}}" alt=""></a>
+                                                            <a href="javascript:void(0);" class="thumb"><img src="{{asset('img/blog/xs/2.jpg')}}" alt=""></a>
                                                             <div class="widget-list-meta">
-                                                                <h4 class="widget-list-title"><a href="#">Blood and Gore</a></h4>
+                                                                <h4 class="widget-list-title"><a href="javascript:void(0);">Blood and Gore</a></h4>
                                                                 <p><i class="fa fa-clock-o"></i> September 13, 2015</p>
                                                             </div>
                                                         </li>
                                                         <li>
-                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/3.jpg')}}" alt=""></a>
+                                                            <a href="javascript:void(0);" class="thumb"><img src="{{asset('img/blog/xs/3.jpg')}}" alt=""></a>
                                                             <div class="widget-list-meta">
-                                                                <h4 class="widget-list-title"><a href="#">Warner Bros. Interactive</a></h4>
+                                                                <h4 class="widget-list-title"><a href="javascript:void(0);">Warner Bros. Interactive</a></h4>
                                                                 <p><i class="fa fa-clock-o"></i> September 12, 2015</p>
                                                             </div>
                                                         </li>
                                                         <li>
-                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/4.jpg')}}" alt=""></a>
+                                                            <a href="javascript:void(0);" class="thumb"><img src="{{asset('img/blog/xs/4.jpg')}}" alt=""></a>
                                                             <div class="widget-list-meta">
-                                                                <h4 class="widget-list-title"><a href="#">Sharks Don't Sleep</a></h4>
+                                                                <h4 class="widget-list-title"><a href="javascript:void(0);">Sharks Don't Sleep</a></h4>
                                                                 <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
                                                             </div>
                                                         </li>
                                                         <li>
-                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/5.jpg')}}" alt=""></a>
+                                                            <a href="javascript:void(0);" class="thumb"><img src="{{asset('img/blog/xs/5.jpg')}}" alt=""></a>
                                                             <div class="widget-list-meta">
-                                                                <h4 class="widget-list-title"><a href="#">GTA 5 Reaches 5 Million</a></h4>
+                                                                <h4 class="widget-list-title"><a href="javascript:void(0);">GTA 5 Reaches 5 Million</a></h4>
                                                                 <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
                                                             </div>
                                                         </li>
                                                     </ul>
                                                     <ul class="tab-pane fade" id="tabs2">
                                                         <li>
-                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/1.jpg')}}" alt=""></a>
+                                                            <a href="javascript:void(0);" class="thumb"><img src="{{asset('img/blog/xs/1.jpg')}}" alt=""></a>
                                                             <div class="widget-list-meta">
-                                                                <h4 class="widget-list-title"><a href="#">Overwatch Closed Beta</a></h4>
+                                                                <h4 class="widget-list-title"><a href="javascript:void(0);">Overwatch Closed Beta</a></h4>
                                                                 <p><i class="fa fa-clock-o"></i> September 15, 2015</p>
                                                             </div>
                                                         </li>
                                                         <li>
-                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/2.jpg')}}" alt=""></a>
+                                                            <a href="javascript:void(0);" class="thumb"><img src="{{asset('img/blog/xs/2.jpg')}}" alt=""></a>
                                                             <div class="widget-list-meta">
-                                                                <h4 class="widget-list-title"><a href="#">Blood and Gore</a></h4>
+                                                                <h4 class="widget-list-title"><a href="javascript:void(0);">Blood and Gore</a></h4>
                                                                 <p><i class="fa fa-clock-o"></i> September 13, 2015</p>
                                                             </div>
                                                         </li>
                                                         <li>
-                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/3.jpg')}}" alt=""></a>
+                                                            <a href="javascript:void(0);" class="thumb"><img src="{{asset('img/blog/xs/3.jpg')}}" alt=""></a>
                                                             <div class="widget-list-meta">
-                                                                <h4 class="widget-list-title"><a href="#">Warner Bros. Interactive</a></h4>
+                                                                <h4 class="widget-list-title"><a href="javascript:void(0);">Warner Bros. Interactive</a></h4>
                                                                 <p><i class="fa fa-clock-o"></i> September 12, 2015</p>
                                                             </div>
                                                         </li>
                                                         <li>
-                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/4.jpg')}}" alt=""></a>
+                                                            <a href="javascript:void(0);" class="thumb"><img src="{{asset('img/blog/xs/4.jpg')}}" alt=""></a>
                                                             <div class="widget-list-meta">
-                                                                <h4 class="widget-list-title"><a href="#">Sharks Don't Sleep</a></h4>
+                                                                <h4 class="widget-list-title"><a href="javascript:void(0);">Sharks Don't Sleep</a></h4>
                                                                 <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
                                                             </div>
                                                         </li>
                                                         <li>
-                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/5.jpg')}}" alt=""></a>
+                                                            <a href="javascript:void(0);" class="thumb"><img src="{{asset('img/blog/xs/5.jpg')}}" alt=""></a>
                                                             <div class="widget-list-meta">
-                                                                <h4 class="widget-list-title"><a href="#">GTA 5 Reaches 5 Million</a></h4>
+                                                                <h4 class="widget-list-title"><a href="javascript:void(0);">GTA 5 Reaches 5 Million</a></h4>
                                                                 <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
                                                             </div>
                                                         </li>
@@ -543,7 +534,7 @@
                                                         </ul>
                                                     </div>
                                                 </div>
-                                                <a href="#" class="btn btn-inverse btn-block">More Videos</a>
+                                                <a href="javascript:void(0);" class="btn btn-inverse btn-block">More Videos</a>
                                             </div-->
                                         </div>
                                     </div>
@@ -554,13 +545,13 @@
                                                 <div class="panel-body">
                                                     <div class="post">
                                                         <div class="post-header post-author">
-                                                            <a href="#" class="author" data-toggle="tooltip" title="YAKUZI"><img src="{{asset('img/user/avatar.jpg')}}" alt=""></a>
+                                                            <a href="javascript:void(0);" class="author" data-toggle="tooltip" title="YAKUZI"><img src="{{asset('img/user/avatar.jpg')}}" alt=""></a>
                                                             <div class="post-title">
-                                                                <h3><a href="#">The Witcher 3: Wild Hunt Gameplay</a></h3>
+                                                                <h3><a href="javascript:void(0);">The Witcher 3: Wild Hunt Gameplay</a></h3>
                                                                 <ul class="post-meta">
-                                                                    <li><a href="#"><i class="fa fa-user"></i> YAKUZI</a></li>
+                                                                    <li><a href="javascript:void(0);"><i class="fa fa-user"></i> YAKUZI</a></li>
                                                                     <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
-                                                                    <li><a href="#"><i class="fa fa-comments"></i> 0 <span class="hidden-xs">Comments</span></a></li>
+                                                                    <li><a href="javascript:void(0);"><i class="fa fa-comments"></i> 0 <span class="hidden-xs">Comments</span></a></li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -574,9 +565,9 @@
                                                 </div>
                                                 <div class="panel-footer">
                                                     <ul class="post-action">
-                                                        <li><a href="#"><i class="fa fa-heart"></i> like (5)</a></li>
-                                                        <li><a href="#"><i class="fa fa-comments"></i> Comments</a></li>
-                                                        <li><a href="#"><i class="fa fa-reply"></i> share</a></li>
+                                                        <li><a href="javascript:void(0);"><i class="fa fa-heart"></i> like (5)</a></li>
+                                                        <li><a href="javascript:void(0);"><i class="fa fa-comments"></i> Comments</a></li>
+                                                        <li><a href="javascript:void(0);"><i class="fa fa-reply"></i> share</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -585,13 +576,13 @@
                                                 <div class="panel-body">
                                                     <div class="post">
                                                         <div class="post-header post-author">
-                                                            <a href="#" class="author" data-toggle="tooltip" title="YAKUZI"><img src="{{asset('img/user/avatar.jpg')}}" alt=""></a>
+                                                            <a href="javascript:void(0);" class="author" data-toggle="tooltip" title="YAKUZI"><img src="{{asset('img/user/avatar.jpg')}}" alt=""></a>
                                                             <div class="post-title">
-                                                                <h3><a href="#">The Witcher Adventure Game Review</a></h3>
+                                                                <h3><a href="javascript:void(0);">The Witcher Adventure Game Review</a></h3>
                                                                 <ul class="post-meta">
-                                                                    <li><a href="#"><i class="fa fa-user"></i> YAKUZI</a></li>
+                                                                    <li><a href="javascript:void(0);"><i class="fa fa-user"></i> YAKUZI</a></li>
                                                                     <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
-                                                                    <li><a href="#"><i class="fa fa-comments"></i> 0 <span class="hidden-xs">Comments</span></a></li>
+                                                                    <li><a href="javascript:void(0);"><i class="fa fa-comments"></i> 0 <span class="hidden-xs">Comments</span></a></li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -616,9 +607,9 @@
                                                 </div>
                                                 <div class="panel-footer">
                                                     <ul class="post-action">
-                                                        <li><a href="#"><i class="fa fa-heart"></i> like (5)</a></li>
-                                                        <li><a href="#"><i class="fa fa-comments"></i> Comments</a></li>
-                                                        <li><a href="#"><i class="fa fa-reply"></i> share</a></li>
+                                                        <li><a href="javascript:void(0);"><i class="fa fa-heart"></i> like (5)</a></li>
+                                                        <li><a href="javascript:void(0);"><i class="fa fa-comments"></i> Comments</a></li>
+                                                        <li><a href="javascript:void(0);"><i class="fa fa-reply"></i> share</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -627,13 +618,13 @@
                                                 <div class="panel-body">
                                                     <div class="post">
                                                         <div class="post-header post-author">
-                                                            <a href="#" class="author" data-toggle="tooltip" title="YAKUZI"><img src="{{asset('img/user/avatar.jpg')}}" alt=""></a>
+                                                            <a href="javascript:void(0);" class="author" data-toggle="tooltip" title="YAKUZI"><img src="{{asset('img/user/avatar.jpg')}}" alt=""></a>
                                                             <div class="post-title">
-                                                                <h3><a href="#">The Witcher 3 is Game of the Year</a></h3>
+                                                                <h3><a href="javascript:void(0);">The Witcher 3 is Game of the Year</a></h3>
                                                                 <ul class="post-meta">
-                                                                    <li><a href="#"><i class="fa fa-user"></i> YAKUZI</a></li>
+                                                                    <li><a href="javascript:void(0);"><i class="fa fa-user"></i> YAKUZI</a></li>
                                                                     <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
-                                                                    <li><a href="#"><i class="fa fa-comments"></i> 0 <span class="hidden-xs">Comments</span></a></li>
+                                                                    <li><a href="javascript:void(0);"><i class="fa fa-comments"></i> 0 <span class="hidden-xs">Comments</span></a></li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -646,9 +637,9 @@
                                                 </div>
                                                 <div class="panel-footer">
                                                     <ul class="post-action">
-                                                        <li><a href="#"><i class="fa fa-heart"></i> like (5)</a></li>
-                                                        <li><a href="#"><i class="fa fa-comments"></i> Comments</a></li>
-                                                        <li><a href="#"><i class="fa fa-reply"></i> share</a></li>
+                                                        <li><a href="javascript:void(0);"><i class="fa fa-heart"></i> like (5)</a></li>
+                                                        <li><a href="javascript:void(0);"><i class="fa fa-comments"></i> Comments</a></li>
+                                                        <li><a href="javascript:void(0);"><i class="fa fa-reply"></i> share</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -657,13 +648,13 @@
                                                 <div class="panel-body">
                                                     <div class="post">
                                                         <div class="post-header post-author">
-                                                            <a href="#" class="author" data-toggle="tooltip" title="YAKUZI"><img src="{{asset('img/user/avatar.jpg')}}" alt=""></a>
+                                                            <a href="javascript:void(0);" class="author" data-toggle="tooltip" title="YAKUZI"><img src="{{asset('img/user/avatar.jpg')}}" alt=""></a>
                                                             <div class="post-title">
-                                                                <h3><a href="#">The Witcher 3: Wild Hunt Is the Last Witcher Game</a></h3>
+                                                                <h3><a href="javascript:void(0);">The Witcher 3: Wild Hunt Is the Last Witcher Game</a></h3>
                                                                 <ul class="post-meta">
-                                                                    <li><a href="#"><i class="fa fa-user"></i> YAKUZI</a></li>
+                                                                    <li><a href="javascript:void(0);"><i class="fa fa-user"></i> YAKUZI</a></li>
                                                                     <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
-                                                                    <li><a href="#"><i class="fa fa-comments"></i> 0 <span class="hidden-xs">Comments</span></a></li>
+                                                                    <li><a href="javascript:void(0);"><i class="fa fa-comments"></i> 0 <span class="hidden-xs">Comments</span></a></li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -672,14 +663,14 @@
                                                 </div>
                                                 <div class="panel-footer">
                                                     <ul class="post-action">
-                                                        <li><a href="#"><i class="fa fa-heart"></i> like (5)</a></li>
-                                                        <li><a href="#"><i class="fa fa-comments"></i> Comments</a></li>
-                                                        <li><a href="#"><i class="fa fa-reply"></i> share</a></li>
+                                                        <li><a href="javascript:void(0);"><i class="fa fa-heart"></i> like (5)</a></li>
+                                                        <li><a href="javascript:void(0);"><i class="fa fa-comments"></i> Comments</a></li>
+                                                        <li><a href="javascript:void(0);"><i class="fa fa-reply"></i> share</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
 
-                                            <div class="text-center"><a href="#" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right">Load Posts</a></div>
+                                            <div class="text-center"><a href="javascript:void(0);" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right">Load Posts</a></div>
 
                                         </div>
                                     </div>
@@ -693,80 +684,80 @@
                                                     <ul class="nav nav-tabs">
                                                         <li class="active"><a href="#tabs1" data-toggle="tab">Posts</a></li>
                                                         <li><a href="#tabs2" data-toggle="tab">Forums</a></li>
-                                                        <li><a href="#" data-toggle="tab">Images</a></li>
+                                                        <li><a href="javascript:void(0);" data-toggle="tab">Images</a></li>
                                                     </ul>
                                                 </div>
                                                 <div class="tab-content">
                                                     <ul class="tab-pane fade in active" id="tabs1">
                                                         <li>
-                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/1.jpg')}}" alt=""></a>
+                                                            <a href="javascript:void(0);" class="thumb"><img src="{{asset('img/blog/xs/1.jpg')}}" alt=""></a>
                                                             <div class="widget-list-meta">
-                                                                <h4 class="widget-list-title"><a href="#">Overwatch Closed Beta</a></h4>
+                                                                <h4 class="widget-list-title"><a href="javascript:void(0);">Overwatch Closed Beta</a></h4>
                                                                 <p><i class="fa fa-clock-o"></i> September 15, 2015</p>
                                                             </div>
                                                         </li>
                                                         <li>
-                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/2.jpg')}}" alt=""></a>
+                                                            <a href="javascript:void(0);" class="thumb"><img src="{{asset('img/blog/xs/2.jpg')}}" alt=""></a>
                                                             <div class="widget-list-meta">
-                                                                <h4 class="widget-list-title"><a href="#">Blood and Gore</a></h4>
+                                                                <h4 class="widget-list-title"><a href="javascript:void(0);">Blood and Gore</a></h4>
                                                                 <p><i class="fa fa-clock-o"></i> September 13, 2015</p>
                                                             </div>
                                                         </li>
                                                         <li>
-                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/3.jpg')}}" alt=""></a>
+                                                            <a href="javascript:void(0);" class="thumb"><img src="{{asset('img/blog/xs/3.jpg')}}" alt=""></a>
                                                             <div class="widget-list-meta">
-                                                                <h4 class="widget-list-title"><a href="#">Warner Bros. Interactive</a></h4>
+                                                                <h4 class="widget-list-title"><a href="javascript:void(0);">Warner Bros. Interactive</a></h4>
                                                                 <p><i class="fa fa-clock-o"></i> September 12, 2015</p>
                                                             </div>
                                                         </li>
                                                         <li>
-                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/4.jpg')}}" alt=""></a>
+                                                            <a href="javascript:void(0);" class="thumb"><img src="{{asset('img/blog/xs/4.jpg')}}" alt=""></a>
                                                             <div class="widget-list-meta">
-                                                                <h4 class="widget-list-title"><a href="#">Sharks Don't Sleep</a></h4>
+                                                                <h4 class="widget-list-title"><a href="javascript:void(0);">Sharks Don't Sleep</a></h4>
                                                                 <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
                                                             </div>
                                                         </li>
                                                         <li>
-                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/5.jpg')}}" alt=""></a>
+                                                            <a href="javascript:void(0);" class="thumb"><img src="{{asset('img/blog/xs/5.jpg')}}" alt=""></a>
                                                             <div class="widget-list-meta">
-                                                                <h4 class="widget-list-title"><a href="#">GTA 5 Reaches 5 Million</a></h4>
+                                                                <h4 class="widget-list-title"><a href="javascript:void(0);">GTA 5 Reaches 5 Million</a></h4>
                                                                 <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
                                                             </div>
                                                         </li>
                                                     </ul>
                                                     <ul class="tab-pane fade" id="tabs2">
                                                         <li>
-                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/1.jpg')}}" alt=""></a>
+                                                            <a href="javascript:void(0);" class="thumb"><img src="{{asset('img/blog/xs/1.jpg')}}" alt=""></a>
                                                             <div class="widget-list-meta">
-                                                                <h4 class="widget-list-title"><a href="#">Overwatch Closed Beta</a></h4>
+                                                                <h4 class="widget-list-title"><a href="javascript:void(0);">Overwatch Closed Beta</a></h4>
                                                                 <p><i class="fa fa-clock-o"></i> September 15, 2015</p>
                                                             </div>
                                                         </li>
                                                         <li>
-                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/2.jpg')}}" alt=""></a>
+                                                            <a href="javascript:void(0);" class="thumb"><img src="{{asset('img/blog/xs/2.jpg')}}" alt=""></a>
                                                             <div class="widget-list-meta">
-                                                                <h4 class="widget-list-title"><a href="#">Blood and Gore</a></h4>
+                                                                <h4 class="widget-list-title"><a href="javascript:void(0);">Blood and Gore</a></h4>
                                                                 <p><i class="fa fa-clock-o"></i> September 13, 2015</p>
                                                             </div>
                                                         </li>
                                                         <li>
-                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/3.jpg')}}" alt=""></a>
+                                                            <a href="javascript:void(0);" class="thumb"><img src="{{asset('img/blog/xs/3.jpg')}}" alt=""></a>
                                                             <div class="widget-list-meta">
-                                                                <h4 class="widget-list-title"><a href="#">Warner Bros. Interactive</a></h4>
+                                                                <h4 class="widget-list-title"><a href="javascript:void(0);">Warner Bros. Interactive</a></h4>
                                                                 <p><i class="fa fa-clock-o"></i> September 12, 2015</p>
                                                             </div>
                                                         </li>
                                                         <li>
-                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/4.jpg')}}" alt=""></a>
+                                                            <a href="javascript:void(0);" class="thumb"><img src="{{asset('img/blog/xs/4.jpg')}}" alt=""></a>
                                                             <div class="widget-list-meta">
-                                                                <h4 class="widget-list-title"><a href="#">Sharks Don't Sleep</a></h4>
+                                                                <h4 class="widget-list-title"><a href="javascript:void(0);">Sharks Don't Sleep</a></h4>
                                                                 <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
                                                             </div>
                                                         </li>
                                                         <li>
-                                                            <a href="#" class="thumb"><img src="{{asset('img/blog/xs/5.jpg')}}" alt=""></a>
+                                                            <a href="javascript:void(0);" class="thumb"><img src="{{asset('img/blog/xs/5.jpg')}}" alt=""></a>
                                                             <div class="widget-list-meta">
-                                                                <h4 class="widget-list-title"><a href="#">GTA 5 Reaches 5 Million</a></h4>
+                                                                <h4 class="widget-list-title"><a href="javascript:void(0);">GTA 5 Reaches 5 Million</a></h4>
                                                                 <p><i class="fa fa-clock-o"></i> September 10, 2015</p>
                                                             </div>
                                                         </li>
@@ -828,7 +819,7 @@
                                                         </ul>
                                                     </div>
                                                 </div>
-                                                <a href="#" class="btn btn-inverse btn-block">More Videos</a>
+                                                <a href="javascript:void(0);" class="btn btn-inverse btn-block">More Videos</a>
                                             </div-->
                                         </div>
                                         <div>
@@ -856,18 +847,18 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">	
                                 <ul class="nav">
-                                    <li><a href="#">Playstation 4</a></li>
-                                    <li><a href="#">XBOX ONE</a></li>
-                                    <li><a href="#">PC</a></li>
-                                    <li><a href="#">PS3</a></li>
+                                    <li><a href="javascript:void(0);">Playstation 4</a></li>
+                                    <li><a href="javascript:void(0);">XBOX ONE</a></li>
+                                    <li><a href="javascript:void(0);">PC</a></li>
+                                    <li><a href="javascript:void(0);">PS3</a></li>
                                 </ul>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <ul class="nav">
-                                    <li><a href="#">Gaming</a></li>
-                                    <li><a href="#">Portfolio</a></li>
-                                    <li><a href="#">Videos</a></li>
-                                    <li><a href="#">Reviews</a></li>
+                                    <li><a href="javascript:void(0);">Gaming</a></li>
+                                    <li><a href="javascript:void(0);">Portfolio</a></li>
+                                    <li><a href="javascript:void(0);">Videos</a></li>
+                                    <li><a href="javascript:void(0);">Reviews</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -887,10 +878,10 @@
             <div class="footer-bottom" style="margin-right:250px;">
                 <div class="container">	
                     <ul class="list-inline">
-                        <li><a href="#" class="btn btn-circle btn-social-icon" data-toggle="tooltip" title="Follow us on Twitter"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#" class="btn btn-circle btn-social-icon" data-toggle="tooltip" title="Follow us on Facebook"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#" class="btn btn-circle btn-social-icon" data-toggle="tooltip" title="Follow us on Google"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#" class="btn btn-circle btn-social-icon" data-toggle="tooltip" title="Follow us on Steam"><i class="fa fa-steam"></i></a></li>
+                        <li><a href="javascript:void(0);" class="btn btn-circle btn-social-icon" data-toggle="tooltip" title="Follow us on Twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="javascript:void(0);" class="btn btn-circle btn-social-icon" data-toggle="tooltip" title="Follow us on Facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="javascript:void(0);" class="btn btn-circle btn-social-icon" data-toggle="tooltip" title="Follow us on Google"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="javascript:void(0);" class="btn btn-circle btn-social-icon" data-toggle="tooltip" title="Follow us on Steam"><i class="fa fa-steam"></i></a></li>
                     </ul>
                     <p style="margin-left:20%"> &copy; 2016 Gameforest. All rights reserved.</p>
                 </div>

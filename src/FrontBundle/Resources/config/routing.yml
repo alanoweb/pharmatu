@@ -21,8 +21,8 @@ actsingle:
     requirements:
         id : \d+
 monprofil:
-    path:  /monprofil
-    defaults: { _controller:FrontBundle:Default:monprofil }
+    path:  /monprofil/{config}
+    defaults: { _controller:FrontBundle:Default:monprofil, config:"default" }
 add_activite:
     path:     /AddActivite
     defaults: { _controller:FrontBundle:Admin:AddActivite }
@@ -68,3 +68,6 @@ send_message_contact:
 user_change_password:
     path:     /ChangePWD
     defaults: { _controller:FrontBundle:Default:ChangePWD }
+poste_journal:
+    path:     /PosteJournal
+    defaults: { _controller:FrontBundle:Default:PosteJournal }
