@@ -212,11 +212,11 @@ height:100%;
             <div class="tab-select">
                 <div class="container">
                     <ul class="nav nav-tabs" role="tablist">
-                        <li {% if user %}class="active"{% endif %}><a href="#tabJournal" data-toggle="tab">Journal</a></li>
-                        <li {% if user == null %}class="active"{% endif %}><a href="#tabdatapersonel" data-toggle="tab">Données Personnel</a></li>
+                        <li {% if user and config != "config" %}class="active"{% endif %}><a href="#tabJournal" data-toggle="tab">Journal</a></li>
+                        <li {% if user == null and config != "config" %}class="active"{% endif %}><a href="#tabdatapersonel" data-toggle="tab">Données Personnel</a></li>
                         <li><a href="#tabdatageneral" data-toggle="tab">Données Générale</a></li>
                         <li><a href="#tabInventaire" data-toggle="tab">Inventaire</a></li>
-                        <li><a href="#tabConfiguration" data-toggle="tab">Configuration</a></li>
+                        <li {% if config == "config" %}class="active"{% endif %}><a href="#tabConfiguration" data-toggle="tab">Configuration</a></li>
                         <li><a href="#tabHistorique" data-toggle="tab">Historique</a></li>
                     </ul>
                 </div>
@@ -326,67 +326,54 @@ height:100%;
 
                     <div class="col-md-9 col-sm-8" >
                         <div class="tab-content">
-                            <div class="tab-pane {% if user %}fade in active{% endif %}" id="tabJournal">
+                            <div class="tab-pane {% if user and config != "config" %}fade in active{% endif %}" id="tabJournal">
                                 <div class="panel panel-default margin-bottom-40">
                                     <div class="panel-body">
+                                        <form id="formpostjournal">
                                         <div class="form-group">
-                                            <textarea class="form-control" rows="4" placeholder="What's in your head?..."></textarea>
+                                            <input type="text" id="formpostjournaltitle" name="formpostjournaltitle" class="form-control " placeholder="Titre"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea id="formpostjournaldescription" name="formpostjournaldescription" class="form-control" rows="4" placeholder="Exprimez vous..."></textarea>
                                         </div>
                                         <div class="btn-group pull-left">
-                                            <a href="javascript:void(0);" class="btn btn-link btn-icon-left no-padding-left"><i class="fa fa-image"></i> Image</a>
-                                            <a href="javascript:void(0);" class="btn btn-link btn-icon-left"><i class="fa fa-film"></i> Video</a>
-                                            <a href="javascript:void(0);" class="btn btn-link btn-icon-left"><i class="fa fa-map-marker"></i> Location</a>
+                                            <label for="formpostjournalimage" class="btn btn-link btn-icon-left no-padding-left">
+                                                <i class="fa fa-image"></i> Image
+                                            </label>
+                                            <input type="file" id="formpostjournalimage" name="formpostjournalimage" style="display: none" >
+                                            <input type="hidden" name="formpostjournalid" id="formpostjournalid" value="{{user.id}}"> 
+                                            <!--a href="javascript:void(0);" class="btn btn-link btn-icon-left"><i class="fa fa-film"></i> Video</a>
+                                            <a href="javascript:void(0);" class="btn btn-link btn-icon-left"><i class="fa fa-map-marker"></i> Location</a-->
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-icon-left pull-right"><i class="fa fa-edit"></i> Submit</button>
+                                        <button type="button" onclick="ajoutpostejournal();" class="btn btn-primary btn-icon-left pull-right"><i class="fa fa-edit"></i> Partager</button>
+                                        </form>
                                     </div>
                                 </div>
 
+                                {% for elem in journal %}
                                 <div class="panel panel-default panel-post">
                                     <div class="panel-body">
                                         <div class="post">
                                             <div class="post-header post-author">
                                                 <a href="javascript:void(0);" class="author" data-toggle="tooltip" title="YAKUZI"><img src="img/user/avatar.jpg" alt=""></a>
                                                 <div class="post-title">
-                                                    <h3><a href="javascript:void(0);">Deadpool Gets the Movie He Deserves</a></h3>
+                                                    <h3>{{elem.title}}</h3>
                                                     <ul class="post-meta">
-                                                        <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
-                                                        <li><a href="javascript:void(0);">#hashtag</a>, <a href="javascript:void(0);">#witcher 3</a></li>
+                                                        <li><i class="fa fa-calendar-o"></i> {{elem.date|date('d/m/Y h:m:s')}}</li>
+                                                        <!--li><a href="javascript:void(0);">#hashtag</a>, <a href="javascript:void(0);">#witcher 3</a></li-->
                                                     </ul>
                                                 </div>
                                             </div>
-                                            Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
-                                        </div>
-                                    </div>
-                                    <div class="panel-footer">
-                                        <ul class="post-action">
-                                            <li><a href="javascript:void(0);"><i class="fa fa-heart"></i> like (5)</a></li>
-                                            <li><a href="javascript:void(0);"><i class="fa fa-comments"></i> Comments</a></li>
-                                            <li><a href="javascript:void(0);"><i class="fa fa-reply"></i> share</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="panel panel-default panel-post">
-                                    <div class="panel-body">
-                                        <div class="post">
-                                            <div class="post-header post-author">
-                                                <a href="javascript:void(0);" class="author" data-toggle="tooltip" title="YAKUZI"><img src="img/user/avatar.jpg" alt=""></a>
-                                                <div class="post-title">
-                                                    <h3><a href="javascript:void(0);">Official Mirror’s Edge Catalyst Trailer</a></h3>
-                                                    <ul class="post-meta">
-                                                        <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
-                                                        <li><a href="javascript:void(0);">#hashtag</a>, <a href="javascript:void(0);">#witcher 3</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-
+                                            {% if elem.image %}
                                             <div class="post-thumbnail">
                                                 <div class="embed-responsive embed-responsive-16by9">
-                                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/IsDX_LiJT7E?rel=0&amp;showinfo=0" allowfullscreen></iframe>
+                                                    <img src="{{asset(elem.image)}}" onerror="this.onerror=null;this.src='{{asset('img/user/profile.jpg')}}';">
+                                                    <!--iframe class="embed-responsive-item" src="https://www.youtube.com/embed/IsDX_LiJT7E?rel=0&amp;showinfo=0" allowfullscreen></iframe-->
                                                 </div>
                                             </div>
+                                                    {% endif %}
 
-                                            Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
+                                            {{elem.description}}            
                                         </div>
                                     </div>
                                     <div class="panel-footer">
@@ -397,36 +384,14 @@ height:100%;
                                         </ul>
                                     </div>
                                 </div>
+                                {% endfor %}
 
                                 <h4 class="page-header text-center no-padding"><i class="fa fa-clock-o"></i> February, 2016</h4>
-                                <div class="panel panel-default panel-post">
-                                    <div class="panel-body">
-                                        <div class="post">
-                                            <div class="post-header post-author">
-                                                <a href="javascript:void(0);" class="author" data-toggle="tooltip" title="YAKUZI"><img src="img/user/avatar.jpg" alt=""></a>
-                                                <div class="post-title">
-                                                    <h3><a href="javascript:void(0);">The Witcher 3 is Game of the Year</a></h3>
-                                                    <ul class="post-meta">
-                                                        <li><i class="fa fa-calendar-o"></i> April 13, 2016</li>
-                                                        <li><a href="javascript:void(0);">#hashtag</a>, <a href="javascript:void(0);">#witcher 3</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            Etiam et sollicitudin elit. Sed ultrices aliquet dui, eu aliquet metus sodales sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis porttitor varius pulvinar. Vivamus efficitur vulputate imperdiet.
-                                        </div>
-                                    </div>
-                                    <div class="panel-footer">
-                                        <ul class="post-action">
-                                            <li><a href="javascript:void(0);"><i class="fa fa-heart"></i> like (5)</a></li>
-                                            <li><a href="javascript:void(0);"><i class="fa fa-comments"></i> Comments</a></li>
-                                            <li><a href="javascript:void(0);"><i class="fa fa-reply"></i> share</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                
                                 <h4 id="datebginmember" class="page-header text-center no-padding"><i class="fa fa-clock-o"></i> vous ete devenu membre de notre site depuis le {{user.date_membre|date('j F Y \\à g:ia')}}</h4>
                                 <center><a href="javascript:void(0);" class="btn btn-primary btn-lg btn-shadow btn-rounded">Show More</a></center>
                             </div>
-                            <div id="tabdatapersonel" class="tab-pane fade {% if user == null %}fade in active{% endif %}">
+                            <div id="tabdatapersonel" class="tab-pane fade {% if user == null and config != "config" %}in active{% endif %}">
                                 <div class="panel panel-default margin-bottom-40">
                                     <div class="panel-body">
                                         <form id="PersonnalDataForm">
@@ -643,12 +608,24 @@ height:100%;
                                     </div>
                                 </div>
                             </div>
-                            <div id="tabConfiguration" class="tab-pane fade">
+                            <div id="tabConfiguration" class="tab-pane fade {% if config == "config" %}in active{% endif %}">
                                 <div class="panel panel-default margin-bottom-40">
                                     <div class="panel-body">
-                                        <form action="{{ path('fos_user_change_password') }}" method="POST" class="fos_user_change_password">
+                                        <form action="{{ path('user_change_password') }}" method="POST" class="fos_user_change_password">
+                                            <div class="input-group" style="margin-bottom:10px">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
+                                                <input onfocusout="" type="password" class="form-control " id="changepasswordcurrent" name="changepasswordcurrent" placeholder="mot de passe actuelle" style="margin-bottom:0px"/>
+                                            </div>
+                                            <div class="input-group" style="margin-bottom:10px">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
+                                                <input onfocusout="" type="password" class="form-control " id="changepasswordnew1" name="changepasswordnew1" placeholder="nouveau mot de passe" style="margin-bottom:0px"/>
+                                            </div>
+                                            <div class="input-group" style="margin-bottom:10px">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
+                                                <input onfocusout="" type="password" class="form-control " id="changepasswordnew2" name="changepasswordnew2" placeholder="repeter le nouveau mot de passe" style="margin-bottom:0px"/>
+                                            </div>
                                             <div>
-                                                <input type="submit" value="" />
+                                                <input type="submit" value="Changer la mot de passe" />
                                             </div>
                                         </form>
                                     </div>
@@ -752,11 +729,19 @@ height:100%;
             {% endfor %}
         </script>
         <script>
-            $( "#formchangepwd" ).submit(function( event ) 
+            function ajoutpostejournal()
             {
-               event.preventDefault();
-            });
-            
+               $.ajax({
+                        type: "POST",
+                        url: "{{path('poste_journal')}}",
+                        processData: false, contentType: false, cache: false,
+                        data: new FormData($('#formpostjournal')[0]),
+                        success: function () {
+                            location.reload();
+                        }
+                    });
+            }
+          
         </script>
     {% endblock javascript %}
 
