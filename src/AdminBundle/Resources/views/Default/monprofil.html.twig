@@ -1,0 +1,483 @@
+{% extends 'FrontBundle::layout.html.twig' %}
+
+{% block css %}
+    <style>
+	body{
+	overflow-x: hidden;
+	}
+        .box {
+  background-color: #444;
+  color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 150%;
+  width: 100px;
+  height: 100px;
+}
+
+.box:nth-child(even) {
+  background-color: #ccc;
+  color: #000;
+}
+
+.Inventairewrapper {
+}
+    </style>
+    <style>
+	.card .card-img img{
+height:100%;
+}
+        .tab-content{
+            border-width: 0 ; 
+            border-style: 0; 
+            border-color: rgba(0, 0, 0, 0); 
+            -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); 
+            background: rgba(0, 0, 0, 0); 
+        }
+        .tab-select {
+            margin-left: 2%!important;
+        }
+        @media (max-width: 767px)
+        {
+            .hidden-xs {
+                width: 100%!important;
+            }
+            .hidden-xs {
+                width: 100%!important; 
+            }
+        }
+        @media (max-width:880px){
+            .profile-nav{
+                height: 20%!important;
+            }
+        }
+        @media (max-width:770px){
+            .profile-nav{
+                height: 20%!important;
+            }
+            .profile-nav .tab-select {
+                display:inherit!important;
+            }
+
+        }
+        @media (max-width: 990px) and (min-width:770px)
+        {
+            .profile-nav .tab-select {
+                display:inherit!important;
+                margin-left: 3%;
+            }
+        }
+        @media (max-width: 292px){
+            .profile-nav .tab-select .container {
+                padding: 1%!important;
+
+            }
+            section.hero.cover .page-title {
+                position: absolute;
+                bottom: -35px;
+                left: 35%;
+                font-size: 24px;
+            }
+            section.hero .profile-avatar {
+                left: 71px;
+                bottom: -58px;
+            }
+        }
+        @media (max-width: 1250px){
+		
+            .tab-select {
+			padding-left:1%;
+                margin-left: 2%;
+            }
+            .col-md-3{
+                width: 19%;
+                margin-left:3%;
+                .hidden-xs {
+                    display:inherit!important;
+                }
+            }
+            @media (max-width: 990px) and (min-width: 767px){
+                .hidden-xs {
+                    display:inherit!important;
+                }}
+            .col-md-3{
+                width: 22%;
+                margin-top:3%;
+            }
+            @media (max-width: 767px){
+                .col-md-3{
+                    display:none!important;
+                }
+                .col-md-9 .col-sm-8{
+                    margin:1%;
+                    width:100%}
+            }
+			@media (max-width: 250px){
+			.profile-avatar{
+			left: 43px!important;
+			bottom: -93px!important;
+			}
+			.page-title{
+			bottom: -100px!important;
+			left: 29%!important;
+			}
+			}
+            @media (max-width: 460px) and (min-width: 250px){
+			 .profile-avatar{
+
+                    margin-bottom: 100px;
+
+                    width: 150px;
+                }
+                .container {
+
+                    padding:1px 1px 1px 1px!important; }
+                .page-title {
+                    margin-bottom: 17%;
+                }
+            }
+            @media (max-width: 460px)and (min-width: 306px){
+                .profile-avatar{
+
+                    margin-bottom: 100px;
+
+                    width: 150px;
+                }
+            }
+            .tab-select {
+                margin-left: 24%;
+            }
+            .row {
+                margin-right: -15px;
+                margin-left: -5%!important;
+            }
+            .tab-content{
+                border-width: 0 ; 
+                border-style: 0 ; 
+                border-color: rgba(0, 0, 0, 0); 
+                -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+                box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); 
+                background: rgba(0, 0, 0, 0); }
+            @media (max-width: 292px){
+                .profile-nav .tab-select .container {
+                    padding: 1%!important;
+
+                }
+                section.hero.cover .page-title {
+                    position: absolute;
+                    bottom: -35px;
+                    left: 28%;
+                    font-size: 24px;
+                }
+                section.hero .profile-avatar {
+                    left: 71px;
+                    bottom: -58px;
+                }
+            }
+
+        </style>
+    {% endblock %}
+    {% block Dashboard %}
+        <section class="hero cover hidden-xs " style="background-image: url( {% if user and  user.imagecouverture %}{{asset(user.imagecouverture)}}{% else %}{{asset('img/cover/cover-profile.jpg')}}{% endif %}); width:100%!important;">
+            <div class="hero-bg"></div>
+            <div class="container relative">
+                <div class="page-header">
+                    <div class="page-title">
+                        {% if user and  user.nom != null %}
+                            {{user.nom}} {{user.prenom}}
+                        {% else %}
+                            {{user.user.username}}
+                        {% endif %}
+                    </div>	
+                    <div class="profile-avatar">
+                        <div class="thumbnail" style="padding:2px 2px 2px 2px !important;">
+                            <img src="{{asset(user.imageprofil)}}" style="width:100%;height: 100%" onerror="this.onerror=null;this.src='{{asset('img/user/profile.jpg')}}';">
+                            <div class="" style="border:1px solid whitesmoke;background-color:black;color: whitesmoke;font-size: 12px;width: 100%;height: 100%;">
+                                <form id="formphotoprofil">
+                                    <label for="photoprofil" style="cursor:pointer;margin-bottom: 0px;"><i class="fa fa-camera"></i>&nbsp;&nbsp;Changer photo</label>
+                                    <input type="file" id="photoprofil" name="photoprofil" style="display: none" onchange="Changerphotoprofil();" >
+                                    <input type="hidden" name="photoprofilid" id="photoprofilid" value="{{user.id}}"> 
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3" style="border:1px solid whitesmoke;background-color:black;color:white;float:right;margin-right:1%;z-index:20;width: 20%; cursor:pointer; ">
+                <form id="formphotocouverture">
+                    <label for="photocouverture" style="cursor:pointer;margin-bottom: 0px;"><i class="fa fa-camera"></i>&nbsp;&nbsp;Changer photo de couverture</label>
+                    <input type="file" id="photocouverture" name="photocouverture" style="display: none" onchange="Changerphotocouverture();" >
+                    <input type="hidden" name="photocouvertureid" id="photocouvertureid" value="{{user.id}}"> 
+                </form>
+            </div>
+
+        </section>
+
+        <section class="profile-nav height-50 border-bottom-1 border-grey-300  hidden-xs">
+            <div class="tab-select">
+                <div class="container" style="">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li {% if config != "config" %}class="active"{% endif %}><a href="#tabdataadmin" data-toggle="tab">Données Personnel</a></li>
+                        <li {% if config == "config" %}class="active"{% endif %}><a href="#tabConfiguration" data-toggle="tab">Configuration</a></li>
+                        <li><a href="#tabHistorique" data-toggle="tab">Historique</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-grey-50 padding-top-60 padding-top-sm-30">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-3 hidden-xs" style="margin-top:2%;">
+                        <div class="widget">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">  
+                                         {% if user and user.pseudo != null and user.pseudo != "" %}
+                                        {{user.pseudo}}
+                                    {% else %}
+                                        Fiche Personnel
+                                    {% endif %}
+                                </div>
+                                <div class="panel-body">
+                                    <ul class="panel-list margin-top-25">
+                                        {#<li><i class="fa fa-clock-o"></i> Partenaire depuis : {{user.date_membre|date('d/m/Y')}}</li>#}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="widget">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Navigation</div>
+                                <div class="panel-body no-padding">
+                                    <ul class="panel-list-bordered">
+                                        <li><a href="javascript:void(0);"><i class="fa fa-gamepad"></i> Games (4)</a></li>
+                                        <li><a href="javascript:void(0);"><i class="fa fa-film"></i> Videos (2)</a></li>
+                                        <li><a href="javascript:void(0);"><i class="fa fa-picture-o"></i> Galleries (3)</a></li>
+                                        <li><a href="javascript:void(0);"><i class="fa fa-calendar-o"></i> Events</a></li>
+                                        <li><a href="javascript:void(0);"><i class="fa fa-users"></i> Groups (1)</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="widget widget-list">
+                            <div class="panel panel-default">
+                                <div class="panel-heading bold">Recent Feeds</div>
+                                <div class="panel-body">
+                                    <ul>
+                                        <li>
+                                            <a href="javascript:void(0);" class="thumb"><img src="img/blog/xs/1.jpg" alt=""></a>
+                                            <div class="widget-list-meta">
+                                                <h4 class="widget-list-title"><a href="javascript:void(0);">Overwatch Closed Beta</a></h4>
+                                                <p><i class="fa fa-clock-o"></i> September 15, 2016</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);" class="thumb"><img src="img/blog/xs/2.jpg" alt=""></a>
+                                            <div class="widget-list-meta">
+                                                <h4 class="widget-list-title"><a href="javascript:void(0);">Blood and Gore</a></h4>
+                                                <p><i class="fa fa-clock-o"></i> September 13, 2016</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);" class="thumb"><img src="img/blog/xs/3.jpg" alt=""></a>
+                                            <div class="widget-list-meta">
+                                                <h4 class="widget-list-title"><a href="javascript:void(0);">Warner Bros. Interactive</a></h4>
+                                                <p><i class="fa fa-clock-o"></i> September 12, 2016</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);" class="thumb"><img src="img/blog/xs/4.jpg" alt=""></a>
+                                            <div class="widget-list-meta">
+                                                <h4 class="widget-list-title"><a href="javascript:void(0);">Sharks Don't Sleep</a></h4>
+                                                <p><i class="fa fa-clock-o"></i> September 11, 2016</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);" class="thumb"><img src="img/blog/xs/5.jpg" alt=""></a>
+                                            <div class="widget-list-meta">
+                                                <h4 class="widget-list-title"><a href="javascript:void(0);">GTA 5 Reaches 5 Million</a></h4>
+                                                <p><i class="fa fa-clock-o"></i> September 10, 2016</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-9 col-sm-8" >
+                        <div class="tab-content">
+                            <div id="tabdataadmin" class="tab-pane fade {% if config != "config" %}in active{% endif %}">
+                                <div class="panel panel-default margin-bottom-40">
+                                    <div class="panel-body">
+                                        <form id="AdminDataForm">
+                                            <input value="{{user.id}}" type="hidden" id="Adminid" name="Adminid" />
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" >Nom<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                                <div class="col-md-8  inputGroupContainer">
+                                                    <span style="color:red;font-weight: 900"></span>
+                                                    <div class="input-group" style="margin-bottom:10px;border:none">
+                                                        <span class="input-group-addon" ><i class="glyphicon glyphicon-grain"></i></span>   
+                                                        <input value="{{user.nom}}" type="text" id="Adminnom" name="Adminnom" required="required" class="form-control " placeholder="Votre nom de la famille" style="margin-bottom:0px"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" >Prénom<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                                <div class="col-md-8  inputGroupContainer">
+                                                    <span style="color:red;font-weight: 900"></span>
+                                                    <div class="input-group" style="margin-bottom:10px;border:none">
+                                                        <span class="input-group-addon" ><i class="glyphicon glyphicon-user"></i></span>   
+                                                        <input value="{{user.prenom}}" type="text" id="Adminprenom" name="Adminprenom" required="required" class="form-control " placeholder="Votre prénom" style="margin-bottom:0px"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" >CIN<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                                <div class="col-md-8  inputGroupContainer">
+                                                    <span style="color:red;font-weight: 900"></span>
+                                                    <div class="input-group" style="margin-bottom:10px;border:none">
+                                                        <span class="input-group-addon" ><i class="glyphicon glyphicon-credit-card"></i></span>   
+                                                        <input value="{{user.cin}}" type="text" id="Admincin" name="Admincin" required="required" class="form-control " placeholder="Votre numero de carte d'identité" style="margin-bottom:0px"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" >Adresse<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                                <div class="col-md-8  inputGroupContainer">
+                                                    <span style="color:red;font-weight: 900"></span>
+                                                    <div class="input-group" style="margin-bottom:10px;border:none">
+                                                        <span class="input-group-addon" ><i class="glyphicon glyphicon-bookmark"></i></span>   
+                                                        <input value="{{user.adresse}}" type="text" id="Adminadresse" name="Adminadresse" required="required" class="form-control " placeholder="Votre adresse" style="margin-bottom:0px"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" >Numero de telephone<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
+                                                <div class="col-md-8  inputGroupContainer">
+                                                    <span style="color:red;font-weight: 900"></span>
+                                                    <div class="input-group" style="margin-bottom:10px;border:none">
+                                                        <span class="input-group-addon" ><i class="glyphicon glyphicon-phone"></i></span>   
+                                                        <input value="{{user.numero}}" type="text" id="Adminnum" name="Adminnum" required="required" class="form-control " placeholder="Votre Numero" style="margin-bottom:0px"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" >pseudo</label>
+                                                <div class="col-md-8  inputGroupContainer">
+                                                    <div class="input-group" style="margin-bottom:10px;border:none">
+                                                        <span class="input-group-addon" ><i class="glyphicon glyphicon-tag"></i></span>   
+                                                        <input value="{{user.pseudo}}" type="text" id="Adminpseudo" name="Adminpseudo" required="required" class="form-control " placeholder="Votre pseudo" style="margin-bottom:0px"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <button type="button" class="btn btn-primary btn-icon-left pull-right" onclick="SaveAdminData();"><i class="fa fa-floppy-o"></i> Sauvegarder</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tabConfiguration" class="tab-pane fade {% if config == "config" %}in active{% endif %}">
+                                <div class="panel panel-default margin-bottom-40">
+                                    <div class="panel-body">
+                                        <form action="{{ path('user_change_password') }}" method="POST" class="fos_user_change_password">
+                                            <div class="input-group" style="margin-bottom:10px">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
+                                                <input onfocusout="" type="password" class="form-control " id="changepasswordcurrent" name="changepasswordcurrent" placeholder="mot de passe actuelle" style="margin-bottom:0px"/>
+                                            </div>
+                                            <div class="input-group" style="margin-bottom:10px">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
+                                                <input onfocusout="" type="password" class="form-control " id="changepasswordnew1" name="changepasswordnew1" placeholder="nouveau mot de passe" style="margin-bottom:0px"/>
+                                            </div>
+                                            <div class="input-group" style="margin-bottom:10px">
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
+                                                <input onfocusout="" type="password" class="form-control " id="changepasswordnew2" name="changepasswordnew2" placeholder="repeter le nouveau mot de passe" style="margin-bottom:0px"/>
+                                            </div>
+                                            <div>
+                                                <input type="submit" value="Changer la mot de passe" />
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tabHistorique" class="tab-pane fade">
+                                <ul class="timeline margin-top-40">
+                                    {% for elem in historique %}
+                                    <li>
+                                        <div class="timeline-badge primary"></div>
+                                        <div class="timeline-panel">
+                                            <div class="timeline-heading">
+                                                <h4>{{elem.description}}</h4>
+                                            </div>
+                                            <div class="timeline-footer">
+                                                <i class="fa fa-calendar-o"></i> {{elem.date|date('d/m/Y h:m:s')}}<!--May 21. 2016, 10:50 am-->
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+
+                                    <li class="clearfix" style="float: none;"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-9 col-sm-8" id=""></div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    {% endblock %}
+
+    {% block javascript %}
+        <script>
+            //$('#datebginmember').html($('#datebginmember').html().replace('December', 'décembre'));
+            function SaveAdminData() {
+                $checkempty = CheckEmptyRequiredInput('AdminDataForm', 'obligatoire');
+                /*$checknumeric1 = CheckNumeriqueInput('Adminnum', 'obligatoire');
+                $checknumeric2 = CheckNumeriqueInput('Admincin', 'obligatoire');
+                $checknumeric3 = CheckNumeriqueInput('Admincin', 'obligatoire');*/
+
+
+                if ($checkempty) {
+                    $.ajax({
+                        type: "POST",
+                        url: "{{path('save_admin_data')}}",
+                        processData: false, contentType: false, cache: false,
+                        data: new FormData($('#AdminDataForm')[0]),
+                        success: function () {
+                            location.reload();
+                        }
+                    });
+                } else {
+                    alert('resoud les erreurs svp !!!');
+                }
+            }
+
+            function Changerphotocouverture(){
+             $.ajax({
+                        type: "POST",
+                        url: "{{path('edit_imgcouverture_admin')}}",
+                        processData: false, contentType: false, cache: false,
+                        data: new FormData($('#formphotocouverture')[0]),
+                        success: function () {
+                            location.reload();
+                        }
+                    });
+            }
+            function Changerphotoprofil(){
+             $.ajax({
+                        type: "POST",
+                        url: "{{path('edit_imgprofil_admin')}}",
+                        processData: false, contentType: false, cache: false,
+                        data: new FormData($('#formphotoprofil')[0]),
+                        success: function () {
+                            location.reload();
+                        }
+                    });
+            }
+        </script>
+    {% endblock javascript %}
+

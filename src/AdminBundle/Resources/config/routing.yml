@@ -12,5 +12,12 @@ user_profil:
 activation_profil:
     path:     /ActivationProfil
     defaults: { _controller: AdminBundle:Default:activationProfil }
-    
-
+edit_imgprofil_admin:
+    path:     /editImgProfilAdmin
+    defaults: { _controller:AdminBundle:Default:EditImgProfilAdmin }
+edit_imgcouverture_admin:
+    path:     /editImgCouvertureAdmin
+    defaults: { _controller:AdminBundle:Default:EditImgCouvertureAdmin }
+save_admin_data:
+    path:     /save_admin_data
+    defaults: { _controller:AdminBundle:Default:SaveAdminData }

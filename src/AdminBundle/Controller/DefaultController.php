@@ -48,4 +48,56 @@ public function userProfilAction($id)
 
         return new Response();
     }
+    
+    public function EditImgProfilAdminAction() {
+        $em = $this->getDoctrine()->getManager();
+        $request = $this->container->get('request');
+        $user = $request->get('photoprofilid');
+         $utilisateur = $em->getRepository('AdminBundle:Admin')->find($user);
+        $file = $request->files->get('photoprofil');
+       if (isset($file)){
+           $fileName = md5($user.'photo').'.'.$file->guessExtension();
+           $photoDir = $this->container->getParameter('kernel.root_dir').'/../web/img/admin/'.md5($user).'/';
+           $file->move($photoDir, $fileName);
+           $utilisateur->setImageprofil('img/admin/'.md5($user).'/'.$fileName);
+       }
+        $em->flush();
+
+        return new Response();
+    }
+    
+    public function EditImgCouvertureAdminAction() {
+        $em = $this->getDoctrine()->getManager();
+        $request = $this->container->get('request');
+        $user = $request->get('photocouvertureid');
+         $utilisateur = $em->getRepository('AdminBundle:Admin')->find($user);
+        $file = $request->files->get('photocouverture');
+       if (isset($file)){
+           $fileName = md5($user.'couverture').'.'.$file->guessExtension();
+           $photoDir = $this->container->getParameter('kernel.root_dir').'/../web/img/admin/'.md5($user).'/';
+           $file->move($photoDir, $fileName);
+           $utilisateur->setImagecouverture('img/admin/'.md5($user).'/'.$fileName);
+       }
+        $em->flush();
+
+        return new Response();
+    }
+    
+    public function SaveAdminDataAction() {
+        $em = $this->getDoctrine()->getManager();
+        $request = $this->container->get('request');
+        $user = $request->get('Adminid');
+        $utilisateur = $em->getRepository('AdminBundle:Admin')->find($user);
+
+        $utilisateur->setNom($request->get('Adminnom'));
+        $utilisateur->setPrenom($request->get('Adminprenom'));
+        $utilisateur->setAdresse($request->get('Adminadresse'));
+        $utilisateur->setNumero($request->get('Adminnum'));
+        $utilisateur->setPseudo($request->get('Adminpseudo'));
+        $utilisateur->setCin($request->get('Admincin'));
+     
+        $em->flush();
+
+        return new Response();
+    }
 }

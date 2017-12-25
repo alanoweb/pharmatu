@@ -85,16 +85,24 @@ class DefaultController extends Controller {
     public function monprofilAction($config) {
         $em = $this->getDoctrine()->getManager();
         $user = $this->get('security.context')->getToken()->getUser();
+        $historique = $em->getRepository('FrontBundle:UserHistorique')->findBy(array('user' => $user),array('date' => 'DESC'));
         if ($user->hasRole('ROLE_ADMIN')) {
             $utilisateur = $em->getRepository('AdminBundle:Admin')->findOneBy(array('user' => $user));
-            return $this->render('AdminBundle:Default:monprofil.html.twig', array('user' => $utilisateur));
+            return $this->render('AdminBundle:Default:monprofil.html.twig', array(
+                'user' => $utilisateur,
+                'historique' => $historique,
+                'config' => $config,
+                ));
         } elseif ($user->hasRole('ROLE_ENTREPRISE')) {
             $utilisateur = $em->getRepository('EntrepriseBundle:Entreprise')->findOneBy(array('user' => $user));
-            return $this->render('EntrepriseBundle:Default:monprofil.html.twig', array('user' => $utilisateur));
+            return $this->render('EntrepriseBundle:Default:monprofil.html.twig', array(
+                'user' => $utilisateur,
+                'historique' => $historique,
+                'config' => $config,
+                    ));
         } elseif ($user->hasRole('ROLE_USER')) {
             $utilisateur = $em->getRepository('FrontBundle:Utilisateur')->findOneBy(array('user' => $user));
             $inventaire = $em->getRepository('FrontBundle:Inventaire')->findBy(array('utilisateur' => $utilisateur));
-            $historique = $em->getRepository('FrontBundle:UserHistorique')->findBy(array('utilisateur' => $utilisateur),array('date' => 'DESC'));
             $journal = $em->getRepository('FrontBundle:Journal')->findBy(array('utilisateur' => $utilisateur),array('date' => 'DESC'));
             
             return $this->render('FrontBundle:Default:monprofil.html.twig', array(
