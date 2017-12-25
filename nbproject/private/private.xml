@@ -5,10 +5,8 @@
         <group>
             <file>file:/F:/wamp64/www/Test1/src/FrontBundle/Controller/DefaultController.php</file>
             <file>file:/F:/wamp64/www/Test1/app/Resources/views/base.html.twig</file>
-            <file>file:/F:/wamp64/www/Test1/src/FrontBundle/Entity/Notification.php</file>
-            <file>file:/F:/wamp64/www/Test1/src/FrontBundle/Entity/Utilisateur.php</file>
-            <file>file:/F:/wamp64/www/Test1/src/FrontBundle/Resources/views/includes/notification.html.twig</file>
-            <file>file:/F:/wamp64/www/Test1/src/FrontBundle/Resources/config/routing.yml</file>
+            <file>file:/F:/wamp64/www/Test1/src/EntrepriseBundle/Resources/views/Default/monprofil.html.twig</file>
+            <file>file:/F:/wamp64/www/Test1/src/EntrepriseBundle/Resources/views/Default/pub.html.twig</file>
             <file>file:/F:/wamp64/www/Test1/src/FrontBundle/Resources/views/Default/monprofil.html.twig</file>
         </group>
     </open-files>

@@ -1,4 +1,4 @@
-<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <span class="label label-danger">{{nombreofnew}}</span></a>
+<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i>{% if nombreofnew != 0 %} <span class="label label-danger">{{nombreofnew}}</span>{% endif %}</a>
 <ul class="dropdown-menu">
      <li class="dropdown-header"><i class="fa fa-bell"></i> vous avez {{nombreofnew}} nouvelles</li>
 {% for notif in notification %}

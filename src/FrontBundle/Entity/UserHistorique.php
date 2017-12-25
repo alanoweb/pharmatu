@@ -29,9 +29,9 @@ class UserHistorique
     private $description;
     
     /**
-     * @ORM\ManyToOne(targetEntity="FrontBundle\Entity\Utilisateur")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
      */
-    private $utilisateur;
+    private $user;
 
     /**
      * @var \DateTime
@@ -97,26 +97,27 @@ class UserHistorique
         return $this->date;
     }
 
+
     /**
-     * Set utilisateur
+     * Set user
      *
-     * @param \FrontBundle\Entity\Utilisateur $utilisateur
+     * @param \UserBundle\Entity\User $user
      * @return UserHistorique
      */
-    public function setUtilisateur(\FrontBundle\Entity\Utilisateur $utilisateur = null)
+    public function setUser(\UserBundle\Entity\User $user = null)
     {
-        $this->utilisateur = $utilisateur;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get utilisateur
+     * Get user
      *
-     * @return \FrontBundle\Entity\Utilisateur 
+     * @return \UserBundle\Entity\User 
      */
-    public function getUtilisateur()
+    public function getUser()
     {
-        return $this->utilisateur;
+        return $this->user;
     }
 }

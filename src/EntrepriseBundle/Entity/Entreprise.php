@@ -29,14 +29,14 @@ class Entreprise
     /**
      * @var string
      *
-     * @ORM\Column(name="Nom", type="string", length=255)
+     * @ORM\Column(name="Nom", type="string", length=255, nullable = true)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Adresse", type="string", length=255)
+     * @ORM\Column(name="Adresse", type="string", length=255, nullable = true)
      */
     private $adresse;
 
@@ -67,6 +67,27 @@ class Entreprise
      * @ORM\Column(name="siteweb", type="string", length=50, unique=true,nullable=true)
      */
     private $siteweb;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="imagecouverture", type="string", length=255, nullable = true)
+     */
+    private $imagecouverture;
+    
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="date_membre", type="datetime", nullable = true)
+     */
+    private $date_membre;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255 , nullable = true)
+     */
+    private $description;
 
 
     /**
@@ -237,5 +258,74 @@ class Entreprise
     public function getSiteweb()
     {
         return $this->siteweb;
+    }
+
+    /**
+     * Set imagecouverture
+     *
+     * @param string $imagecouverture
+     * @return Entreprise
+     */
+    public function setImagecouverture($imagecouverture)
+    {
+        $this->imagecouverture = $imagecouverture;
+
+        return $this;
+    }
+
+    /**
+     * Get imagecouverture
+     *
+     * @return string 
+     */
+    public function getImagecouverture()
+    {
+        return $this->imagecouverture;
+    }
+
+    /**
+     * Set date_membre
+     *
+     * @param \DateTime $dateMembre
+     * @return Entreprise
+     */
+    public function setDateMembre($dateMembre)
+    {
+        $this->date_membre = $dateMembre;
+
+        return $this;
+    }
+
+    /**
+     * Get date_membre
+     *
+     * @return \DateTime 
+     */
+    public function getDateMembre()
+    {
+        return $this->date_membre;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Entreprise
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }

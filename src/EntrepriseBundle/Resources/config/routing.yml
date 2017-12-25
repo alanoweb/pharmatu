@@ -25,4 +25,9 @@ duree_pub:
 edit_pub:
     path:     /EditPub
     defaults: { _controller:EntrepriseBundle:Default:EditPub }
-
+save_entreprise_data:
+    path:     /save_entreprise_data
+    defaults: { _controller:EntrepriseBundle:Default:SaveEntrepriseData }
+edit_imgcouverture_entreprise:
+    path:     /editImgCouvertureEntreprise
+    defaults: { _controller:EntrepriseBundle:Default:EditImgCouvertureEntreprise }

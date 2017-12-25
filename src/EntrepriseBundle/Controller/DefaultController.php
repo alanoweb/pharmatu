@@ -146,4 +146,40 @@ class DefaultController extends Controller
         $em->flush();
         return new Response();
     }
+    
+    public function SaveEntrepriseDataAction() {
+        $em = $this->getDoctrine()->getManager();
+        $request = $this->container->get('request');
+        $user = $request->get('Entrepriseid');
+        var_dump($user);
+        $utilisateur = $em->getRepository('EntrepriseBundle:Entreprise')->find($user);
+
+        $utilisateur->setNom($request->get('Entreprisenom'));
+        $utilisateur->setAdresse($request->get('Entrepriseadresse'));
+        $utilisateur->setTelephone($request->get('Entreprisenumfixe'));
+        $utilisateur->setPortable($request->get('Entreprisenumportable'));
+        $utilisateur->setFax($request->get('Entreprisenumfax'));
+        $utilisateur->setSiteweb($request->get('Entreprisesite'));
+        $utilisateur->setDescription($request->get("Entreprisedescription"));
+     
+        $em->flush();
+
+        return new Response();
+    }
+    public function EditImgCouvertureEntrepriseAction() {
+        $em = $this->getDoctrine()->getManager();
+        $request = $this->container->get('request');
+        $user = $request->get('photocouvertureid');
+         $utilisateur = $em->getRepository('EntrepriseBundle:Entreprise')->find($user);
+        $file = $request->files->get('photocouverture');
+       if (isset($file)){
+           $fileName = md5($user.'couverture').'.'.$file->guessExtension();
+           $photoDir = $this->container->getParameter('kernel.root_dir').'/../web/img/entreprise/'.md5($user).'/';
+           $file->move($photoDir, $fileName);
+           $utilisateur->setImagecouverture('img/entreprise/'.md5($user).'/'.$fileName);
+       }
+        $em->flush();
+
+        return new Response();
+    }
 }
