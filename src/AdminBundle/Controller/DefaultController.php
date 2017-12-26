@@ -21,20 +21,59 @@ public function profilsAction()
         return $this->render('AdminBundle:Default:profils.html.twig', array('utilisateurs' => $utilisateurs,
             'entreprises' => $entreprises, 'admins' => $admin));
     }
+public function adminProfilAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $utilisateur = $em->getRepository('AdminBundle:Admin')->find($id);
+        $historique = $em->getRepository('FrontBundle:UserHistorique')->findBy(array('user' => $utilisateur->getUser()),array('date' => 'DESC'));
+                
+        return $this->render('AdminBundle:Default:monprofil.html.twig', array(
+            'user' => $utilisateur,
+            'historique' => $historique,
+            'config' => 'Default'
+            ));
+    }
 public function userProfilAction($id)
     {
         $em = $this->getDoctrine()->getManager();
         $utilisateur = $em->getRepository('FrontBundle:Utilisateur')->find($id);
+        $historique = $em->getRepository('FrontBundle:UserHistorique')->findBy(array('user' => $utilisateur->getUser()),array('date' => 'DESC'));
+        $inventaire = $em->getRepository('FrontBundle:Inventaire')->findBy(array('utilisateur' => $utilisateur));
+        $journal = $em->getRepository('FrontBundle:Journal')->findBy(array('utilisateur' => $utilisateur),array('date' => 'DESC'));
                 
-        return $this->render('FrontBundle:Default:monprofil.html.twig', array('user' => $utilisateur));
+        return $this->render('FrontBundle:Default:monprofil.html.twig', array(
+            'user' => $utilisateur,
+            'inventaire' => $inventaire,
+            'historique' => $historique,
+            'journal' => $journal,
+            'config' => 'Default'
+            ));
+    }
+    
+public function entrepriseProfilAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $utilisateur = $em->getRepository('EntrepriseBundle:Entreprise')->find($id);
+        $historique = $em->getRepository('FrontBundle:UserHistorique')->findBy(array('user' => $utilisateur->getUser()),array('date' => 'DESC'));
+                
+        return $this->render('EntrepriseBundle:Default:monprofil.html.twig', array(
+            'user' => $utilisateur,
+            'historique' => $historique,
+            'config' => 'Default'
+            ));
     }
     
     public function activationProfilAction() {
         $em = $this->getDoctrine()->getManager();
         $request = $this->container->get('request');
-        
+        $type = $request->get('type');
         $id = $request->get('id');
-        $utilisateur = $em->getRepository('FrontBundle:Utilisateur')->find($id);
+        if ($type == 'U'){
+        $utilisateur = $em->getRepository('FrontBundle:Utilisateur')->find($id);}
+        if ($type == 'E'){
+        $utilisateur = $em->getRepository('EntrepriseBundle:Entreprise')->find($id);}
+        if ($type == 'D'){
+        $utilisateur = $em->getRepository('AdminBundle:Admin')->find($id);}
         if ($utilisateur->getStatus() == "Blocked") {
             $utilisateur->setStatus('Actif');
             $utilisateur->getUser()->setEnabled('1');

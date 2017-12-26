@@ -29,14 +29,14 @@ class Entreprise
     /**
      * @var string
      *
-     * @ORM\Column(name="Nom", type="string", length=255)
+     * @ORM\Column(name="Nom", type="string", length=255, nullable = true)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Adresse", type="string", length=255)
+     * @ORM\Column(name="Adresse", type="string", length=255, nullable = true)
      */
     private $adresse;
 
@@ -71,7 +71,7 @@ class Entreprise
     /**
      * @var string
      *
-     * @ORM\Column(name="imagecouverture", type="string", length=255)
+     * @ORM\Column(name="imagecouverture", type="string", length=255, nullable = true)
      */
     private $imagecouverture;
     
@@ -88,6 +88,13 @@ class Entreprise
      * @ORM\Column(name="description", type="string", length=255 , nullable = true)
      */
     private $description;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=255)
+     */
+    private $status;
 
 
     /**
@@ -304,5 +311,28 @@ class Entreprise
     public function getDateMembre()
     {
         return $this->date_membre;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Entreprise
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }

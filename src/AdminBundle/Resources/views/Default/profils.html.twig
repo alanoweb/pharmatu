@@ -3,10 +3,10 @@
 {% endblock%}
 {% block css %}
     <style>
-	
-	.card .card-img img{
-height:100%;
-}
+
+        .card .card-img img{
+            height:100%;
+        }
         .card .time {
             right: 13%;
             background:#fff0; 
@@ -15,41 +15,41 @@ height:100%;
         }
         .btn btn-success btn-circle{
             margin:5%;}
-@media (max-width: 990px)
-{
-.profile-nav .tab-select {
-    display:inherit!important;
-}
-.profile-nav .tab-select .container {
-    padding-left: 2%;
-}
-.hidden-xs {
-display:inherit;
-  width: 100%!important; 
-}
-}
-@media (max-width: 767px){
-.profile-nav .tab-select .container {
-    padding-left: 2%;
-}
-.hidden-xs {
-display:inherit;
-  width: 100%!important; 
-}
-}
-.card-group .card {
-height:100%;
-}
+        @media (max-width: 990px)
+        {
+            .profile-nav .tab-select {
+                display:inherit!important;
+            }
+            .profile-nav .tab-select .container {
+                padding-left: 2%;
+            }
+            .hidden-xs {
+                display:inherit;
+                width: 100%!important; 
+            }
+        }
+        @media (max-width: 767px){
+            .profile-nav .tab-select .container {
+                padding-left: 2%;
+            }
+            .hidden-xs {
+                display:inherit;
+                width: 100%!important; 
+            }
+        }
+        .card-group .card {
+            height:100%;
+        }
     </style>
 {% endblock %}
 {% block body %}
     <section class="profile-nav height-50 border-bottom-1 border-grey-300  hidden-xs">
         <div class="tab-select">
             <div class="container">
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="active"><a href="#tabUtilisateurs" aria-expanded="true" data-toggle="tab">Utilisateurs</a></li>
-                    <li><a href="#tabEntreprises" data-toggle="tab">Entreprises</a></li>
-                    <li><a href="#tabAdmin" data-toggle="tab">Admin</a></li>
+                <ul class="nav nav-tabs" role="tablist" id="Profilstabs">
+                    <li class="active" onclick="tabselected('profilsnumberU');" data-target="profilsnumberU"><a href="#tabUtilisateurs" aria-expanded="true" data-toggle="tab">Utilisateurs</a></li>
+                    <li onclick="tabselected('profilsnumberE');" data-target="profilsnumberE"><a href="#tabEntreprises" data-toggle="tab">Entreprises</a></li>
+                    {% if is_granted('ROLE_SUPER_ADMIN')%}<li onclick="tabselected('profilsnumberD');" data-target="profilsnumberD"><a href="#tabAdmin" data-toggle="tab">Admin</a></li>{% endif %}
                 </ul>
             </div>
         </div>
@@ -59,95 +59,116 @@ height:100%;
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="tabUtilisateurs">
                     <div class="card-group">
-                        <div class="row" id="profilsnumber">
+                        <div class="row" id="profilsnumberU">
                             {% for utilisateur in utilisateurs %}
-                     
-							<div class="count col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <div class="card">
-                                <div class="card-img">
-                                   <a href="{{ path('user_profil', { 'id': utilisateur.id }) }}"><img src="/Test1/web/img/slideshow/1.jpg" alt=""></a>
-                                        <div class="category"><span class="label label-success">{{ utilisateur.status }}</span></div>
-                                        <div class="meta"><a href="#"><i class="fa fa-sitemap"></i> <span>15</span></a></div>
-                                    </div>
-                                <div class="caption">
-                                  
-                                        <h3 class="card-title"><a href="{{ path('user_profil', { 'id': utilisateur.id }) }}">{% if utilisateur.nom %}{{ utilisateur.nom }} {{ utilisateur.prenom }} {% else %} {{ utilisateur.user.username }} {% endif %}</a></h3>
-                                        <ul>
-                                            <li style="padding-left:0px!important"><i class="fa fa-clock-o"></i> {{utilisateur.date_membre|date('d/m/Y')}}</li>
-                                            <li style="padding-left:0px!important"><i class="fa fa-eye"></i> {{ utilisateur.user.lastlogin|date('j/m/Y g:i:sa')}}</li>
-                                        </ul>
-                                        <ul>
-                                            <li style="padding-left:0px!important"><i class="fa fa-bitcoin"></i> {{ utilisateur.coin }}</li>
-                                            <li style="padding-left:0px!important"><i class="fa fa-puzzle-piece"></i> {{ utilisateur.experience}}</li>
-                                        </ul> 
-										
-										  <div class="text-center" >
-                                            {% if utilisateur.getStatus() != "Blocked" %}
-                                            <button type="button" class="btn btn-danger btn-outline" onclick="ValidationProfil('{{ utilisateur.id }}');"><i class="fa fa-trash-o"></i></button>
-                                            {% else %}
-                                            <button type="button" class="btn btn-success btn-outline" onclick="ValidationProfil('{{ utilisateur.id }}');"><i class="fa fa-check"></i></button>
-                                            {% endif %}
+                                <div class="count col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                    <div class="card">
+                                        <div class="card-img">
+                                            <a href="{{ path('user_profil', { 'id': utilisateur.id }) }}"><img src="/Test1/web/img/slideshow/1.jpg" alt=""></a>
+                                            <div class="category"><span class="label label-success">{{ utilisateur.status }}</span></div>
+                                            <div class="meta"><a href="#"><i class="fa fa-sitemap"></i> <span>15</span></a></div>
                                         </div>
-										</div>
-										
-                                
-                            </div>
-                        </div>
+                                        <div class="caption">
+
+                                            <h3 class="card-title"><a href="{{ path('user_profil', { 'id': utilisateur.id }) }}">{% if utilisateur.nom %}{{ utilisateur.nom }} {{ utilisateur.prenom }} {% else %} {{ utilisateur.user.username }} {% endif %}</a></h3>
+                                            <ul>
+                                                <li style="padding-left:0px!important"><i class="fa fa-clock-o"></i> {{utilisateur.date_membre|date('d/m/Y')}}</li>
+                                                <li style="padding-left:0px!important"><i class="fa fa-eye"></i> {{ utilisateur.user.lastlogin|date('j/m/Y h:m:s')}}</li>
+                                            </ul>
+                                            <ul>
+                                                <li style="padding-left:0px!important"><i class="fa fa-bitcoin"></i> {{ utilisateur.coin }}</li>
+                                                <li style="padding-left:0px!important"><i class="fa fa-puzzle-piece"></i> {{ utilisateur.experience}}</li>
+                                            </ul> 
+
+                                            <div class="text-center" >
+                                                {% if utilisateur.getStatus() != "Blocked" %}
+                                                    <button type="button" class="btn btn-danger btn-outline" onclick="ValidationProfil('{{ utilisateur.id }}','U');"><i class="fa fa-trash-o"></i></button>
+                                                    {% else %}
+                                                    <button type="button" class="btn btn-success btn-outline" onclick="ValidationProfil('{{ utilisateur.id }}','U');"><i class="fa fa-check"></i></button>
+                                                    {% endif %}
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
                             {% endfor %}
                         </div>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="tabEntreprises" >
                     <div class="card-group">
-                        <div class="row">
+                        <div class="row" id="profilsnumberE">
                             {% for entreprise in entreprises %}
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                <div class="card card-video">
-                                    <div class="card-img">
-                                        <a href="videos-single.html"><img src="/Test1/web/img/slideshow/1.jpg" alt=""></a>
-                                        <div class="time" ><button type="button" class="btn btn-success btn-circle"><i class="fa fa-pencil"></i></button><button type="button" class="btn btn-danger btn-circle"><i class="fa fa-trash-o"></i></button></div>
-                                    </div>
-                                    <div class="caption">
+                                <div class="count col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                    <div class="card">
+                                        <div class="card-img">
+                                            <a href="{{ path('entreprise_profil', { 'id': entreprise.id }) }}"><img src="/Test1/web/img/slideshow/1.jpg" alt=""></a>
+                                            <div class="category"><span class="label label-success">{{ entreprise.status }}</span></div>
+                                        </div>
+                                        <div class="caption">
 
-                                        <h3 class="card-title"><a href="videos-single.html">Assassin’s Creed Syndicate</a></h3>
-                                        <ul>
-                                            <li><i class="fa fa-clock-o"></i> May 21, 2016</li>
-                                            <li><i class="fa fa-eye"></i> 7168 views</li>
-                                        </ul>
+                                            <h3 class="card-title"><a href="{{ path('entreprise_profil', { 'id': entreprise.id }) }}">{% if entreprise.nom %}{{ entreprise.nom }} {% else %} {{ entreprise.user.username }} {% endif %}</a></h3>
+                                            <ul>
+                                                <li style="padding-left:0px!important"><i class="fa fa-clock-o"></i> {{entreprise.getDateMembre()|date('d/m/Y')}}</li>
+                                                <li style="padding-left:0px!important"><i class="fa fa-eye"></i> {{ entreprise.user.lastlogin|date('j/m/Y h:m:s')}}</li>
+                                            </ul>
+
+                                            <div class="text-center" >
+                                                {% if entreprise.getStatus() != "Blocked" %}
+                                                    <button type="button" class="btn btn-danger btn-outline" onclick="ValidationProfil('{{ entreprise.id }}','E');"><i class="fa fa-trash-o"></i></button>
+                                                    {% else %}
+                                                    <button type="button" class="btn btn-success btn-outline" onclick="ValidationProfil('{{ entreprise.id }}','E');"><i class="fa fa-check"></i></button>
+                                                    {% endif %}
+                                            </div>
+                                        </div>
+
+
                                     </div>
                                 </div>
-                            </div>
                             {% endfor %}
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="tabAdmin">
-                    <div class="card-group">
-                        <div class="row">
-                            {% for admin in admins %}
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                <div class="card card-video">
-                                    <div class="card-img">
-                                        <a href="videos-single.html"><img src="/Test1/web/img/slideshow/1.jpg" alt=""></a>
-                                        <div class="time" ><button type="button" class="btn btn-success btn-circle"><i class="fa fa-pencil"></i></button><button type="button" class="btn btn-danger btn-circle"><i class="fa fa-trash-o"></i></button></div>
-                                    </div>
-                                    <div class="caption">
+                {% if is_granted('ROLE_SUPER_ADMIN')%}
+                    <div class="tab-pane fade" id="tabAdmin">
+                        <div class="card-group">
+                            <div class="row" id="profilsnumberD">
+                                {% for admin in admins %}
+                                    <div class="count col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                    <div class="card">
+                                        <div class="card-img">
+                                            <a href="{{ path('admin_profil', { 'id': admin.id }) }}"><img src="/Test1/web/img/slideshow/1.jpg" alt=""></a>
+                                            <div class="category"><span class="label label-success">{{ admin.status }}</span></div>
+                                        </div>
+                                        <div class="caption">
 
-                                        <h3 class="card-title"><a href="videos-single.html">Assassin’s Creed Syndicate</a></h3>
-                                        <ul>
-                                            <li><i class="fa fa-clock-o"></i> May 21, 2016</li>
-                                            <li><i class="fa fa-eye"></i> 7168 views</li>
-                                        </ul>
+                                            <h3 class="card-title"><a href="{{ path('admin_profil', { 'id': admin.id }) }}">{% if admin.nom %}{{ admin.nom }} {{ admin.prenom }}{% else %} {{ admin.user.username }} {% endif %}</a></h3>
+                                            <ul>
+                                                <li style="padding-left:0px!important"><i class="fa fa-clock-o"></i> {{admin.getDateMembre()|date('d/m/Y')}}</li>
+                                                <li style="padding-left:0px!important"><i class="fa fa-eye"></i> {{ admin.user.lastlogin|date('j/m/Y h:m:s')}}</li>
+                                            </ul>
+
+                                            <div class="text-center" >
+                                                {% if admin.getStatus() != "Blocked" %}
+                                                    <button type="button" class="btn btn-danger btn-outline" onclick="ValidationProfil('{{ admin.id }}','D');"><i class="fa fa-trash-o"></i></button>
+                                                    {% else %}
+                                                    <button type="button" class="btn btn-success btn-outline" onclick="ValidationProfil('{{ admin.id }}','D');"><i class="fa fa-check"></i></button>
+                                                    {% endif %}
+                                            </div>
+                                        </div>
+
+
                                     </div>
                                 </div>
+                                {% endfor %}
                             </div>
-                            {% endfor %}
                         </div>
                     </div>
-                </div>
+                {% endif %}
             </div>
 
-          <div class="text-center" style="padding-top: 50px">
+            <div class="text-center" style="padding-top: 50px">
                 <div id="profilspagination">
                 </div>
                 <select id="nombreaffichageprofils">
@@ -164,26 +185,31 @@ height:100%;
 {% endblock %}
 {% block javascript %}
     <script>
-function ValidationProfil($id) {
-                $_data = {
-                    'id': $id
-                };
-                $.ajax({
-                    type: "POST",
-                    url: "{{path('activation_profil')}}",
-                    data: $_data,
-                    success: function () {
-                        location.reload();
-                    }
-                });
-            }
-</script>
-<script>
+        function ValidationProfil($id,$type) {
+            $_data = {
+                'id': $id,
+                'type': $type
+            };
+            $.ajax({
+                type: "POST",
+                url: "{{path('activation_profil')}}",
+                data: $_data,
+                success: function () {
+                    location.reload();
+                }
+            });
+        }
+    </script>
+    <script>
         $(document).ready(function () {
-          Pagination("profilspagination","profilsnumber",3);
-          $("#nombreaffichageprofils").change(function() {
-              Pagination("profilspagination","profilsnumber",$("#nombreaffichageprofils option:selected").val());
-          });
+            Pagination("profilspagination", "profilsnumberU", 3);
+            $("#nombreaffichageprofils").change(function () {
+                $x = $('#Profilstabs').find('li.active').data('target');
+                Pagination("profilspagination", $x, $("#nombreaffichageprofils option:selected").val());
+            });
         });
+        function tabselected($id){
+            Pagination("profilspagination", $id, $("#nombreaffichageprofils option:selected").val());
+        }
     </script>
 {% endblock %}

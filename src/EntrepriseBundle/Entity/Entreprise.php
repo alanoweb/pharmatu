@@ -88,6 +88,13 @@ class Entreprise
      * @ORM\Column(name="description", type="string", length=255 , nullable = true)
      */
     private $description;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=255)
+     */
+    private $status;
 
 
     /**
@@ -327,5 +334,28 @@ class Entreprise
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return Entreprise
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string 
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }
