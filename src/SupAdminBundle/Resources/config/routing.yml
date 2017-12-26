@@ -4,6 +4,15 @@ sup_admin_homepage:
 categories:
     path:     /categories
     defaults: { _controller: SupAdminBundle:Default:categories }
+levels:
+    path:     /levels
+    defaults: { _controller: SupAdminBundle:Default:levels }
+max_levels:
+    path:     /Maxlevels
+    defaults: { _controller: SupAdminBundle:Default:Maxlevels }
+categories:
+    path:     /categories
+    defaults: { _controller: SupAdminBundle:Default:categories }
 add_categorie:
     path:     /AddCategorie
     defaults: { _controller: SupAdminBundle:Default:AddCategorie }

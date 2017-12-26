@@ -6,42 +6,43 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <h1 style="">GAGNANTS</h1>
+                    <h1 style="">Levels</h1>
+                    <form id="formmaxlevel">
+                        <label for="nombremaxlevel" ><i class="fa fa-arrow-up"></i>&nbsp;&nbsp;Level Maximum</label>
+                        <select id="nombremaxlevel" name="nombremaxlevel">
+                            <option {% if nombreoflevels == 25 %}selected{%endif%} value="25">25</option>
+                            <option {% if nombreoflevels == 40 %}selected{%endif%} value="40">40</option>
+                            <option {% if nombreoflevels == 50 %}selected{%endif%} value="50">50</option>
+                            <option {% if nombreoflevels == 70 %}selected{%endif%} value="70">70</option>
+                            <option {% if nombreoflevels == 80 %}selected{%endif%} value="80">80</option>
+                            <option {% if nombreoflevels == 90 %}selected{%endif%} value="90">90</option>
+                            <option {% if nombreoflevels == 100 %}selected{%endif%} value="100">100</option>
+                        </select>
+                    </form>
                 </div>
                 <div class="col-lg-12">
                     <div class="panel-body">
-                        <table id="tableGagnants" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                        <table id="tableLevels" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th class="hidden-xs">Numéro</th>
-                                    <th class="hidden-xs">Profil</th>
-                                    <th class="hidden-xs">Activité</th>
-                                    <th class="hidden-xs">Cadeaux</th>
-                                    <th class="hidden-xs">Rang</th>
-                                    <th class="hidden-xs">Date</th>
-
+                                    <th class="hidden-xs">Level</th>
+                                    <th class="hidden-xs">Experience</th>
+                                    <th class="hidden-xs">Max Gains</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th class="hidden-xs">Numéro</th>
-                                    <th class="hidden-xs">Profil</th>
-                                    <th class="hidden-xs">Activité</th>
-                                    <th class="hidden-xs">Cadeaux</th>
-                                    <th class="hidden-xs">Rang</th>
-                                    <th class="hidden-xs">Date</th>
-
+                                    <th class="hidden-xs">Level</th>
+                                    <th class="hidden-xs">Experience</th>
+                                    <th class="hidden-xs">Max Gains</th>
                                 </tr>
                             </tfoot>
                             <tbody>
-                                {%for gagnant in gagnants%}
+                                {%for level in levels%}
                                     <tr>
-                                        <td class="hidden-xs">{{gagnant.id}}</td>
-                                        <td class="hidden-xs" ><a href="">{{gagnant.utilisateur.id}}</a></td>
-                                        <td class="hidden-xs"><a href="">{{gagnant.activity.id}}</td>
-                                        <td class="hidden-xs"><a href="">{{gagnant.cadeaux.id}}</a></td>
-                                        <td class="hidden-xs"><a href="">{{gagnant.rang}}</a></td>
-                                        <td class="hidden-xs">{{gagnant.date|date('d/m/Y')}}</td>                                                    
+                                        <td class="hidden-xs">{{level.id}}</td>
+                                        <td class="hidden-xs"><a href="">{{level.experience}}</td>
+                                        <td class="hidden-xs"><a href="">{{level.gainCoin}}</a></td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
@@ -55,7 +56,7 @@
 {% block javascript %}
     <script>
         $(document).ready(function () {
-            $('#tableGagnants').DataTable({
+            $('#tableLevels').DataTable({
                 "language": {
                     "decimal": "",
                     "emptyTable": "Aucune données dans le tableau ",
@@ -83,5 +84,18 @@
                 }
             });
         });
+    </script>
+    <script>
+        $("#nombremaxlevel").change(function () {
+               $.ajax({
+                        type: "POST",
+                        url: "{{path('max_levels')}}",
+                        processData: false, contentType: false, cache: false,
+                        data: new FormData($('#formmaxlevel')[0]),
+                        success: function () {
+                            location.reload();
+                        }
+                    });
+            });
     </script>
 {% endblock %}
