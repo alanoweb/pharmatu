@@ -123,6 +123,8 @@ class DefaultController extends Controller {
         if ($user->hasRole('ROLE_ADMIN')) {
             $profil = new Admin();
             $profil->setUser($user);
+            $profil->setDate_membre(new \DateTime('now'));
+            $profil->setStatus('Actif');
             
             $em->persist($profil);
             
@@ -134,6 +136,8 @@ class DefaultController extends Controller {
         } elseif ($user->hasRole('ROLE_ENTREPRISE')) {
             $profil = new Entreprise();
             $profil->setUser($user);
+            $profil->setDate_membre(new \DateTime('now'));
+            $profil->setStatus('Actif');
             
             $em->persist($profil);
             

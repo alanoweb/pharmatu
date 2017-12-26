@@ -81,7 +81,20 @@ class Admin
      * @ORM\Column(name="imagecouverture", type="string", length=255, nullable = true)
      */
     private $imagecouverture;
-
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=255)
+     */
+    private $status;
+    
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="date_membre", type="datetime", nullable = true)
+     */
+    private $date_membre;
 
     /**
      * Get id
@@ -297,5 +310,51 @@ class Admin
     public function getCin()
     {
         return $this->cin;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return Admin
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set date_membre
+     *
+     * @param \DateTime $dateMembre
+     * @return Admin
+     */
+    public function setDateMembre($dateMembre)
+    {
+        $this->date_membre = $dateMembre;
+
+        return $this;
+    }
+
+    /**
+     * Get date_membre
+     *
+     * @return \DateTime 
+     */
+    public function getDateMembre()
+    {
+        return $this->date_membre;
     }
 }

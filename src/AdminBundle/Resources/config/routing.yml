@@ -9,6 +9,16 @@ user_profil:
     defaults: { _controller: AdminBundle:Default:userProfil }
     requirements:
         page: '\d+'
+entreprise_profil:
+    path:     /EntrepriseProfil/{id}
+    defaults: { _controller: AdminBundle:Default:entrepriseProfil }
+    requirements:
+        page: '\d+'
+admin_profil:
+    path:     /AdminProfil/{id}
+    defaults: { _controller: AdminBundle:Default:adminProfil }
+    requirements:
+        page: '\d+'
 activation_profil:
     path:     /ActivationProfil
     defaults: { _controller: AdminBundle:Default:activationProfil }

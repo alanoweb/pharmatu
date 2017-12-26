@@ -28,7 +28,7 @@ class Admin
     /**
      * @var string
      *
-     * @ORM\Column(name="Nom", type="string", length=50)
+     * @ORM\Column(name="Nom", type="string", length=50, nullable = true)
      */
 	 
     private $nom;
@@ -36,52 +36,65 @@ class Admin
     /**
      * @var string
      *
-     * @ORM\Column(name="Prenom", type="string", length=100)
+     * @ORM\Column(name="Prenom", type="string", length=100, nullable = true)
      */
     private $prenom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="adresse", type="string", length=150)
+     * @ORM\Column(name="adresse", type="string", length=150, nullable = true)
      */
     private $adresse;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="cin", type="integer", unique=true)
+     * @ORM\Column(name="cin", type="integer", unique=true, nullable = true)
      */
     private $cin;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Numero", type="integer")
+     * @ORM\Column(name="Numero", type="integer", nullable = true)
      */
     private $numero;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="pseudo", type="string", length=100, unique=true)
+     * @ORM\Column(name="pseudo", type="string", length=100, unique=true, nullable = true)
      */
     private $pseudo;
     
     /**
      * @var string
      *
-     * @ORM\Column(name="imageprofil", type="string", length=255)
+     * @ORM\Column(name="imageprofil", type="string", length=255, nullable = true)
      */
     private $imageprofil;
     
     /**
      * @var string
      *
-     * @ORM\Column(name="imagecouverture", type="string", length=255)
+     * @ORM\Column(name="imagecouverture", type="string", length=255, nullable = true)
      */
     private $imagecouverture;
-
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=255)
+     */
+    private $status;
+    
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="date_membre", type="datetime", nullable = true)
+     */
+    private $date_membre;
 
     /**
      * Get id
@@ -274,5 +287,51 @@ class Admin
     public function getImagecouverture()
     {
         return $this->imagecouverture;
+    }
+
+    /**
+     * Set cin
+     *
+     * @param integer $cin
+     * @return Admin
+     */
+    public function setCin($cin)
+    {
+        $this->cin = $cin;
+
+        return $this;
+    }
+
+    /**
+     * Get cin
+     *
+     * @return integer 
+     */
+    public function getCin()
+    {
+        return $this->cin;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return Admin
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string 
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }
