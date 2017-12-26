@@ -279,6 +279,7 @@
                             <ul class="dropdown-menu">
                                 {% if is_granted('ROLE_SUPER_ADMIN') %}     
                                     <li><a href="{{path('categories')}}"><i class="fa fa-area-chart"></i>Catégories</a></li>                                    
+                                    <li><a href="{{path('levels')}}"><i class="fa fa-area-chart"></i>Levels</a></li>                                    
                                     {% endif %} 
                                     {% if is_granted('ROLE_ADMIN') %}
                                     <li><a href="{{path('profils')}}"><i class="fa fa-group"></i>Profils</a></li>  
