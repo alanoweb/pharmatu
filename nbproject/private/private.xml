@@ -3,13 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/wamp64/www/Test1/src/FrontBundle/Controller/DefaultController.php</file>
-            <file>file:/F:/wamp64/www/Test1/src/EntrepriseBundle/Entity/Entreprise.php</file>
-            <file>file:/F:/wamp64/www/Test1/src/EntrepriseBundle/Entity/Pub.php</file>
             <file>file:/F:/wamp64/www/Test1/app/Resources/views/base.html.twig</file>
+            <file>file:/F:/wamp64/www/Test1/src/SupAdminBundle/Resources/views/Default/levels.html.twig</file>
+            <file>file:/F:/wamp64/www/Test1/src/SupAdminBundle/Entity/levels.php</file>
+            <file>file:/F:/wamp64/www/Test1/src/SupAdminBundle/Resources/config/routing.yml</file>
+            <file>file:/F:/wamp64/www/Test1/src/SupAdminBundle/Controller/DefaultController.php</file>
             <file>file:/F:/wamp64/www/Test1/src/AdminBundle/Resources/views/Default/profils.html.twig</file>
-            <file>file:/F:/wamp64/www/Test1/src/AdminBundle/Controller/DefaultController.php</file>
-            <file>file:/F:/wamp64/www/Test1/src/AdminBundle/Resources/config/routing.yml</file>
+            <file>file:/F:/wamp64/www/Test1/src/AdminBundle/Resources/views/Default/monprofil.html.twig</file>
+            <file>file:/F:/wamp64/www/Test1/src/EntrepriseBundle/Controller/DefaultController.php</file>
         </group>
     </open-files>
 </project-private>

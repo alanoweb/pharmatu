@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AdminBundle\Entity\Activity;
 use Symfony\Component\HttpFoundation\Response;
 use SupAdminBundle\Entity\Produits;
+use SupAdminBundle\Entity\cadeaux;
 
 class AdminController extends Controller {
     
@@ -214,6 +215,35 @@ class AdminController extends Controller {
             else{
             $Produit->setStatus("Activer");
             }
+
+        $em->flush();
+
+        return new Response();
+    }
+    
+     public function AddCadeauAction() {
+        $em = $this->getDoctrine()->getManager();
+        $request = $this->container->get('request');
+
+        $id = $request->get('addCadeauid');
+        $activity = $em->getRepository('AdminBundle:Activity')->find($id);
+        $cadeau = new cadeaux();
+
+        $cadeau->setLibelle($request->get('LibelleCadeau'));
+        $cadeau->setNombre($request->get('NombreCadeau'));
+        $cadeau->setType($request->get('TypeCadeau'));
+        $cadeau->setPrix($request->get("PrixCadeau"));
+        $cadeau->setRang($request->get("RangCadeau"));
+        $cadeau->setActivity($activity);
+        $file = $request->files->get('CheminCadeau');
+        $em->persist($cadeau);
+        $em->flush();
+       if (isset($file)){
+           $fileName = md5($cadeau->getId()).'.'.$file->guessExtension();
+           $photoDir = $this->container->getParameter('kernel.root_dir').'/../web/img/cadeaux';
+           $file->move($photoDir, $fileName);
+           $cadeau->setChemin('img/cadeaux/'.$fileName);
+       }
 
         $em->flush();
 

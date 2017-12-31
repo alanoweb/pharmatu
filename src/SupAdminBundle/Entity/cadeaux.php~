@@ -52,7 +52,7 @@ class cadeaux
 	/**
      * @var string
      *
-     * @ORM\Column(name="Chemin", type="string", length=255, nullable=true)
+     * @ORM\Column(name="Chemin", type="string", length=255)
      */
     private $chemin;
 	
@@ -214,28 +214,5 @@ class cadeaux
     public function getRang()
     {
         return $this->rang;
-    }
-
-    /**
-     * Set activity
-     *
-     * @param \AdminBundle\Entity\Activity $activity
-     * @return cadeaux
-     */
-    public function setActivity(\AdminBundle\Entity\Activity $activity = null)
-    {
-        $this->activity = $activity;
-
-        return $this;
-    }
-
-    /**
-     * Get activity
-     *
-     * @return \AdminBundle\Entity\Activity 
-     */
-    public function getActivity()
-    {
-        return $this->activity;
     }
 }

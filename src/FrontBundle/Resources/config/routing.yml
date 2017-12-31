@@ -71,3 +71,6 @@ user_change_password:
 poste_journal:
     path:     /PosteJournal
     defaults: { _controller:FrontBundle:Default:PosteJournal }
+add_cadeau:
+    path:     /AddCadeau
+    defaults: { _controller:FrontBundle:Admin:AddCadeau }
