@@ -249,7 +249,11 @@ height:100%;
                                     {% if user.description %}{{user.description}}{% endif %}
                                     <ul class="panel-list margin-top-25">
                                         <li><i class="fa fa-bitcoin"></i> GEL : {{user.coin}}</li>
-                                        <li><i class="fa fa-exchange"></i> EXP : {{user.experience}}</li>
+                                        <li><p class="progress-label"><i class="fa fa-exchange"></i> EXP : {{user.experience}}/{{tonextlevel}}</p>
+				<div class="progress">
+					<div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="{{pourcentexperience}}" aria-valuemin="0" aria-valuemax="100" style="width: {{pourcentexperience}}%">{{pourcentexperience}}%</div>
+				</div>
+                                        </li>
                                         <li><i class="fa fa-clock-o"></i> Membre depuis : {{user.date_membre|date('d/m/Y')}}</li>
                                         {% if user.pays %}<li><i class="fa fa-map-marker"></i> {{user.pays}}</li>{% endif %}
                                         {% if user.siteweb %}<li><i class="fa fa-link"></i> <a href="https://{{user.siteweb}}" target="_blank"> {{user.siteweb}}</a></li>{% endif %}

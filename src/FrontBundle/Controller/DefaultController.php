@@ -50,6 +50,12 @@ class DefaultController extends Controller {
         $PubGauches = $em->getRepository('EntrepriseBundle:Pub')->findby(array("type" => "Gauche"));
         return $this->render('FrontBundle:includes:PubGauche.html.twig', array("PubGauches" => $PubGauches));
     }
+    
+    public function BodyAction() {
+        $em = $this->getDoctrine()->getManager();
+        $Actualites = $em->getRepository('FrontBundle:Actualite')->findAll(array('date' => 'DESC'));
+        return $this->render('FrontBundle:includes:Body.html.twig', array("Actualites" => $Actualites));
+    }
 
     public function indexAction() {
         return $this->render('FrontBundle:Default:index.html.twig');
@@ -102,15 +108,28 @@ class DefaultController extends Controller {
                     ));
         } elseif ($user->hasRole('ROLE_USER')) {
             $utilisateur = $em->getRepository('FrontBundle:Utilisateur')->findOneBy(array('user' => $user));
+            $levels = $em->getRepository('SupAdminBundle:levels')->findAll();
             $inventaire = $em->getRepository('FrontBundle:Inventaire')->findBy(array('utilisateur' => $utilisateur));
             $journal = $em->getRepository('FrontBundle:Journal')->findBy(array('utilisateur' => $utilisateur),array('date' => 'DESC'));
-            
+            $tonextlevel = 0;
+            foreach ($levels as $level) {
+                if ($utilisateur->getExperience() < $level->getExperience())
+                {
+                    $tonextlevel = $level->getExperience();
+                    break;
+                }
+            }
+            $pourcentexperience = $utilisateur->getExperience()/$level->getExperience()*100;
+
+
             return $this->render('FrontBundle:Default:monprofil.html.twig', array(
                 'user' => $utilisateur,
                 'inventaire' => $inventaire,
                 'historique' => $historique,
                 'journal' => $journal,
                 'config' => $config,
+                'tonextlevel' => $tonextlevel,
+                'pourcentexperience' => round($pourcentexperience),
                     ));
         }
     }

@@ -1,0 +1,35 @@
+{% for x in 1..20 %}
+    {%for Actualite in Actualites%}
+        <div class="panel panel-default panel-post">
+            <div class="panel-body">
+                <div class="post">
+                    <div class="post-header post-author">
+                        <a href="javascript:void(0);" class="author" data-toggle="tooltip" title="YAKUZI"><img src="{{asset('img/user/avatar.jpg')}}" alt=""></a>
+                        <div class="post-title">
+                            <h3><a href="javascript:void(0);">{{Actualite.title}}</a></h3>
+                            <ul class="post-meta">
+                                <li><a href="javascript:void(0);"><i class="fa fa-user"></i> YAKUZI</a></li>
+                                <li><i class="fa fa-calendar-o"></i> {{Actualite.date|date('d/m/Y h:m:s')}}</li>
+                                <li><a href="javascript:void(0);"><i class="fa fa-comments"></i> 0 <span class="hidden-xs">Comments</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                     {% if Actualite.image %}
+                    <div class="embed-responsive embed-responsive-16by9 post-thumbnail">
+                        <img src="{{asset(Actualite.image)}}" onerror="this.onerror=null;this.src='{{asset('img/user/profile.jpg')}}';">
+                        <!--iframe class="embed-responsive-item" src="https://www.youtube.com/embed/vSteQ_wlB94?rel=0&amp;showinfo=0" allowfullscreen></iframe-->
+                    </div>
+                        {% endif %}
+                                {{Actualite.description}}
+                </div>
+            </div>
+            <div class="panel-footer">
+                <ul class="post-action">
+                    <li><a href="javascript:void(0);"><i class="fa fa-heart"></i> like (5)</a></li>
+                    <li><a href="javascript:void(0);"><i class="fa fa-comments"></i> Comments</a></li>
+                    <li><a href="javascript:void(0);"><i class="fa fa-reply"></i> share</a></li>
+                </ul>
+            </div>
+        </div>
+    {% endfor %}
+{% endfor %}
