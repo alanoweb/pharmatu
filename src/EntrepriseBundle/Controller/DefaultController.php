@@ -67,6 +67,15 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $request = $this->container->get('request');
         $Entreprise = $em->getRepository('EntrepriseBundle:Entreprise')->find($request->get("PubEntreprise"));
+        
+        if ($request->get("Importantpub") == "Important"){
+         $Pubs = $em->getRepository('EntrepriseBundle:Pub')->findby(array("type" => $request->get("PubType")));
+         foreach ($Pubs as $pub1){
+             if ($pub1->getImportance() == "Important"){
+                 $pub1->setImportance("NoImportant");
+             }
+         }
+         }
 
         $Pub = new Pub();
         $Pub->setEntreprise($Entreprise);
@@ -74,6 +83,7 @@ class DefaultController extends Controller
         $Pub->setDateDebut(date_create(date('Y-m-d', strtotime($request->get("PubDate_debut")))));
         $Pub->setDateFin(date_create(date('Y-m-d', strtotime($request->get("PubDate_fin")))));
         $Pub->setPrix($request->get("PubPrix"));
+        $Pub->setImportance($request->get("Importantpub"));
         $Pub->setStatus("Nouveau");
          $em->persist($Pub);
         $em->flush();
@@ -124,6 +134,15 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $request = $this->container->get('request');
         $Entreprise = $em->getRepository('EntrepriseBundle:Entreprise')->find($request->get("EditPubEntreprise"));
+        
+        if ($request->get("EditImportantpub") == "Important"){
+         $Pubs = $em->getRepository('EntrepriseBundle:Pub')->findby(array("type" => $request->get("EditPubType")));
+         foreach ($Pubs as $pub1){
+             if ($pub1->getImportance() == "Important"){
+                 $pub1->setImportance("NoImportant");
+             }
+         }
+         }
 
         $id = $request->get('EditPubid');
         $Pub = $em->getRepository('EntrepriseBundle:Pub')->find($id);
@@ -133,6 +152,7 @@ class DefaultController extends Controller
         $Pub->setDateDebut(date_create(date('Y-m-d', strtotime($request->get("EditPubDate_debut")))));
         $Pub->setDateFin(date_create(date('Y-m-d', strtotime($request->get("EditPubDate_fin")))));
         $Pub->setPrix($request->get("EditPubPrix"));
+        $Pub->setImportance($request->get("EditImportantpub"));
         $Pub->setStatus("Activer");
         
         $entreprisefoldername = md5($request->get("EditPubEntreprise")).'/';

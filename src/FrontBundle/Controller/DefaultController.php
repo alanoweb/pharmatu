@@ -75,6 +75,12 @@ class DefaultController extends Controller {
         return $this->render('FrontBundle:Default:boutique.html.twig', array("produits" => $produits));
     }
 
+    public function classementAction() {
+        $em = $this->getDoctrine()->getManager();
+        $produits = $em->getRepository('SupAdminBundle:Produits')->findall();
+        return $this->render('FrontBundle:Default:classement.html.twig', array("produits" => $produits));
+    }
+
     public function activityCatAction($id) {
         $em = $this->getDoctrine()->getManager();
         $categorie = $em->getRepository('AdminBundle:ActivityCath')->find($id);
