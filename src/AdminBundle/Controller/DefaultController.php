@@ -40,13 +40,25 @@ public function userProfilAction($id)
         $historique = $em->getRepository('FrontBundle:UserHistorique')->findBy(array('user' => $utilisateur->getUser()),array('date' => 'DESC'));
         $inventaire = $em->getRepository('FrontBundle:Inventaire')->findBy(array('utilisateur' => $utilisateur));
         $journal = $em->getRepository('FrontBundle:Journal')->findBy(array('utilisateur' => $utilisateur),array('date' => 'DESC'));
+        $levels = $em->getRepository('SupAdminBundle:levels')->findAll();
+        $tonextlevel = 0;
+            foreach ($levels as $level) {
+                if ($utilisateur->getExperience() < $level->getExperience())
+                {
+                    $tonextlevel = $level->getExperience();
+                    break;
+                }
+            }
+            $pourcentexperience = $utilisateur->getExperience()/$level->getExperience()*100;
                 
         return $this->render('FrontBundle:Default:monprofil.html.twig', array(
             'user' => $utilisateur,
             'inventaire' => $inventaire,
             'historique' => $historique,
             'journal' => $journal,
-            'config' => 'Default'
+            'config' => 'Default',
+            'tonextlevel' => $tonextlevel,
+            'pourcentexperience' => round($pourcentexperience),
             ));
     }
     

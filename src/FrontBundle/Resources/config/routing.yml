@@ -10,6 +10,9 @@ contact:
 boutique:
     path:  /boutique
     defaults: { _controller:FrontBundle:Default:boutique }
+classement:
+    path:  /classement
+    defaults: { _controller:FrontBundle:Default:classement }
 activity:
     path:  /activity/{id}
     defaults: { _controller:FrontBundle:Default:activityCat }

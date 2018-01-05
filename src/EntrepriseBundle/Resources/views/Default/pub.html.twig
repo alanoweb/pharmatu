@@ -145,6 +145,19 @@
                                 </div>
                             </div>
                         </div>
+                                    <div class="form-group">
+                        <label class="col-md-4 control-label">Important ?</label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="rdio rdio-theme circle col-md-3" style="transform: scale(0.9);margin-left: 1%;">
+                                <input id="pub-radio-type-circle1" type="radio"  name="Importantpub" value="Important">
+                                <label for="pub-radio-type-circle1">Oui</label>
+                            </div>
+                            <div style="transform: scale(0.9);" class="rdio rdio-theme circle col-md-3">
+                                <input id="pub-radio-type-circle2" type="radio" name="Importantpub" value="NoImportant" checked>
+                                <label for="pub-radio-type-circle2">Non</label>
+                            </div>
+                        </div>
+                    </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -259,6 +272,19 @@
                                 </div>
                             </div>
                         </div>
+                                    <div class="form-group">
+                        <label class="col-md-4 control-label">Important ?</label>
+                        <div class="col-md-6  inputGroupContainer">
+                            <div class="rdio rdio-theme circle col-md-3" style="transform: scale(0.9);margin-left: 1%;">
+                                <input id="edit-pub-radio-type-circle1" type="radio"  name="EditImportantpub" value="Important">
+                                <label for="edit-pub-radio-type-circle1">Oui</label>
+                            </div>
+                            <div style="transform: scale(0.9);" class="rdio rdio-theme circle col-md-3">
+                                <input id="edit-pub-radio-type-circle2" type="radio" name="EditImportantpub" value="NoImportant" checked>
+                                <label for="edit-pub-radio-type-circle2">Non</label>
+                            </div>
+                        </div>
+                    </div>
                 </form>
                         </div>
                     <div class="modal-footer">
@@ -355,6 +381,13 @@
             $("#EditPubid").val("{{pub.getId()}}");
             $("#EditPub").attr('onclick', "ModifierPub()");
             $('#editPub').modal('show');
+            {% if pub.getImportance() != "Important" %}
+                            $("#edit-pub-radio-type-circle1").prop('checked', false);
+                            $("#edit-pub-radio-type-circle2").prop('checked', true);
+                {% else %}
+                            $("#edit-pub-radio-type-circle2").prop('checked', false);
+                            $("#edit-pub-radio-type-circle1").prop('checked', true);
+                {% endif %}
             }
         {% endfor %}
             }

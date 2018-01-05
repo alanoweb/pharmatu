@@ -31,15 +31,12 @@
 {%for PubDroite in PubDroites%}
     {%if not (PubDroite.getStatus() == "Deleted" or PubDroite.getStatus() == "Nouveau") %}
         {%if PubDroite.getImportance() != "Important"  %}
-
-            {% for x in 1..20 %}
                 <div class="card card-video">
                     <div class="card-img">
                         <a href="videos-single.html"><img src="{{asset(PubDroite.getChemin())}}"  alt=""></a>
                         <!--div class="time">13:52</div-->
                     </div>
                 </div>
-            {% endfor %}
         {% endif %}
     {% endif %}
 {% endfor %}

@@ -23,15 +23,16 @@
                     </div>
                 </div>
             </div>
-        {% else %}
-            {% for x in 1..20 %}
-                <div class="card card-video">
-                    <div class="card-img">
-                        <a href="videos-single.html"><img src="{{asset(PubGauche.getChemin())}}"  alt=""></a>
-                        <!--div class="time">13:52</div-->
-                    </div>
-                </div>
-            {% endfor %}
         {% endif %}
+    {% endif %}
+{% endfor %}
+{%for PubGauche in PubGauches%}
+    {%if not (PubGauche.getStatus() == "Deleted" or PubGauche.getStatus() == "Nouveau") %}
+            <div class="card card-video">
+                <div class="card-img">
+                    <a href="videos-single.html"><img src="{{asset(PubGauche.getChemin())}}"  alt=""></a>
+                    <!--div class="time">13:52</div-->
+                </div>
+            </div>
     {% endif %}
 {% endfor %}
