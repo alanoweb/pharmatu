@@ -1,4 +1,15 @@
 {% trans_default_domain 'FOSUserBundle' %}
+{% block css %}
+<style>
+
+@media (max-width: 990px){
+
+#wrapper {
+    margin-left: -6% !important;
+}
+}
+</style>
+{% endblock %}
 {% block Dashboard %}
     <section class="hero hero-panel" style="background-image: url({{asset('img/cover/cover-register.jpg')}});">
         <div class="hero-bg"></div>

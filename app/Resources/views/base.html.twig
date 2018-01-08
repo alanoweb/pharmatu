@@ -32,9 +32,25 @@
         <link href="{{asset('css/theme.min.css')}}" rel="stylesheet">
         <link href="{{asset('css/custom.css')}}" rel="stylesheet">
 
+<style>
+.photodeprofil{
+height: 145px;
+}
+.slideimage{
 
+height: 363px;
+}
+		.boutique_act{
+		height:256px!important;
+		}
+		body{
+overflow-x: hidden;
+}
+		</style>
+		
         {% block css %}
-        {% endblock css %}
+		
+        {% endblock %}
     </head>
 
     <body class="fixed-header">
@@ -231,11 +247,11 @@
                                         </div>
                                     </div>
 
-                                    <div class="ay">
+                                    <div class="ay" >
                                         <div class="col-md-6" >
                                             {{ render(controller("FrontBundle:Default:Body")) }}
                                             
-                                            <div class="text-center"><a href="javascript:void(0);" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right">Load Posts</a></div>
+                                            <div class="text-center" style="margin-bottom: 3%;margin-top: 3%;"><a href="javascript:void(0);" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right">Load Posts</a></div>
 
                                         </div>
                                     </div>
@@ -341,8 +357,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button id="login_submit" name="_submit" class="btn btn-primary" type="submit" style="width:30%;display:inline-block">{{ 'security.login.submit'|trans }}</button>
-                            <a href="{{path('fos_user_registration_register')}}"><button id="_register" name="_register" class="btn btn-danger" type="button" style="width:30%;float:right;">{#{ 'security.login.register'|trans }#}Inscription</button></a>
+                            <button id="login_submit" name="_submit" class="btn btn-primary" type="submit" >{{ 'security.login.submit'|trans }}</button>
+                            <a href="{{path('fos_user_registration_register')}}"><button id="_register" name="_register" class="btn btn-danger" type="button" >{#{ 'security.login.register'|trans }#}Inscription</button></a>
                             <br><a id="forgotpwd" href="{{ path('fos_user_resetting_request') }}" class="forgot-password">
                                 <!--a id="forgotpwd" href="javascript:void(0);" data-toggle="modal" data-target="#change-pwd"-->
                                 Mot de passe oublier ?
