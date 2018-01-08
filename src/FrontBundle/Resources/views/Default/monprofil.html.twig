@@ -194,8 +194,8 @@ height:100%;
                         {% endif %}
                     </div>	
                     <div class="profile-avatar">
-                        <div class="thumbnail" style="padding:2px 2px 2px 2px !important;">
-                            <img src="{{asset(user.imageprofil)}}" style="width:100%;height: 100%" onerror="this.onerror=null;this.src='{{asset('img/user/profile.jpg')}}';">
+                        <div class="thumbnail" style="padding:2px 2px 2px 2px !important;" >
+                            <img src="{{asset(user.imageprofil)}}" class="photodeprofil" onerror="this.onerror=null;this.src='{{asset('img/user/profile.jpg')}}';">
                             <div class="" style="border:1px solid whitesmoke;background-color:black;color: whitesmoke;font-size: 12px;width: 100%;height: 100%;">
                                 <form id="formphotoprofil">
                                     <label for="photoprofil" style="cursor:pointer;margin-bottom: 0px;"><i class="fa fa-camera"></i>&nbsp;&nbsp;Changer photo</label>

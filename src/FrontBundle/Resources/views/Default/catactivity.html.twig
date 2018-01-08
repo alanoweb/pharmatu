@@ -70,7 +70,7 @@ height:100%;
                         <div class="count col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <div class="card">
                                 <div class="card-img">
-                                    <a href="{{path('actsingle',{'id':act.getId()})}}"><img src="{{asset(act.getImg())}}" alt=""></a>
+                                    <a href="{{path('actsingle',{'id':act.getId()})}}"><img src="{{asset(act.getImg())}}" alt="" class="boutique_act"></a>
                                     <div class="category"><span class="label label-success">{{act.getStatus()}}</span></div>
                                     <div class="meta"><a href="{{path('actsingle',{'id':act.getId()})}}"><i class="fa fa-sign-in"></i> <span>15</span></a></div>
                                 </div>
@@ -99,7 +99,7 @@ height:100%;
                             <div class="count col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                 <div class="card">
                                     <div class="card-img">
-                                        <a href="{{path('actsingle',{'id':act.getId()})}}"><img src="{{asset(act.getImg())}}" alt=""></a>
+                                        <a href="{{path('actsingle',{'id':act.getId()})}}"><img src="{{asset(act.getImg())}}" alt="" class="boutique_act"></a>
                                         <div class="meta"><a href="{{path('actsingle',{'id':act.getId()})}}"><i class="fa fa-sign-in"></i> <span>15</span></a></div>
                                     </div>
                                     <div class="caption">
@@ -120,7 +120,7 @@ height:100%;
               <div class="text-center">
                 <div id="activitypagination">
                 </div>
-                <select id="nombreaffichageactivity">
+                <select id="nombreaffichageactivity" class="btn btn-default btn-sm dropdown-toggle">
                     <option selected value="3">3</option>
                     <option value="5">5</option>
                     <option value="10">10</option>

@@ -1,6 +1,16 @@
 {% extends 'FrontBundle::layout.html.twig' %}
 {%block css %}
 <style>
+@media (min-width: 1200px){
+.col-lg-7 {
+    margin-left: 20%;
+}
+}
+@media (max-width: 1200px){
+.col-lg-7 {
+    margin-left: 0%!important;
+}
+}
 .bordergr{
 border: 1px solid #b3b3b3;
 }
