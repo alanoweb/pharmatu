@@ -49,7 +49,7 @@ height:100%;
 {% endblock%}
 {% block wrapper %}
     {% if is_granted('ROLE_ADMIN')%}
-        <section id="boutique2ndnav" class="padding-top-25 no-padding-bottom border-bottom-1 border-grey-300" style="padding-top: 25px !important;background-color: #FFFFFF;height:60px">
+        <section id="boutique2ndnav" class="padding-top-25 no-padding-bottom border-bottom-1 border-grey-300" style="padding-top: 25px !important;background-color: #FFFFFF;height:60px; ">
             <div class="container">
                 <div class="headline" style="margin-top: -16px">
                     <div class="text-center">
@@ -106,7 +106,7 @@ height:100%;
                                         <div class="text-center"><h3 class="card-title"><a href="{{path('actsingle',{'id':act.getId()})}}">{{act.getNom()}}</a></h3></div>
                                         <ul><li>{{act.getDescription()}}</li></ul>
                                         <div class="text-center">
-                                            <a href="{{path('actsingle',{'id':act.getId()})}}" class="button pill big primary">
+                                            <a href="{{path('actsingle',{'id':act.getId()})}}" class="btn btn-primary btn-shadow">
                                                 <span class="fa fa-play"></span> Commencer
                                             </a> 
                                         </div>
@@ -328,7 +328,7 @@ height:100%;
 
             function scroll() {
                 if ($(window).scrollTop() >= origOffsetY - 50) {
-                    $('#boutique2ndnav').css({'position': 'fixed', 'width': '100%', 'top': '60px', 'z-index': '1020'});
+                    $('#boutique2ndnav').css({'position': 'fixed', 'width': '100%', 'z-index': '1020'});
                 } else {
                     $('#boutique2ndnav').removeAttr('style');
                     $('#boutique2ndnav').css({'padding-top': '25px', 'background-color': '#FFFFFF', 'height': '60px'});

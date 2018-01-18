@@ -33,6 +33,11 @@
         <link href="{{asset('css/custom.css')}}" rel="stylesheet">
 
 <style>
+    
+    @media (max-width: 990px){
+header .nav-dropdown{
+    display: inline !important; 
+}}
 .photodeprofil{
 height: 145px;
 }
@@ -381,6 +386,7 @@ overflow-x: hidden;
         <script src="{{asset('js/core.min.js')}}"></script>
         <script src="{{asset('plugins/owl-carousel/owl.carousel.min.js')}}"></script>
         <script src="{{asset('plugins/bootstrap/js/jquery.bootpag.min.js')}}"></script>
+        <script src="//cdn.jsdelivr.net/phaser/2.2.2/phaser.min.js"></script>
 
         <script>
             $(".datepicker").datepicker({dateFormat: 'd-m-yy',
