@@ -1,10 +1,10 @@
 <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i>{% if nombreofnew != 0 %} <span class="label label-danger">{{nombreofnew}}</span>{% endif %}</a>
-<ul class="dropdown-menu">
+<ul class="dropdown-menu" style="min-width: 200px !important;">
      <li class="dropdown-header"><i class="fa fa-bell"></i> vous avez {{nombreofnew}} nouvelles</li>
 {% for notif in notification %}
     {% if notif.status == "nouveau" and app.user == notif.user%}
         
-            <li><a href="javascript:void(0);"></a>{{notif.description}}</li>
+            <li class="text-center"><a href="javascript:void(0);"></a>{{notif.description}}</li>
             
             
     {% endif %}
