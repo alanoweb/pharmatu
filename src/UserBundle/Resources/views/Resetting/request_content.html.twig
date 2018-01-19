@@ -9,11 +9,10 @@ section {
 {% endblock %}
 
 <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request" style="padding-top: 11%!important;">
-    <div>
+    <div class="col-md-6">
         {% if invalid_username is defined %}
             <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</p>
         {% endif %}
-		<div class="col-md-3"> </div>
 		<div class="col-md-6"> 
 		<div class="form-group">
 								<label class="sr-only" for="exampleInputEmail3">{{ 'resetting.request.username'|trans }}</label>
