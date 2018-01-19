@@ -9,19 +9,19 @@ section {
 {% endblock %}
 
 <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request" style="padding-top: 11%!important;">
-    <div class="col-md-6">
+    <div class="text-center">
         {% if invalid_username is defined %}
             <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</p>
         {% endif %}
-		<div class="col-md-6"> 
+		<div class="col-md-8" style="margin-bottom: 2%"> 
 		<div class="form-group">
 								<label class="sr-only" for="exampleInputEmail3">{{ 'resetting.request.username'|trans }}</label>
         <input type="email" id="exampleInputEmail3" class="form-control" name="username" required="required" placeholder="Email" />
 							</div>
         
     </div>
-    <div>
-    <div>
+    <div class="col-md-4">
         <input type="submit" class="btn btn-primary" value="{{ 'resetting.request.submit'|trans }}" />
+    </div>
     </div>
 </form>
