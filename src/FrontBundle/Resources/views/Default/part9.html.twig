@@ -9,6 +9,17 @@ function preload() {
     game.load.image('star', '{{asset('assets/star.png')}}');
     game.load.image('diamond', '{{asset('assets/diamond.png')}}');
     game.load.spritesheet('dude', '{{asset('assets/dude.png')}}', 32, 48);
+    this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+ 
+    //have the game centered horizontally
+ 
+    this.scale.pageAlignHorizontally = true;
+ 
+    this.scale.pageAlignVertically = true;
+ 
+    //screen size will be set automatically
+ 
+    this.scale.setScreenSize(true);
 
 }
 
