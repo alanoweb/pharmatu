@@ -1,27 +1,27 @@
-<!doctype html> 
-<html lang="en"> 
-<head> 
-	<meta charset="UTF-8" />
-    <title>Phaser - Making your first game, part 9</title>
-    <script src="//cdn.jsdelivr.net/phaser/2.2.2/phaser.min.js"></script>
-    <style type="text/css">
-        body {
-            margin: 0;
-        }
-    </style>
-</head>
-<body>
-
+{% extends 'FrontBundle:Default:activity.html.twig' %}
+{% block javascriptgame %}
 <script type="text/javascript">
 
-var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'activitycanvas', { preload: preload, create: create, update: update });
 
 function preload() {
 
-    game.load.image('sky', 'assets/sky.png');
-    game.load.image('ground', 'assets/platform.png');
-    game.load.image('star', 'assets/star.png');
-    game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
+    game.load.image('sky', '{{asset('assets/sky.png')}}');
+    game.load.image('ground', '{{asset('assets/platform.png')}}');
+    game.load.image('star', '{{asset('assets/star.png')}}');
+    game.load.image('diamond', '{{asset('assets/diamond.png')}}');
+    game.load.spritesheet('dude', '{{asset('assets/dude.png')}}', 32, 48);
+    this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+ 
+    //have the game centered horizontally
+ 
+    this.scale.pageAlignHorizontally = true;
+ 
+    this.scale.pageAlignVertically = true;
+ 
+    //screen size will be set automatically
+ 
+    this.scale.setScreenSize(true);
 
 }
 
@@ -30,6 +30,7 @@ var platforms;
 var cursors;
 
 var stars;
+var diamond;
 var score = 0;
 var scoreText;
 
@@ -96,6 +97,14 @@ function create() {
         //  This just gives each star a slightly random bounce value
         star.body.bounce.y = 0.7 + Math.random() * 0.2;
     }
+    diamond = game.add.sprite(32, 0, 'diamond');
+    diamond.enableBody = true;
+    game.physics.arcade.enable(diamond);
+
+    //  Player physics properties. Give the little guy a slight bounce.
+    diamond.body.bounce.y = 0.2;
+    diamond.body.gravity.y = 300;
+    diamond.body.collideWorldBounds = true;
 
     //  The score
     scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
@@ -110,9 +119,11 @@ function update() {
     //  Collide the player and the stars with the platforms
     var hitPlatform = game.physics.arcade.collide(player, platforms);
     game.physics.arcade.collide(stars, platforms);
+    game.physics.arcade.collide(diamond, platforms);
 
     //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
     game.physics.arcade.overlap(player, stars, collectStar, null, this);
+    game.physics.arcade.overlap(player, diamond, collectDiamond, null, this);
 
     //  Reset the players velocity (movement)
     player.body.velocity.x = 0;
@@ -157,8 +168,18 @@ function collectStar (player, star) {
     scoreText.text = 'Score: ' + score;
 
 }
+function collectDiamond (player, diamond) {
+    
+    // Removes the star from the screen
+    diamond.kill();
+
+    //  Add and update the score
+    score += 100;
+    scoreText.text = 'Score: ' + score;
+    
+    alert(score);
+    create();
+}
 
 </script>
-
-</body>
-</html>
+{% endblock %}

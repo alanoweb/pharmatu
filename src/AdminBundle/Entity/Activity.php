@@ -41,6 +41,12 @@ class Activity {
      * @ORM\Column(name="description", type="string", length=255)
      */
     private $description;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="chemin", type="string", length=255, nullable=true)
+     */
+    private $chemin;
 
     /**
      * @ORM\ManyToOne(targetEntity="AdminBundle\Entity\ActivityCath")
@@ -409,5 +415,28 @@ class Activity {
     public function removeCadeaux(\SupAdminBundle\Entity\cadeaux $cadeaux)
     {
         $this->cadeaux->removeElement($cadeaux);
+    }
+
+    /**
+     * Set chemin
+     *
+     * @param string $chemin
+     * @return Activity
+     */
+    public function setChemin($chemin)
+    {
+        $this->chemin = $chemin;
+
+        return $this;
+    }
+
+    /**
+     * Get chemin
+     *
+     * @return string 
+     */
+    public function getChemin()
+    {
+        return $this->chemin;
     }
 }

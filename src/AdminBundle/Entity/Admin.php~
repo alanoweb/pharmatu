@@ -334,4 +334,27 @@ class Admin
     {
         return $this->status;
     }
+
+    /**
+     * Set date_membre
+     *
+     * @param \DateTime $dateMembre
+     * @return Admin
+     */
+    public function setDateMembre($dateMembre)
+    {
+        $this->date_membre = $dateMembre;
+
+        return $this;
+    }
+
+    /**
+     * Get date_membre
+     *
+     * @return \DateTime 
+     */
+    public function getDateMembre()
+    {
+        return $this->date_membre;
+    }
 }
