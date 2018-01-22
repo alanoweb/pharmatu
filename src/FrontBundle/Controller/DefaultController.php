@@ -91,7 +91,7 @@ class DefaultController extends Controller {
     public function activityAction($id) {
         $em = $this->getDoctrine()->getManager();
         $activity = $em->getRepository('AdminBundle:Activity')->find($id);
-        return $this->render('FrontBundle:Default:activity.html.twig', array("activity" => $activity));
+        return $this->render($activity->getChemin(), array("activity" => $activity));
     }
     
     public function monprofilAction($config) {

@@ -41,6 +41,11 @@ class AdminController extends Controller {
         $em->persist($Activite);
 
         $em->flush();
+        $filenom = $Activite->getNom().$Activite->getId().".html.twig";
+        $chemin = __DIR__.'/../Resources/views/games/'.$filenom;
+        fopen($chemin, "w");
+        $Activite->setChemin("FrontBundle:games:".$filenom);
+        $em->flush();
 
         return new Response();
     }

@@ -141,6 +141,7 @@ height:100%;
                     </div>
                     <div class="modal-body">
                         <form >
+                            <input id="AddCategorieid" name="AddCategorieid" type="hidden" value="{{categorie.getId()}}"/>
                             <div class="modal-baniere_gauche">
                     <div class="form-group">
                         <label class="col-md-4 control-label" >Nom<span style="color:red;margin-left:5px;font-weight: 900">*</span></label>
@@ -217,7 +218,7 @@ height:100%;
                 </form>
                             </div>
                             <div class="modal-footer">
-                <input id="AddCategorieid" name="AddCategorieid" type="hidden" value="{{categorie.getId()}}"/>
+                
                 <input id="AddCategorie" class="btn btn-primary" type="button" value="ajouter une activité" onclick="AjouterActivity();"/>
                 </div>
                 </div>

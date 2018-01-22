@@ -41,6 +41,12 @@ class Activity {
      * @ORM\Column(name="description", type="string", length=255)
      */
     private $description;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="chemin", type="string", length=255)
+     */
+    private $chemin;
 
     /**
      * @ORM\ManyToOne(targetEntity="AdminBundle\Entity\ActivityCath")
