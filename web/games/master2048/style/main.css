@@ -103,7 +103,6 @@ p {
 a {
   color: #776e65;
   font-weight: bold;
-  text-decoration: underline;
   cursor: pointer; }
 
 strong.important {
@@ -115,9 +114,6 @@ hr {
   margin-top: 20px;
   margin-bottom: 30px; }
 
-.container {
-  width: 500px;
-  margin: 0 auto; }
 
 @-webkit-keyframes fade-in {
   0% {
