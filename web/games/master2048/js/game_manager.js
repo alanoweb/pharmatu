@@ -1,3 +1,4 @@
+var gameover = false;
 function GameManager(size, InputManager, Actuator, StorageManager) {
   this.size           = size; // Size of the grid
   this.inputManager   = new InputManager;
@@ -18,6 +19,7 @@ GameManager.prototype.restart = function () {
   this.storageManager.clearGameState();
   this.actuator.continueGame(); // Clear the game won/lost message
   this.setup();
+  gameover = false;
 };
 
 // Keep playing after winning (allows going over 2048)
@@ -128,11 +130,29 @@ GameManager.prototype.moveTile = function (tile, cell) {
 
 // Move tiles on the grid in the specified direction
 GameManager.prototype.move = function (direction) {
+    
+    if (gameover === false){
   // 0: up, 1: right, 2: down, 3: left
   var self = this;
-
-  if (this.isGameTerminated()) return; // Don't do anything if the game's over
-
+  
+  if (this.isGameTerminated()){
+       $_data = {
+                    'score': this.score,
+                    'Bestscore': this.storageManager.getBestScore()
+                };
+                $.ajax({
+                    type: "POST",
+                    url: gameurl,
+                    data: $_data,
+                    success: function () {
+                        //location.reload();
+                        alert("ok");
+                        console.log("test");
+                    }
+                });
+      gameover = true;
+        return;} // Don't do anything if the game's over
+ else {
   var cell, tile;
 
   var vector     = this.getVector(direction);
@@ -188,6 +208,8 @@ GameManager.prototype.move = function (direction) {
 
     this.actuate();
   }
+}
+}
 };
 
 // Get the vector representing the chosen direction

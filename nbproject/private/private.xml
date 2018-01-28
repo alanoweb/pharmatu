@@ -3,14 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/wamp64/www/Test1/src/FrontBundle/Controller/DefaultController.php</file>
-            <file>file:/F:/wamp64/www/phaser_tutorial_02/part9.html</file>
-            <file>file:/F:/wamp64/www/Test1/src/FrontBundle/Resources/views/Default/catactivity.html.twig</file>
-            <file>file:/F:/wamp64/www/Test1/src/AdminBundle/Entity/Activity.php</file>
-            <file>file:/F:/wamp64/www/Test1/src/FrontBundle/Resources/views/Default/activity.html.twig</file>
-            <file>file:/F:/wamp64/www/Test1/src/FrontBundle/Controller/UtilisateurController.php</file>
-            <file>file:/F:/wamp64/www/Test1/src/AdminBundle/Entity/ActivityCath.php</file>
-            <file>file:/F:/wamp64/www/Test1/src/FrontBundle/Resources/views/games/part9.html.twig</file>
+            <file>file:/F:/wamp64/www/Test1/app/Resources/views/base.html.twig</file>
+            <file>file:/F:/wamp64/www/Test1/src/EntrepriseBundle/Resources/views/Default/gagnants.html.twig</file>
         </group>
     </open-files>
 </project-private>
