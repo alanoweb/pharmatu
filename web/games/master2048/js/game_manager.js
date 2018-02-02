@@ -1,3 +1,4 @@
+var gameover = false;
 function GameManager(size, InputManager, Actuator, StorageManager) {
   this.size           = size; // Size of the grid
   this.inputManager   = new InputManager;
@@ -15,13 +16,15 @@ function GameManager(size, InputManager, Actuator, StorageManager) {
 
 // Restart the game
 GameManager.prototype.restart = function () {
+    gameover = false;
   this.storageManager.clearGameState();
   this.actuator.continueGame(); // Clear the game won/lost message
   this.setup();
-};
+  };
 
 // Keep playing after winning (allows going over 2048)
 GameManager.prototype.keepPlaying = function () {
+    gameover = false;
   this.keepPlaying = true;
   this.actuator.continueGame(); // Clear the game won/lost message
 };
@@ -128,11 +131,15 @@ GameManager.prototype.moveTile = function (tile, cell) {
 
 // Move tiles on the grid in the specified direction
 GameManager.prototype.move = function (direction) {
+    
+    if (gameover === false){
   // 0: up, 1: right, 2: down, 3: left
   var self = this;
 
-  if (this.isGameTerminated()) return; // Don't do anything if the game's over
-
+  if (this.isGameTerminated()){
+      
+       return;} // Don't do anything if the game's over
+ else {
   var cell, tile;
 
   var vector     = this.getVector(direction);
@@ -183,11 +190,30 @@ GameManager.prototype.move = function (direction) {
     this.addRandomTile();
 
     if (!this.movesAvailable()) {
+        gameover = true;
+        $scortest = this.score;
+      $bestscortest = this.storageManager.getBestScore();
+       $_data = {
+                    'score': this.score,
+                    'Bestscore': this.storageManager.getBestScore()
+                };
+                $.ajax({
+                    type: "POST",
+                    url: gameurl,
+                    data: $_data,
+                    success: function () {
+                        //location.reload();
+                        alert($scortest);
+                        console.log($bestscortest);
+                    }
+                });
       this.over = true; // Game over!
     }
 
     this.actuate();
   }
+}
+}
 };
 
 // Get the vector representing the chosen direction
