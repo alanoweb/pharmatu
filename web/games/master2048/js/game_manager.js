@@ -22,6 +22,7 @@ GameManager.prototype.restart = function () {
   this.setup();
   };
 
+
 // Keep playing after winning (allows going over 2048)
 GameManager.prototype.keepPlaying = function () {
     gameover = false;
@@ -139,6 +140,7 @@ GameManager.prototype.move = function (direction) {
   if (this.isGameTerminated()){
       
        return;} // Don't do anything if the game's over
+
  else {
   var cell, tile;
 
