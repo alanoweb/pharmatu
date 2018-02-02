@@ -1,3 +1,4 @@
-master2048:
-    path:  /master2048
-    defaults: { _controller:FrontBundle:Games:Master2048 }
+Master2048:
+    path:     /Master2048
+    defaults: { _controller:FrontBundle:Game:Master2048 }
+

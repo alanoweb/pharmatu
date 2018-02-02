@@ -1,6 +1,6 @@
-games:
+game:
     resource: "@FrontBundle/Resources/config/gamerouting.yml"
-    prefix:   /games
+    prefix:   /game
 homepage:
     path:  /
     defaults: { _controller:FrontBundle:Default:index }
