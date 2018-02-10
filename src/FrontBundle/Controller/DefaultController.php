@@ -174,6 +174,10 @@ class DefaultController extends Controller {
         } elseif ($user->hasRole('ROLE_USER')) {
             $profil = new Utilisateur();
             $profil->setUser($user);
+            $profil->setCoin($this->get('session')->get('Anon_coins'));
+            $profil->setExperience($this->get('session')->get('Anon_Exp'));
+            $this->get('session')->remove('Anon_Exp');
+            $this->get('session')->remove('Anon_coins');
             $profil->setDate_membre(new \DateTime('now'));
             $profil->setStatus('Actif');
             $em->persist($profil);
