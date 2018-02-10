@@ -23,6 +23,7 @@ GameManager.prototype.restart = function () {
     this.setup();
 };
 
+
 // Keep playing after winning (allows going over 2048)
 GameManager.prototype.keepPlaying = function () {
     gameover = false;
