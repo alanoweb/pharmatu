@@ -188,56 +188,11 @@ overflow-x: hidden;
                     <section class="border-bottom-1 border-grey-200 padding-top-15 padding-bottom-10">
                         <div class="owl-carousel owl-video">
                             {{ render(controller("FrontBundle:Default:Slide")) }}
-                            <!--
-                            <div class="card card-video">
-                                <div class="card-img">
-                                    <a href="videos-single.html"><img src="{{asset('img/slideshow/1.jpg')}}"  alt=""></a>
-                                    <div class="time">13:52</div>
-                                </div>
-                            </div>
-                            <div class="card card-video">
-                                <div class="card-img">
-                                    <a href="videos-single.html"><img src="{{asset('img/slideshow/3.jpg')}}" alt=""></a>
-                                    <div class="time">08:03</div>
-                                </div>
-                            </div>
-                            <div class="card card-video">
-                                <div class="card-img">
-                                    <a href="videos-single.html"><img src="{{asset('img/slideshow/1.jpg')}}" alt="" ></a>
-                                    <div class="time">11:15</div>
-                                </div>
-                            </div>
-                            <div class="card card-video">
-                                <div class="card-img">
-                                    <a href="videos-single.html"><img src="{{asset('img/slideshow/1.jpg')}}"  alt=""></a>
-                                    <div class="time">16:20</div>
-                                </div>
-                            </div>
-                            <div class="card card-video">
-                                <div class="card-img">
-                                    <a href="videos-single.html"><img src="{{asset('img/slideshow/2.jpg')}}" alt=""></a>
-                                    <div class="time">05:31</div>
-                                </div>
-                            </div>
-                            <div class="card card-video">
-                                <div class="card-img">
-                                    <a href="videos-single.html"><img src="{{asset('img/slideshow/2.jpg')}}"   alt=""></a>
-                                    <div class="time">04:55</div>
-                                </div>
-                            </div>
-                            <div class="card card-video">
-                                <div class="card-img">
-                                    <a href="videos-single.html"><img src="{{asset('img/slideshow/2.jpg')}}"  alt=""></a>
-                                    <div class="time">14:17</div>
-                                </div>
-                            </div>-->
+                            
                         </div>
                         <div class="col-md-12 text-center">   {% if not app.user %} <a href="{{path('fos_user_registration_register')}}" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn">Inscrivez vous maintenant</a>{% endif %}
                         </div>
                     </section>
-
-
-
                 {% endblock slide%}
                 {% block wrapper %}
                     <section class="bg-grey-50 padding-top-30">
