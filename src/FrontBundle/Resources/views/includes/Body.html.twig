@@ -1,3 +1,10 @@
+    {%block css%}
+	<style>
+	.imageactuality{
+	    height: 405px!important;;
+	}
+	</style>
+    {%endblock%}
     {%for Actualite in Actualites%}
         <div class="panel panel-default panel-post">
             <div class="panel-body">
@@ -15,7 +22,7 @@
                     </div>
                      {% if Actualite.image %}
                     <div class="embed-responsive embed-responsive-16by9 post-thumbnail">
-                        <img src="{{asset(Actualite.image)}}" onerror="this.onerror=null;this.src='{{asset('img/user/profile.jpg')}}';">
+                        <img src="{{asset(Actualite.image)}}" onerror="this.onerror=null;this.src='{{asset('img/user/profile.jpg')}}';" class="imageactuality">
                         <!--iframe class="embed-responsive-item" src="https://www.youtube.com/embed/vSteQ_wlB94?rel=0&amp;showinfo=0" allowfullscreen></iframe-->
                     </div>
                         {% endif %}
