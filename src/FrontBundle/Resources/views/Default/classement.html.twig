@@ -1,7 +1,9 @@
 {% extends 'FrontBundle::layout.html.twig' %}
 {% block css %}
     <style>
-
+.boutique_act {
+    height: 256px!important;
+}
 .card .card-img img{
 height:100%;
 }
@@ -61,7 +63,7 @@ height:100%;
                             <div class="count col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                 <div class="card">
                                     <div class="card-img">
-                                        <img src="{{asset(produit.getImage())}}" alt="">
+                                        <img src="{{asset(produit.getImage())}}" alt="" class="boutique_act">
                                         <div class="category"><span class="label label-success">{{produit.getStatus()}}</span></div>
                                         <div class="meta"><i class="fa fa-cubes"></i> <span>stock : {{produit.getStock()}}</span></div>
                                     </div>
@@ -80,7 +82,7 @@ height:100%;
                             <div class="count col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                 <div class="card">
                                     <div class="card-img">
-                                        <img src="{{asset(produit.getImage())}}" alt="">
+                                        <img src="{{asset(produit.getImage())}}" alt="" class="boutique_act">
                                         <div class="category"><span class="label label-success">{{produit.getNbrCoin()}} Coin</span></div>
                                         <div class="meta"><i class="fa fa-cubes"></i> <span>stock : {{produit.getStock()}}</span></div>
                                     </div>
@@ -95,7 +97,7 @@ height:100%;
                                 <div class="count col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                     <div class="card">
                                         <div class="card-img">
-                                            <img src="{{asset(produit.getImage())}}" alt="">
+                                            <img src="{{asset(produit.getImage())}}" alt="" class="boutique_act">
                                             <div class="category"><span class="label label-success">{{produit.getNbrCoin()}} Coin</span></div>
                                             <div class="meta"><i class="fa fa-cubes"></i> <span>stock : {{produit.getStock()}}</span></div>
                                         </div>
