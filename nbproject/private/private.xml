@@ -3,18 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/wamp64/www/Test1/src/FrontBundle/Controller/DefaultController.php</file>
-            <file>file:/F:/wamp64/www/Test1/app/Resources/views/base.html.twig</file>
-            <file>file:/F:/wamp64/www/Test1/src/FrontBundle/Entity/Utilisateur.php</file>
-            <file>file:/F:/wamp64/www/Test1/src/FrontBundle/Controller/GameController.php</file>
-            <file>file:/F:/wamp64/www/Test1/src/FrontBundle/Resources/config/gamerouting.yml</file>
-            <file>file:/F:/wamp64/www/Test1/src/FrontBundle/Controller/AdminController.php</file>
-            <file>file:/F:/wamp64/www/Test1/web/games/master2048/js/game_manager.js</file>
             <file>file:/F:/wamp64/www/Test1/src/FrontBundle/Resources/views/Default/activity.html.twig</file>
-            <file>file:/F:/wamp64/www/Test1/app/config/routing.yml</file>
-            <file>file:/F:/wamp64/www/Test1/src/FrontBundle/Resources/config/routing.yml</file>
             <file>file:/F:/wamp64/www/Test1/src/FrontBundle/Resources/views/games/test%20ajout%20avec%20chemin10.html.twig</file>
-            <file>file:/F:/wamp64/www/Test1/web/games/master2048/js/grid.js</file>
         </group>
     </open-files>
 </project-private>
