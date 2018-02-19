@@ -1,0 +1,14 @@
+{% extends 'FrontBundle:Default:activity.html.twig' %}
+
+{% block slide %}
+    {% if not app.user %}
+        <section class="border-bottom-1 border-grey-200 padding-top-15 padding-bottom-10">
+            <div class="col-md-12 text-center">    <a href="{{path('fos_user_registration_register')}}" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn">Inscrivez vous maintenant</a>
+            </div>
+        </section>
+    {% endif %}
+{% endblock slide%}
+{% block game2 %}
+    <script>var gameurl = '{{path('Master2048')}}';</script>
+    <iframe src="{{asset('2048-master/index.html.twig')}}" height="700"></iframe>
+{% endblock %}
