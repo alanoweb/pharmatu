@@ -1,22 +1,4 @@
-{% extends 'FrontBundle:Default:activity.html.twig' %}
-{% block cssgame %}
-
-    <link href="{{asset('games/master2048/style/main.css')}}" rel="stylesheet" type="text/css">
-    <link rel="shortcut icon" href="{{asset('games/master2048/favicon.ico')}}">
-    <link rel="apple-touch-icon" href="{{asset('games/master2048/meta/apple-touch-icon.png')}}">
-    <link rel="apple-touch-startup-image" href="{{asset('games/master2048/meta/apple-touch-startup-image-640x1096.png')}}" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone 5+ -->
-    <link rel="apple-touch-startup-image" href="{{asset('games/master2048/meta/apple-touch-startup-image-640x920.png')}}"  media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone, retina -->
-
-{% endblock %}
-{% block slide %}
-    {% if not app.user %}
-        <section class="border-bottom-1 border-grey-200 padding-top-15 padding-bottom-10">
-            <div class="col-md-12 text-center">    <a href="{{path('fos_user_registration_register')}}" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn">Inscrivez vous maintenant</a>
-            </div>
-        </section>
-    {% endif %}
-{% endblock slide%}
-{% block game %}
+ <link href="{{asset('games/master2048/style/main.css')}}" rel="stylesheet" type="text/css">
     <div class="game-container" style="float: left">
         <div class="game-message">
             <p></p>
@@ -69,8 +51,7 @@
             </div>
         </div>
     </div>
-{% endblock %}
-{% block descriptiongame %}
+
     <div class="container" >
         <div class="col-lg-8 col-md-8 col-sm-8 co-xs-12 margin-bottom-sm-30">
             <div class="panel panel-danger" style="margin-bottom:2%">
@@ -92,8 +73,7 @@
             </div>
         </div>
     </div>
-{% endblock %}
-{% block javascriptgame %}
+
     <script>var gameurl = '{{path('Master2048')}}';</script>
     <script src="{{asset('plugins/html2canvas.js')}}"></script>
     <script src="{{asset('games/master2048/js/bind_polyfill.js')}}"></script>
@@ -106,4 +86,3 @@
     <script src="{{asset('games/master2048/js/local_storage_manager.js')}}"></script>
     <script src="{{asset('games/master2048/js/game_manager.js')}}"></script>
     <script src="{{asset('games/master2048/js/application.js')}}"></script>
-{% endblock %}
