@@ -1,6 +1,7 @@
 {% extends '::base.html.twig' %}
 {% block slide %}
 {% endblock%}
+
 {% block css %}
     <style>
 
@@ -64,7 +65,7 @@
                                 <div class="count col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                     <div class="card">
                                         <div class="card-img">
-                                            <a href="{{ path('user_profil', { 'id': utilisateur.id }) }}"><img src="/Test1/web/img/slideshow/1.jpg" alt=""></a>
+                                            <a href="{{ path('user_profil', { 'id': utilisateur.id }) }}"><img src="/Test1/web/img/slideshow/1.jpg" alt="" class="boutique_act"></a>
                                             <div class="category"><span class="label label-success">{{ utilisateur.status }}</span></div>
                                             <div class="meta"><a href="#"><i class="fa fa-sitemap"></i> <span>15</span></a></div>
                                         </div>
@@ -103,7 +104,7 @@
                                 <div class="count col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                     <div class="card">
                                         <div class="card-img">
-                                            <a href="{{ path('entreprise_profil', { 'id': entreprise.id }) }}"><img src="/Test1/web/img/slideshow/1.jpg" alt=""></a>
+                                            <a href="{{ path('entreprise_profil', { 'id': entreprise.id }) }}"><img src="/Test1/web/img/slideshow/1.jpg" alt="" class="boutique_act"></a>
                                             <div class="category"><span class="label label-success">{{ entreprise.status }}</span></div>
                                         </div>
                                         <div class="caption">
@@ -138,7 +139,7 @@
                                     <div class="count col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                     <div class="card">
                                         <div class="card-img">
-                                            <a href="{{ path('admin_profil', { 'id': admin.id }) }}"><img src="/Test1/web/img/slideshow/1.jpg" alt=""></a>
+                                            <a href="{{ path('admin_profil', { 'id': admin.id }) }}"><img src="/Test1/web/img/slideshow/1.jpg" alt="" class="boutique_act"></a>
                                             <div class="category"><span class="label label-success">{{ admin.status }}</span></div>
                                         </div>
                                         <div class="caption">
