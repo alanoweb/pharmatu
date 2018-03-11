@@ -7,12 +7,25 @@
     <link rel="apple-touch-startup-image" href="{{asset('games/master2048/meta/apple-touch-startup-image-640x1096.png')}}" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone 5+ -->
     <link rel="apple-touch-startup-image" href="{{asset('games/master2048/meta/apple-touch-startup-image-640x920.png')}}"  media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone, retina -->
 <style rel='stylesheet' type='text/css'>
+/* Modal Content */
+#myProgress {
+  width: 100%;
+  background-color: #ddd;
+  margin-top: -5px;
+}
+
+#myBar {
+  width: 0%;
+  height: 15px;
+  max-width: 100%;
+  background-color: #2776dc;
+}
 
 .modal1 {
     display: none; 
     position: fixed; 
     z-index: 100000; 
-    padding-top: 100px; 
+    padding-top: 55px; 
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -22,20 +35,25 @@
     background-color: rgba(0,0,0,0.78); /* Black w/ opacity */
 }
 
-/* Modal Content */
+
+.fermer{
+margin: auto;
+    padding: 20px;
+	width: 90%;
+}
 .modal1-content {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
    
-    width: 80%;
+    width: 90%;
 }
 
 /* The Close Button */
 .close1 {
     color: #aaaaaa !important;
     float: right;
-    font-size: 28px;
+    font-size: 25px;
     font-weight: bold;
 }
 
@@ -45,15 +63,22 @@
     text-decoration: none;
     cursor: pointer;
 }
+/* Modal Content */
 </style>
 {% endblock %}
 {% block Dashboard %}
 <div id="myModal1" class="modal1" >
+<div class="fermer">
+<span class="close1">&times;</span><h4 style="margin-left:40%;"><a class="count1" href="#" style="color:white; float:left;">voir toute la publicité ....</a></h4>
+   </div>
   <!-- Modal content -->
   <div class="modal1-content" style="height:90%; background-color:#00000000;">
-	<span class="close1">&times;</span><h4><a class="count1" href="#" style="color:white; float:left;">voir toute la publicité ....</a></h4>
-    <iframe  src="https://www.youtube.com/embed/4pY3hlQEOc0?rel=0&autoplay=1&controls=0&showinfo=0" allowfullscreen style="height:100%" autoplay></iframe>			
-  </div>
+	
+   <iframe id="vid"  src="https://www.youtube.com/embed/4pY3hlQEOc0?rel=0&autoplay=1&controls=0&showinfo=0" allowfullscreen style="height:100%; width=100%" autoplay onload="iframeload()"></iframe>			 
+<div id="myProgress" >
+  <div id="myBar"></div>
+</div>
+   </div>
 
 </div>
 {% block game %}
@@ -143,20 +168,48 @@
 
 {% block javascriptgame %}
 <script>
+function move() {
+  var elem = document.getElementById("myBar");   
+  var width = -10;
+  var id = setInterval(frame, 1500);
+  function frame() {
+    if (width > 100) {
+      clearInterval(id);
+    } else {
+      width=width+10; 
+      elem.style.width = width + '%'; 
+    }
+  }
+}
 // Get the modal
+var elem = document.getElementById("myBar"); 
+var elem2 = document.getElementById("myProgress"); 
 var modal = document.getElementById('myModal1');
+var frame  = document.getElementById('vid');
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close1")[0];
 var co = document.getElementsByClassName("count1")[0];
 // When the user clicks the button, open the modal 
 modal.style.display = "block";
+
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
+frame.src="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     modal.style.display = "none";
 }
+
 span.style.display='none';
 co.style.display='none';
-setTimeout(function(){span.style.display='block';co.style.display='block';}, 10000);
+function iframeload(){
+move();
+setTimeout(function(){
+elem.style.display='none';
+elem2.style.display='none';
+span.style.display='block';
+co.style.display='block';
+    }, 17000);
+}
+
 // When the user clicks anywhere outside of the modal, close it
 </script>
     <script>var gameurl = '{{path('Master2048')}}';</script>
