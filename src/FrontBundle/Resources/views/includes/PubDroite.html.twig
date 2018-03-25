@@ -1,10 +1,15 @@
-{%block css%}
-<style>
-.imagepub{
-height: 262px!important;
-}
-</style>
-{%endblock%}
+{%for PubDroite in PubDroites%}
+    {%if not (PubDroite.getStatus() == "Deleted" or PubDroite.getStatus() == "Nouveau") %}
+        {%if PubDroite.getImportance() == "Important"  %}
+                <div class="card card-video" >
+                    <div class="card-img">
+                        <a href="videos-single.html"><img id="imagepubdroite-important" src="{{asset(PubDroite.getChemin())}}"  alt="" class="imagepub-important"></a>
+                        <!--div class="time">13:52</div-->
+                    </div>
+                </div>
+        {% endif %}
+    {% endif %}
+{% endfor %}
 {%for PubDroite in PubDroites%}
     {%if not (PubDroite.getStatus() == "Deleted" or PubDroite.getStatus() == "Nouveau") %}
         {%if PubDroite.getImportance() != "Important"  %}

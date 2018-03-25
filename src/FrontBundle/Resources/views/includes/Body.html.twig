@@ -1,11 +1,5 @@
-    {%block css%}
-	<style>
-	.imageactuality{
-	    height: 405px!important;;
-	}
-	</style>
-    {%endblock%}
-    {%for Actualite in Actualites%}
+{% for x in 1..20 %}
+    {% for Actualite in Actualites %}
         <div class="panel panel-default panel-post">
             <div class="panel-body">
                 <div class="post">
@@ -38,3 +32,4 @@
             </div>
         </div>
     {% endfor %}
+{% endfor %}

@@ -31,8 +31,18 @@
         <!-- THEME CSS -->
         <link href="{{asset('css/theme.min.css')}}" rel="stylesheet">
         <link href="{{asset('css/custom.css')}}" rel="stylesheet">
+      
 
 <style>
+    .imagepub-important{
+            height: 393px!important;
+        }
+        .imagepub{
+            height: 262px!important;;
+        }
+    .imageactuality{
+	    height: 405px!important;;
+	}
 .catimage{
     height: 180px;
 }
@@ -49,7 +59,7 @@ height: 363px;
 		body{
 overflow-x: hidden;
 }
-		</style>
+</style>
 		
         {% block css %}
 		
@@ -60,7 +70,7 @@ overflow-x: hidden;
         <header>
             <div class="container" >
                 <span class="bar hide"></span>
-                <a href="index-2.html" class="logo"><img src="{{asset('img/logo.png')}}" alt=""></a>
+                <a href="{{path('homepage')}}" class="logo"><img src="{{asset('img/gaigel4.png')}}" style="height:50px;" alt=""></a>
                 <nav>
                     <div class="nav-control">
                         <ul>	
@@ -185,7 +195,7 @@ overflow-x: hidden;
         <div id="wrapper">
             {% block Dashboard %}
                 {% block slide %}
-                    <section class="border-bottom-1 border-grey-200 padding-top-15 padding-bottom-10">
+                    <section id="slidesection" class="border-bottom-1 border-grey-200 padding-top-15 padding-bottom-10">
                         <div class="owl-carousel owl-video">
                             {{ render(controller("FrontBundle:Default:Slide")) }}
                             
@@ -200,21 +210,21 @@ overflow-x: hidden;
                             <div class="row">
                                 {% block  body  %}
                                     <div class="ax">
-                                        <div class="col-md-3" >
+                                        <div class="col-md-3" id="PubGaucheSection">
                                             {{ render(controller("FrontBundle:Default:PubGauche")) }}
                                         </div>
                                     </div>
 
                                     <div class="ay" >
-                                        <div class="col-md-6" >
+                                        <div class="col-md-6" id="BodyPostsSection">
                                             {{ render(controller("FrontBundle:Default:Body")) }}
                                             
-                                            <div class="text-center" style="margin-bottom: 3%;margin-top: 3%;"><a href="javascript:void(0);" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right">Load Posts</a></div>
-
+                                            <div id="btnshowmoreposts" onclick="showposts();" class="text-center" style="margin-bottom: 3%;margin-top: 3%;"><a href="javascript:void(0);" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right">Load Posts</a></div>
+                                            <div id="nomoreposts"><p>no more posts</p></div>
                                         </div>
                                     </div>
                                     <div class="az">
-                                        <div class="col-md-3">
+                                        <div class="col-md-3" id="PubDroiteSection">
                                            {{ render(controller("FrontBundle:Default:PubDroite")) }}
 
                                         </div>
