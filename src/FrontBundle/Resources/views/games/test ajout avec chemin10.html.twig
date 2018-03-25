@@ -66,6 +66,14 @@ margin: auto;
 /* Modal Content */
 </style>
 {% endblock %}
+{% block slide %}
+    {% if not app.user %}
+        <section class="border-bottom-1 border-grey-200 padding-top-15 padding-bottom-10">
+            <div class="col-md-12 text-center">    <a href="{{path('fos_user_registration_register')}}" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn">Inscrivez vous maintenant</a>
+            </div>
+        </section>
+    {% endif %}
+{% endblock slide%}
 {% block Dashboard %}
 <div id="myModal1" class="modal1" >
 <div class="fermer">
@@ -82,14 +90,7 @@ margin: auto;
 
 </div>
 {% block game %}
-<div class="heading">
-            <h1 class="title">2048</h1>
-            <div class="scores-container" >
-                <div class="score-container" style="height: 57px;">0</div>
-                <div class="best-container" style="height: 57px;">0</div>
-            </div>
-        </div>
-    <div class="game-container" style="">
+    <div class="game-container" style="float: left">
         <div class="game-message">
             <p></p>
             <div class="lower">
@@ -129,31 +130,40 @@ margin: auto;
 
         </div>
     </div>
+    <div class="az" style="float: right">
+        <div class="col-md-12 text-center">
+            <div><h1 class="title">2048</h1></div>
+            <div class="scores-container" >
+                <div class="score-container" style="height: 57px;">0</div>
+                <div class="best-container" style="height: 57px;">0</div>
+            </div>
+            <div class="above-game">
+                <a class="restart-button">New Game</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 {% block descriptiongame %}
     <div class="container" >
-        <div class="above-game">
-            <a class="restart-button">New Game</a>
+        <div class="col-lg-8 col-md-8 col-sm-8 co-xs-12 margin-bottom-sm-30">
+            <div class="panel panel-danger" style="margin-bottom:2%">
+                <div class="panel-heading">
+                    <h2 class="panel-title">HOW TO PLAY</h2>
+                </div>
+                <div class="panel-body">
+                    Use your arrow keys to move the tiles. When two tiles with the same number touch, they merge into one!
+                </div>
+            </div>
         </div>
-<div class="col-lg-8 col-md-8 col-sm-8 co-xs-12 margin-bottom-sm-30">
-						<div class="panel panel-danger" style="margin-bottom:2%">
-							<div class="panel-heading">
-								<h2 class="panel-title">HOW TO PLAY</h2>
-							</div>
-							<div class="panel-body">
-								Use your arrow keys to move the tiles. When two tiles with the same number touch, they merge into one!
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-8 col-md-8 col-sm-8 co-xs-12 margin-bottom-sm-30">
-						<div class="panel panel-warning" style="margin-bottom:2%">
-							<div class="panel-heading">
-								<h3 class="panel-title">Note</h3>
-							</div>
-							<div class="panel-body">
-								This site is the official version of 2048. You can play it on your phone via <a href="http://git.io/2048">http://git.io/2048.</a> All other apps or sites are derivatives or fakes, and should be used with caution.</div>
-						</div>
-					</div>
+        <div class="col-lg-8 col-md-8 col-sm-8 co-xs-12 margin-bottom-sm-30">
+            <div class="panel panel-warning" style="margin-bottom:2%">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Note</h3>
+                </div>
+                <div class="panel-body">
+                    This site is the official version of 2048. You can play it on your phone via <a href="http://git.io/2048">http://git.io/2048.</a> All other apps or sites are derivatives or fakes, and should be used with caution.</div>
+            </div>
+        </div>
     </div>
 {% endblock %}
 {% endblock%}
@@ -213,6 +223,7 @@ co.style.display='block';
 // When the user clicks anywhere outside of the modal, close it
 </script>
     <script>var gameurl = '{{path('Master2048')}}';</script>
+    <script src="{{asset('plugins/html2canvas.js')}}"></script>
     <script src="{{asset('games/master2048/js/bind_polyfill.js')}}"></script>
     <script src="{{asset('games/master2048/js/classlist_polyfill.js')}}"></script>
     <script src="{{asset('games/master2048/js/animframe_polyfill.js')}}"></script>
