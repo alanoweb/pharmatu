@@ -1,3 +1,51 @@
 {% extends 'FrontBundle::layout.html.twig' %}
+{% block javascript %}
+    <script>
+        $(window).bind('scroll', function() {
+            if ($(window).scrollTop() >=  $('#PubDroiteSection').outerHeight() - $('header').outerHeight() ) {
+                $top = $('header').css("height");
+                $('#PubDroiteSection').css({'position':'fixed','right':"0px",'top':$top});
+                $heightpx = $(window).outerHeight() - $('header').outerHeight();
+                $('#imagepubdroite-important').removeClass("imagepub-important");
+                $('#imagepubdroite-important').css("height",$heightpx);
+            }
+            else{
+                $('#PubDroiteSection').css({'position':'initial'});
+                $('#imagepubdroite-important').addClass("imagepub-important");
+            }
+            if ($(window).scrollTop() >=  $('#PubGaucheSection').outerHeight() - $('header').outerHeight() ) {
+                $top = $('header').css("height");
+                $('#PubGaucheSection').css({'position':'fixed','left':"0px",'top':$top});
+                $heightpx = $(window).outerHeight() - $('header').outerHeight();
+                $('#imagepubgauche-important').removeClass("imagepub-important");
+                $('#imagepubgauche-important').css("height",$heightpx);
+                $('#BodyPostsSection').css("left","25%");
+            }
+            else{
+                $('#PubGaucheSection').css({'position':'initial'});
+                $('#imagepubgauche-important').addClass("imagepub-important");
+                $('#BodyPostsSection').css("left","0%");
+            }
+        });
+        $shownposts = 0;
+        function showposts(){
+            $shownposts = $shownposts + 10;
+            $('#BodyPostsSection .panel-post').each(function(index){
+                if (index < $shownposts){
+                    $(this).show();
+                }
+            });
+            if($('#BodyPostsSection .panel-post').length === $shownposts){
+                $('#btnshowmoreposts').hide();
+                $('#nomoreposts').show();
+            }
+            else{
+                $('#btnshowmoreposts').show();
+                $('#nomoreposts').hide();
+            }
+        }
+        $('#BodyPostsSection .panel-post').hide();
+        showposts();
+    </script>
+{% endblock javascript %}
 
- 
