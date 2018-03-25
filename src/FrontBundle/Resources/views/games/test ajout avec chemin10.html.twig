@@ -66,14 +66,7 @@ margin: auto;
 /* Modal Content */
 </style>
 {% endblock %}
-{% block slide %}
-    {% if not app.user %}
-        <section class="border-bottom-1 border-grey-200 padding-top-15 padding-bottom-10">
-            <div class="col-md-12 text-center">    <a href="{{path('fos_user_registration_register')}}" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn">Inscrivez vous maintenant</a>
-            </div>
-        </section>
-    {% endif %}
-{% endblock slide%}
+
 {% block Dashboard %}
 <div id="myModal1" class="modal1" >
 <div class="fermer">
@@ -168,14 +161,13 @@ margin: auto;
 {% endblock %}
 {% endblock%}
 {% block slide %}
-
-    <section class="border-bottom-1 border-grey-200 padding-top-15 padding-bottom-10">
-        <div class="col-md-12 text-center">   {% if not app.user %} <a href="{{path('fos_user_registration_register')}}" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn">Inscrivez vous maintenant</a>{% endif %}
-        </div>
-    </section>
-	
+    {% if not app.user %}
+        <section class="border-bottom-1 border-grey-200 padding-top-15 padding-bottom-10">
+            <div class="col-md-12 text-center">    <a href="{{path('fos_user_registration_register')}}" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn">Inscrivez vous maintenant</a>
+            </div>
+        </section>
+    {% endif %}
 {% endblock slide%}
-
 {% block javascriptgame %}
 <script>
 function move() {
