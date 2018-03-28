@@ -1,28 +1,29 @@
 {% extends 'FrontBundle::layout.html.twig' %}
 {% block javascript %}
     <script>
-        $(window).bind('scroll', function() {
-            if ($(window).scrollTop() >=  $('#PubDroiteSection').outerHeight() - $('header').outerHeight() ) {
-                $top = $('header').css("height");
-                $('#PubDroiteSection').css({'position':'fixed','right':"0px",'top':$top});
-                $heightpx = $(window).outerHeight() - $('header').outerHeight();
+        $top = $('header').css("height");
+        $heightpx = $(window).outerHeight() - $('header').outerHeight();
+        $droitfixedheight = $('#PubDroiteSection').outerHeight() - $('header').outerHeight();
+        $gauchefixedheight = $('#PubGaucheSection').outerHeight() - $('header').outerHeight();
+        $(window).scroll( function() {
+            if ($(window).scrollTop() > $droitfixedheight ) {
+                
                 $('#imagepubdroite-important').removeClass("imagepub-important");
                 $('#imagepubdroite-important').css("height",$heightpx);
+                $('#PubDroiteSection').css({'position':'fixed','right':"0px",'top':$top});
             }
             else{
-                $('#PubDroiteSection').css({'position':'initial'});
+                $('#PubDroiteSection').css({'position':'relative','top':'0px'});
                 $('#imagepubdroite-important').addClass("imagepub-important");
             }
-            if ($(window).scrollTop() >=  $('#PubGaucheSection').outerHeight() - $('header').outerHeight() ) {
-                $top = $('header').css("height");
+            if ($(window).scrollTop() >  $gauchefixedheight ) {
                 $('#PubGaucheSection').css({'position':'fixed','left':"0px",'top':$top});
-                $heightpx = $(window).outerHeight() - $('header').outerHeight();
                 $('#imagepubgauche-important').removeClass("imagepub-important");
                 $('#imagepubgauche-important').css("height",$heightpx);
                 $('#BodyPostsSection').css("left","25%");
             }
             else{
-                $('#PubGaucheSection').css({'position':'initial'});
+                $('#PubGaucheSection').css({'position':'relative','top':'0px'});
                 $('#imagepubgauche-important').addClass("imagepub-important");
                 $('#BodyPostsSection').css("left","0%");
             }
