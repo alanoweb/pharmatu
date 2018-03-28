@@ -10,41 +10,13 @@
         {% endif %}
     {% endif %}
 {% endfor %}
-{%for PubDroite in PubDroites%}
-    {%if not (PubDroite.getStatus() == "Deleted" or PubDroite.getStatus() == "Nouveau") %}
-        {%if PubDroite.getImportance() == "Important"  %}
-            <div class="widget widget-game imagepub2" style="background-image: url({{asset(PubDroite.getChemin())}});" >
-                <div class="overlay">
-                    <div class="title">The Withcer 3: Wild Hunt</div>
 
-                    <div class="bold text-uppercase">Platforms</div>
-                    <span class="label label-primary">PS4</span>
-                    <span class="label label-warning">PC</span>
-                    <span class="label label-success">Xbox</span>
-
-                    <div class="bold text-uppercase margin-top-40">Developer</div>
-                    <span class="font-size-13">CD Projekt Red Studio</span>
-
-                    <div class="bold text-uppercase margin-top-35">Release Date:</div>
-                    <span class="font-size-13">June 18, 2015</span>
-
-                    <div class="description">
-                        The Witcher 3: Wild Hunt is a story-driven, next-generation open world role-playing game, set in a visually stunning fantasy universe, full of meaningful choices and impactful consequences.
-                        <a href="#" class="btn btn-block btn-primary margin-top-40">Follow now <i class="fa fa-heart-o margin-left-10"></i></a>
-                    </div>
-                </div>
-            </div>
-
-        {% endif %}
-
-    {% endif %}
-{% endfor %}
 {%for PubDroite in PubDroites%}
     {%if not (PubDroite.getStatus() == "Deleted" or PubDroite.getStatus() == "Nouveau") %}
         {%if PubDroite.getImportance() != "Important"  %}
                 <div class="card card-video">
                     <div class="card-img">
-                        <a href="videos-single.html"><img src="{{asset(PubDroite.getChemin())}}"  alt=""></a>
+                        <a href="videos-single.html"><img src="{{asset(PubDroite.getChemin())}}"  alt="" class="imagepub"></a>
                         <!--div class="time">13:52</div-->
                     </div>
                 </div>
