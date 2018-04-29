@@ -20,7 +20,26 @@ class Notification
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
+     */
+    private $user;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255, nullable=true)
+     */
+    private $type;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255, nullable=true)
+     */
+    private $title;
+    
     /**
      * @var string
      *
@@ -43,11 +62,19 @@ class Notification
     private $status;
     
     /**
-     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
+     * @var datetime
+     *
+     * @ORM\Column(name="date", type="datetime", nullable = true)
      */
-    private $user;
+    private $date;
 
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="target", type="string", length=255, nullable=true)
+     */
+    private $target;
+    
     /**
      * Get id
      *

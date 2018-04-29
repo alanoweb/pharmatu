@@ -20,7 +20,26 @@ class Notification
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
+     */
+    private $user;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255, nullable=true)
+     */
+    private $type;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255, nullable=true)
+     */
+    private $title;
+    
     /**
      * @var string
      *
@@ -43,11 +62,19 @@ class Notification
     private $status;
     
     /**
-     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
+     * @var datetime
+     *
+     * @ORM\Column(name="date", type="datetime", nullable = true)
      */
-    private $user;
+    private $date;
 
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="target", type="string", length=255, nullable=true)
+     */
+    private $target;
+    
     /**
      * Get id
      *
@@ -148,5 +175,97 @@ class Notification
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     * @return Notification
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string 
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return Notification
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     * @return Notification
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime 
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set target
+     *
+     * @param string $target
+     * @return Notification
+     */
+    public function setTarget($target)
+    {
+        $this->target = $target;
+
+        return $this;
+    }
+
+    /**
+     * Get target
+     *
+     * @return string 
+     */
+    public function getTarget()
+    {
+        return $this->target;
     }
 }

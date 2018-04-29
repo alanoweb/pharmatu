@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use FrontBundle\Entity\Journal;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DefaultController extends Controller {
 
@@ -116,12 +117,20 @@ class DefaultController extends Controller {
             $utilisateur = $em->getRepository('FrontBundle:Utilisateur')->findOneBy(array('user' => $user));
             $levels = $em->getRepository('SupAdminBundle:levels')->findAll();
             $inventaire = $em->getRepository('FrontBundle:Inventaire')->findBy(array('utilisateur' => $utilisateur));
-            $journal = $em->getRepository('FrontBundle:Journal')->findBy(array('utilisateur' => $utilisateur),array('date' => 'DESC'));
+            $journals = $em->getRepository('FrontBundle:Journal')->findBy(array('utilisateur' => $utilisateur),array('date' => 'DESC'));
+            $journal = Array();
+            foreach( $journals as $key => $elem){
+                if($key <3){
+                    array_push($journal, $elem);
+                }
+            }
             $tonextlevel = 0;
+            $accountlevel =0;
             foreach ($levels as $level) {
                 if ($utilisateur->getExperience() < $level->getExperience())
                 {
                     $tonextlevel = $level->getExperience();
+                    $accountlevel = $level->getId();
                     break;
                 }
             }
@@ -136,6 +145,7 @@ class DefaultController extends Controller {
                 'config' => $config,
                 'tonextlevel' => $tonextlevel,
                 'pourcentexperience' => round($pourcentexperience),
+                'accountlevel' => $accountlevel,
                     ));
         }
     }
@@ -247,6 +257,86 @@ class DefaultController extends Controller {
         $em->flush();
 
         return new Response();
+    }
+    
+    public function journalShowMoreAction() {
+        $em = $this->getDoctrine()->getManager();
+        $request = $this->container->get('request');
+        $journals = $em->getRepository('FrontBundle:Journal')->findBy(array('utilisateur' => $utilisateur),array('date' => 'DESC'));
+        $journal = Array();
+        foreach( $journals as $key => $elem){
+            if($key <3){
+                array_push($journal, $elem);
+            }
+        }
+
+        return new Response();
+    }
+    
+    public function notificationsListAction() {
+        $em = $this->getDoctrine()->getManager();
+        $notifications = $em->getRepository('FrontBundle:Notification')->findby(array("user" => $this->getUser()));
+        $notif = array();
+        foreach($notifications as $notification){
+            $notiftarget = array();
+            switch ($notification->getType()) {
+                case 'discussion':
+                    $notiftarget['icon'] = "fa-comments";
+                    $notiftargetobject = $em->getRepository('UserBundle:User')->find($notification->getTarget());
+                    $notiftarget['img'] = $notiftargetobject->getAdmin()->getImageprofil();
+                    $notiftarget['name'] = $notiftargetobject->getUsername();
+                    $notiftarget['type'] = 'administrateur';
+                    $notiftarget['date'] = new \DateTime();
+                    break;
+                case 'activity':
+                    $notiftarget['icon'] = "fa-gamepad";
+                    $notiftargetobject = $em->getRepository('AdminBundle:Activity')->find($notification->getTarget());
+                    $notiftarget['img'] = $notiftargetobject->getImg();
+                    $notiftarget['name'] = $notiftargetobject->getNom();
+                    $notiftarget['type'] = 'Activité';
+                    $notiftarget['date'] = $notiftargetobject->getdat_deb();
+                    break;
+                case 'video':
+                    $notiftarget['icon'] = "fa-film";
+                    $notiftargetobject = $em->getRepository('AdminBundle:Activity')->find($notification->getTarget());
+                    $notiftarget['img'] = $notiftargetobject->getImg();
+                    $notiftarget['name'] = $notiftargetobject->getNom();
+                    $notiftarget['type'] = 'Video';
+                    $notiftarget['date'] = $notiftargetobject->getdat_deb();
+                    break;
+            }
+            $notif[$notification->getId()] = $notiftarget;
+        }
+        
+        return $this->render('FrontBundle:Default:notifications.html.twig', array(
+            "notifications" => $notifications,
+            'notiftarget' => $notif,
+                ));
+    }
+    
+    public function notificationRedirectAction() {
+        $em = $this->getDoctrine()->getManager();
+        $request = $this->container->get('request');
+        
+        $notification = $em->getRepository('FrontBundle:Notification')->find($request->get('id'));
+        
+        $notification->setStatus('vue');
+        $em->flush();
+        
+        switch ($notification->getType()) {
+            case 'discussion':
+                $notiftargetobject = $em->getRepository('UserBundle:User')->find($notification->getTarget());
+                
+                break;
+            case 'activity':
+                return new JsonResponse($this->generateUrl('actsingle', array('id' => $notification->getTarget())));
+                break;
+            case 'video':
+                return new JsonResponse($this->generateUrl('actsingle', array('id' => $notification->getTarget())));
+                break;
+        }
+        
+        return new Response('ok');
     }
 
 }

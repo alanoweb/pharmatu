@@ -15,15 +15,20 @@ class UtilisateurController extends Controller {
 
         $id = $request->get('idProduit');
         $Produit = $em->getRepository('SupAdminBundle:Produits')->find($id);
-        
-         if ($Produit->getStock()-1 == 0){
-                $Produit->setStatus("Stock epuiser");
-            }
-        $Produit->setStock($Produit->getStock()-1);
-     
-        $em->flush();
+        if ($this->getUser()->getUtilisateur()->getCoin() - $Produit->getNbrCoin() >= 0){
+            if ($Produit->getStock()-1 == 0){
+                   $Produit->setStatus("Stock epuiser");
+               }
+           $Produit->setStock($Produit->getStock()-1);
+           $this->getUser()->getUtilisateur()->setCoin($this->getUser()->getUtilisateur()->getCoin() - $Produit->getNbrCoin());
 
-        return new Response();
+           $em->flush();
+
+           return new Response('ok');
+        }
+        else{
+            return new Response('pb');
+        }
     }
     
     public function SavePersonnalDataAction() {

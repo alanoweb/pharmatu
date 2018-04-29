@@ -182,14 +182,14 @@ class Utilisateur
     /**
      * @var string
      *
-     * @ORM\Column(name="imageprofil", type="string", length=255)
+     * @ORM\Column(name="imageprofil", type="string", length=255, nullable = true)
      */
     private $imageprofil;
     
     /**
      * @var string
      *
-     * @ORM\Column(name="imagecouverture", type="string", length=255)
+     * @ORM\Column(name="imagecouverture", type="string", length=255, nullable = true)
      */
     private $imagecouverture;
     
