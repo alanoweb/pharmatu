@@ -80,3 +80,9 @@ poste_journal:
 add_cadeau:
     path:     /AddCadeau
     defaults: { _controller:FrontBundle:Admin:AddCadeau }
+notifications_list:
+    path:     /notifications_list
+    defaults: { _controller:FrontBundle:Default:notificationsList }
+notification_redirect:
+    path:     /notification_redirect
+    defaults: { _controller:FrontBundle:Default:notificationRedirect }

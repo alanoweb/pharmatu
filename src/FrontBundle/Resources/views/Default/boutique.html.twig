@@ -421,9 +421,12 @@
                     type: "POST",
                             url: "{{path('acheter_produit')}}",
                             data: $_data,
-                            success: function ()
+                            success: function (result)
                             {
-                            location.reload();
+                                if(result == 'ok')
+                                    location.reload();
+                                else
+                                    alert('GEL insuffissant');
                             }
                     });
                     }

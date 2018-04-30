@@ -557,6 +557,19 @@ overflow-x: hidden;
         });
             }
         </script>
+        <script>
+            function notificationRedirect($id){
+                $.ajax({
+                    type: "POST",
+                    url: "{{path('notification_redirect')}}",
+                    dataType: "json",
+                    data: {'id' : $id},
+                    success: function (urlFromController) {
+                        window.location.href = urlFromController;
+                    }
+                });
+            }
+        </script>
         {% block javascript %}
         {% endblock javascript %}
     </body>

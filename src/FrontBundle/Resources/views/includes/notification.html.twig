@@ -4,10 +4,10 @@
 {% for notif in notification %}
     {% if notif.status == "nouveau" and app.user == notif.user%}
         
-            <li class="text-center"><a href="javascript:void(0);"></a>{{notif.description}}</li>
+            <li class="text-center"><a href="javascript:void(0);" onclick='notificationRedirect({{notif.id}});'>{{notif.description}}</a></li>
             
             
     {% endif %}
 {% endfor %}
-<li class="dropdown-footer"><a href="javascript:void(0);">View all games</a></li>
+<li class="dropdown-footer"><a href="{{path('notifications_list')}}">Tout les notifications</a></li>
 </ul>
