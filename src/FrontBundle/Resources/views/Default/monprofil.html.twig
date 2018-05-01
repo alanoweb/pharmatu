@@ -342,7 +342,7 @@ height:100%;
                     <div class="col-md-9 col-sm-8" >
                         <div class="tab-content">
                             <div class="tab-pane {% if user and config != "config" %}fade in active{% endif %}" id="tabJournal">
-                                <div class="panel panel-default margin-bottom-40">
+                                <div id="journaladdingpost" class="panel panel-default margin-bottom-40">
                                     <div class="panel-body">
                                         <form id="formpostjournal">
                                         <div class="form-group">
@@ -365,12 +365,18 @@ height:100%;
                                     </div>
                                 </div>
 
+                                <div class="panel panel-default panel-post journal-posts" style="display:none;"></div>
+                                {% set currentmonth = 'now'|date('m/Y') %}
                                 {% for elem in journal %}
+                                {% if elem.date|date('m/Y') != currentmonth or loop.index == 1 %}
+                                       {% set currentmonth = elem.date|date('m/Y') %}
+                                       <h4 class="page-header text-center no-padding monthyeargroup"><i class="fa fa-clock-o"></i> {{ currentmonth }}</h4>
+                                {% endif %}
                                 <div class="panel panel-default panel-post journal-posts">
                                     <div class="panel-body">
                                         <div class="post">
                                             <div class="post-header post-author">
-                                                <a href="javascript:void(0);" class="author" data-toggle="tooltip" title="YAKUZI"><img src="img/user/avatar.jpg" alt=""></a>
+                                                <a href="javascript:void(0);" class="author" data-toggle="tooltip" title="YAKUZI"><img src="{{asset('img/user/avatar.jpg')}}" alt=""></a>
                                                 <div class="post-title">
                                                     <h3>{{elem.title}}</h3>
                                                     <ul class="post-meta">
@@ -400,8 +406,6 @@ height:100%;
                                     </div>
                                 </div>
                                 {% endfor %}
-
-                                <h4 class="page-header text-center no-padding"><i class="fa fa-clock-o"></i> February, 2016</h4>
                                 
                                 <h4 id="datebginmember" class="page-header text-center no-padding" style='display:none'><i class="fa fa-clock-o"></i> vous ete devenu membre de notre site depuis le {{user.date_membre|date('j \\pp Y \\à g:ia')}}</h4>
                                 <center><a id='jornalshowmore' href="javascript:void(0);" class="btn btn-primary btn-lg btn-shadow btn-rounded">Show More</a></center>
@@ -626,9 +630,11 @@ height:100%;
                             <div id="tabConfiguration" class="tab-pane fade {% if config == "config" %}in active{% endif %}">
                                 <div class="panel panel-default margin-bottom-40">
                                     <div class="panel-body">
-                                        <form action="{{ path('user_change_password') }}" method="POST" class="fos_user_change_password">
+                                        <form id="configchangepwd" action="{{ path('user_change_password') }}" method="POST" class="fos_user_change_password">
+                                            <p id="configchangepwderror" style="color:red;display:none;"></p>
+                                            <p id="configchangepwdsuccess" style="color:green;display:none;"></p>
                                             <div class="input-group" style="margin-bottom:10px">
-                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-cog"></i></span>
                                                 <input onfocusout="" type="password" class="form-control " id="changepasswordcurrent" name="changepasswordcurrent" placeholder="mot de passe actuelle" style="margin-bottom:0px"/>
                                             </div>
                                             <div class="input-group" style="margin-bottom:10px">
@@ -636,7 +642,7 @@ height:100%;
                                                 <input onfocusout="" type="password" class="form-control " id="changepasswordnew1" name="changepasswordnew1" placeholder="nouveau mot de passe" style="margin-bottom:0px"/>
                                             </div>
                                             <div class="input-group" style="margin-bottom:10px">
-                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-check"></i></span>
                                                 <input onfocusout="" type="password" class="form-control " id="changepasswordnew2" name="changepasswordnew2" placeholder="repeter le nouveau mot de passe" style="margin-bottom:0px"/>
                                             </div>
                                             <div>
@@ -649,22 +655,22 @@ height:100%;
                             <div id="tabHistorique" class="tab-pane fade">
                                 {% if historique %}
                                     <ul class="timeline margin-top-40">
-                                    {% for elem in historique %}
-                                    <li>
-                                        <div class="timeline-badge primary"></div>
-                                        <div class="timeline-panel">
-                                            <div class="timeline-heading">
-                                                <h4>{{elem.description}}</h4>
-                                            </div>
-                                            <div class="timeline-footer">
-                                                <i class="fa fa-calendar-o"></i> {{elem.date|date('d/m/Y')}}<!--May 21. 2016, 10:50 am-->
-                                            </div>
-                                        </div>
-                                    </li>
-                                    {% endfor %}
+                                        {% for elem in historique %}
+                                            <li>
+                                                <div class="timeline-badge primary"></div>
+                                                <div class="timeline-panel">
+                                                    <div class="timeline-heading">
+                                                        <h4>{{elem.description}}</h4>
+                                                    </div>
+                                                    <div class="timeline-footer">
+                                                        <i class="fa fa-calendar-o"></i> {{elem.date|date('d/m/Y')}}<!--May 21. 2016, 10:50 am-->
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        {% endfor %}
 
-                                    <li class="clearfix" style="float: none;"></li>
-                                </ul>
+                                        <li class="clearfix" style="float: none;"></li>
+                                    </ul>
                                     {% else %}
                                         <p>
                                             Votre compte est nouveau ! aucune action enregistré pour l'instant , participe à nos activités
@@ -702,7 +708,7 @@ height:100%;
                         }
                     });
                 } else {
-                    alert('resoud les erreurs svp !!!');
+                    //alert('resoud les erreurs svp !!!');
                 }
             }
 
@@ -766,17 +772,77 @@ height:100%;
             }
           
         </script>
-        {#<script>
+        <script>
+            
             $('#jornalshowmore').click(function(){
                 $.ajax({
                     type: "POST",
                     url: "{{path('journal_show_more')}}",
-                    data: {'last':$('.journal-posts').length} ,
-                    success: function () {
-                        location.reload();
+                    dataType: "json",
+                    data: {'last':$('.journal-posts').length - 1},
+                    success: function (results) {
+                        if(results === 'all'){
+                            $('#jornalshowmore').hide();
+                            $('#datebginmember').show();
+                        }else{
+                            var now = new Date();
+                            var monthnow = now.getMonth() + 1;
+                            var monthyeargroup = monthnow+'/'+now.getFullYear();
+                            $('#jornalshowmore').show();
+                            $('#datebginmember').hide();
+                            $('.journal-posts').remove();
+                            $('.monthyeargroup').remove();
+                            $('#journaladdingpost').after('<div class="panel panel-default panel-post journal-posts" style="display:none;"></div>');
+                            $.each(results, function (index, value) {
+                                var image;
+                                if (value['image']){
+                                    $path = '{{asset('imagepath')}}';
+                                    $path = $path.replace('imagepath',value['image']);
+                                     image = '<div class="post-thumbnail">'+
+                                    '<div class="embed-responsive embed-responsive-16by9">'+
+                                    '<img src="'+$path+'" onerror="this.onerror=null;this.src=\'{{asset('img/user/profile.jpg')}}\';">'+
+                                    '</div></div>';
+                                }else{
+                                    image = '';
+                                }
+                                $date1 = new Date ( value['date'].date);
+                                $month = $date1.getMonth()+1;
+                                if ($date1.getHours()<10)
+                                    $hours = '0'+$date1.getHours();
+                                else $hours = $date1.getHours();
+                                if ($date1.getMinutes()<10)
+                                    $minutes = '0'+$date1.getMinutes();
+                                else $minutes = $date1.getMinutes();
+                                if ($date1.getSeconds()<10)
+                                    $seconds = '0'+$date1.getSeconds();
+                                else $seconds = $date1.getSeconds();
+                                $date = $date1.getDate()+'/'+$month+'/'+$date1.getFullYear()+' '+$hours+':'
+                                        +$minutes+':'+$seconds;
+                                var elemdate = $month+'/'+$date1.getFullYear();
+                                if (monthyeargroup !== elemdate || index === 0 ){
+                                    monthyeargroup = elemdate;
+                                    $groupm ='<h4 class="page-header text-center no-padding monthyeargroup">'+
+                                    '<i class="fa fa-clock-o"></i> '+monthyeargroup+'</h4>';
+                                }
+                                else{$groupm = '';}
+                                
+                                $('.journal-posts').last().after($groupm+'<div class="panel panel-default panel-post journal-posts">'+
+                                    '<div class="panel-body"><div class="post"><div class="post-header post-author">'+
+                                    '<a href="javascript:void(0);" class="author" data-toggle="tooltip" title="YAKUZI">'+
+                                    '<img src="{{asset('img/user/avatar.jpg')}}" alt=""></a><div class="post-title"><h3>'+value['title']+'</h3>'+
+                                    '<ul class="post-meta"><li><i class="fa fa-calendar-o"></i> '+$date+'</li>'+
+                                    '</ul></div></div>'+image+
+                                    value['description']+'</div></div><div class="panel-footer">'+
+                                    '<ul class="post-action"><li><a href="javascript:void(0);" class="active">'+
+                                    '<i class="fa fa-heart"></i> you like it (7)</a></li>'+
+                                    '<li><a href="javascript:void(0);"><i class="fa fa-comments"></i> Comments</a></li>'+
+                                    '<li><a href="javascript:void(0);"><i class="fa fa-reply"></i> share</a></li>'+
+                                    '</ul></div></div>');
+                            });
+                        }
                     }
                 });
             });
-        </script>#}
+        </script>
     {% endblock javascript %}
 

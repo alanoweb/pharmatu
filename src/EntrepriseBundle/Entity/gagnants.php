@@ -22,9 +22,11 @@ class gagnants {
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="AdminBundle\Entity\Activity")
+     * @var string
+     *
+     * @ORM\Column(name="section", type="string", length=255)
      */
-    private $activity;
+    private $section;
 
     /**
      * @ORM\OneToOne(targetEntity="SupAdminBundle\Entity\cadeaux")
@@ -57,27 +59,6 @@ class gagnants {
      */
     public function getId() {
         return $this->id;
-    }
-
-    /**
-     * Set Activity
-     *
-     * @param string $activity
-     * @return gagnants
-     */
-    public function setActivity($activity) {
-        $this->activity = $activity;
-
-        return $this;
-    }
-
-    /**
-     * Get Activity
-     *
-     * @return string 
-     */
-    public function getActivity() {
-        return $this->activity;
     }
 
     /**
@@ -163,4 +144,27 @@ class gagnants {
         return $this->rang;
     }
 
+
+    /**
+     * Set section
+     *
+     * @param string $section
+     * @return gagnants
+     */
+    public function setSection($section)
+    {
+        $this->section = $section;
+
+        return $this;
+    }
+
+    /**
+     * Get section
+     *
+     * @return string 
+     */
+    public function getSection()
+    {
+        return $this->section;
+    }
 }

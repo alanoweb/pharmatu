@@ -383,9 +383,11 @@ height:100%;
                             <div id="tabConfiguration" class="tab-pane fade {% if config == "config" %}in active{% endif %}">
                                 <div class="panel panel-default margin-bottom-40">
                                     <div class="panel-body">
-                                        <form action="{{ path('user_change_password') }}" method="POST" class="fos_user_change_password">
+                                        <form id="configchangepwd" action="{{ path('user_change_password') }}" method="POST" class="fos_user_change_password">
+                                            <p id="configchangepwderror" style="color:red;display:none;"></p>
+                                            <p id="configchangepwdsuccess" style="color:green;display:none;"></p>
                                             <div class="input-group" style="margin-bottom:10px">
-                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-cog"></i></span>
                                                 <input onfocusout="" type="password" class="form-control " id="changepasswordcurrent" name="changepasswordcurrent" placeholder="mot de passe actuelle" style="margin-bottom:0px"/>
                                             </div>
                                             <div class="input-group" style="margin-bottom:10px">
@@ -393,7 +395,7 @@ height:100%;
                                                 <input onfocusout="" type="password" class="form-control " id="changepasswordnew1" name="changepasswordnew1" placeholder="nouveau mot de passe" style="margin-bottom:0px"/>
                                             </div>
                                             <div class="input-group" style="margin-bottom:10px">
-                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
+                                                <span class="input-group-addon" ><i class="glyphicon glyphicon-check"></i></span>
                                                 <input onfocusout="" type="password" class="form-control " id="changepasswordnew2" name="changepasswordnew2" placeholder="repeter le nouveau mot de passe" style="margin-bottom:0px"/>
                                             </div>
                                             <div>
@@ -404,23 +406,29 @@ height:100%;
                                 </div>
                             </div>
                             <div id="tabHistorique" class="tab-pane fade">
-                                <ul class="timeline margin-top-40">
-                                    {% for elem in historique %}
-                                    <li>
-                                        <div class="timeline-badge primary"></div>
-                                        <div class="timeline-panel">
-                                            <div class="timeline-heading">
-                                                <h4>{{elem.description}}</h4>
+                                {% if historique %}
+                                    <ul class="timeline margin-top-40">
+                                        {% for elem in historique %}
+                                        <li>
+                                            <div class="timeline-badge primary"></div>
+                                            <div class="timeline-panel">
+                                                <div class="timeline-heading">
+                                                    <h4>{{elem.description}}</h4>
+                                                </div>
+                                                <div class="timeline-footer">
+                                                    <i class="fa fa-calendar-o"></i> {{elem.date|date('d/m/Y h:m:s')}}<!--May 21. 2016, 10:50 am-->
+                                                </div>
                                             </div>
-                                            <div class="timeline-footer">
-                                                <i class="fa fa-calendar-o"></i> {{elem.date|date('d/m/Y h:m:s')}}<!--May 21. 2016, 10:50 am-->
-                                            </div>
-                                        </div>
-                                    </li>
-                                    {% endfor %}
+                                        </li>
+                                        {% endfor %}
 
-                                    <li class="clearfix" style="float: none;"></li>
-                                </ul>
+                                        <li class="clearfix" style="float: none;"></li>
+                                    </ul>
+                                {% else %}
+                                    <p>
+                                        Votre ete nouveau ! aucune action enregistré pour l'instant. 
+                                    </p>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="col-md-9 col-sm-8" id=""></div>

@@ -225,12 +225,20 @@ class DefaultController extends Controller {
         $request = $this->container->get('request');
         $user = $this->getUser();
         $encoder = $this->container->get('security.encoder_factory')->getEncoder($user);
-        $password = $request->get('changepasswordnew2');
+        
+        $currentpwd = $encoder->encodePassword($request->get('changepasswordcurrent'), $user->getSalt());
+        $password = $request->get('changepasswordnew1');
+        $passwordrepeat = $request->get('changepasswordnew2');
+        if ($user->getPassword() !== $currentpwd){
+            return new Response('Mot de passe actuel invalide');
+        }
+        if ($password !== $passwordrepeat || !$password || !$passwordrepeat){
+            return new Response('les deux mots de passe ne sont pas identique ou vide');
+        }
         $user->setPassword($encoder->encodePassword($password, $user->getSalt()));
 
         $em->flush();
-
-        return new Response();
+        return new Response('mot de passe modifier avec succee');
     }
  
     public function PosteJournalAction() {
