@@ -570,6 +570,40 @@ overflow-x: hidden;
                 });
             }
         </script>
+        <script>
+            $('#configchangepwd').submit(function(e){
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "{{ path('user_change_password') }}",
+                    processData: false, contentType: false, cache: false,
+                    data: new FormData($('#configchangepwd')[0]),
+                    success: function (result) {
+                        if(result !== 'mot de passe modifier avec succee'){
+                            $('#configchangepwderror').html(result);
+                            $('#configchangepwderror').show();
+                            $('#configchangepwdsuccess').hide();
+                            if(result === 'les deux mots de passe ne sont pas identique ou vide'){
+                                $('#changepasswordnew1').parent().css('border','1px solid red');
+                                $('#changepasswordnew2').parent().css('border','1px solid red');
+                            }
+                            if(result === 'Mot de passe actuel invalide'){
+                                $('#changepasswordcurrent').parent().css('border','1px solid red');
+                                $('#changepasswordnew1').parent().css('border','');
+                                $('#changepasswordnew2').parent().css('border','');
+                            }else{$('#changepasswordcurrent').parent().css('border','1px solid green');}
+                        }else{
+                            $('#configchangepwderror').hide();
+                            $('#configchangepwdsuccess').html(result);
+                            $('#configchangepwdsuccess').show();
+                            $('#changepasswordnew1').parent().css('border','1px solid green');
+                            $('#changepasswordnew2').parent().css('border','1px solid green');
+                            $('#changepasswordcurrent').parent().css('border','1px solid green');
+                        }
+                    }
+                });
+            });
+        </script>
         {% block javascript %}
         {% endblock javascript %}
     </body>

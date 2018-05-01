@@ -86,3 +86,6 @@ notifications_list:
 notification_redirect:
     path:     /notification_redirect
     defaults: { _controller:FrontBundle:Default:notificationRedirect }
+journal_show_more:
+    path:     /journal_show_more
+    defaults: { _controller:FrontBundle:Utilisateur:journalShowMore }

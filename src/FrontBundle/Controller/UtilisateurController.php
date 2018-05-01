@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AdminBundle\Entity\Activity;
 use Symfony\Component\HttpFoundation\Response;
 use SupAdminBundle\Entity\Produits;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class UtilisateurController extends Controller {
 
@@ -104,6 +105,31 @@ class UtilisateurController extends Controller {
         $em->flush();
 
         return new Response();
+    }
+    
+    public function journalShowMoreAction() {
+        $em = $this->getDoctrine()->getManager();
+        $request = $this->container->get('request');
+        
+        $user = $this->get('security.context')->getToken()->getUser();
+        $utilisateur = $em->getRepository('FrontBundle:Utilisateur')->findOneBy(array('user' => $user));
+        
+        $journals = $em->getRepository('FrontBundle:Journal')->findBy(array('utilisateur' => $utilisateur),array('date' => 'DESC'));
+        
+        if(count($journals) == $request->get('last')){
+            return new JsonResponse('all');
+        }else{
+            $journal = array();
+            foreach( $journals as $key => $elem){
+                if($key < ($request->get('last') + 3)){
+                    $journal[$key]['title'] = $elem->getTitle();
+                    $journal[$key]['date'] = $elem->getDate();
+                    $journal[$key]['image'] = $elem->getImage();
+                    $journal[$key]['description'] = $elem->getDescription();
+                }
+            }
+            return new JsonResponse($journal);
+        }
     }
        
 }

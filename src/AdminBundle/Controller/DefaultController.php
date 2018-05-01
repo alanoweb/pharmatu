@@ -46,6 +46,7 @@ public function userProfilAction($id)
                 if ($utilisateur->getExperience() < $level->getExperience())
                 {
                     $tonextlevel = $level->getExperience();
+                    $accountlevel = $level->getId();
                     break;
                 }
             }
@@ -59,6 +60,7 @@ public function userProfilAction($id)
             'config' => 'Default',
             'tonextlevel' => $tonextlevel,
             'pourcentexperience' => round($pourcentexperience),
+            'accountlevel' => $accountlevel,
             ));
     }
     
