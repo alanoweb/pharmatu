@@ -2,6 +2,18 @@
 
 {% block css %}
     <style>
+@media (max-width: 767px){
+.col-md-3 {
+   display: inherit!important;
+        margin: 1% !important; 
+}
+}
+@media (max-width: 990px){
+.widget {
+       width: 95%;
+    margin-left: 2%;
+}
+}
 	body{
 	overflow-x: hidden;
 	}
@@ -106,9 +118,7 @@ height:100%;
                 margin-top:3%;
             }
             @media (max-width: 767px){
-                .col-md-3{
-                    display:none!important;
-                }
+                
                 .col-md-9 .col-sm-8{
                     margin:1%;
                     width:100%}
@@ -207,9 +217,9 @@ height:100%;
                     </div>
                 </div>
             </div>
-            <div class="col-md-3" style="border:1px solid whitesmoke;background-color:black;color:white;float:right;margin-right:1%;z-index:20;width: 20%; cursor:pointer; ">
+            <div class="col-md-3" style="border:1px solid whitesmoke;background-color:black;color:white;float:right;margin-right:6%;z-index:20;width: 37%; cursor:pointer; display:inherit !important; ">
                 <form id="formphotocouverture">
-                    <label for="photocouverture" style="cursor:pointer;margin-bottom: 0px;"><i class="fa fa-camera"></i>&nbsp;&nbsp;Changer photo de couverture</label>
+                    <label for="photocouverture" style="cursor:pointer;margin-bottom: 0px;"><i class="fa fa-camera"></i><p>&nbsp;&nbsp;Changer photo de couverture</p></label>
                     <input type="file" id="photocouverture" name="photocouverture" style="display: none" onchange="Changerphotocouverture();" >
                     <input type="hidden" name="photocouvertureid" id="photocouvertureid" value="{{user.id}}"> 
                 </form>

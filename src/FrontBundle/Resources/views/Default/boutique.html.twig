@@ -10,7 +10,29 @@
 	.card .meta {
     right: 4%;
 }
-
+.card .meta span {
+    margin-top: 0px; 
+    float: none;
+}
+.meta span {
+    
+     font-size: 13px;
+    
+}
+.label span {
+    
+          margin-bottom: 0px; 
+    
+}
+.label {
+    
+              border-radius: 21px; 
+    
+}
+.card .meta i {
+    font-size: 14px;
+     margin-left: 0px; 
+	 }
     </style>
 {% endblock css %}
 {% block search %}
@@ -69,7 +91,7 @@
                                     <div class="card-img">
                                         <img src="{{asset(produit.getImage())}}" alt="" class="boutique_act">
                                         <div class="category"><span class="label label-success">{{produit.getStatus()}}</span></div>
-                                        <div class="meta"><i class="fa fa-cubes"></i> <span>stock : {{produit.getStock()}}</span></div>
+                                        <div class="meta label label-info"><i class="fa fa-cubes"></i> <span>stock : {{produit.getStock()}}</span></div>
                                     </div>
                                     <div class="caption">
                                         <div class="text-center"><h3 class="card-title">{{produit.getLibele()}}</h3></div>
@@ -88,7 +110,7 @@
                                     <div class="card-img">
                                         <img src="{{asset(produit.getImage())}}" alt="" class="boutique_act">
                                         <div class="category"><span class="label label-success">{{produit.getNbrCoin()}} Coin</span></div>
-                                        <div class="meta"><i class="fa fa-cubes"></i> <span>stock : {{produit.getStock()}}</span></div>
+                                        <div class="meta label label-info"><i class="fa fa-cubes"></i> <span>stock : {{produit.getStock()}}</span></div>
                                     </div>
                                     <div class="caption">
                                         <div class="text-center"><h3 class="card-title">{{produit.getLibele()}}</h3></div>
@@ -103,7 +125,7 @@
                                         <div class="card-img">
                                             <img src="{{asset(produit.getImage())}}" alt="" class="boutique_act">
                                             <div class="category"><span class="label label-success">{{produit.getNbrCoin()}} Coin</span></div>
-                                            <div class="meta"><i class="fa fa-cubes"></i> <span>stock : {{produit.getStock()}}</span></div>
+                                            <div class="meta label label-info"><i class="fa fa-cubes"></i> <span>stock : {{produit.getStock()}}</span></div>
                                         </div>
                                         <div class="caption">
                                             <div class="text-center"><h3 class="card-title">{{produit.getLibele()}}</h3></div>
