@@ -220,7 +220,7 @@ overflow-x: hidden;
                                             {{ render(controller("FrontBundle:Default:Body")) }}
                                             
                                             <div id="btnshowmoreposts" onclick="showposts();" class="text-center" style="margin-bottom: 3%;margin-top: 3%;"><a href="javascript:void(0);" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right">Load Posts</a></div>
-                                            <div id="nomoreposts"><p>no more posts</p></div>
+                                            <div class="col-md-5"></div><div id="nomoreposts" class="col-md-3"><p class="btn btn-danger btn-rounded">no more posts</p></div>
                                         </div>
                                     </div>
                                     <div class="az">
@@ -607,6 +607,7 @@ overflow-x: hidden;
         {% block javascript %}
         {% endblock javascript %}
     </body>
+
 
     <!-- Mirrored from gameforest.yakuzi.eu/games-single.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 19 Feb 2017 10:13:45 GMT -->
 </html>
