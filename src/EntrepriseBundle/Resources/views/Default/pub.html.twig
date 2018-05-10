@@ -1,4 +1,5 @@
 {% extends '::base.html.twig' %}
+
 {% block slide %}
 
 {% endblock%}
@@ -26,7 +27,7 @@
                         <div class="count col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <div class="card">
                                 <div class="card-img">
-                                    <img src="{{asset(pub.getChemin())}}" alt="">
+                                    <img src="{{asset(pub.getChemin())}}" alt="" class="boutique_act">
                                     <div class="category"><span class="label label-success">{{pub.getStatus()}}</span></div>
                                 </div>
                                 <div class="caption">
@@ -47,7 +48,7 @@
                         <div class="count col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <div class="card">
                                 <div class="card-img">
-                                    <img src="{{asset(pub.getChemin())}}" alt="">
+                                    <img src="{{asset(pub.getChemin())}}" alt="" class="boutique_act">
                                     <div class="category"><span class="label label-success">{{pub.getStatus()}} </span></div>
                                 </div>
                                 <div class="caption">
