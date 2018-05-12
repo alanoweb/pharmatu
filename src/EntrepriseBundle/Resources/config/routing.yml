@@ -31,3 +31,6 @@ save_entreprise_data:
 edit_imgcouverture_entreprise:
     path:     /editImgCouvertureEntreprise
     defaults: { _controller:EntrepriseBundle:Default:EditImgCouvertureEntreprise }
+edit_imgprofil_entreprise:
+    path:     /editImgProfilEntreprise
+    defaults: { _controller:EntrepriseBundle:Default:EditImgProfilEntreprise }
