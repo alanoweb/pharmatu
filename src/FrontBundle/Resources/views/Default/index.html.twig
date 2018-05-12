@@ -6,8 +6,8 @@
         $droitfixedheight = $('#PubDroiteSection').outerHeight() - $('header').outerHeight();
         $gauchefixedheight = $('#PubGaucheSection').outerHeight() - $('header').outerHeight();
         $(window).scroll( function() {
-            if ($(window).scrollTop() > $droitfixedheight ) {
-                
+            if ($(window).scrollTop() > $droitfixedheight && $(window).width() >= 992 ) {
+
                 $('#imagepubdroite-important').removeClass("imagepub-important");
                 $('#imagepubdroite-important').css("height",$heightpx);
                 $('#PubDroiteSection').css({'position':'fixed','right':"0px",'top':$top});
@@ -16,7 +16,7 @@
                 $('#PubDroiteSection').css({'position':'relative','top':'0px'});
                 $('#imagepubdroite-important').addClass("imagepub-important");
             }
-            if ($(window).scrollTop() >  $gauchefixedheight ) {
+            if ($(window).scrollTop() >  $gauchefixedheight && $(window).width() >= 992 ) {
                 $('#PubGaucheSection').css({'position':'fixed','left':"0px",'top':$top});
                 $('#imagepubgauche-important').removeClass("imagepub-important");
                 $('#imagepubgauche-important').css("height",$heightpx);

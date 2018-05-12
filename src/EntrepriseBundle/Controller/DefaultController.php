@@ -202,4 +202,21 @@ class DefaultController extends Controller
 
         return new Response();
     }
+    
+    public function EditImgProfilEntrepriseAction() {
+        $em = $this->getDoctrine()->getManager();
+        $request = $this->container->get('request');
+        $user = $request->get('photoprofilid');
+         $utilisateur = $em->getRepository('EntrepriseBundle:Entreprise')->find($user);
+        $file = $request->files->get('photoprofil');
+       if (isset($file)){
+           $fileName = md5($user.'photo').'.'.$file->guessExtension();
+           $photoDir = $this->container->getParameter('kernel.root_dir').'/../web/img/entreprise/'.md5($user).'/';
+           $file->move($photoDir, $fileName);
+           $utilisateur->setImageprofil('img/entreprise/'.md5($user).'/'.$fileName);
+       }
+        $em->flush();
+
+        return new Response();
+    }
 }

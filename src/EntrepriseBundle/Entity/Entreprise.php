@@ -71,6 +71,13 @@ class Entreprise
     /**
      * @var string
      *
+     * @ORM\Column(name="imageprofil", type="string", length=255, nullable = true)
+     */
+    private $imageprofil;
+    
+    /**
+     * @var string
+     *
      * @ORM\Column(name="imagecouverture", type="string", length=255, nullable = true)
      */
     private $imagecouverture;
@@ -288,6 +295,29 @@ class Entreprise
     public function getImagecouverture()
     {
         return $this->imagecouverture;
+    }
+    
+    /**
+     * Set imageprofil
+     *
+     * @param string $imageprofil
+     * @return Utilisateur
+     */
+    public function setImageprofil($imageprofil)
+    {
+        $this->imageprofil = $imageprofil;
+
+        return $this;
+    }
+
+    /**
+     * Get imageprofil
+     *
+     * @return string 
+     */
+    public function getImageprofil()
+    {
+        return $this->imageprofil;
     }
 
     /**
