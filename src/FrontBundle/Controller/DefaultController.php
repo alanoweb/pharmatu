@@ -21,43 +21,7 @@ use FrontBundle\Entity\Journal;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DefaultController extends Controller {
-
-    public function MenuAction() {
-        $em = $this->getDoctrine()->getManager();
-        $cathegories = $em->getRepository('AdminBundle:ActivityCath')->findall();
-        return $this->render('FrontBundle:includes:menu.html.twig', array("cathegories" => $cathegories));
-    }
-    
-    public function NotificationAction() {
-        $em = $this->getDoctrine()->getManager();
-        $notification = $em->getRepository('FrontBundle:Notification')->findby(array("status" => "nouveau","user" => $this->getUser()));
-        return $this->render('FrontBundle:includes:notification.html.twig', array("notification" => $notification,"nombreofnew"=>count($notification)));
-    }
-    
-    public function SlideAction() {
-        $em = $this->getDoctrine()->getManager();
-        $slides = $em->getRepository('EntrepriseBundle:Pub')->findby(array("type" => "Slide"));
-        return $this->render('FrontBundle:includes:slide.html.twig', array("slides" => $slides));
-    }
-    
-    public function PubDroiteAction() {
-        $em = $this->getDoctrine()->getManager();
-        $PubDroites = $em->getRepository('EntrepriseBundle:Pub')->findby(array("type" => "Droite"));
-        return $this->render('FrontBundle:includes:PubDroite.html.twig', array("PubDroites" => $PubDroites));
-    }
-    
-    public function PubGaucheAction() {
-        $em = $this->getDoctrine()->getManager();
-        $PubGauches = $em->getRepository('EntrepriseBundle:Pub')->findby(array("type" => "Gauche"));
-        return $this->render('FrontBundle:includes:PubGauche.html.twig', array("PubGauches" => $PubGauches));
-    }
-    
-    public function BodyAction() {
-        $em = $this->getDoctrine()->getManager();
-        $Actualites = $em->getRepository('FrontBundle:Actualite')->findAll(array('date' => 'DESC'));
-        return $this->render('FrontBundle:includes:Body.html.twig', array("Actualites" => $Actualites));
-    }
-
+  
     public function indexAction() {
         return $this->render('FrontBundle:Default:index.html.twig');
     }
@@ -75,24 +39,14 @@ class DefaultController extends Controller {
         $produits = $em->getRepository('SupAdminBundle:Produits')->findall();
         return $this->render('FrontBundle:Default:boutique.html.twig', array("produits" => $produits));
     }
-
-    public function classementAction() {
+    public function pharmacyListAction($type = null) {
         $em = $this->getDoctrine()->getManager();
-        $produits = $em->getRepository('SupAdminBundle:Produits')->findall();
-        return $this->render('FrontBundle:Default:classement.html.twig', array("produits" => $produits));
-    }
-
-    public function activityCatAction($id) {
-        $em = $this->getDoctrine()->getManager();
-        $categorie = $em->getRepository('AdminBundle:ActivityCath')->find($id);
-        $activites = $em->getRepository('AdminBundle:Activity')->findby(array('categorie' => $id));
-        return $this->render('FrontBundle:Default:catactivity.html.twig', array("activites" => $activites, "categorie" => $categorie));
-    }
-
-    public function activityAction($id) {
-        $em = $this->getDoctrine()->getManager();
-        $activity = $em->getRepository('AdminBundle:Activity')->find($id);
-        return $this->render($activity->getChemin(), array("activity" => $activity));
+        //$produits = $em->getRepository('SupAdminBundle:Produits')->findall();
+        
+        if ($type == 'night'){
+            return $this->render('FrontBundle:Default:night-pharmacy.html.twig');
+        }
+        return $this->render('FrontBundle:Default:pharmacy.html.twig');
     }
     
     public function monprofilAction($config) {
@@ -219,134 +173,5 @@ class DefaultController extends Controller {
         
         return new Response();
     }
- 
-    public function ChangePWDAction() {
-        $em = $this->getDoctrine()->getManager();
-        $request = $this->container->get('request');
-        $user = $this->getUser();
-        $encoder = $this->container->get('security.encoder_factory')->getEncoder($user);
-        
-        $currentpwd = $encoder->encodePassword($request->get('changepasswordcurrent'), $user->getSalt());
-        $password = $request->get('changepasswordnew1');
-        $passwordrepeat = $request->get('changepasswordnew2');
-        if ($user->getPassword() !== $currentpwd){
-            return new Response('Mot de passe actuel invalide');
-        }
-        if ($password !== $passwordrepeat || !$password || !$passwordrepeat){
-            return new Response('les deux mots de passe ne sont pas identique ou vide');
-        }
-        $user->setPassword($encoder->encodePassword($password, $user->getSalt()));
-
-        $em->flush();
-        return new Response('mot de passe modifier avec succee');
-    }
- 
-    public function PosteJournalAction() {
-        $em = $this->getDoctrine()->getManager();
-        $request = $this->container->get('request');
-        $user = $request->get('formpostjournalid');
-        $utilisateur = $em->getRepository('FrontBundle:Utilisateur')->find($user);
-        
-        $poste = new Journal();
-        $poste->setDescription($request->get('formpostjournaldescription'));
-        $poste->setTitle($request->get('formpostjournaltitle'));
-        $poste->setDate(new \DateTime('now'));
-        $poste->setUtilisateur($utilisateur);
-        
-        $em->persist($poste);
-        $em->flush();
-        $file = $request->files->get('formpostjournalimage');
-       if (isset($file)){
-           $fileName = md5($poste->getId()).'.'.$file->guessExtension();
-           $photoDir = $this->container->getParameter('kernel.root_dir').'/../web/img/journal/'.md5($user).'/';
-           $file->move($photoDir, $fileName);
-           $poste->setImage('img/journal/'.md5($user).'/'.$fileName);
-       } 
-        $em->flush();
-
-        return new Response();
-    }
-    
-    public function journalShowMoreAction() {
-        $em = $this->getDoctrine()->getManager();
-        $request = $this->container->get('request');
-        $journals = $em->getRepository('FrontBundle:Journal')->findBy(array('utilisateur' => $utilisateur),array('date' => 'DESC'));
-        $journal = Array();
-        foreach( $journals as $key => $elem){
-            if($key <3){
-                array_push($journal, $elem);
-            }
-        }
-
-        return new Response();
-    }
-    
-    public function notificationsListAction() {
-        $em = $this->getDoctrine()->getManager();
-        $notifications = $em->getRepository('FrontBundle:Notification')->findby(array("user" => $this->getUser()));
-        $notif = array();
-        foreach($notifications as $notification){
-            $notiftarget = array();
-            switch ($notification->getType()) {
-                case 'discussion':
-                    $notiftarget['icon'] = "fa-comments";
-                    $notiftargetobject = $em->getRepository('UserBundle:User')->find($notification->getTarget());
-                    $notiftarget['img'] = $notiftargetobject->getAdmin()->getImageprofil();
-                    $notiftarget['name'] = $notiftargetobject->getUsername();
-                    $notiftarget['type'] = 'administrateur';
-                    $notiftarget['date'] = new \DateTime();
-                    break;
-                case 'activity':
-                    $notiftarget['icon'] = "fa-gamepad";
-                    $notiftargetobject = $em->getRepository('AdminBundle:Activity')->find($notification->getTarget());
-                    $notiftarget['img'] = $notiftargetobject->getImg();
-                    $notiftarget['name'] = $notiftargetobject->getNom();
-                    $notiftarget['type'] = 'Activité';
-                    $notiftarget['date'] = $notiftargetobject->getdat_deb();
-                    break;
-                case 'video':
-                    $notiftarget['icon'] = "fa-film";
-                    $notiftargetobject = $em->getRepository('AdminBundle:Activity')->find($notification->getTarget());
-                    $notiftarget['img'] = $notiftargetobject->getImg();
-                    $notiftarget['name'] = $notiftargetobject->getNom();
-                    $notiftarget['type'] = 'Video';
-                    $notiftarget['date'] = $notiftargetobject->getdat_deb();
-                    break;
-            }
-            $notif[$notification->getId()] = $notiftarget;
-        }
-        
-        return $this->render('FrontBundle:Default:notifications.html.twig', array(
-            "notifications" => $notifications,
-            'notiftarget' => $notif,
-                ));
-    }
-    
-    public function notificationRedirectAction() {
-        $em = $this->getDoctrine()->getManager();
-        $request = $this->container->get('request');
-        
-        $notification = $em->getRepository('FrontBundle:Notification')->find($request->get('id'));
-        
-        $notification->setStatus('vue');
-        $em->flush();
-        
-        switch ($notification->getType()) {
-            case 'discussion':
-                $notiftargetobject = $em->getRepository('UserBundle:User')->find($notification->getTarget());
-                
-                break;
-            case 'activity':
-                return new JsonResponse($this->generateUrl('actsingle', array('id' => $notification->getTarget())));
-                break;
-            case 'video':
-                return new JsonResponse($this->generateUrl('actsingle', array('id' => $notification->getTarget())));
-                break;
-        }
-        
-        return new Response('ok');
-    }
-
 }
-
 ?>

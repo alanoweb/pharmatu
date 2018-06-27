@@ -1,0 +1,165 @@
+{% extends 'FrontBundle::layout.html.twig' %}
+{% block slider %}
+{% endblock %}
+{% block body %}
+    <section id="mainteasers" class="cs section_padding_0 columns_padding_0 table_section table_section_lg">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4 bg_teaser after_cover color_bg_1 width-lt-600 width-lt-500" style="background-image: url(&quot;images/teaser01.jpg&quot;);"><div class="bg_overlay"></div>
+                    <img src="images/teaser01.jpg" alt="">
+                    <div class="teaser_content media">
+                        <div class="media-left">
+                            <h4 class="grey media-heading">Doctor</h4>
+                            <h3>Visit</h3>
+
+                        </div>
+                        <div class="media-body">
+                            <form class="order-form" id="order_form">
+                                <div class="form-group">
+                                    <label for="fullname">Full Name</label>
+                                    <input type="text" class="form-control" id="fullname" placeholder="Full Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="department">Full Name</label>
+                                    <select class="form-control" name="department" id="department">
+                                        <option>Cardiology</option>
+                                        <option>Pharmacy</option>
+                                        <option>Physiotherapy</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone</label>
+                                    <input type="text" class="form-control" id="phone" placeholder="Phone">
+                                </div>
+
+                                <button type="submit" class="theme_button">Make An Order</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 bg_teaser after_cover color_bg_2 width-lt-600 width-lt-500" style="background-image: url(&quot;images/teaser02.jpg&quot;);"><div class="bg_overlay"></div>
+                    <img src="images/teaser02.jpg" alt="">
+                    <div class="teaser_content media">
+                        <div class="media-left">
+                            <h4 class="grey media-heading">Patient</h4>
+                            <h3>Review</h3>
+                            <!-- testimonials indicators -->
+                            <div class="topmargin_30">
+                                <a class="testimonials-control" href="#carousel-media" role="button" data-slide="prev">
+                                    <i class="fa fa-angle-left-big"></i>
+                                </a>
+                                <a class="testimonials-control" href="#carousel-media" role="button" data-slide="next">
+                                    <i class="fa fa-angle-right-big"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="media-body">
+                            <div id="carousel-media" class="carousel slide testimonials-carousel" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carousel-media" data-slide-to="0" class=""></li>
+                                    <li data-target="#carousel-media" data-slide-to="1" class=""></li>
+                                    <li data-target="#carousel-media" data-slide-to="2" class="active"></li>
+                                </ol>
+
+
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner">
+                                    <div class="item">
+                                        <p>
+                                            Ullamco laboris nialiquid exea commodi consat. Ut enim minim veniam norud exotation.
+                                        </p>
+                                        <div class="media">
+                                            <a class="media-left" href="#">
+                                                <img class="media-object" src="images/team/01.jpg" alt="">
+                                            </a>
+                                            <div class="media-body">
+                                                <h4>Jhon Smith</h4>
+                                                <p>
+                                                    Google Inc.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="item">
+                                        <p>
+                                            Ullamco laboris nialiquid exea commodi consat. Ut enim minim veniam norud exotation.
+                                        </p>
+                                        <div class="media">
+                                            <a class="media-left" href="#">
+                                                <img class="media-object" src="images/team/02.jpg" alt="">
+                                            </a>
+                                            <div class="media-body">
+                                                <h4>Michael Anderson</h4>
+                                                <p>
+                                                    Google Inc.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="item active">
+                                        <p>
+                                            Ullamco laboris nialiquid exea commodi consat. Ut enim minim veniam norud exotation.
+                                        </p>
+                                        <div class="media">
+                                            <a class="media-left" href="#">
+                                                <img class="media-object" src="images/team/03.jpg" alt="">
+                                            </a>
+                                            <div class="media-body">
+                                                <h4>Michael Anderson</h4>
+                                                <p>
+                                                    Google Inc.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- eof #carousel-media -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 bg_teaser after_cover color_bg_3 width-lt-600 width-lt-500" style="background-image: url(&quot;images/teaser03.jpg&quot;);"><div class="bg_overlay"></div>
+                    <img src="images/teaser03.jpg" alt="">
+                    <div class="teaser_content media">
+                        <div class="media-left">
+                            <h4 class="grey media-heading">Working</h4>
+                            <h3>Hours</h3>
+
+                        </div>
+                        <div class="media-body">
+
+                            <div class="widget_schedule">
+                                <ul class="list1 no-bullets">
+                                    <li>
+                                        Monday-Friday
+                                        <strong class="pull-right">09:00 - 20:00</strong>
+                                    </li>
+
+                                    <li>
+                                        Saturday
+                                        <strong class="pull-right">10:00 - 18:00</strong>
+                                    </li>
+
+                                    <li>
+                                        Sunday
+                                        <strong class="pull-right">Closed</strong>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+

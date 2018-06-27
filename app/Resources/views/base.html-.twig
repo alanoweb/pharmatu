@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <!-- Mirrored from gameforest.yakuzi.eu/games-single.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 19 Feb 2017 10:13:32 GMT -->
+    <head>
+        {% trans_default_domain 'FOSUserBundle' %}
+        <!-- META -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Gameforest - Responsive Gaming HTML Theme</title>
+
+        <!-- FAVICON -->
+        <link rel="shortcut icon" href="{{asset('img/favicon.ico')}}">
+
+        <!-- CORE CSS -->
+        <link href="{{asset('plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{asset('plugins/bootstrap/css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{asset('plugins/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700' rel='stylesheet' type='text/css'>
+
+
+        <!-- PLUGINS -->
+        <link href="{{asset('plugins/animate/animate.min.css')}}" rel="stylesheet">
+        <link href="{{asset('plugins/owl-carousel/owl.carousel.css')}}" rel="stylesheet">
+
+
+        <!-- THEME CSS -->
+        <link href="{{asset('css/theme.min.css')}}" rel="stylesheet">
+        <link href="{{asset('css/custom.css')}}" rel="stylesheet">
+      
+
+<style>
+    .imagepub-important{
+            height: 393px!important;
+        }
+        .imagepub{
+            height: 262px!important;;
+        }
+    .imageactuality{
+	    height: 405px!important;;
+	}
+.catimage{
+    height: 180px;
+}
+.photodeprofil{
+height: 145px;
+}
+.slideimage{
+
+height: 363px;
+}
+		.boutique_act{
+		height:256px!important;
+		}
+		body{
+overflow-x: hidden;
+}
+</style>
+		
+        {% block css %}
+		
+        {% endblock %}
+    </head>
+
+    <body class="fixed-header">
+        <header>
+            <div class="container" >
+                <span class="bar hide"></span>
+                <a href="{{path('homepage')}}" class="logo"><img src="{{asset('img/virmony.png')}}" style="height:50px;" alt=""></a>
+                <nav>
+                    <div class="nav-control">
+                        <ul>	
+                            <li >
+                                <a href="{{path('homepage')}}" >Accueil</a>
+                                <!--<ul class="dropdown-menu default">
+                                        <li><a href="home-magazine.html">Home - Magazine</a></li>
+                                        <li><a href="home-magazine-2.html">Home - Magazine 2</a></li>
+                                        <li><a href="home-magazine-3.html">Home - Magazine 3</a></li>
+                                        <li><a href="index-2.html">Home - Games</a></li>
+                                        <li><a href="home-videos.html">Home - Videos</a></li>
+                                </ul>-->
+                            </li>
+                            {% if not app.user %}						
+                                <li > 
+                                    <a href="javascript:void(0);" data-toggle="modal" data-target="#login-modal">Se connecter</a>
+                                </li>
+                            {% endif %}
+                            <li class="dropdown mega-dropdown" onmouseover="activitehouver();" onmouseout="$('#menu-mymenu').attr('style','height:90vh;overflow-y: scroll;');">
+                                <a >Activités</a>
+                                <ul id="menu-mymenu" class="dropdown-menu mega-dropdown-menu category" style="height:90vh;overflow-y: scroll;">       
+                                    {{ render(controller("FrontBundle:Default:Menu")) }}
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="{{path('boutique')}}">Boutique</a>
+                            </li>
+                            <li>
+                                <a href="{{path('classement')}}">Classement</a>
+                            </li>
+                            <li>
+                                <a href="{{path('apropos')}}">Apropos</a>
+                            </li>
+                            <li>
+                                <a href="{{path('contact')}}">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <div class="nav-right">
+                    {% if app.user %}
+                        <div class="nav-profile">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><img src="{{asset('img/user/avatar.jpg')}}" alt="">
+                                <span>
+                                    {% if app.user.admin != null %}
+                                        {% if app.user.admin.pseudo != null and app.user.admin.pseudo != "" %}
+                                            {{app.user.admin.pseudo}}
+                                        {% elseif app.user.admin.nom != null and  app.user.admin.prenom !=null %}
+                                            {{app.user.admin.nom}} {{app.user.admin.prenom}}
+                                        {% else %}
+                                            {{app.user.username}}
+                                        {%endif%}
+                                    {% elseif app.user.entreprise != null and app.user.entreprise.nom != null %}
+                                        {{app.user.entreprise.nom}}
+                                    {% elseif app.user.utilisateur != null %}
+                                        {% if app.user.utilisateur.pseudo != null and app.user.utilisateur.pseudo != "" %}
+                                            {{app.user.utilisateur.pseudo}}
+                                        {%elseif app.user.utilisateur.nom != null and app.user.utilisateur.prenom != null %}
+                                            {{app.user.utilisateur.nom}} {{app.user.utilisateur.prenom}}
+                                        {% else %}
+                                            {{app.user.username}}
+                                        {%endif%}
+                                    {% else %}
+                                        {{app.user.username}}
+                                    {% endif %}
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                {% if is_granted('ROLE_SUPER_ADMIN') %}     
+                                    <li><a href="{{path('categories')}}"><i class="fa fa-area-chart"></i>Catégories</a></li>                                    
+                                    <li><a href="{{path('levels')}}"><i class="fa fa-arrow-up"></i>Levels</a></li>                                    
+                                    {% endif %} 
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                    <li><a href="{{path('profils')}}"><i class="fa fa-group"></i>Profils</a></li>  
+                                    {% endif %}
+                                    {% if is_granted('ROLE_ENTREPRISE') %}
+                                    <li><a href="{{path('gagnants')}}"><i class="fa fa-trophy"></i>Gagnants</a></li>                  
+                                    <li><a href="{{path('statistique')}}"><i class="fa fa-bar-chart"></i>Statistique</a></li>                  
+                                    <li><a href="{{path('pub')}}"><i class="fa fa-eye"></i>Pub</a></li>
+                                    {% endif %}
+                                    {% if is_granted('ROLE_SUPER_ADMIN') == false %}
+                                    <li><a href="{{path('monprofil')}}"><i class="fa fa-user"></i> Mon profil</a></li>
+                                    {% endif %}
+                                    {% if is_granted('ROLE_SUPER_ADMIN') == false and is_granted('ROLE_ADMIN') == false and is_granted('ROLE_ENTREPRISE') == false %}
+                                    <li><a href="javascript:void(0);"><i class="fa fa-heart"></i> Likes <span class="label label-info">32</span></a></li>
+                                    <li><a href="javascript:void(0);"><i class="fa fa-gamepad"></i> Games</a></li>
+                                    <li><a href="{{ path('monprofil', {'config':'config'}) }}"><i class="fa fa-gear"></i> Configueration</a></li>
+                                    {% endif %}
+                                <li class="divider"></li>
+                                <li><a href="{{path('fos_user_security_logout')}}"><i class="fa fa-power-off"></i>Déconnection</a></li>
+                            </ul>
+                        </div>
+                        <div class="nav-dropdown dropdown">
+                            {{ render(controller("FrontBundle:Default:Notification")) }}
+                        </div>
+                    {% else %}
+                        <div class="nav-profile ">
+                            <a href="javascript:void(0);" data-toggle="modal" data-target="#login-modal" class="dropdown-toggle" ><img src="{{asset('img/user/avatar.jpg')}}" alt=""> <span>Anonyme</span></a>  
+                        </div>
+                    {% endif %}
+                    {% block searchicon %}
+                        <a href="javascript:void(0);" data-toggle="modal-search"><i class="fa fa-search"></i></a>
+                        {% endblock %}
+                </div>
+            </div>
+        </header>
+        <!-- /header -->
+        {% block search %}
+            <div class="modal-search">
+                <div class="container">
+
+                    <div class="recherche" style="padding-right:30%;">
+                        <input type="text" class="form-control hidden-xs" style="    padding: 9px 9px 9px 9px;     background: #afafaf;    color: #1a1b1d;" placeholder="Search Game...">
+
+
+                    </div>
+                    <i class="fa fa-times close"></i>
+                </div>
+            </div><!-- /.modal-search -->
+        {% endblock%}
+        <!-- wrapper -->
+        <div id="wrapper">
+            {% block Dashboard %}
+                {% block slide %}
+                    <section id="slidesection" class="border-bottom-1 border-grey-200 padding-top-15 padding-bottom-10">
+                        <div class="owl-carousel owl-video">
+                            {{ render(controller("FrontBundle:Default:Slide")) }}
+                            
+                        </div>
+                        <div class="col-md-12 text-center">   {% if not app.user %} <a href="{{path('fos_user_registration_register')}}" class="btn btn-primary btn-lg btn-rounded" data-animation="animated animate10 fadeIn">Inscrivez vous maintenant</a>{% endif %}
+                        </div>
+                    </section>
+                {% endblock slide%}
+                {% block wrapper %}
+                    <section class="bg-grey-50 padding-top-30">
+                        <div class="container-fluid">
+                            <div class="row">
+                                {% block  body  %}
+                                    <div class="ax">
+                                        <div class="col-md-3" id="PubGaucheSection">
+                                            {{ render(controller("FrontBundle:Default:PubGauche")) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="ay" >
+                                        <div class="col-md-6" id="BodyPostsSection">
+                                            {{ render(controller("FrontBundle:Default:Body")) }}
+                                            
+                                            <div id="btnshowmoreposts" onclick="showposts();" class="text-center" style="margin-bottom: 3%;margin-top: 3%;"><a href="javascript:void(0);" class="btn btn-primary btn-lg btn-shadow btn-rounded btn-icon-right">Load Posts</a></div>
+                                            <div class="col-md-5"></div><div id="nomoreposts" class="col-md-3"><p class="btn btn-danger btn-rounded">no more posts</p></div>
+                                        </div>
+                                    </div>
+                                    <div class="az">
+                                        <div class="col-md-3" id="PubDroiteSection">
+                                           {{ render(controller("FrontBundle:Default:PubDroite")) }}
+
+                                        </div>
+                                        <div>
+                                        </div>
+                                    </div>
+                                {% endblock  body  %}
+                            </div>
+                        </div>
+                    </section>
+                {% endblock wrapper %}
+                <!-- /#wrapper -->
+            {% endblock Dashboard %}
+        </div>
+        <!-- footer -->
+        <footer>
+            <div class="container" style="margin-right:250px;">
+                <div class="widget row">
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                        <h4 class="title">About GameForest</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra mattis arcu, a congue leo malesuada eu. Nam nec mauris ut odio tristique varius et eu metus. Quisque massa purus, aliquet quis blandit et, <br /> <br />mollis sed lorem. Sed vel tincidunt elit. Phasellus at varius odio, sit amet fermentum mauris.</p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <h4 class="title">Categories</h4>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">	
+                                <ul class="nav">
+                                    <li><a href="javascript:void(0);">Playstation 4</a></li>
+                                    <li><a href="javascript:void(0);">XBOX ONE</a></li>
+                                    <li><a href="javascript:void(0);">PC</a></li>
+                                    <li><a href="javascript:void(0);">PS3</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <ul class="nav">
+                                    <li><a href="javascript:void(0);">Gaming</a></li>
+                                    <li><a href="javascript:void(0);">Portfolio</a></li>
+                                    <li><a href="javascript:void(0);">Videos</a></li>
+                                    <li><a href="javascript:void(0);">Reviews</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="title">Email Newsletters</h4>
+                        <p>Subscribe to our newsletter and get notification when new games are available.</p>
+                        <form method="post" class="btn-inline form-inverse">
+                            <input type="text" class="form-control" placeholder="Email..." />
+                            <button type="submit" class="btn btn-link"><i class="fa fa-envelope"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom" style="margin-right:250px;">
+                <div class="container">	
+                    <ul class="list-inline">
+                        <li><a href="javascript:void(0);" class="btn btn-circle btn-social-icon" title="Follow us on Twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="javascript:void(0);" class="btn btn-circle btn-social-icon" title="Follow us on Facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="javascript:void(0);" class="btn btn-circle btn-social-icon" title="Follow us on Google"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="javascript:void(0);" class="btn btn-circle btn-social-icon" title="Follow us on Steam"><i class="fa fa-steam"></i></a></li>
+                    </ul>
+                    <p style="margin-left:20%"> &copy; 2016 Gameforest. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>	
+        <!-- /.footer -->
+
+        <!-- Modales -->
+
+
+        <div class="bs-modal-sm modal fade" id="login-modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">Login</h4>
+                        <!--img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" /-->
+                    </div>
+
+                    <form id="loginform" action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
+                        <div class="modal-body">
+                            <span id="loginerror" style="color:red"></span>
+                            <span id="reauth-email" class="reauth-email"></span>
+                            <div class="input-group" style="margin-bottom:10px;border:none">
+                                <span class="input-group-addon" ><i class="glyphicon glyphicon-user"></i></span>   
+                                <input onfocusout="usernamereq();" type="text" id="loginusername" name="_username" required="required" class="form-control " placeholder="{{ 'security.login.username'|trans }}" style="margin-bottom:0px"/>
+                            </div>
+                            <div class="input-group" style="margin-bottom:10px">
+                                <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
+                                <input onfocusout="pswreq();" type="password" class="form-control " id="loginpassword" name="_password" required="required" placeholder="{{ 'security.login.password'|trans }}" style="margin-bottom:0px"/>
+                            </div>  
+                            <div id="remember" class="checkbox">
+                                <input type="checkbox" id="loginremember_me" name="_remember_me" value="on"/>
+                                <label for="loginremember_me">{{ 'security.login.remember_me'|trans }}</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="login_submit" name="_submit" class="btn btn-primary" type="submit" >{{ 'security.login.submit'|trans }}</button>
+                            <a href="{{path('fos_user_registration_register')}}"><button id="_register" name="_register" class="btn btn-danger" type="button" >{#{ 'security.login.register'|trans }#}Inscription</button></a>
+                            <br><a id="forgotpwd" href="{{ path('fos_user_resetting_request') }}" class="forgot-password">
+                                <!--a id="forgotpwd" href="javascript:void(0);" data-toggle="modal" data-target="#change-pwd"-->
+                                Mot de passe oublier ?
+                            </a>
+                        </div>
+                    </form><!-- /form -->
+
+                </div>
+            </div><!-- /card-container -->
+        </div><!-- /container -->
+
+        <!-- Javascript -->
+        <script src="{{asset('plugins/jquery/jquery-3.1.0.min.js')}}"></script>
+        <script src="{{asset('plugins/jquery/jquery.dataTables.min.js')}}"></script>
+        <script src="{{asset('plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('plugins/bootstrap/js/dataTables.bootstrap.min.js')}}"></script>
+        <script src="{{asset('plugins/twitter/twitter.js')}}"></script>
+        <script src="{{ asset('js/jquery-ui-1.12.0/jquery-ui.js') }}"></script>
+        <script src="{{asset('plugins/ekko-lightbox/ekko-lightbox.min.js')}}"></script>
+        <script src="{{asset('js/core.min.js')}}"></script>
+        <script src="{{asset('plugins/owl-carousel/owl.carousel.min.js')}}"></script>
+        <script src="{{asset('plugins/bootstrap/js/jquery.bootpag.min.js')}}"></script>
+        <script src="//cdn.jsdelivr.net/phaser/2.2.2/phaser.min.js"></script>
+
+        <script>
+            $(".datepicker").datepicker({dateFormat: 'd-m-yy',
+                altField: "#datepicker",
+                closeText: 'Fermer',
+                prevText: 'Précédent',
+                nextText: 'Suivant',
+                currentText: 'Aujourd\'hui',
+                monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+                monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+                dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+                dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
+                dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+                weekHeader: 'Sem.'
+            });
+           function activitehouver(){
+               if ($('#menu-mymenu').height() > $(window).height()){
+                   $('#menu-mymenu').attr('style','display: block !important;height:90vh;overflow-y: scroll;');
+               }
+               else{$('#menu-mymenu').attr('style','display: table !important;');}
+           }
+        </script>
+        <script>
+            $(document).ready(function () {
+                window.scrollTo(0, 0);
+                $('#login_submit').click(function (e) {
+                    e.preventDefault();
+                    if (usernamereq() === false && pswreq() === false) {
+                        $('#loginerror').html("entrez vos coordonnées");
+                    } else if (usernamereq() === false) {
+                        $('#loginerror').html("nom d'utilisateur ou e-mail obligatoire");
+                    } else if (pswreq() === false) {
+                        $('#loginerror').html("mot de passe obligatoire");
+                    } else {
+                        $('#loginerror').html("");
+                        $('#loginusername').parent().css("border", "none");
+                        $('#loginpassword').parent().css("border", "none");
+                        $.ajax({
+                            type: $('#loginform').attr('method'),
+                            url: '{{ path("fos_user_security_check") }}',
+                            data: $('#loginform').serialize(),
+                            dataType: "json",
+                            success: function (data, status, object) {
+                                if (!data.success) {
+                                    if (data.message === "User account is disabled.")
+                                        $('#loginerror').html("Compte Blocker par l'administration");
+                                    else{
+                                    $('#loginerror').html("nom utilisateur ou mot de passe invalide");
+                                    $('#loginusername').parent().css("border", "solid 1px red");
+                                    $('#loginpassword').parent().css("border", "solid 1px red");}
+                                } else
+                                if ((location.href.match('/register')) || (location.href.match('/resetting/request')))
+                                    window.location.href = "{{path('homepage')}}";
+                                else
+                                    location.reload();
+                            },
+                            error: function (data, status, object) {
+                                console.log(data.message);
+
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
+        <script>
+            (function ($) {
+                "use strict";
+                var config1 = {
+                    "id": $('#twitter').data("twitter"),
+                    "domId": 'twitter',
+                    "maxTweets": 1,
+                    "enableLinks": true
+                };
+                twitterFetcher.fetch(config1);
+
+                $(".owl-carousel").owlCarousel({
+                    autoPlay: true,
+                    items: 6, //4 items above 1000px browser width
+                    itemsDesktop: [1600, 3], //3 items between 1000px and 0
+                    itemsTablet: [940, 1], //1 items between 600 and 0
+                    itemsMobile: false // itemsMobile disabled - inherit from itemsTablet option
+                });
+            })(jQuery);
+        </script>
+        <script>
+
+            function usernamereq() {
+                if ($('#loginusername').val() === "" || $('#loginusername').val() === null) {
+                    $('#loginusername').parent().css("border", "solid 1px red");
+                    return false;
+                } else {
+                    $('#loginusername').parent().css("border", "solid 1px green");
+                    return true;
+                }
+            }
+            function pswreq() {
+                if ($('#loginpassword').val() === "" || $('#loginpassword').val() === null) {
+                    $('#loginpassword').parent().css("border", "solid 1px red");
+                    return false;
+                } else {
+                    $('#loginpassword').parent().css("border", "solid 1px green");
+                    return true;
+                }
+            }
+            $('#login-modal').on('hidden.bs.modal', function () {
+                $('#loginerror').html("");
+                $('#loginusername').parent().css("border", "none");
+                $('#loginpassword').parent().css("border", "none");
+            });
+            $('#_register').click(function (e) {
+                if (location.href.match('/register')) {
+                    e.preventDefault();
+                    $('#login-modal').modal('toggle');
+                }
+            });
+            $('#forgotpwd').click(function (e) {
+                if (location.href.match('/resetting/request')) {
+                    e.preventDefault();
+                    $('#login-modal').modal('toggle');
+                }
+            });
+
+        </script>
+        <script>
+            {% if app.user and not is_granted('ROLE_SUPER_ADMIN')%}
+                {% if app.user.admin == null and app.user.utilisateur == null and app.user.entreprise == null %}
+                    $.ajax({
+                        type: "POST",
+                        url: '{{ path("creat_user_profil") }}',
+                        success: function (data, status, object) {
+                        },
+                        error: function (data, status, object) {
+                            console.log(data.message);
+                        }
+                    });
+                {% endif %}
+            {% endif %}
+        </script>
+        <script>
+            function CheckEmptyRequiredInput($id, $message) {
+                $valide = true;
+                $('#' + $id).find("label > span").each(function () {
+                    $input = $(this).parent().next().find("input");
+                    if ($input.val() === "") {
+                        $input.parent().css('border', '1px solid red');
+                        $input.parent().prev('span').html($(this).parent().html().replace('*', $message));
+                        $valide = false;
+                    } else {
+                        $input.parent().css('border', '1px solid green');
+                        $input.parent().prev('span').html('');
+                    }
+                });
+                return $valide;
+            }
+            function CheckNumeriqueInput($id, $message) {
+                $valide = true;
+                $input = $('#' + $id);
+                if ($input.val() === '') {
+                    $input.parent().css('border', '1px solid red');
+                    $input.parent().prev('span').html($input.parent().parent().prev('label').html().replace('*', $message));
+                    $valide = false;
+                } else if (!$.isNumeric($input.val())) {
+                    $input.parent().css('border', '1px solid red');
+                    $input.parent().prev('span').html($input.parent().parent().prev('label').html().replace('*', 'doit etre numerique'));
+                    $valide = false;
+                } else {
+                    $input.parent().css('border', '1px solid green');
+                    $input.parent().prev('span').html('');
+                }
+
+                return $valide;
+            }
+        </script>
+        <script>
+            function Pagination($paginationid,$contentid,$nombreaffichage){
+                $productnumber = $('#'+$contentid).children('.count').length;
+        $pages = Math.ceil($productnumber / $nombreaffichage);
+        $productnumber = $('#'+$contentid).children('.count').each(function( index ) {
+                if (index < $nombreaffichage ){
+                    $(this).css('display','block');
+                }
+                else{
+                    $(this).css('display','none');
+                }
+            });
+        $('#'+$paginationid).bootpag({
+        total: $pages,
+                page: 1,
+                maxVisible: 10,
+                leaps: true,
+                firstLastUse:true,
+                first:"Début",
+                last:"Fin"
+                });
+        $('#'+$paginationid).on("page", function(event, num){
+            $('#'+$contentid).children('.count').each(function( index ) {
+                if (Math.ceil((index+1) /$nombreaffichage )=== num){
+                    $(this).css('display','block');
+                }
+                else{
+                    $(this).css('display','none');
+                }
+            });
+        });
+            }
+        </script>
+        <script>
+            function notificationRedirect($id){
+                $.ajax({
+                    type: "POST",
+                    url: "{{path('notification_redirect')}}",
+                    dataType: "json",
+                    data: {'id' : $id},
+                    success: function (urlFromController) {
+                        window.location.href = urlFromController;
+                    }
+                });
+            }
+        </script>
+        <script>
+            $('#configchangepwd').submit(function(e){
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "{{ path('user_change_password') }}",
+                    processData: false, contentType: false, cache: false,
+                    data: new FormData($('#configchangepwd')[0]),
+                    success: function (result) {
+                        if(result !== 'mot de passe modifier avec succee'){
+                            $('#configchangepwderror').html(result);
+                            $('#configchangepwderror').show();
+                            $('#configchangepwdsuccess').hide();
+                            if(result === 'les deux mots de passe ne sont pas identique ou vide'){
+                                $('#changepasswordnew1').parent().css('border','1px solid red');
+                                $('#changepasswordnew2').parent().css('border','1px solid red');
+                            }
+                            if(result === 'Mot de passe actuel invalide'){
+                                $('#changepasswordcurrent').parent().css('border','1px solid red');
+                                $('#changepasswordnew1').parent().css('border','');
+                                $('#changepasswordnew2').parent().css('border','');
+                            }else{$('#changepasswordcurrent').parent().css('border','1px solid green');}
+                        }else{
+                            $('#configchangepwderror').hide();
+                            $('#configchangepwdsuccess').html(result);
+                            $('#configchangepwdsuccess').show();
+                            $('#changepasswordnew1').parent().css('border','1px solid green');
+                            $('#changepasswordnew2').parent().css('border','1px solid green');
+                            $('#changepasswordcurrent').parent().css('border','1px solid green');
+                        }
+                    }
+                });
+            });
+        </script>
+        {% block javascript %}
+        {% endblock javascript %}
+    </body>
+
+
+    <!-- Mirrored from gameforest.yakuzi.eu/games-single.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 19 Feb 2017 10:13:45 GMT -->
+</html>

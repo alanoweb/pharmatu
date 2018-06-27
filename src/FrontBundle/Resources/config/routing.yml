@@ -1,6 +1,3 @@
-game:
-    resource: "@FrontBundle/Resources/config/gamerouting.yml"
-    prefix:   /game
 homepage:
     path:  /
     defaults: { _controller:FrontBundle:Default:index }
@@ -13,79 +10,12 @@ contact:
 boutique:
     path:  /boutique
     defaults: { _controller:FrontBundle:Default:boutique }
-classement:
-    path:  /classement
-    defaults: { _controller:FrontBundle:Default:classement }
-activity:
-    path:  /activity/{id}
-    defaults: { _controller:FrontBundle:Default:activityCat }
-    requirements:
-        id : \d+        
-actsingle:
-    path:  /actsingle/{id}
-    defaults: { _controller:FrontBundle:Default:activity }
-    requirements:
-        id : \d+
 monprofil:
     path:  /monprofil/{config}
     defaults: { _controller:FrontBundle:Default:monprofil, config:"default" }
-add_activite:
-    path:     /AddActivite
-    defaults: { _controller:FrontBundle:Admin:AddActivite }
-delete_activite:
-    path:     /DeleteActivite
-    defaults: { _controller:FrontBundle:Admin:DeleteActivite }
-activation_activite:
-    path:     /ActivationActivite
-    defaults: { _controller:FrontBundle:Admin:ActivationActivite }
-edit_activite:
-    path:     /editActivite
-    defaults: { _controller:FrontBundle:Admin:EditActivite }
-add_produit:
-    path:     /AddProduit
-    defaults: { _controller:FrontBundle:Admin:AddProduit }
-delete_produit:
-    path:     /DeleteProduit
-    defaults: { _controller:FrontBundle:Admin:DeleteProduit }
-edit_stock_produit:
-    path:     /EditStockProduit
-    defaults: { _controller:FrontBundle:Admin:EditStockProduit }
-edit_produit:
-    path:     /editProduit
-    defaults: { _controller:FrontBundle:Admin:EditProduit }
-acheter_produit:
-    path:     /acheterProduit
-    defaults: { _controller:FrontBundle:Utilisateur:AcheterProduit }
-save_personnal_data:
-    path:     /save_personnal_data
-    defaults: { _controller:FrontBundle:Utilisateur:SavePersonnalData }
-save_general_data:
-    path:     /save_general_data
-    defaults: { _controller:FrontBundle:Utilisateur:SaveGeneralData }
-edit_imgprofil:
-    path:     /editImgProfil
-    defaults: { _controller:FrontBundle:Utilisateur:EditImgProfil }
-edit_imgcouverture:
-    path:     /editImgCouverture
-    defaults: { _controller:FrontBundle:Utilisateur:EditImgCouverture }
 send_message_contact:
-    path:     /SendMessageContact
+    path:  /SendMessageContact
     defaults: { _controller:FrontBundle:Default:SendMessageContact }
-user_change_password:
-    path:     /ChangePWD
-    defaults: { _controller:FrontBundle:Default:ChangePWD }
-poste_journal:
-    path:     /PosteJournal
-    defaults: { _controller:FrontBundle:Default:PosteJournal }
-add_cadeau:
-    path:     /AddCadeau
-    defaults: { _controller:FrontBundle:Admin:AddCadeau }
-notifications_list:
-    path:     /notifications_list
-    defaults: { _controller:FrontBundle:Default:notificationsList }
-notification_redirect:
-    path:     /notification_redirect
-    defaults: { _controller:FrontBundle:Default:notificationRedirect }
-journal_show_more:
-    path:     /journal_show_more
-    defaults: { _controller:FrontBundle:Utilisateur:journalShowMore }
+pharmacy_list:
+    path:  /pharmacy_list/{type}
+    defaults: { _controller:FrontBundle:Default:pharmacyList, type: null }
